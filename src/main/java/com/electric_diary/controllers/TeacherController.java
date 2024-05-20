@@ -8,54 +8,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.electric_diary.entities.TeacherEntity;
-import com.electric_diary.repositories.TeacherRepository;
+import com.electric_diary.handlers.TeacherHandler;
 
 @RestController
 @RequestMapping(path = "/api/v1/teachers")
 public class TeacherController {
 
 	@Autowired
-	private TeacherRepository teacherRepository;
+	protected TeacherHandler teacherHandler;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public TeacherEntity addNewTeacher(@RequestParam String firstName, @RequestParam String lastName) {
-		TeacherEntity teacher = new TeacherEntity();
-		teacher.setFirstName(firstName);
-		teacher.setLastName(lastName);
-		teacherRepository.save(teacher);
-		return teacher;
+	public TeacherEntity createTeacher(@RequestParam String firstName, @RequestParam String lastName) {
+		return teacherHandler.createTeacher(firstName, lastName);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public Iterable<TeacherEntity> getAllTeachers() {
-		return teacherRepository.findAll();
+		return teacherHandler.getAllTeachers();
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public TeacherEntity getTeacherById(@PathVariable String id) {
-		return teacherRepository.findById(Integer.parseInt(id)).get();
+		return teacherHandler.getTeacherById(id);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-	public TeacherEntity modifyTeacher(@PathVariable String id, @RequestParam String firstName,
+	public TeacherEntity updateTeacher(@PathVariable String id, @RequestParam String firstName,
 			@RequestParam String lastName) {
-		TeacherEntity teacher = teacherRepository.findById(Integer.parseInt(id)).get();
-		if (teacher != null) {
-			teacher.setFirstName(firstName);
-			teacher.setLastName(lastName);
-			teacherRepository.save(teacher);
-			return teacher;
-		}
-		return new TeacherEntity();
+		return teacherHandler.updateTeacher(id, firstName, lastName);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public TeacherEntity deleteTeacher(@PathVariable String id) {
-		TeacherEntity teacher = teacherRepository.findById(Integer.parseInt(id)).get();
-		if (teacher != null) {
-			teacherRepository.delete(teacher);
-			return teacher;
-		}
-		return new TeacherEntity();
+		return teacherHandler.deleteTeacher(id);
 	}
 }
