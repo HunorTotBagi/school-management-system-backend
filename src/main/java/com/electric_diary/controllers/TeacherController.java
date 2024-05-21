@@ -33,8 +33,7 @@ public class TeacherController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-	public TeacherEntity updateTeacher(@PathVariable String id, @RequestParam String firstName,
-			@RequestParam String lastName) {
+	public TeacherEntity updateTeacher(@PathVariable String id, @RequestParam String firstName, @RequestParam String lastName) {
 		return teacherHandler.updateTeacher(id, firstName, lastName);
 	}
 

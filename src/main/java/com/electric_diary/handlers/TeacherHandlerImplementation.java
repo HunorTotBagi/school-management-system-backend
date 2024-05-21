@@ -19,17 +19,17 @@ public class TeacherHandlerImplementation implements TeacherHandler {
 	protected TeacherRepository teacherRepository;
 
 	@Override
-	public Iterable<TeacherEntity> getAllTeachers() {
-		return teacherRepository.findAll();
-	}
-
-	@Override
 	public TeacherEntity createTeacher(String firstName, String lastName) {
 		TeacherEntity teacher = new TeacherEntity();
 		teacher.setFirstName(firstName);
 		teacher.setLastName(lastName);
 		teacherRepository.save(teacher);
 		return teacher;
+	}
+	
+	@Override
+	public Iterable<TeacherEntity> getAllTeachers() {
+		return teacherRepository.findAll();
 	}
 
 	@Override
