@@ -33,8 +33,7 @@ public class SubjectController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-	public SubjectEntity updateSubject(@PathVariable String id, @RequestParam String name,
-			@RequestParam String weeklyFund) {
+	public SubjectEntity updateSubject(@PathVariable String id, @RequestParam String name, @RequestParam String weeklyFund) {
 		return subjectHandler.updateSubject(id, name, weeklyFund);
 	}
 	
