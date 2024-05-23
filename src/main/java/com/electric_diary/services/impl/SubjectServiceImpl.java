@@ -11,19 +11,19 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class SubjectServiceImpl implements SubjectService{
+public class SubjectServiceImpl implements SubjectService {
 
 	@PersistenceContext
 	protected EntityManager em;
-	
+
 	@Autowired
 	protected SubjectRepository subjectRepository;
-	
+
 	@Override
-	public SubjectEntity createSubject(String name, String weeklyFund) {
+	public SubjectEntity createSubject(SubjectEntity subjectBody) {
 		SubjectEntity subject = new SubjectEntity();
-		subject.setName(name);
-		subject.setWeeklyFund(Integer.parseInt(weeklyFund));
+		subject.setName(subjectBody.getName());
+		subject.setWeeklyFund(subjectBody.getWeeklyFund());
 		subjectRepository.save(subject);
 		return subject;
 	}
@@ -39,11 +39,11 @@ public class SubjectServiceImpl implements SubjectService{
 	}
 
 	@Override
-	public SubjectEntity updateSubject(String id, String name, String weeklyFund) {
+	public SubjectEntity updateSubject(String id, SubjectEntity subjectBody) {
 		SubjectEntity subject = subjectRepository.findById(Integer.parseInt(id)).get();
 		if (subject != null) {
-			subject.setName(name);
-			subject.setWeeklyFund(Integer.parseInt(weeklyFund));
+			subject.setName(subjectBody.getName());
+			subject.setWeeklyFund(subjectBody.getWeeklyFund());
 			subjectRepository.save(subject);
 			return subject;
 		}

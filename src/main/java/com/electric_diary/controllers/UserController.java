@@ -13,8 +13,8 @@ public class UserController {
 	protected UserService userService;
 
 	@PostMapping
-	public UserEntity createUser(@RequestParam String username, @RequestParam String password) {
-		return userService.createUser(username, password);
+	public UserEntity createUser(@RequestBody UserEntity userBody) {
+		return userService.createUser(userBody);
 	}
 
 	@GetMapping
@@ -28,8 +28,8 @@ public class UserController {
 	}
 
 	@PutMapping("/{id}")
-	public UserEntity updateUser(@PathVariable String id, @RequestParam String username, @RequestParam String password) {
-		return userService.updateUser(id, username, password);
+	public UserEntity updateUser(@PathVariable String id, @RequestBody UserEntity userBody) {
+		return userService.updateUser(id, userBody);
 	}
 
 	@DeleteMapping("/{id}")

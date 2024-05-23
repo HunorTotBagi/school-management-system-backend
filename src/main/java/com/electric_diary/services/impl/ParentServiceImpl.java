@@ -20,11 +20,11 @@ public class ParentServiceImpl implements ParentService {
 	protected ParentRepository parentRepository;
 
 	@Override
-	public ParentEntity createParent(String firstName, String lastName, String email) {
+	public ParentEntity createParent(ParentEntity parentBody) {
 		ParentEntity parent = new ParentEntity();
-		parent.setFirstName(firstName);
-		parent.setLastName(lastName);
-		parent.setEmail(email);
+		parent.setFirstName(parentBody.getFirstName());
+		parent.setLastName(parentBody.getLastName());
+		parent.setEmail(parentBody.getEmail());
 		parentRepository.save(parent);
 		return parent;
 	}
@@ -40,12 +40,12 @@ public class ParentServiceImpl implements ParentService {
 	}
 
 	@Override
-	public ParentEntity updateParent(String id, String firstName, String lastName, String email) {
+	public ParentEntity updateParent(String id, ParentEntity parentBody) {
 		ParentEntity parent = parentRepository.findById(Integer.parseInt(id)).get();
 		if (parent != null) {
-			parent.setFirstName(firstName);
-			parent.setLastName(lastName);
-			parent.setEmail(email);
+			parent.setFirstName(parentBody.getFirstName());
+			parent.setLastName(parentBody.getLastName());
+			parent.setEmail(parentBody.getEmail());
 			parentRepository.save(parent);
 			return parent;
 		}

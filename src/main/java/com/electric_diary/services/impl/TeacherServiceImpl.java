@@ -20,14 +20,14 @@ public class TeacherServiceImpl implements TeacherService {
 	protected TeacherRepository teacherRepository;
 
 	@Override
-	public TeacherEntity createTeacher(String firstName, String lastName) {
+	public TeacherEntity createTeacher(TeacherEntity teacherBody) {
 		TeacherEntity teacher = new TeacherEntity();
-		teacher.setFirstName(firstName);
-		teacher.setLastName(lastName);
+		teacher.setFirstName(teacherBody.getFirstName());
+		teacher.setLastName(teacherBody.getLastName());
 		teacherRepository.save(teacher);
 		return teacher;
 	}
-	
+
 	@Override
 	public Iterable<TeacherEntity> getAllTeachers() {
 		return teacherRepository.findAll();
@@ -39,11 +39,11 @@ public class TeacherServiceImpl implements TeacherService {
 	}
 
 	@Override
-	public TeacherEntity updateTeacher(String id, String firstName, String lastName) {
+	public TeacherEntity updateTeacher(String id, TeacherEntity teacherBody) {
 		TeacherEntity teacher = teacherRepository.findById(Integer.parseInt(id)).get();
 		if (teacher != null) {
-			teacher.setFirstName(firstName);
-			teacher.setLastName(lastName);
+			teacher.setFirstName(teacherBody.getFirstName());
+			teacher.setLastName(teacherBody.getLastName());
 			teacherRepository.save(teacher);
 			return teacher;
 		}

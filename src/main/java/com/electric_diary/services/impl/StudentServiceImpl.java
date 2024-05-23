@@ -12,7 +12,7 @@ import jakarta.persistence.PersistenceContext;
 
 @Service
 public class StudentServiceImpl implements StudentService {
-	
+
 	@PersistenceContext
 	protected EntityManager em;
 
@@ -20,14 +20,14 @@ public class StudentServiceImpl implements StudentService {
 	protected StudentRepository studentRepository;
 
 	@Override
-	public StudentEntity createStudent(String firstName, String lastName) {
+	public StudentEntity createStudent(StudentEntity studentBody) {
 		StudentEntity student = new StudentEntity();
-		student.setFirstName(firstName);
-		student.setLastName(lastName);
+		student.setFirstName(studentBody.getFirstName());
+		student.setLastName(studentBody.getLastName());
 		studentRepository.save(student);
 		return student;
 	}
-	
+
 	@Override
 	public Iterable<StudentEntity> getAllStudents() {
 		return studentRepository.findAll();
@@ -39,11 +39,11 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public StudentEntity updateStudent(String id, String firstName, String lastName) {
+	public StudentEntity updateStudent(String id, StudentEntity studentBody) {
 		StudentEntity student = studentRepository.findById(Integer.parseInt(id)).get();
 		if (student != null) {
-			student.setFirstName(firstName);
-			student.setLastName(lastName);
+			student.setFirstName(studentBody.getFirstName());
+			student.setLastName(studentBody.getLastName());
 			studentRepository.save(student);
 			return student;
 		}
