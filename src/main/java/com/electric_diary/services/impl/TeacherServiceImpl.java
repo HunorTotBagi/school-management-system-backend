@@ -1,10 +1,11 @@
-package com.electric_diary.services;
+package com.electric_diary.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.electric_diary.entities.TeacherEntity;
 import com.electric_diary.repositories.TeacherRepository;
+import com.electric_diary.services.TeacherService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
