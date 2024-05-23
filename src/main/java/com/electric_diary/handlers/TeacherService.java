@@ -2,7 +2,7 @@ package com.electric_diary.handlers;
 
 import com.electric_diary.entities.TeacherEntity;
 
-public interface TeacherHandler {
+public interface TeacherService {
 	public TeacherEntity createTeacher(String firstName, String lastName);
 
 	public Iterable<TeacherEntity> getAllTeachers();

@@ -2,7 +2,7 @@ package com.electric_diary.handlers;
 
 import com.electric_diary.entities.UserEntity;
 
-public interface UserHandler {
+public interface UserService {
 	public UserEntity createUser(String username, String password);
 
 	public Iterable<UserEntity> getAllUsers();

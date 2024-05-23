@@ -2,7 +2,7 @@ package com.electric_diary.handlers;
 
 import com.electric_diary.entities.SubjectEntity;
 
-public interface SubjectHandler {
+public interface SubjectService {
 	public SubjectEntity createSubject(String name, String weeklyFund);
 	
 	public Iterable<SubjectEntity> getAllSubjects();

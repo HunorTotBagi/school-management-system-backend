@@ -10,7 +10,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class SubjectHandlerImplementation implements SubjectHandler{
+public class SubjectServiceImpl implements SubjectService{
 
 	@PersistenceContext
 	protected EntityManager em;

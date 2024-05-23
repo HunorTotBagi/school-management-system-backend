@@ -10,7 +10,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class StudentHandlerImplementation implements StudentHandler {
+public class StudentServiceImpl implements StudentService {
 	
 	@PersistenceContext
 	protected EntityManager em;
