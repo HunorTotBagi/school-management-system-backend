@@ -13,8 +13,8 @@ public class TeacherController {
 	protected TeacherService teacherService;
 
 	@PostMapping
-	public TeacherEntity createTeacher(@RequestParam String firstName, @RequestParam String lastName) {
-		return teacherService.createTeacher(firstName, lastName);
+	public TeacherEntity createTeacher(@RequestBody TeacherEntity teacherBody) {
+		return teacherService.createTeacher(teacherBody);
 	}
 
 	@GetMapping
@@ -28,8 +28,8 @@ public class TeacherController {
 	}
 
 	@PutMapping("/{id}")
-	public TeacherEntity updateTeacher(@PathVariable String id, @RequestParam String firstName, @RequestParam String lastName) {
-		return teacherService.updateTeacher(id, firstName, lastName);
+	public TeacherEntity updateTeacher(@PathVariable String id, @RequestBody TeacherEntity teacherBody) {
+		return teacherService.updateTeacher(id, teacherBody);
 	}
 
 	@DeleteMapping("/{id}")

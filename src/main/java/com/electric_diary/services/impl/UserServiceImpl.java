@@ -11,7 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@PersistenceContext
 	protected EntityManager em;
@@ -20,10 +20,10 @@ public class UserServiceImpl implements UserService{
 	protected UserRepository userRepository;
 
 	@Override
-	public UserEntity createUser(String username, String password) {
+	public UserEntity createUser(UserEntity userBody) {
 		UserEntity user = new UserEntity();
-		user.setUsername(username);
-		user.setPassword(password);
+		user.setUsername(userBody.getUsername());
+		user.setPassword(userBody.getPassword());
 		userRepository.save(user);
 		return user;
 	}
@@ -39,11 +39,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserEntity updateUser(String id, String username, String password) {
+	public UserEntity updateUser(String id, UserEntity userBody) {
 		UserEntity user = userRepository.findById(Integer.parseInt(id)).get();
 		if (user != null) {
-			user.setUsername(username);
-			user.setPassword(password);
+			user.setUsername(userBody.getUsername());
+			user.setPassword(userBody.getPassword());
 			userRepository.save(user);
 			return user;
 		}

@@ -11,27 +11,27 @@ public class SubjectController {
 
 	@Autowired
 	protected SubjectService subjectService;
-	
+
 	@PostMapping
-	public SubjectEntity createSubject(@RequestParam String name, @RequestParam String weeklyFund) {
-		return subjectService.createSubject(name, weeklyFund);
+	public SubjectEntity createSubject(@RequestBody SubjectEntity subjectBody) {
+		return subjectService.createSubject(subjectBody);
 	}
-	
+
 	@GetMapping
 	public Iterable<SubjectEntity> getAllSubjects() {
 		return subjectService.getAllSubjects();
 	}
-	
+
 	@GetMapping("/{id}")
 	public SubjectEntity getSubjectById(@PathVariable String id) {
 		return subjectService.getSubjectById(id);
 	}
-	
+
 	@PutMapping("/{id}")
-	public SubjectEntity updateSubject(@PathVariable String id, @RequestParam String name, @RequestParam String weeklyFund) {
-		return subjectService.updateSubject(id, name, weeklyFund);
+	public SubjectEntity updateSubject(@PathVariable String id, @RequestBody SubjectEntity subjectBody) {
+		return subjectService.updateSubject(id, subjectBody);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public SubjectEntity deleteSubject(@PathVariable String id) {
 		return subjectService.deleteSubject(id);

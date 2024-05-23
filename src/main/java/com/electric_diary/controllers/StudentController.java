@@ -13,8 +13,8 @@ public class StudentController {
 	protected StudentService studentService;
 
 	@PostMapping
-	public StudentEntity createStudent(@RequestParam String firstName, @RequestParam String lastName) {
-		return studentService.createStudent(firstName, lastName);
+	public StudentEntity createStudent(@RequestBody StudentEntity studentBody) {
+		return studentService.createStudent(studentBody);
 	}
 
 	@GetMapping
@@ -28,9 +28,8 @@ public class StudentController {
 	}
 
 	@PutMapping("/{id}")
-	public StudentEntity updateStudent(@PathVariable String id, @RequestParam String firstName,
-			@RequestParam String lastName) {
-		return studentService.updateStudent(id, firstName, lastName);
+	public StudentEntity updateStudent(@PathVariable String id, @RequestBody StudentEntity studentBody) {
+		return studentService.updateStudent(id, studentBody);
 	}
 
 	@DeleteMapping("/{id}")

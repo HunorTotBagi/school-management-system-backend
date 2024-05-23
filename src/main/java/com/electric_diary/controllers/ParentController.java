@@ -13,8 +13,8 @@ public class ParentController {
 	protected ParentService parentService;
 
 	@PostMapping
-	public ParentEntity createParent(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email) {
-		return parentService.createParent(firstName, lastName, email);
+	public ParentEntity createParent(@RequestBody ParentEntity parentBody) {
+		return parentService.createParent(parentBody);
 	}
 
 	@GetMapping
@@ -28,8 +28,8 @@ public class ParentController {
 	}
 
 	@PutMapping("/{id}")
-	public ParentEntity updateParent(@PathVariable String id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email) {
-		return parentService.updateParent(id, firstName, lastName, email);
+	public ParentEntity updateParent(@PathVariable String id, @RequestBody ParentEntity parentBody) {
+		return parentService.updateParent(id, parentBody);
 	}
 
 	@DeleteMapping("/{id}")
