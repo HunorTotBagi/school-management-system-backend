@@ -1,16 +1,17 @@
-package com.electric_diary.handlers;
+package com.electric_diary.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.repositories.ParentRepository;
+import com.electric_diary.services.ParentService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class ParentHandlerImplementation implements ParentHandler {
+public class ParentServiceImpl implements ParentService {
 
 	@PersistenceContext
 	protected EntityManager em;

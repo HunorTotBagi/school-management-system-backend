@@ -1,8 +1,8 @@
-package com.electric_diary.handlers;
+package com.electric_diary.services;
 
 import com.electric_diary.entities.ParentEntity;
 
-public interface ParentHandler {
+public interface ParentService {
 	public ParentEntity createParent(String firstName, String lastName, String email);
 
 	public Iterable<ParentEntity> getAllParents();

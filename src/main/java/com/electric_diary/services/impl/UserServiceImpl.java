@@ -1,16 +1,17 @@
-package com.electric_diary.handlers;
+package com.electric_diary.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.electric_diary.entities.UserEntity;
 import com.electric_diary.repositories.UserRepository;
+import com.electric_diary.services.UserService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class UserHandlerImplementation implements UserHandler{
+public class UserServiceImpl implements UserService{
 
 	@PersistenceContext
 	protected EntityManager em;

@@ -1,16 +1,17 @@
-package com.electric_diary.handlers;
+package com.electric_diary.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.repositories.StudentRepository;
+import com.electric_diary.services.StudentService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class StudentHandlerImplementation implements StudentHandler {
+public class StudentServiceImpl implements StudentService {
 	
 	@PersistenceContext
 	protected EntityManager em;
