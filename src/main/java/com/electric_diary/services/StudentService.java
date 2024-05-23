@@ -1,4 +1,4 @@
-package com.electric_diary.handlers;
+package com.electric_diary.services;
 
 import com.electric_diary.entities.StudentEntity;
 

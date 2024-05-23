@@ -1,4 +1,4 @@
-package com.electric_diary.handlers;
+package com.electric_diary.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

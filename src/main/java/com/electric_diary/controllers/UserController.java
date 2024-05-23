@@ -3,7 +3,7 @@ package com.electric_diary.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.electric_diary.entities.UserEntity;
-import com.electric_diary.handlers.UserService;
+import com.electric_diary.services.UserService;
 
 @RestController
 @RequestMapping(path = "/api/v1/users")
