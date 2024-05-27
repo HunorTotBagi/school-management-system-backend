@@ -2,8 +2,11 @@ package com.electric_diary.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import com.electric_diary.entities.StudentEntity;
+import com.electric_diary.security.Views;
 import com.electric_diary.services.StudentService;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 @RequestMapping(path = "/api/v1/students")
@@ -17,8 +20,15 @@ public class StudentController {
 		return studentService.createStudent(studentBody);
 	}
 
-	@GetMapping
-	public Iterable<StudentEntity> getAllStudents() {
+	@GetMapping("/student")
+	@JsonView(Views.Student.class)
+	public Iterable<StudentEntity> getAllStudentsForStudents() {
+		return studentService.getAllStudents();
+	}
+	
+	@GetMapping("/parent")
+	@JsonView(Views.Parent.class)
+	public Iterable<StudentEntity> getAllStudentsForParent() {
 		return studentService.getAllStudents();
 	}
 

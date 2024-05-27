@@ -1,5 +1,7 @@
 package com.electric_diary.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +13,8 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String username;
+	
+	@JsonIgnore
 	private String password;
 
 	public UserEntity() {
