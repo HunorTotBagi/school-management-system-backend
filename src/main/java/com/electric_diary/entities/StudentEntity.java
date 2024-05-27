@@ -1,5 +1,8 @@
 package com.electric_diary.entities;
 
+import com.electric_diary.security.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,7 +13,11 @@ public class StudentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@JsonView(Views.Student.class)
 	private String firstName;
+	
+	@JsonView(Views.Parent.class)
 	private String lastName;
 
 	public StudentEntity() {
