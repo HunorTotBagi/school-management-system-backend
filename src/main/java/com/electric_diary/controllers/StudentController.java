@@ -15,7 +15,6 @@ public class StudentController {
 	@Autowired
 	protected StudentService studentService;
 
-
 	@PostMapping
 	public StudentEntity createStudent(@RequestBody StudentEntity studentBody) {
 		return studentService.createStudent(studentBody);

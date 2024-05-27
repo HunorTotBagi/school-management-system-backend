@@ -13,10 +13,10 @@ public class StudentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
+
 	@JsonView(Views.Student.class)
 	private String firstName;
-	
+
 	@JsonView(Views.Parent.class)
 	private String lastName;
 
