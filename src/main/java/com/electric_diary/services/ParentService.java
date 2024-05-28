@@ -1,5 +1,7 @@
 package com.electric_diary.services;
 
+import org.springframework.http.ResponseEntity;
+
 import com.electric_diary.entities.ParentEntity;
 
 public interface ParentService {
@@ -7,7 +9,7 @@ public interface ParentService {
 
 	public Iterable<ParentEntity> getAllParents();
 
-	public ParentEntity getParentById(String id);
+	public ResponseEntity<?> getParentById(String id);
 
 	public ParentEntity updateParent(String id, ParentEntity parentBody);
 
