@@ -1,8 +1,11 @@
 package com.electric_diary.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.electric_diary.controllers.util.RESTError;
 import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.repositories.ParentRepository;
 import com.electric_diary.services.ParentService;
@@ -35,8 +38,18 @@ public class ParentServiceImpl implements ParentService {
 	}
 
 	@Override
-	public ParentEntity getParentById(String id) {
-		return parentRepository.findById(Integer.parseInt(id)).get();
+	public ResponseEntity<?> getParentById(String id) {
+		try {
+			ParentEntity parent = parentRepository.findById(Integer.parseInt(id)).get();
+			if (parent != null)
+				return new ResponseEntity<ParentEntity>(parent, HttpStatus.OK);
+			return new ResponseEntity<RESTError>(new RESTError(1, "Parent not found"), HttpStatus.NOT_FOUND);
+		} catch (NumberFormatException e) {
+			return new ResponseEntity<>("Invalid ID format", HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			return new ResponseEntity<RESTError>(new RESTError(2, "Exception occurred: " + e.getMessage()),
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@Override
