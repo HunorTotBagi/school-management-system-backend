@@ -1,9 +1,12 @@
 package com.electric_diary.services;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+
 import com.electric_diary.entities.TeacherEntity;
 
 public interface TeacherService {
-	public TeacherEntity createTeacher(TeacherEntity teacherBody);
+	public ResponseEntity<?> createTeacher(TeacherEntity teacherBody, BindingResult result);
 
 	public Iterable<TeacherEntity> getAllTeachers();
 
