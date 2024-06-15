@@ -856,3 +856,25 @@ java.lang.NumberFormatException: For input string: "a"
 2024-06-15T12:04:08.175+02:00 ERROR 20900 --- [electric_diary] [http-nio-8080-exec-6] c.e.controllers.TeacherController        : This is an error message
 2024-06-15T12:04:11.310+02:00 ERROR 20900 --- [electric_diary] [http-nio-8080-exec-9] c.e.controllers.TeacherController        : This is an error message
 2024-06-15T12:04:27.697+02:00 ERROR 20900 --- [electric_diary] [http-nio-8080-exec-1] c.e.controllers.TeacherController        : This is an error message
+2024-06-15T12:04:57.612+02:00  INFO 20900 --- [electric_diary] [http-nio-8080-exec-5] c.e.controllers.TeacherController        : This is an info message
+2024-06-15T12:17:02.461+02:00  INFO 20900 --- [electric_diary] [RMI TCP Connection(17)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-15T12:17:02.492+02:00  INFO 20900 --- [electric_diary] [RMI TCP Connection(17)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-15T12:17:02.494+02:00  INFO 20900 --- [electric_diary] [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-15T12:17:02.505+02:00  INFO 20900 --- [electric_diary] [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-15T12:17:05.256+02:00  INFO 25968 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Starting ElectricDiaryApplication using Java 17.0.10 with PID 25968 (C:\Users\htotbagi\OneDrive - j&s-soft GmbH\Desktop\electric_diary\electric_diary\target\classes started by htotbagi in C:\Users\htotbagi\OneDrive - j&s-soft GmbH\Desktop\electric_diary\electric_diary)
+2024-06-15T12:17:05.258+02:00  INFO 25968 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-06-15T12:17:06.132+02:00  INFO 25968 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-15T12:17:06.267+02:00  INFO 25968 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 123 ms. Found 5 JPA repository interfaces.
+2024-06-15T12:17:06.781+02:00  INFO 25968 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-15T12:17:06.791+02:00  INFO 25968 --- [electric_diary] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-15T12:17:06.791+02:00  INFO 25968 --- [electric_diary] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-15T12:17:06.854+02:00  INFO 25968 --- [electric_diary] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-15T12:17:06.855+02:00  INFO 25968 --- [electric_diary] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1553 ms
+2024-06-15T12:17:07.451+02:00  INFO 25968 --- [electric_diary] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-15T12:17:07.479+02:00  INFO 25968 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-15T12:17:07.810+02:00  INFO 25968 --- [electric_diary] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@d1f23a0
+2024-06-15T12:17:07.813+02:00  INFO 25968 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-15T12:17:08.892+02:00  INFO 25968 --- [electric_diary] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-15T12:17:09.142+02:00  WARN 25968 --- [electric_diary] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-15T12:17:09.458+02:00  INFO 25968 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-06-15T12:17:09.467+02:00  INFO 25968 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Started ElectricDiaryApplication in 4.749 seconds (process running for 5.632)
