@@ -8,11 +8,11 @@ import com.electric_diary.entities.TeacherEntity;
 public interface TeacherService {
 	public ResponseEntity<?> createTeacher(TeacherEntity teacherBody, BindingResult result);
 
-	public Iterable<TeacherEntity> getAllTeachers();
+	public ResponseEntity<?> getAllTeachers();
 
-	public TeacherEntity getTeacherById(String id);
+	public ResponseEntity<?> getTeacherById(String id);
 
-	public TeacherEntity updateTeacher(String id, TeacherEntity teacherBody);
+	public ResponseEntity<?> updateTeacher(String id, TeacherEntity teacherBody);
 
-	public TeacherEntity deleteTeacher(String id);
+	public ResponseEntity<?> deleteTeacher(String id);
 }

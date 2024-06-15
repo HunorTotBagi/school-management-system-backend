@@ -35,25 +35,25 @@ public class TeacherController {
 	}
 
 	@GetMapping
-	public Iterable<TeacherEntity> getAllTeachers() {
+	public ResponseEntity<?> getAllTeachers() {
 		logger.info("This is an info message");
 		return teacherService.getAllTeachers();
 	}
 
 	@GetMapping("/{id}")
-	public TeacherEntity getTeacherById(@PathVariable String id) {
+	public ResponseEntity<?> getTeacherById(@PathVariable String id) {
 		logger.warn("This is a warn message");
 		return teacherService.getTeacherById(id);
 	}
 
 	@PutMapping("/{id}")
-	public TeacherEntity updateTeacher(@PathVariable String id, @RequestBody TeacherEntity teacherBody) {
+	public ResponseEntity<?> updateTeacher(@PathVariable String id, @RequestBody TeacherEntity teacherBody) {
 		logger.error("This is an error message");
 		return teacherService.updateTeacher(id, teacherBody);
 	}
 
 	@DeleteMapping("/{id}")
-	public TeacherEntity deleteTeacher(@PathVariable String id) {
+	public ResponseEntity<?> deleteTeacher(@PathVariable String id) {
 		return teacherService.deleteTeacher(id);
 	}
 }
