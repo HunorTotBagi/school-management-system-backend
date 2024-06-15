@@ -32,10 +32,12 @@ public class TeacherServiceImpl implements TeacherService {
 		if (result.hasErrors()) {
 			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
 		}
+
 		TeacherEntity teacher = new TeacherEntity();
 		teacher.setFirstName(teacherBody.getFirstName());
 		teacher.setLastName(teacherBody.getLastName());
 		teacherRepository.save(teacher);
+
 		return new ResponseEntity<>(teacher, HttpStatus.OK);
 	}
 
@@ -49,20 +51,17 @@ public class TeacherServiceImpl implements TeacherService {
 	public ResponseEntity<?> getTeacherById(String id) {
 		try {
 			int teacherId = Integer.parseInt(id);
-			Optional<TeacherEntity> parentOptional = teacherRepository.findById(teacherId);
+			Optional<TeacherEntity> teacherOptional = teacherRepository.findById(teacherId);
 
-			if (parentOptional.isPresent()) {
-				return new ResponseEntity<TeacherEntity>(parentOptional.get(), HttpStatus.OK);
+			if (teacherOptional.isPresent()) {
+				return new ResponseEntity<>(teacherOptional.get(), HttpStatus.OK);
 			} else {
-				return new ResponseEntity<RESTError>(
-						new RESTError(1, String.format("Teacher with ID %s not found", teacherId)),
-						HttpStatus.NOT_FOUND);
+				return createNotFoundResponse("Teacher", teacherId);
 			}
 		} catch (NumberFormatException e) {
-			return new ResponseEntity<RESTError>(new RESTError(3, "Invalid ID format"), HttpStatus.BAD_REQUEST);
+			return createBadRequestResponse("Invalid ID format");
 		} catch (Exception e) {
-			return new ResponseEntity<RESTError>(new RESTError(2, "Exception occurred: " + e.getMessage()),
-					HttpStatus.INTERNAL_SERVER_ERROR);
+			return createErrorResponse(e);
 		}
 	}
 
@@ -79,15 +78,12 @@ public class TeacherServiceImpl implements TeacherService {
 				teacherRepository.save(teacher);
 				return new ResponseEntity<>(teacher, HttpStatus.OK);
 			} else {
-				return new ResponseEntity<RESTError>(
-						new RESTError(1, String.format("Teacher with ID %s not found", teacherId)),
-						HttpStatus.NOT_FOUND);
+				return createNotFoundResponse("Teacher", teacherId);
 			}
 		} catch (NumberFormatException e) {
-			return new ResponseEntity<RESTError>(new RESTError(3, "Invalid ID format"), HttpStatus.BAD_REQUEST);
+			return createBadRequestResponse("Invalid ID format");
 		} catch (Exception e) {
-			return new ResponseEntity<RESTError>(new RESTError(2, "Exception occurred: " + e.getMessage()),
-					HttpStatus.INTERNAL_SERVER_ERROR);
+			return createErrorResponse(e);
 		}
 	}
 
@@ -102,15 +98,27 @@ public class TeacherServiceImpl implements TeacherService {
 				teacherRepository.delete(teacher);
 				return new ResponseEntity<>(teacher, HttpStatus.OK);
 			} else {
-				return new ResponseEntity<>(new RESTError(1, String.format("Teacher with ID %s not found", teacherId)),
-						HttpStatus.NOT_FOUND);
+				return createNotFoundResponse("Teacher", teacherId);
 			}
 		} catch (NumberFormatException e) {
-			return new ResponseEntity<>(new RESTError(3, "Invalid ID format"), HttpStatus.BAD_REQUEST);
+			return createBadRequestResponse("Invalid ID format");
 		} catch (Exception e) {
-			return new ResponseEntity<>(new RESTError(2, "Exception occurred: " + e.getMessage()),
-					HttpStatus.INTERNAL_SERVER_ERROR);
+			return createErrorResponse(e);
 		}
+	}
+
+	private ResponseEntity<RESTError> createNotFoundResponse(String entityName, int entityId) {
+		return new ResponseEntity<>(new RESTError(1, String.format("%s with ID %s not found", entityName, entityId)),
+				HttpStatus.NOT_FOUND);
+	}
+
+	private ResponseEntity<RESTError> createErrorResponse(Exception e) {
+		return new ResponseEntity<>(new RESTError(2, "Exception occurred: " + e.getMessage()),
+				HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	private ResponseEntity<RESTError> createBadRequestResponse(String message) {
+		return new ResponseEntity<>(new RESTError(3, message), HttpStatus.BAD_REQUEST);
 	}
 
 	private String createErrorMessage(BindingResult result) {
