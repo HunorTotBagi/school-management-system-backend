@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 public class StudentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Views.Student.class)
 	private Integer id;
 
 	@JsonView(Views.Student.class)

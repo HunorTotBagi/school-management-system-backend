@@ -1,7 +1,12 @@
 package com.electric_diary.services.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.repositories.StudentRepository;
@@ -11,7 +16,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceImpl extends ErrorMessagesServiceImpl implements StudentService {
 
 	@PersistenceContext
 	protected EntityManager em;
@@ -20,43 +25,82 @@ public class StudentServiceImpl implements StudentService {
 	protected StudentRepository studentRepository;
 
 	@Override
-	public StudentEntity createStudent(StudentEntity studentBody) {
+	public ResponseEntity<?> createStudent(StudentEntity studentBody, BindingResult result) {
+		if (result.hasErrors()) {
+			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+		}
+
 		StudentEntity student = new StudentEntity();
 		student.setFirstName(studentBody.getFirstName());
 		student.setLastName(studentBody.getLastName());
 		studentRepository.save(student);
-		return student;
+
+		return new ResponseEntity<>(student, HttpStatus.OK);
 	}
 
 	@Override
-	public Iterable<StudentEntity> getAllStudents() {
-		return studentRepository.findAll();
+	public ResponseEntity<?> getAllStudents() {
+		Iterable<StudentEntity> students = studentRepository.findAll();
+		return new ResponseEntity<>(students, HttpStatus.OK);
 	}
 
 	@Override
-	public StudentEntity getStudentById(String id) {
-		return studentRepository.findById(Integer.parseInt(id)).get();
-	}
+	public ResponseEntity<?> getStudentById(String id) {
+		try {
+			int studentId = Integer.parseInt(id);
+			Optional<StudentEntity> studentOptional = studentRepository.findById(studentId);
 
-	@Override
-	public StudentEntity updateStudent(String id, StudentEntity studentBody) {
-		StudentEntity student = studentRepository.findById(Integer.parseInt(id)).get();
-		if (student != null) {
-			student.setFirstName(studentBody.getFirstName());
-			student.setLastName(studentBody.getLastName());
-			studentRepository.save(student);
-			return student;
+			if (studentOptional.isPresent()) {
+				return new ResponseEntity<>(studentOptional.get(), HttpStatus.OK);
+			} else {
+				return createNotFoundResponse("Student", studentId);
+			}
+		} catch (NumberFormatException e) {
+			return createBadRequestResponse("Invalid ID format");
+		} catch (Exception e) {
+			return createErrorResponse(e);
 		}
-		return new StudentEntity();
 	}
 
 	@Override
-	public StudentEntity deleteStudent(String id) {
-		StudentEntity student = studentRepository.findById(Integer.parseInt(id)).get();
-		if (student != null) {
-			studentRepository.delete(student);
-			return student;
+	public ResponseEntity<?> updateStudent(String id, StudentEntity studentBody) {
+		try {
+			int studentId = Integer.parseInt(id);
+			Optional<StudentEntity> optionalStudent = studentRepository.findById(studentId);
+
+			if (optionalStudent.isPresent()) {
+				StudentEntity student = optionalStudent.get();
+				student.setFirstName(studentBody.getFirstName());
+				student.setLastName(studentBody.getLastName());
+				studentRepository.save(student);
+				return new ResponseEntity<>(student, HttpStatus.OK);
+			} else {
+				return createNotFoundResponse("Student", studentId);
+			}
+		} catch (NumberFormatException e) {
+			return createBadRequestResponse("Invalid ID format");
+		} catch (Exception e) {
+			return createErrorResponse(e);
 		}
-		return new StudentEntity();
+	}
+
+	@Override
+	public ResponseEntity<?> deleteStudent(String id) {
+		try {
+			int studentId = Integer.parseInt(id);
+			Optional<StudentEntity> optionalStudent = studentRepository.findById(studentId);
+
+			if (optionalStudent.isPresent()) {
+				StudentEntity student = optionalStudent.get();
+				studentRepository.delete(student);
+				return new ResponseEntity<>(student, HttpStatus.OK);
+			} else {
+				return createNotFoundResponse("Student", studentId);
+			}
+		} catch (NumberFormatException e) {
+			return createBadRequestResponse("Invalid ID format");
+		} catch (Exception e) {
+			return createErrorResponse(e);
+		}
 	}
 }
