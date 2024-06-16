@@ -1,15 +1,18 @@
 package com.electric_diary.services;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+
 import com.electric_diary.entities.StudentEntity;
 
 public interface StudentService {
-	public StudentEntity createStudent(StudentEntity studentBody);
+	public ResponseEntity<?> createStudent(StudentEntity studentBody, BindingResult result);
 
-	public Iterable<StudentEntity> getAllStudents();
+	public ResponseEntity<?> getAllStudents();
 
-	public StudentEntity getStudentById(String id);
+	public ResponseEntity<?> getStudentById(String id);
 
-	public StudentEntity updateStudent(String id, StudentEntity studentBody);
+	public ResponseEntity<?> updateStudent(String id, StudentEntity studentBody);
 
-	public StudentEntity deleteStudent(String id);
+	public ResponseEntity<?> deleteStudent(String id);
 }

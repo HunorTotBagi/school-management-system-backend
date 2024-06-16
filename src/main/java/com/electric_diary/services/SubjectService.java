@@ -1,15 +1,18 @@
 package com.electric_diary.services;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+
 import com.electric_diary.entities.SubjectEntity;
 
 public interface SubjectService {
-	public SubjectEntity createSubject(SubjectEntity subjectBody);
+	public ResponseEntity<?> createSubject(SubjectEntity subjectBody, BindingResult result);
 
-	public Iterable<SubjectEntity> getAllSubjects();
+	public ResponseEntity<?> getAllSubjects();
 
-	public SubjectEntity getSubjectById(String id);
+	public ResponseEntity<?> getSubjectById(String id);
 
-	public SubjectEntity updateSubject(String id, SubjectEntity subjectBody);
+	public ResponseEntity<?> updateSubject(String id, SubjectEntity subjectBody);
 
-	public SubjectEntity deleteSubject(String id);
+	public ResponseEntity<?> deleteSubject(String id);
 }

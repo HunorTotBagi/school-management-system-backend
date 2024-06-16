@@ -1,17 +1,18 @@
 package com.electric_diary.services;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.ParentEntity;
 
 public interface ParentService {
-	public ParentEntity createParent(ParentEntity parentBody);
+	public ResponseEntity<?> createParent(ParentEntity parentBody, BindingResult result);
 
-	public Iterable<ParentEntity> getAllParents();
+	public ResponseEntity<?> getAllParents();
 
 	public ResponseEntity<?> getParentById(String id);
 
-	public ParentEntity updateParent(String id, ParentEntity parentBody);
+	public ResponseEntity<?> updateParent(String id, ParentEntity parentBody);
 
-	public ParentEntity deleteParent(String id);
+	public ResponseEntity<?> deleteParent(String id);
 }

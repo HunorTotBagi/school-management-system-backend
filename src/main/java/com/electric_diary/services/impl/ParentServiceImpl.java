@@ -1,11 +1,13 @@
 package com.electric_diary.services.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
-import com.electric_diary.controllers.util.RESTError;
 import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.repositories.ParentRepository;
 import com.electric_diary.services.ParentService;
@@ -14,7 +16,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class ParentServiceImpl implements ParentService {
+public class ParentServiceImpl extends ErrorMessagesServiceImpl implements ParentService {
 
 	@PersistenceContext
 	protected EntityManager em;
@@ -23,55 +25,84 @@ public class ParentServiceImpl implements ParentService {
 	protected ParentRepository parentRepository;
 
 	@Override
-	public ParentEntity createParent(ParentEntity parentBody) {
+	public ResponseEntity<?> createParent(ParentEntity parentBody, BindingResult result) {
+		if (result.hasErrors()) {
+			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+		}
+
 		ParentEntity parent = new ParentEntity();
 		parent.setFirstName(parentBody.getFirstName());
 		parent.setLastName(parentBody.getLastName());
 		parent.setEmail(parentBody.getEmail());
 		parentRepository.save(parent);
-		return parent;
+
+		return new ResponseEntity<>(parent, HttpStatus.OK);
 	}
 
 	@Override
-	public Iterable<ParentEntity> getAllParents() {
-		return parentRepository.findAll();
+	public ResponseEntity<?> getAllParents() {
+		Iterable<ParentEntity> parents = parentRepository.findAll();
+		return new ResponseEntity<>(parents, HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<?> getParentById(String id) {
 		try {
-			ParentEntity parent = parentRepository.findById(Integer.parseInt(id)).get();
-			if (parent != null)
-				return new ResponseEntity<ParentEntity>(parent, HttpStatus.OK);
-			return new ResponseEntity<RESTError>(new RESTError(1, "Parent not found"), HttpStatus.NOT_FOUND);
+			int parentId = Integer.parseInt(id);
+			Optional<ParentEntity> parentOptional = parentRepository.findById(parentId);
+
+			if (parentOptional.isPresent()) {
+				return new ResponseEntity<>(parentOptional.get(), HttpStatus.OK);
+			} else {
+				return createNotFoundResponse("Parent", parentId);
+			}
 		} catch (NumberFormatException e) {
-			return new ResponseEntity<>("Invalid ID format", HttpStatus.BAD_REQUEST);
+			return createBadRequestResponse("Invalid ID format");
 		} catch (Exception e) {
-			return new ResponseEntity<RESTError>(new RESTError(2, "Exception occurred: " + e.getMessage()),
-					HttpStatus.INTERNAL_SERVER_ERROR);
+			return createErrorResponse(e);
 		}
 	}
 
 	@Override
-	public ParentEntity updateParent(String id, ParentEntity parentBody) {
-		ParentEntity parent = parentRepository.findById(Integer.parseInt(id)).get();
-		if (parent != null) {
-			parent.setFirstName(parentBody.getFirstName());
-			parent.setLastName(parentBody.getLastName());
-			parent.setEmail(parentBody.getEmail());
-			parentRepository.save(parent);
-			return parent;
+	public ResponseEntity<?> updateParent(String id, ParentEntity parentBody) {
+		try {
+			int parentId = Integer.parseInt(id);
+			Optional<ParentEntity> optionalParent = parentRepository.findById(parentId);
+
+			if (optionalParent.isPresent()) {
+				ParentEntity parent = optionalParent.get();
+				parent.setFirstName(parentBody.getFirstName());
+				parent.setLastName(parentBody.getLastName());
+				parent.setEmail(parentBody.getEmail());
+				parentRepository.save(parent);
+				return new ResponseEntity<>(parent, HttpStatus.OK);
+			} else {
+				return createNotFoundResponse("Parent", parentId);
+			}
+		} catch (NumberFormatException e) {
+			return createBadRequestResponse("Invalid ID format");
+		} catch (Exception e) {
+			return createErrorResponse(e);
 		}
-		return new ParentEntity();
 	}
 
 	@Override
-	public ParentEntity deleteParent(String id) {
-		ParentEntity student = parentRepository.findById(Integer.parseInt(id)).get();
-		if (student != null) {
-			parentRepository.delete(student);
-			return student;
+	public ResponseEntity<?> deleteParent(String id) {
+		try {
+			int parentId = Integer.parseInt(id);
+			Optional<ParentEntity> optionalParent = parentRepository.findById(parentId);
+
+			if (optionalParent.isPresent()) {
+				ParentEntity parent = optionalParent.get();
+				parentRepository.delete(parent);
+				return new ResponseEntity<>(parent, HttpStatus.OK);
+			} else {
+				return createNotFoundResponse("Parent", parentId);
+			}
+		} catch (NumberFormatException e) {
+			return createBadRequestResponse("Invalid ID format");
+		} catch (Exception e) {
+			return createErrorResponse(e);
 		}
-		return new ParentEntity();
 	}
 }
