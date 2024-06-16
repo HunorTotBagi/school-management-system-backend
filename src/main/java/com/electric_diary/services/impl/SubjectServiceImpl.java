@@ -1,7 +1,12 @@
 package com.electric_diary.services.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.SubjectEntity;
 import com.electric_diary.repositories.SubjectRepository;
@@ -11,7 +16,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class SubjectServiceImpl implements SubjectService {
+public class SubjectServiceImpl extends ErrorMessagesServiceImpl implements SubjectService {
 
 	@PersistenceContext
 	protected EntityManager em;
@@ -20,43 +25,82 @@ public class SubjectServiceImpl implements SubjectService {
 	protected SubjectRepository subjectRepository;
 
 	@Override
-	public SubjectEntity createSubject(SubjectEntity subjectBody) {
+	public ResponseEntity<?> createSubject(SubjectEntity subjectBody, BindingResult result) {
+		if (result.hasErrors()) {
+			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+		}
+
 		SubjectEntity subject = new SubjectEntity();
 		subject.setName(subjectBody.getName());
 		subject.setWeeklyFund(subjectBody.getWeeklyFund());
 		subjectRepository.save(subject);
-		return subject;
+
+		return new ResponseEntity<>(subject, HttpStatus.OK);
 	}
 
 	@Override
-	public Iterable<SubjectEntity> getAllSubjects() {
-		return subjectRepository.findAll();
+	public ResponseEntity<?> getAllSubjects() {
+		Iterable<SubjectEntity> subject = subjectRepository.findAll();
+		return new ResponseEntity<>(subject, HttpStatus.OK);
 	}
 
 	@Override
-	public SubjectEntity getSubjectById(String id) {
-		return subjectRepository.findById(Integer.parseInt(id)).get();
-	}
+	public ResponseEntity<?> getSubjectById(String id) {
+		try {
+			int subjectId = Integer.parseInt(id);
+			Optional<SubjectEntity> subjectOptional = subjectRepository.findById(subjectId);
 
-	@Override
-	public SubjectEntity updateSubject(String id, SubjectEntity subjectBody) {
-		SubjectEntity subject = subjectRepository.findById(Integer.parseInt(id)).get();
-		if (subject != null) {
-			subject.setName(subjectBody.getName());
-			subject.setWeeklyFund(subjectBody.getWeeklyFund());
-			subjectRepository.save(subject);
-			return subject;
+			if (subjectOptional.isPresent()) {
+				return new ResponseEntity<>(subjectOptional.get(), HttpStatus.OK);
+			} else {
+				return createNotFoundResponse("Subject", subjectId);
+			}
+		} catch (NumberFormatException e) {
+			return createBadRequestResponse("Invalid ID format");
+		} catch (Exception e) {
+			return createErrorResponse(e);
 		}
-		return new SubjectEntity();
 	}
 
 	@Override
-	public SubjectEntity deleteSubject(String id) {
-		SubjectEntity subject = subjectRepository.findById(Integer.parseInt(id)).get();
-		if (subject != null) {
-			subjectRepository.delete(subject);
-			return subject;
+	public ResponseEntity<?> updateSubject(String id, SubjectEntity subjectBody) {
+		try {
+			int subjectId = Integer.parseInt(id);
+			Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
+
+			if (optionalSubject.isPresent()) {
+				SubjectEntity subject = optionalSubject.get();
+				subject.setName(subjectBody.getName());
+				subject.setWeeklyFund(subjectBody.getWeeklyFund());
+				subjectRepository.save(subject);
+				return new ResponseEntity<>(subject, HttpStatus.OK);
+			} else {
+				return createNotFoundResponse("Subject", subjectId);
+			}
+		} catch (NumberFormatException e) {
+			return createBadRequestResponse("Invalid ID format");
+		} catch (Exception e) {
+			return createErrorResponse(e);
 		}
-		return new SubjectEntity();
+	}
+
+	@Override
+	public ResponseEntity<?> deleteSubject(String id) {
+		try {
+			int subjectId = Integer.parseInt(id);
+			Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
+
+			if (optionalSubject.isPresent()) {
+				SubjectEntity subject = optionalSubject.get();
+				subjectRepository.delete(subject);
+				return new ResponseEntity<>(subject, HttpStatus.OK);
+			} else {
+				return createNotFoundResponse("Subject", subjectId);
+			}
+		} catch (NumberFormatException e) {
+			return createBadRequestResponse("Invalid ID format");
+		} catch (Exception e) {
+			return createErrorResponse(e);
+		}
 	}
 }
