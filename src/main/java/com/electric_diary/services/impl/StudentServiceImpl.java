@@ -33,6 +33,7 @@ public class StudentServiceImpl extends ErrorMessagesServiceImpl implements Stud
 		StudentEntity student = new StudentEntity();
 		student.setFirstName(studentBody.getFirstName());
 		student.setLastName(studentBody.getLastName());
+		student.setNewClass(studentBody.getNewClass());
 		studentRepository.save(student);
 
 		return new ResponseEntity<>(student, HttpStatus.OK);
