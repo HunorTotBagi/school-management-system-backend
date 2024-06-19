@@ -50,7 +50,6 @@ public class ClassEntity {
 	}
 
 	public List<StudentEntity> getStudents() {
-
 		return students;
 	}
 
