@@ -23,7 +23,7 @@ public class ClassController {
 	protected ClassService classService;
 
 	@PostMapping
-	public ResponseEntity<?> createStudent(@RequestBody ClassEntity classBody, BindingResult result) {
+	public ResponseEntity<?> createClass(@RequestBody ClassEntity classBody, BindingResult result) {
 		return classService.createClass(classBody, result);
 	}
 
