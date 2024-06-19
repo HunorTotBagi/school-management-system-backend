@@ -11,7 +11,7 @@ public class ClassEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;
-	
+
 	public ClassEntity() {
 	}
 
