@@ -56,14 +56,4 @@ public class ClassEntity {
 	public void setStudents(List<StudentEntity> students) {
 		this.students = students;
 	}
-
-	public void addStudent(StudentEntity student) {
-		students.add(student);
-		student.setNewClass(this);
-	}
-
-	public void removeStudent(StudentEntity student) {
-		students.remove(student);
-		student.setNewClass(null);
-	}
 }
