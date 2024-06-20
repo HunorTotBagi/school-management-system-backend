@@ -1,16 +1,34 @@
 package com.electric_diary.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.electric_diary.security.Views;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class ClassEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Views.Parent.class)
 	private Integer id;
+
+	@JsonView(Views.Parent.class)
 	private String name;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "newClass", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	@JsonView(Views.Parent.class)
+	private List<StudentEntity> students = new ArrayList<>();
 
 	public ClassEntity() {
 	}
@@ -29,5 +47,13 @@ public class ClassEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<StudentEntity> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<StudentEntity> students) {
+		this.students = students;
 	}
 }

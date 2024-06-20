@@ -3,10 +3,13 @@ package com.electric_diary.entities;
 import com.electric_diary.security.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class StudentEntity {
@@ -20,6 +23,10 @@ public class StudentEntity {
 
 	@JsonView(Views.Parent.class)
 	private String lastName;
+
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JsonView(Views.Parent.class)
+	private ClassEntity newClass;
 
 	public StudentEntity() {
 	}
@@ -46,5 +53,13 @@ public class StudentEntity {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public ClassEntity getNewClass() {
+		return newClass;
+	}
+
+	public void setNewClass(ClassEntity newClass) {
+		this.newClass = newClass;
 	}
 }
