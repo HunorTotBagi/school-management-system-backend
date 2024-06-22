@@ -40,8 +40,8 @@ public class ClassServiceImpl extends ErrorMessagesServiceImpl implements ClassS
 
 	@Override
 	public ResponseEntity<Iterable<ClassEntity>> getAllClasses() {
-		Iterable<ClassEntity> newClass = classRepository.findAll();
-		return new ResponseEntity<>(newClass, HttpStatus.OK);
+		Iterable<ClassEntity> newClasses = classRepository.findAll();
+		return new ResponseEntity<>(newClasses, HttpStatus.OK);
 	}
 
 	@Override
