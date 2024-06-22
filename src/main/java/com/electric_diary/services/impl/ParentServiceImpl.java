@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.ParentEntity;
+import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.ParentRepository;
 import com.electric_diary.services.ParentService;
@@ -26,10 +27,9 @@ public class ParentServiceImpl extends ErrorMessagesServiceImpl implements Paren
 	protected ParentRepository parentRepository;
 
 	@Override
-	public ResponseEntity<?> createParent(ParentEntity parentBody, BindingResult result) {
-		if (result.hasErrors()) {
-			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<ParentEntity> createParent(ParentEntity parentBody, BindingResult result) {
+		if (result.hasErrors())
+			throw new CustomBadRequestException(result);
 
 		ParentEntity parent = new ParentEntity();
 		parent.setFirstName(parentBody.getFirstName());
@@ -37,7 +37,7 @@ public class ParentServiceImpl extends ErrorMessagesServiceImpl implements Paren
 		parent.setEmail(parentBody.getEmail());
 		parentRepository.save(parent);
 
-		return new ResponseEntity<>(parent, HttpStatus.OK);
+		return new ResponseEntity<ParentEntity>(parent, HttpStatus.OK);
 	}
 
 	@Override
