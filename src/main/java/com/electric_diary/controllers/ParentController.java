@@ -35,7 +35,7 @@ public class ParentController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getParentById(@PathVariable String id) {
+	public ResponseEntity<ParentEntity> getParentById(@PathVariable String id) {
 		return parentService.getParentById(id);
 	}
 

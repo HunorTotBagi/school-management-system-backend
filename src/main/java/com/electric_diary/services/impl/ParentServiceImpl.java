@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.ParentEntity;
+import com.electric_diary.exception.ParentNotFoundException;
 import com.electric_diary.repositories.ParentRepository;
 import com.electric_diary.services.ParentService;
 
@@ -46,20 +47,14 @@ public class ParentServiceImpl extends ErrorMessagesServiceImpl implements Paren
 	}
 
 	@Override
-	public ResponseEntity<?> getParentById(String id) {
+	public ResponseEntity<ParentEntity> getParentById(String id) {
 		try {
 			int parentId = Integer.parseInt(id);
-			Optional<ParentEntity> parentOptional = parentRepository.findById(parentId);
-
-			if (parentOptional.isPresent()) {
-				return new ResponseEntity<>(parentOptional.get(), HttpStatus.OK);
-			} else {
-				return createNotFoundResponse("Parent", parentId);
-			}
+			ParentEntity parentEntity = parentRepository.findById(parentId)
+					.orElseThrow(() -> new ParentNotFoundException("Parent not found with the given ID."));
+			return ResponseEntity.ok(parentEntity);
 		} catch (NumberFormatException e) {
-			return createBadRequestResponse("Invalid ID format");
-		} catch (Exception e) {
-			return createErrorResponse(e);
+			throw new ParentNotFoundException("Invalid ID format.");
 		}
 	}
 

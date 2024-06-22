@@ -10,7 +10,7 @@ public interface ParentService {
 
 	public ResponseEntity<?> getAllParents();
 
-	public ResponseEntity<?> getParentById(String id);
+	public ResponseEntity<ParentEntity> getParentById(String id);
 
 	public ResponseEntity<?> updateParent(String id, ParentEntity parentBody);
 
