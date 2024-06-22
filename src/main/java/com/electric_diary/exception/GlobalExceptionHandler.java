@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-	@ExceptionHandler({ ParentNotFoundException.class })
-	public ResponseEntity<Object> handleParentNotFoundException(ParentNotFoundException exception) {
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
-	}
+    @ExceptionHandler({ NotFoundException.class })
+    public ResponseEntity<Object> handleNotFoundException(NotFoundException exception) {
+        String message = exception.getEntityType() + " with ID " + exception.getEntityId() + " not found.";
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    }
 
 	@ExceptionHandler({ NumberFormatException.class })
 	public ResponseEntity<Object> handleNumberFormatException(NumberFormatException exception) {

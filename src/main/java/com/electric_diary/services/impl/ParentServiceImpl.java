@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.ParentEntity;
-import com.electric_diary.exception.ParentNotFoundException;
+import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.ParentRepository;
 import com.electric_diary.services.ParentService;
 
@@ -51,10 +51,10 @@ public class ParentServiceImpl extends ErrorMessagesServiceImpl implements Paren
 		try {
 			int parentId = Integer.parseInt(id);
 			ParentEntity parentEntity = parentRepository.findById(parentId)
-					.orElseThrow(() -> new ParentNotFoundException("Parent not found with the given ID."));
+					.orElseThrow(() -> new NotFoundException("Parent", id));
 			return ResponseEntity.ok(parentEntity);
 		} catch (NumberFormatException e) {
-			throw new ParentNotFoundException("Invalid ID format.");
+			throw new NumberFormatException();
 		}
 	}
 
