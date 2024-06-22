@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.SubjectEntity;
+import com.electric_diary.exception.CustomBadRequestException;
+import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.SubjectRepository;
 import com.electric_diary.services.SubjectService;
 
@@ -25,10 +27,9 @@ public class SubjectServiceImpl extends ErrorMessagesServiceImpl implements Subj
 	protected SubjectRepository subjectRepository;
 
 	@Override
-	public ResponseEntity<?> createSubject(SubjectEntity subjectBody, BindingResult result) {
-		if (result.hasErrors()) {
-			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<SubjectEntity> createSubject(SubjectEntity subjectBody, BindingResult result) {
+		if (result.hasErrors())
+			throw new CustomBadRequestException(result);
 
 		SubjectEntity subject = new SubjectEntity();
 		subject.setName(subjectBody.getName());
@@ -39,68 +40,60 @@ public class SubjectServiceImpl extends ErrorMessagesServiceImpl implements Subj
 	}
 
 	@Override
-	public ResponseEntity<?> getAllSubjects() {
-		Iterable<SubjectEntity> subject = subjectRepository.findAll();
-		return new ResponseEntity<>(subject, HttpStatus.OK);
+	public ResponseEntity<Iterable<SubjectEntity>> getAllSubjects() {
+		Iterable<SubjectEntity> subjects = subjectRepository.findAll();
+		return new ResponseEntity<>(subjects, HttpStatus.OK);
 	}
 
 	@Override
-	public ResponseEntity<?> getSubjectById(String id) {
+	public ResponseEntity<SubjectEntity> getSubjectById(String id) {
 		try {
 			int subjectId = Integer.parseInt(id);
-			Optional<SubjectEntity> subjectOptional = subjectRepository.findById(subjectId);
-
-			if (subjectOptional.isPresent()) {
-				return new ResponseEntity<>(subjectOptional.get(), HttpStatus.OK);
-			} else {
-				return createNotFoundResponse("Subject", subjectId);
-			}
+			SubjectEntity subjectEntity = subjectRepository.findById(subjectId)
+					.orElseThrow(() -> new NotFoundException("Subject", id));
+			return ResponseEntity.ok(subjectEntity);
 		} catch (NumberFormatException e) {
-			return createBadRequestResponse("Invalid ID format");
-		} catch (Exception e) {
-			return createErrorResponse(e);
+			throw new NumberFormatException();
 		}
 	}
 
 	@Override
-	public ResponseEntity<?> updateSubject(String id, SubjectEntity subjectBody) {
+	public ResponseEntity<SubjectEntity> updateSubject(String id, SubjectEntity subjectBody) {
+		int subjectId;
 		try {
-			int subjectId = Integer.parseInt(id);
-			Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
-
-			if (optionalSubject.isPresent()) {
-				SubjectEntity subject = optionalSubject.get();
-				subject.setName(subjectBody.getName());
-				subject.setWeeklyFund(subjectBody.getWeeklyFund());
-				subjectRepository.save(subject);
-				return new ResponseEntity<>(subject, HttpStatus.OK);
-			} else {
-				return createNotFoundResponse("Subject", subjectId);
-			}
+			subjectId = Integer.parseInt(id);
 		} catch (NumberFormatException e) {
-			return createBadRequestResponse("Invalid ID format");
-		} catch (Exception e) {
-			return createErrorResponse(e);
+			throw new NumberFormatException();
+		}
+
+		Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
+		if (optionalSubject.isPresent()) {
+			SubjectEntity subject = optionalSubject.get();
+			subject.setName(subjectBody.getName());
+			subject.setWeeklyFund(subjectBody.getWeeklyFund());
+			subjectRepository.save(subject);
+			return new ResponseEntity<>(subject, HttpStatus.OK);
+		} else {
+			throw new NotFoundException("Subject", id);
 		}
 	}
 
 	@Override
-	public ResponseEntity<?> deleteSubject(String id) {
+	public ResponseEntity<SubjectEntity> deleteSubject(String id) {
+		int subjectId;
 		try {
-			int subjectId = Integer.parseInt(id);
-			Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
-
-			if (optionalSubject.isPresent()) {
-				SubjectEntity subject = optionalSubject.get();
-				subjectRepository.delete(subject);
-				return new ResponseEntity<>(subject, HttpStatus.OK);
-			} else {
-				return createNotFoundResponse("Subject", subjectId);
-			}
+			subjectId = Integer.parseInt(id);
 		} catch (NumberFormatException e) {
-			return createBadRequestResponse("Invalid ID format");
-		} catch (Exception e) {
-			return createErrorResponse(e);
+			throw new NumberFormatException();
+		}
+
+		Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
+		if (optionalSubject.isPresent()) {
+			SubjectEntity subject = optionalSubject.get();
+			subjectRepository.delete(subject);
+			return new ResponseEntity<>(subject, HttpStatus.OK);
+		} else {
+			throw new NotFoundException("Subject", id);
 		}
 	}
 }

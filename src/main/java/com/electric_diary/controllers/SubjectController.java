@@ -15,27 +15,27 @@ public class SubjectController {
 	protected SubjectService subjectService;
 
 	@PostMapping
-	public ResponseEntity<?> createSubject(@RequestBody SubjectEntity subjectBody, BindingResult result) {
+	public ResponseEntity<SubjectEntity> createSubject(@RequestBody SubjectEntity subjectBody, BindingResult result) {
 		return subjectService.createSubject(subjectBody, result);
 	}
 
 	@GetMapping
-	public ResponseEntity<?> getAllSubjects() {
+	public ResponseEntity<Iterable<SubjectEntity>> getAllSubjects() {
 		return subjectService.getAllSubjects();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getSubjectById(@PathVariable String id) {
+	public ResponseEntity<SubjectEntity> getSubjectById(@PathVariable String id) {
 		return subjectService.getSubjectById(id);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> updateSubject(@PathVariable String id, @RequestBody SubjectEntity subjectBody) {
+	public ResponseEntity<SubjectEntity> updateSubject(@PathVariable String id, @RequestBody SubjectEntity subjectBody) {
 		return subjectService.updateSubject(id, subjectBody);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteSubject(@PathVariable String id) {
+	public ResponseEntity<SubjectEntity> deleteSubject(@PathVariable String id) {
 		return subjectService.deleteSubject(id);
 	}
 }
