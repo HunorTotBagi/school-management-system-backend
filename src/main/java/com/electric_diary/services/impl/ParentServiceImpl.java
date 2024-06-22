@@ -41,7 +41,7 @@ public class ParentServiceImpl extends ErrorMessagesServiceImpl implements Paren
 	}
 
 	@Override
-	public ResponseEntity<?> getAllParents() {
+	public ResponseEntity<Iterable<ParentEntity>> getAllParents() {
 		Iterable<ParentEntity> parents = parentRepository.findAll();
 		return new ResponseEntity<>(parents, HttpStatus.OK);
 	}

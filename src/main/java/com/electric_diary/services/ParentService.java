@@ -8,7 +8,7 @@ import com.electric_diary.entities.ParentEntity;
 public interface ParentService {
 	public ResponseEntity<ParentEntity> createParent(ParentEntity parentBody, BindingResult result);
 
-	public ResponseEntity<?> getAllParents();
+	public ResponseEntity<Iterable<ParentEntity>> getAllParents();
 
 	public ResponseEntity<ParentEntity> getParentById(String id);
 
