@@ -14,5 +14,5 @@ public interface ParentService {
 
 	public ResponseEntity<ParentEntity> updateParent(String id, ParentEntity parentBody);
 
-	public ResponseEntity<?> deleteParent(String id);
+	public ResponseEntity<ParentEntity> deleteParent(String id);
 }
