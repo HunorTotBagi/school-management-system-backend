@@ -25,35 +25,35 @@ public class TeacherController {
 
 	@Autowired
 	protected TeacherService teacherService;
-	
+
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
 	@PostMapping
-	public ResponseEntity<?>  createTeacher(@Valid @RequestBody TeacherEntity teacherBody,  BindingResult result) {
+	public ResponseEntity<TeacherEntity> createTeacher(@Valid @RequestBody TeacherEntity teacherBody, BindingResult result) {
 		logger.debug("This is a debug message");
 		return teacherService.createTeacher(teacherBody, result);
 	}
 
 	@GetMapping
-	public ResponseEntity<?> getAllTeachers() {
+	public ResponseEntity<Iterable<TeacherEntity>> getAllTeachers() {
 		logger.info("This is an info message");
 		return teacherService.getAllTeachers();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getTeacherById(@PathVariable String id) {
+	public ResponseEntity<TeacherEntity> getTeacherById(@PathVariable String id) {
 		logger.warn("This is a warn message");
 		return teacherService.getTeacherById(id);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> updateTeacher(@PathVariable String id, @RequestBody TeacherEntity teacherBody) {
+	public ResponseEntity<TeacherEntity> updateTeacher(@PathVariable String id, @RequestBody TeacherEntity teacherBody) {
 		logger.error("This is an error message");
 		return teacherService.updateTeacher(id, teacherBody);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteTeacher(@PathVariable String id) {
+	public ResponseEntity<TeacherEntity> deleteTeacher(@PathVariable String id) {
 		return teacherService.deleteTeacher(id);
 	}
 }

@@ -6,13 +6,13 @@ import org.springframework.validation.BindingResult;
 import com.electric_diary.entities.TeacherEntity;
 
 public interface TeacherService {
-	public ResponseEntity<?> createTeacher(TeacherEntity teacherBody, BindingResult result);
+	public ResponseEntity<TeacherEntity> createTeacher(TeacherEntity teacherBody, BindingResult result);
 
-	public ResponseEntity<?> getAllTeachers();
+	public ResponseEntity<Iterable<TeacherEntity>> getAllTeachers();
 
-	public ResponseEntity<?> getTeacherById(String id);
+	public ResponseEntity<TeacherEntity> getTeacherById(String id);
 
-	public ResponseEntity<?> updateTeacher(String id, TeacherEntity teacherBody);
+	public ResponseEntity<TeacherEntity> updateTeacher(String id, TeacherEntity teacherBody);
 
-	public ResponseEntity<?> deleteTeacher(String id);
+	public ResponseEntity<TeacherEntity> deleteTeacher(String id);
 }

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.TeacherEntity;
+import com.electric_diary.exception.CustomBadRequestException;
+import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.TeacherRepository;
 import com.electric_diary.services.TeacherService;
 
@@ -25,10 +27,9 @@ public class TeacherServiceImpl extends ErrorMessagesServiceImpl implements Teac
 	protected TeacherRepository teacherRepository;
 
 	@Override
-	public ResponseEntity<?> createTeacher(TeacherEntity teacherBody, BindingResult result) {
-		if (result.hasErrors()) {
-			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<TeacherEntity> createTeacher(TeacherEntity teacherBody, BindingResult result) {
+		if (result.hasErrors())
+			throw new CustomBadRequestException(result);
 
 		TeacherEntity teacher = new TeacherEntity();
 		teacher.setFirstName(teacherBody.getFirstName());
@@ -39,68 +40,60 @@ public class TeacherServiceImpl extends ErrorMessagesServiceImpl implements Teac
 	}
 
 	@Override
-	public ResponseEntity<?> getAllTeachers() {
+	public ResponseEntity<Iterable<TeacherEntity>> getAllTeachers() {
 		Iterable<TeacherEntity> teachers = teacherRepository.findAll();
 		return new ResponseEntity<>(teachers, HttpStatus.OK);
 	}
 
 	@Override
-	public ResponseEntity<?> getTeacherById(String id) {
+	public ResponseEntity<TeacherEntity> getTeacherById(String id) {
 		try {
 			int teacherId = Integer.parseInt(id);
-			Optional<TeacherEntity> teacherOptional = teacherRepository.findById(teacherId);
-
-			if (teacherOptional.isPresent()) {
-				return new ResponseEntity<>(teacherOptional.get(), HttpStatus.OK);
-			} else {
-				return createNotFoundResponse("Teacher", teacherId);
-			}
+			TeacherEntity teacherEntity = teacherRepository.findById(teacherId)
+					.orElseThrow(() -> new NotFoundException("Teacher", id));
+			return ResponseEntity.ok(teacherEntity);
 		} catch (NumberFormatException e) {
-			return createBadRequestResponse("Invalid ID format");
-		} catch (Exception e) {
-			return createErrorResponse(e);
+			throw new NumberFormatException();
 		}
 	}
 
 	@Override
-	public ResponseEntity<?> updateTeacher(String id, TeacherEntity teacherBody) {
+	public ResponseEntity<TeacherEntity> updateTeacher(String id, TeacherEntity teacherBody) {
+		int teacherId;
 		try {
-			int teacherId = Integer.parseInt(id);
-			Optional<TeacherEntity> optionalTeacher = teacherRepository.findById(teacherId);
-
-			if (optionalTeacher.isPresent()) {
-				TeacherEntity teacher = optionalTeacher.get();
-				teacher.setFirstName(teacherBody.getFirstName());
-				teacher.setLastName(teacherBody.getLastName());
-				teacherRepository.save(teacher);
-				return new ResponseEntity<>(teacher, HttpStatus.OK);
-			} else {
-				return createNotFoundResponse("Teacher", teacherId);
-			}
+			teacherId = Integer.parseInt(id);
 		} catch (NumberFormatException e) {
-			return createBadRequestResponse("Invalid ID format");
-		} catch (Exception e) {
-			return createErrorResponse(e);
+			throw new NumberFormatException();
+		}
+
+		Optional<TeacherEntity> optionalTeacher = teacherRepository.findById(teacherId);
+		if (optionalTeacher.isPresent()) {
+			TeacherEntity teacher = optionalTeacher.get();
+			teacher.setFirstName(teacherBody.getFirstName());
+			teacher.setLastName(teacherBody.getLastName());
+			teacherRepository.save(teacher);
+			return new ResponseEntity<>(teacher, HttpStatus.OK);
+		} else {
+			throw new NotFoundException("Teacher", id);
 		}
 	}
 
 	@Override
-	public ResponseEntity<?> deleteTeacher(String id) {
+	public ResponseEntity<TeacherEntity> deleteTeacher(String id) {
+		int teacherId;
 		try {
-			int teacherId = Integer.parseInt(id);
-			Optional<TeacherEntity> optionalTeacher = teacherRepository.findById(teacherId);
-
-			if (optionalTeacher.isPresent()) {
-				TeacherEntity teacher = optionalTeacher.get();
-				teacherRepository.delete(teacher);
-				return new ResponseEntity<>(teacher, HttpStatus.OK);
-			} else {
-				return createNotFoundResponse("Teacher", teacherId);
-			}
+			teacherId = Integer.parseInt(id);
 		} catch (NumberFormatException e) {
-			return createBadRequestResponse("Invalid ID format");
-		} catch (Exception e) {
-			return createErrorResponse(e);
+			throw new NumberFormatException();
+		}
+
+		Optional<TeacherEntity> optionalTeacher = teacherRepository.findById(teacherId);
+		if (optionalTeacher.isPresent()) {
+			TeacherEntity teacher = optionalTeacher.get();
+			teacherRepository.delete(teacher);
+			return new ResponseEntity<>(teacher, HttpStatus.OK);
+		} else {
+			throw new NotFoundException("Teacher", id);
 		}
 	}
 }
