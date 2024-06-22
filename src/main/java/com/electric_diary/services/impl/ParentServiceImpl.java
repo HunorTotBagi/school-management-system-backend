@@ -59,25 +59,24 @@ public class ParentServiceImpl extends ErrorMessagesServiceImpl implements Paren
 	}
 
 	@Override
-	public ResponseEntity<?> updateParent(String id, ParentEntity parentBody) {
+	public ResponseEntity<ParentEntity> updateParent(String id, ParentEntity parentBody) {
+		int parentId;
 		try {
-			int parentId = Integer.parseInt(id);
-			Optional<ParentEntity> optionalParent = parentRepository.findById(parentId);
-
-			if (optionalParent.isPresent()) {
-				ParentEntity parent = optionalParent.get();
-				parent.setFirstName(parentBody.getFirstName());
-				parent.setLastName(parentBody.getLastName());
-				parent.setEmail(parentBody.getEmail());
-				parentRepository.save(parent);
-				return new ResponseEntity<>(parent, HttpStatus.OK);
-			} else {
-				return createNotFoundResponse("Parent", parentId);
-			}
+			parentId = Integer.parseInt(id);
 		} catch (NumberFormatException e) {
-			return createBadRequestResponse("Invalid ID format");
-		} catch (Exception e) {
-			return createErrorResponse(e);
+			throw new NumberFormatException();
+		}
+
+		Optional<ParentEntity> optionalParent = parentRepository.findById(parentId);
+		if (optionalParent.isPresent()) {
+			ParentEntity parent = optionalParent.get();
+			parent.setFirstName(parentBody.getFirstName());
+			parent.setLastName(parentBody.getLastName());
+			parent.setEmail(parentBody.getEmail());
+			parentRepository.save(parent);
+			return new ResponseEntity<>(parent, HttpStatus.OK);
+		} else {
+			throw new NotFoundException("Parent", id);
 		}
 	}
 
