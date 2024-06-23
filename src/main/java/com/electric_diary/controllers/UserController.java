@@ -30,12 +30,12 @@ public class UserController {
 	}
 
 	@GetMapping
-	public Iterable<UserEntity> getAllUsers() {
+	public ResponseEntity<Iterable<UserEntity>> getAllUsers() {
 		return userService.getAllUsers();
 	}
 
 	@GetMapping("/{id}")
-	public UserEntity getUserById(@PathVariable String id) {
+	public ResponseEntity<UserEntity> getUserById(@PathVariable String id) {
 		return userService.getUserById(id);
 	}
 

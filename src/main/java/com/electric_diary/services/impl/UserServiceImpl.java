@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.UserEntity;
 import com.electric_diary.exception.CustomBadRequestException;
+import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.UserRepository;
 import com.electric_diary.services.UserService;
 
@@ -37,13 +38,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Iterable<UserEntity> getAllUsers() {
-		return userRepository.findAll();
+	public ResponseEntity<Iterable<UserEntity>> getAllUsers() {
+		Iterable<UserEntity> users = userRepository.findAll();
+		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
 	@Override
-	public UserEntity getUserById(String id) {
-		return userRepository.findById(Integer.parseInt(id)).get();
+	public ResponseEntity<UserEntity> getUserById(String id) {
+		try {
+			int userId = Integer.parseInt(id);
+			UserEntity userEntity = userRepository.findById(userId)
+					.orElseThrow(() -> new NotFoundException("User", id));
+			return ResponseEntity.ok(userEntity);
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException();
+		}
 	}
 
 	@Override
