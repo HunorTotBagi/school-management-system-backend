@@ -1,15 +1,18 @@
 package com.electric_diary.services;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+
 import com.electric_diary.entities.UserEntity;
 
 public interface UserService {
-	public UserEntity createUser(UserEntity userBody);
+	public ResponseEntity<UserEntity> createUser(UserEntity userBody, BindingResult result);
 
-	public Iterable<UserEntity> getAllUsers();
+	public ResponseEntity<Iterable<UserEntity>> getAllUsers();
 
-	public UserEntity getUserById(String id);
+	public ResponseEntity<UserEntity> getUserById(String id);
 
-	public UserEntity updateUser(String id, UserEntity userBody);
+	public ResponseEntity<UserEntity> updateUser(String id, UserEntity userBody);
 
-	public UserEntity deleteUser(String id);
+	public ResponseEntity<UserEntity> deleteUser(String id);
 }

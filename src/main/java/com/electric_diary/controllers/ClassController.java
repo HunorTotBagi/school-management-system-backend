@@ -23,27 +23,27 @@ public class ClassController {
 	protected ClassService classService;
 
 	@PostMapping
-	public ResponseEntity<?> createClass(@RequestBody ClassEntity classBody, BindingResult result) {
+	public ResponseEntity<ClassEntity> createClass(@RequestBody ClassEntity classBody, BindingResult result) {
 		return classService.createClass(classBody, result);
 	}
 
 	@GetMapping
-	public ResponseEntity<?> getAllClasses() {
+	public ResponseEntity<Iterable<ClassEntity>> getAllClasses() {
 		return classService.getAllClasses();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getClassById(@PathVariable String id) {
+	public ResponseEntity<ClassEntity> getClassById(@PathVariable String id) {
 		return classService.getClassById(id);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> updateClass(@PathVariable String id, @RequestBody ClassEntity classBody) {
+	public ResponseEntity<ClassEntity> updateClass(@PathVariable String id, @RequestBody ClassEntity classBody) {
 		return classService.updateClass(id, classBody);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteClass(@PathVariable String id) {
+	public ResponseEntity<ClassEntity> deleteClass(@PathVariable String id) {
 		return classService.deleteClass(id);
 	}
 

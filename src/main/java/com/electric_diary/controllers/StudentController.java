@@ -18,34 +18,34 @@ public class StudentController {
 	protected StudentService studentService;
 
 	@PostMapping
-	public ResponseEntity<?> createStudent(@RequestBody StudentEntity studentBody, BindingResult result) {
+	public ResponseEntity<StudentEntity> createStudent(@RequestBody StudentEntity studentBody, BindingResult result) {
 		return studentService.createStudent(studentBody, result);
 	}
 
 	@GetMapping("/student")
 	@JsonView(Views.Student.class)
-	public ResponseEntity<?> getAllStudentsForStudents() {
+	public ResponseEntity<Iterable<StudentEntity>> getAllStudentsForStudents() {
 		return studentService.getAllStudents();
 	}
 
 	@GetMapping("/parent")
 	@JsonView(Views.Parent.class)
-	public ResponseEntity<?> getAllStudentsForParent() {
+	public ResponseEntity<Iterable<StudentEntity>> getAllStudentsForParent() {
 		return studentService.getAllStudents();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getStudentById(@PathVariable String id) {
+	public ResponseEntity<StudentEntity> getStudentById(@PathVariable String id) {
 		return studentService.getStudentById(id);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> updateStudent(@PathVariable String id, @RequestBody StudentEntity studentBody) {
+	public ResponseEntity<StudentEntity> updateStudent(@PathVariable String id, @RequestBody StudentEntity studentBody) {
 		return studentService.updateStudent(id, studentBody);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteStudent(@PathVariable String id) {
+	public ResponseEntity<StudentEntity> deleteStudent(@PathVariable String id) {
 		return studentService.deleteStudent(id);
 	}
 }

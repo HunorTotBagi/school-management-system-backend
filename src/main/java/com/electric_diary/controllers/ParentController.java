@@ -25,27 +25,27 @@ public class ParentController {
 	protected ParentService parentService;
 
 	@PostMapping
-	public ResponseEntity<?> createParent(@Valid @RequestBody ParentEntity parentBody, BindingResult result) {
+	public ResponseEntity<ParentEntity> createParent(@Valid @RequestBody ParentEntity parentBody, BindingResult result) {
 		return parentService.createParent(parentBody, result);
 	}
 
 	@GetMapping
-	public ResponseEntity<?> getAllParents() {
+	public ResponseEntity<Iterable<ParentEntity>> getAllParents() {
 		return parentService.getAllParents();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getParentById(@PathVariable String id) {
+	public ResponseEntity<ParentEntity> getParentById(@PathVariable String id) {
 		return parentService.getParentById(id);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> updateParent(@PathVariable String id, @RequestBody ParentEntity parentBody) {
+	public ResponseEntity<ParentEntity> updateParent(@PathVariable String id, @RequestBody ParentEntity parentBody) {
 		return parentService.updateParent(id, parentBody);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteParent(@PathVariable String id) {
+	public ResponseEntity<ParentEntity> deleteParent(@PathVariable String id) {
 		return parentService.deleteParent(id);
 	}
 }

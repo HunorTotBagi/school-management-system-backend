@@ -6,13 +6,13 @@ import org.springframework.validation.BindingResult;
 import com.electric_diary.entities.ClassEntity;
 
 public interface ClassService {
-	public ResponseEntity<?> createClass(ClassEntity classBody, BindingResult result);
+	public ResponseEntity<ClassEntity> createClass(ClassEntity classBody, BindingResult result);
 
-	public ResponseEntity<?> getAllClasses();
+	public ResponseEntity<Iterable<ClassEntity>> getAllClasses();
 
-	public ResponseEntity<?> getClassById(String id);
+	public ResponseEntity<ClassEntity> getClassById(String id);
 
-	public ResponseEntity<?> updateClass(String id, ClassEntity classBody);
+	public ResponseEntity<ClassEntity> updateClass(String id, ClassEntity classBody);
 
-	public ResponseEntity<?> deleteClass(String id);
+	public ResponseEntity<ClassEntity> deleteClass(String id);
 }
