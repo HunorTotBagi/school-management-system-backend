@@ -3,8 +3,6 @@ package com.electric_diary.services.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -27,7 +25,7 @@ public class ClassServiceImpl implements ClassService {
 	protected ClassRepository classRepository;
 
 	@Override
-	public ResponseEntity<ClassEntity> createClass(ClassEntity classBody, BindingResult result) {
+	public ClassEntity createClass(ClassEntity classBody, BindingResult result) {
 		if (result.hasErrors())
 			throw new CustomBadRequestException(result);
 
@@ -35,29 +33,29 @@ public class ClassServiceImpl implements ClassService {
 		newClass.setName(classBody.getName());
 		classRepository.save(newClass);
 
-		return new ResponseEntity<>(newClass, HttpStatus.OK);
+		return newClass;
 	}
 
 	@Override
-	public ResponseEntity<Iterable<ClassEntity>> getAllClasses() {
+	public Iterable<ClassEntity> getAllClasses() {
 		Iterable<ClassEntity> newClasses = classRepository.findAll();
-		return new ResponseEntity<>(newClasses, HttpStatus.OK);
+		return newClasses;
 	}
 
 	@Override
-	public ResponseEntity<ClassEntity> getClassById(String id) {
+	public ClassEntity getClassById(String id) {
 		try {
 			int classId = Integer.parseInt(id);
-			ClassEntity classEntity = classRepository.findById(classId)
+			ClassEntity newClass = classRepository.findById(classId)
 					.orElseThrow(() -> new NotFoundException("Class", id));
-			return ResponseEntity.ok(classEntity);
+			return newClass;
 		} catch (NumberFormatException e) {
 			throw new NumberFormatException();
 		}
 	}
 
 	@Override
-	public ResponseEntity<ClassEntity> updateClass(String id, ClassEntity classBody) {
+	public ClassEntity updateClass(String id, ClassEntity classBody) {
 		int classId;
 		try {
 			classId = Integer.parseInt(id);
@@ -70,14 +68,14 @@ public class ClassServiceImpl implements ClassService {
 			ClassEntity newClass = optionalClass.get();
 			newClass.setName(classBody.getName());
 			classRepository.save(newClass);
-			return new ResponseEntity<>(newClass, HttpStatus.OK);
+			return newClass;
 		} else {
 			throw new NotFoundException("Class", id);
 		}
 	}
 
 	@Override
-	public ResponseEntity<ClassEntity> deleteClass(String id) {
+	public ClassEntity deleteClass(String id) {
 		int classId;
 		try {
 			classId = Integer.parseInt(id);
@@ -89,10 +87,9 @@ public class ClassServiceImpl implements ClassService {
 		if (optionalClass.isPresent()) {
 			ClassEntity newClass = optionalClass.get();
 			classRepository.delete(newClass);
-			return new ResponseEntity<>(newClass, HttpStatus.OK);
+			return newClass;
 		} else {
 			throw new NotFoundException("Class", id);
 		}
 	}
-
 }

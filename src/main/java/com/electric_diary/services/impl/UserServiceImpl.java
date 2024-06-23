@@ -3,8 +3,6 @@ package com.electric_diary.services.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -27,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	protected UserRepository userRepository;
 
 	@Override
-	public ResponseEntity<UserEntity> createUser(UserEntity userBody, BindingResult result) {
+	public UserEntity createUser(UserEntity userBody, BindingResult result) {
 		if (result.hasErrors())
 			throw new CustomBadRequestException(result);
 
@@ -36,29 +34,28 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(userBody.getPassword());
 		userRepository.save(user);
 
-		return new ResponseEntity<UserEntity>(user, HttpStatus.OK);
+		return user;
 	}
 
 	@Override
-	public ResponseEntity<Iterable<UserEntity>> getAllUsers() {
+	public Iterable<UserEntity> getAllUsers() {
 		Iterable<UserEntity> users = userRepository.findAll();
-		return new ResponseEntity<>(users, HttpStatus.OK);
+		return users;
 	}
 
 	@Override
-	public ResponseEntity<UserEntity> getUserById(String id) {
+	public UserEntity getUserById(String id) {
 		try {
 			int userId = Integer.parseInt(id);
-			UserEntity userEntity = userRepository.findById(userId)
-					.orElseThrow(() -> new NotFoundException("User", id));
-			return ResponseEntity.ok(userEntity);
+			UserEntity user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", id));
+			return user;
 		} catch (NumberFormatException e) {
 			throw new NumberFormatException();
 		}
 	}
 
 	@Override
-	public ResponseEntity<UserEntity> updateUser(String id, UserEntity userBody) {
+	public UserEntity updateUser(String id, UserEntity userBody) {
 		int userId;
 		try {
 			userId = Integer.parseInt(id);
@@ -72,14 +69,14 @@ public class UserServiceImpl implements UserService {
 			user.setUsername(userBody.getUsername());
 			user.setPassword(userBody.getPassword());
 			userRepository.save(user);
-			return new ResponseEntity<>(user, HttpStatus.OK);
+			return user;
 		} else {
 			throw new NotFoundException("User", id);
 		}
 	}
 
 	@Override
-	public ResponseEntity<UserEntity> deleteUser(String id) {
+	public UserEntity deleteUser(String id) {
 		int userId;
 		try {
 			userId = Integer.parseInt(id);
@@ -91,7 +88,7 @@ public class UserServiceImpl implements UserService {
 		if (optionalUser.isPresent()) {
 			UserEntity user = optionalUser.get();
 			userRepository.delete(user);
-			return new ResponseEntity<>(user, HttpStatus.OK);
+			return user;
 		} else {
 			throw new NotFoundException("User", id);
 		}

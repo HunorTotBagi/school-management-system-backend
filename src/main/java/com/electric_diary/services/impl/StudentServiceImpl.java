@@ -3,8 +3,6 @@ package com.electric_diary.services.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -27,7 +25,7 @@ public class StudentServiceImpl implements StudentService {
 	protected StudentRepository studentRepository;
 
 	@Override
-	public ResponseEntity<StudentEntity> createStudent(StudentEntity studentBody, BindingResult result) {
+	public StudentEntity createStudent(StudentEntity studentBody, BindingResult result) {
 		if (result.hasErrors())
 			throw new CustomBadRequestException(result);
 
@@ -37,29 +35,29 @@ public class StudentServiceImpl implements StudentService {
 		student.setNewClass(studentBody.getNewClass());
 		studentRepository.save(student);
 
-		return new ResponseEntity<>(student, HttpStatus.OK);
+		return student;
 	}
 
 	@Override
-	public ResponseEntity<Iterable<StudentEntity>> getAllStudents() {
+	public Iterable<StudentEntity> getAllStudents() {
 		Iterable<StudentEntity> students = studentRepository.findAll();
-		return new ResponseEntity<>(students, HttpStatus.OK);
+		return students;
 	}
 
 	@Override
-	public ResponseEntity<StudentEntity> getStudentById(String id) {
+	public StudentEntity getStudentById(String id) {
 		try {
 			int studentId = Integer.parseInt(id);
-			StudentEntity studentEntity = studentRepository.findById(studentId)
+			StudentEntity student = studentRepository.findById(studentId)
 					.orElseThrow(() -> new NotFoundException("Student", id));
-			return ResponseEntity.ok(studentEntity);
+			return student;
 		} catch (NumberFormatException e) {
 			throw new NumberFormatException();
 		}
 	}
 
 	@Override
-	public ResponseEntity<StudentEntity> updateStudent(String id, StudentEntity studentBody) {
+	public StudentEntity updateStudent(String id, StudentEntity studentBody) {
 		int studentId;
 		try {
 			studentId = Integer.parseInt(id);
@@ -74,14 +72,14 @@ public class StudentServiceImpl implements StudentService {
 			student.setLastName(studentBody.getLastName());
 			student.setNewClass(studentBody.getNewClass());
 			studentRepository.save(student);
-			return new ResponseEntity<>(student, HttpStatus.OK);
+			return student;
 		} else {
 			throw new NotFoundException("Student", id);
 		}
 	}
 
 	@Override
-	public ResponseEntity<StudentEntity> deleteStudent(String id) {
+	public StudentEntity deleteStudent(String id) {
 		int studentId;
 		try {
 			studentId = Integer.parseInt(id);
@@ -93,7 +91,7 @@ public class StudentServiceImpl implements StudentService {
 		if (optionalStudent.isPresent()) {
 			StudentEntity student = optionalStudent.get();
 			studentRepository.delete(student);
-			return new ResponseEntity<>(student, HttpStatus.OK);
+			return student;
 		} else {
 			throw new NotFoundException("Student", id);
 		}

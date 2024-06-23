@@ -1,6 +1,7 @@
 package com.electric_diary.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,27 +25,26 @@ public class ClassController {
 
 	@PostMapping
 	public ResponseEntity<ClassEntity> createClass(@RequestBody ClassEntity classBody, BindingResult result) {
-		return classService.createClass(classBody, result);
+		return new ResponseEntity<>(classService.createClass(classBody, result), HttpStatus.OK);
 	}
 
 	@GetMapping
 	public ResponseEntity<Iterable<ClassEntity>> getAllClasses() {
-		return classService.getAllClasses();
+		return new ResponseEntity<>(classService.getAllClasses(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<ClassEntity> getClassById(@PathVariable String id) {
-		return classService.getClassById(id);
+		return new ResponseEntity<>(classService.getClassById(id), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<ClassEntity> updateClass(@PathVariable String id, @RequestBody ClassEntity classBody) {
-		return classService.updateClass(id, classBody);
+		return new ResponseEntity<>(classService.updateClass(id, classBody), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<ClassEntity> deleteClass(@PathVariable String id) {
-		return classService.deleteClass(id);
+		return new ResponseEntity<>(classService.deleteClass(id), HttpStatus.OK);
 	}
-
 }

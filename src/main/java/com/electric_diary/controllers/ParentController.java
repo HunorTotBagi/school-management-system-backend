@@ -1,6 +1,7 @@
 package com.electric_diary.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,27 +26,28 @@ public class ParentController {
 	protected ParentService parentService;
 
 	@PostMapping
-	public ResponseEntity<ParentEntity> createParent(@Valid @RequestBody ParentEntity parentBody, BindingResult result) {
-		return parentService.createParent(parentBody, result);
+	public ResponseEntity<ParentEntity> createParent(@Valid @RequestBody ParentEntity parentBody,
+			BindingResult result) {
+		return new ResponseEntity<ParentEntity>(parentService.createParent(parentBody, result), HttpStatus.OK);
 	}
 
 	@GetMapping
 	public ResponseEntity<Iterable<ParentEntity>> getAllParents() {
-		return parentService.getAllParents();
+		return new ResponseEntity<>(parentService.getAllParents(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<ParentEntity> getParentById(@PathVariable String id) {
-		return parentService.getParentById(id);
+		return new ResponseEntity<>(parentService.getParentById(id), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<ParentEntity> updateParent(@PathVariable String id, @RequestBody ParentEntity parentBody) {
-		return parentService.updateParent(id, parentBody);
+		return new ResponseEntity<>(parentService.updateParent(id, parentBody), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<ParentEntity> deleteParent(@PathVariable String id) {
-		return parentService.deleteParent(id);
+		return new ResponseEntity<>(parentService.deleteParent(id), HttpStatus.OK);
 	}
 }

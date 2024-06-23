@@ -1,6 +1,7 @@
 package com.electric_diary.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,26 +27,26 @@ public class UserController {
 
 	@PostMapping
 	public ResponseEntity<UserEntity> createUser(@Valid @RequestBody UserEntity userBody, BindingResult result) {
-		return userService.createUser(userBody, result);
+		return new ResponseEntity<UserEntity>(userService.createUser(userBody, result), HttpStatus.OK);
 	}
 
 	@GetMapping
 	public ResponseEntity<Iterable<UserEntity>> getAllUsers() {
-		return userService.getAllUsers();
+		return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<UserEntity> getUserById(@PathVariable String id) {
-		return userService.getUserById(id);
+		return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<UserEntity> updateUser(@PathVariable String id, @RequestBody UserEntity userBody) {
-		return userService.updateUser(id, userBody);
+		return new ResponseEntity<>(userService.updateUser(id, userBody), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<UserEntity> deleteUser(@PathVariable String id) {
-		return userService.deleteUser(id);
+		return new ResponseEntity<>(userService.deleteUser(id), HttpStatus.OK);
 	}
 }

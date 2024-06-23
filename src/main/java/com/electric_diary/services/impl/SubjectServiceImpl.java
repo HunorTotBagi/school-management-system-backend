@@ -3,8 +3,6 @@ package com.electric_diary.services.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -27,7 +25,7 @@ public class SubjectServiceImpl implements SubjectService {
 	protected SubjectRepository subjectRepository;
 
 	@Override
-	public ResponseEntity<SubjectEntity> createSubject(SubjectEntity subjectBody, BindingResult result) {
+	public SubjectEntity createSubject(SubjectEntity subjectBody, BindingResult result) {
 		if (result.hasErrors())
 			throw new CustomBadRequestException(result);
 
@@ -36,29 +34,29 @@ public class SubjectServiceImpl implements SubjectService {
 		subject.setWeeklyFund(subjectBody.getWeeklyFund());
 		subjectRepository.save(subject);
 
-		return new ResponseEntity<>(subject, HttpStatus.OK);
+		return subject;
 	}
 
 	@Override
-	public ResponseEntity<Iterable<SubjectEntity>> getAllSubjects() {
+	public Iterable<SubjectEntity> getAllSubjects() {
 		Iterable<SubjectEntity> subjects = subjectRepository.findAll();
-		return new ResponseEntity<>(subjects, HttpStatus.OK);
+		return subjects;
 	}
 
 	@Override
-	public ResponseEntity<SubjectEntity> getSubjectById(String id) {
+	public SubjectEntity getSubjectById(String id) {
 		try {
 			int subjectId = Integer.parseInt(id);
-			SubjectEntity subjectEntity = subjectRepository.findById(subjectId)
+			SubjectEntity subject = subjectRepository.findById(subjectId)
 					.orElseThrow(() -> new NotFoundException("Subject", id));
-			return ResponseEntity.ok(subjectEntity);
+			return subject;
 		} catch (NumberFormatException e) {
 			throw new NumberFormatException();
 		}
 	}
 
 	@Override
-	public ResponseEntity<SubjectEntity> updateSubject(String id, SubjectEntity subjectBody) {
+	public SubjectEntity updateSubject(String id, SubjectEntity subjectBody) {
 		int subjectId;
 		try {
 			subjectId = Integer.parseInt(id);
@@ -72,14 +70,14 @@ public class SubjectServiceImpl implements SubjectService {
 			subject.setName(subjectBody.getName());
 			subject.setWeeklyFund(subjectBody.getWeeklyFund());
 			subjectRepository.save(subject);
-			return new ResponseEntity<>(subject, HttpStatus.OK);
+			return subject;
 		} else {
 			throw new NotFoundException("Subject", id);
 		}
 	}
 
 	@Override
-	public ResponseEntity<SubjectEntity> deleteSubject(String id) {
+	public SubjectEntity deleteSubject(String id) {
 		int subjectId;
 		try {
 			subjectId = Integer.parseInt(id);
@@ -91,7 +89,7 @@ public class SubjectServiceImpl implements SubjectService {
 		if (optionalSubject.isPresent()) {
 			SubjectEntity subject = optionalSubject.get();
 			subjectRepository.delete(subject);
-			return new ResponseEntity<>(subject, HttpStatus.OK);
+			return subject;
 		} else {
 			throw new NotFoundException("Subject", id);
 		}

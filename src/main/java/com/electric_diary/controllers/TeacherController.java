@@ -3,6 +3,7 @@ package com.electric_diary.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,29 +32,29 @@ public class TeacherController {
 	@PostMapping
 	public ResponseEntity<TeacherEntity> createTeacher(@Valid @RequestBody TeacherEntity teacherBody, BindingResult result) {
 		logger.debug("This is a debug message");
-		return teacherService.createTeacher(teacherBody, result);
+		return new ResponseEntity<>(teacherService.createTeacher(teacherBody, result), HttpStatus.OK);
 	}
 
 	@GetMapping
 	public ResponseEntity<Iterable<TeacherEntity>> getAllTeachers() {
 		logger.info("This is an info message");
-		return teacherService.getAllTeachers();
+		return new ResponseEntity<>(teacherService.getAllTeachers(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<TeacherEntity> getTeacherById(@PathVariable String id) {
 		logger.warn("This is a warn message");
-		return teacherService.getTeacherById(id);
+		return new ResponseEntity<>(teacherService.getTeacherById(id), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<TeacherEntity> updateTeacher(@PathVariable String id, @RequestBody TeacherEntity teacherBody) {
 		logger.error("This is an error message");
-		return teacherService.updateTeacher(id, teacherBody);
+		return new ResponseEntity<>(teacherService.updateTeacher(id, teacherBody), HttpStatus.OK) ;
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<TeacherEntity> deleteTeacher(@PathVariable String id) {
-		return teacherService.deleteTeacher(id);
+		return new ResponseEntity<>(teacherService.deleteTeacher(id), HttpStatus.OK);
 	}
 }
