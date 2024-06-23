@@ -12,7 +12,7 @@ public interface UserService {
 
 	public ResponseEntity<UserEntity> getUserById(String id);
 
-	public UserEntity updateUser(String id, UserEntity userBody);
+	public ResponseEntity<UserEntity> updateUser(String id, UserEntity userBody);
 
-	public UserEntity deleteUser(String id);
+	public ResponseEntity<UserEntity> deleteUser(String id);
 }

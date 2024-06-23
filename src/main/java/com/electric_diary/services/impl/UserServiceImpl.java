@@ -1,5 +1,7 @@
 package com.electric_diary.services.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +30,12 @@ public class UserServiceImpl implements UserService {
 	public ResponseEntity<UserEntity> createUser(UserEntity userBody, BindingResult result) {
 		if (result.hasErrors())
 			throw new CustomBadRequestException(result);
-		
+
 		UserEntity user = new UserEntity();
 		user.setUsername(userBody.getUsername());
 		user.setPassword(userBody.getPassword());
 		userRepository.save(user);
-		
+
 		return new ResponseEntity<UserEntity>(user, HttpStatus.OK);
 	}
 
@@ -56,24 +58,42 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity updateUser(String id, UserEntity userBody) {
-		UserEntity user = userRepository.findById(Integer.parseInt(id)).get();
-		if (user != null) {
+	public ResponseEntity<UserEntity> updateUser(String id, UserEntity userBody) {
+		int userId;
+		try {
+			userId = Integer.parseInt(id);
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException();
+		}
+
+		Optional<UserEntity> optionalUser = userRepository.findById(userId);
+		if (optionalUser.isPresent()) {
+			UserEntity user = optionalUser.get();
 			user.setUsername(userBody.getUsername());
 			user.setPassword(userBody.getPassword());
 			userRepository.save(user);
-			return user;
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} else {
+			throw new NotFoundException("User", id);
 		}
-		return new UserEntity();
 	}
 
 	@Override
-	public UserEntity deleteUser(String id) {
-		UserEntity user = userRepository.findById(Integer.parseInt(id)).get();
-		if (user != null) {
-			userRepository.delete(user);
-			return user;
+	public ResponseEntity<UserEntity> deleteUser(String id) {
+		int userId;
+		try {
+			userId = Integer.parseInt(id);
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException();
 		}
-		return new UserEntity();
+
+		Optional<UserEntity> optionalUser = userRepository.findById(userId);
+		if (optionalUser.isPresent()) {
+			UserEntity user = optionalUser.get();
+			userRepository.delete(user);
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} else {
+			throw new NotFoundException("User", id);
+		}
 	}
 }

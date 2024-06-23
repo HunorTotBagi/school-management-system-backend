@@ -40,12 +40,12 @@ public class UserController {
 	}
 
 	@PutMapping("/{id}")
-	public UserEntity updateUser(@PathVariable String id, @RequestBody UserEntity userBody) {
+	public ResponseEntity<UserEntity> updateUser(@PathVariable String id, @RequestBody UserEntity userBody) {
 		return userService.updateUser(id, userBody);
 	}
 
 	@DeleteMapping("/{id}")
-	public UserEntity deleteUser(@PathVariable String id) {
+	public ResponseEntity<UserEntity> deleteUser(@PathVariable String id) {
 		return userService.deleteUser(id);
 	}
 }
