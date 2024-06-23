@@ -1,14 +1,17 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.electric_diary.entities.SubjectEntity;
 import com.electric_diary.entities.TeacherEntity;
 import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
+import com.electric_diary.repositories.SubjectRepository;
 import com.electric_diary.repositories.TeacherRepository;
 import com.electric_diary.services.TeacherService;
 
@@ -23,6 +26,9 @@ public class TeacherServiceImpl implements TeacherService {
 
 	@Autowired
 	protected TeacherRepository teacherRepository;
+
+	@Autowired
+	protected SubjectRepository subjectRepositroy;
 
 	@Override
 	public TeacherEntity createTeacher(TeacherEntity teacherBody, BindingResult result) {
@@ -92,6 +98,42 @@ public class TeacherServiceImpl implements TeacherService {
 			return teacher;
 		} else {
 			throw new NotFoundException("Teacher", id);
+		}
+	}
+
+	@Override
+	public TeacherEntity assignSubjectToTeacher(String teacherId, String subjectId) {
+		int teacherRequestId;
+		try {
+			teacherRequestId = Integer.parseInt(teacherId);
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException();
+		}
+
+		int subjectRequestId;
+		try {
+			subjectRequestId = Integer.parseInt(subjectId);
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException();
+		}
+
+		Optional<TeacherEntity> optionalTeacher = teacherRepository.findById(teacherRequestId);
+		Optional<SubjectEntity> optionalSubject = subjectRepositroy.findById(subjectRequestId);
+
+		Set<SubjectEntity> subjectSet = null;
+
+		if (optionalTeacher.isPresent() && optionalSubject.isPresent()) {
+			TeacherEntity teacher = optionalTeacher.get();
+			SubjectEntity subject = optionalSubject.get();
+
+			subjectSet = teacher.getSubjects();
+			subjectSet.add(subject);
+			teacher.setSubjects(subjectSet);
+
+			teacherRepository.save(teacher);
+			return teacher;
+		} else {
+			throw new NotFoundException("Teacher", subjectId);
 		}
 	}
 }

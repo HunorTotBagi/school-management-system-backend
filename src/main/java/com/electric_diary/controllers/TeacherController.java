@@ -57,4 +57,9 @@ public class TeacherController {
 	public ResponseEntity<TeacherEntity> deleteTeacher(@PathVariable String id) {
 		return new ResponseEntity<>(teacherService.deleteTeacher(id), HttpStatus.OK);
 	}
+	
+	@PutMapping("/{teacherId}/subject/{subjectId}")
+	public ResponseEntity<TeacherEntity> assignSubjectToTeacher(@PathVariable String teacherId, @PathVariable String subjectId){
+		return new ResponseEntity<>(teacherService.assignSubjectToTeacher(teacherId, subjectId), HttpStatus.OK);
+	}
 }

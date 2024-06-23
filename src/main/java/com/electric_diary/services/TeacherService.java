@@ -14,4 +14,6 @@ public interface TeacherService {
 	public TeacherEntity updateTeacher(String id, TeacherEntity teacherBody);
 
 	public TeacherEntity deleteTeacher(String id);
+	
+	public TeacherEntity assignSubjectToTeacher(String teacherId, String subjectId);
 }
