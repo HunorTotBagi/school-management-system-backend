@@ -1,9 +1,13 @@
 package com.electric_diary.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.UserEntity;
+import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.repositories.UserRepository;
 import com.electric_diary.services.UserService;
 
@@ -20,12 +24,16 @@ public class UserServiceImpl implements UserService {
 	protected UserRepository userRepository;
 
 	@Override
-	public UserEntity createUser(UserEntity userBody) {
+	public ResponseEntity<UserEntity> createUser(UserEntity userBody, BindingResult result) {
+		if (result.hasErrors())
+			throw new CustomBadRequestException(result);
+		
 		UserEntity user = new UserEntity();
 		user.setUsername(userBody.getUsername());
 		user.setPassword(userBody.getPassword());
 		userRepository.save(user);
-		return user;
+		
+		return new ResponseEntity<UserEntity>(user, HttpStatus.OK);
 	}
 
 	@Override
