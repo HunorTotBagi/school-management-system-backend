@@ -18,7 +18,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class ClassServiceImpl extends ErrorMessagesServiceImpl implements ClassService {
+public class ClassServiceImpl implements ClassService {
 
 	@PersistenceContext
 	protected EntityManager em;
