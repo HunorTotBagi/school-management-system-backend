@@ -1,5 +1,8 @@
 package com.electric_diary.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.electric_diary.security.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -10,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class StudentEntity {
@@ -27,6 +31,9 @@ public class StudentEntity {
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JsonView(Views.Parent.class)
 	private ClassEntity newClass;
+	
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<GradeEntity> grades = new ArrayList<>();
 
 	public StudentEntity() {
 	}
