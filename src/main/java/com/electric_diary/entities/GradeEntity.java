@@ -22,7 +22,7 @@ public class GradeEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@NotNull
+	@NotNull(message = "Grade name must be provided.")
 	@Min(1)
 	@Max(5)
 	private Integer grade;

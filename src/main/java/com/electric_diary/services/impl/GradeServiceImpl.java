@@ -10,6 +10,7 @@ import com.electric_diary.entities.GradeEntity;
 import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.entities.SubjectEntity;
 import com.electric_diary.entities.TeacherEntity;
+import com.electric_diary.enums.GradingType;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.GradeRepository;
 import com.electric_diary.repositories.StudentRepository;
@@ -36,6 +37,11 @@ public class GradeServiceImpl implements GradeService {
 		String studentId = gradeDTOBody.getStudentId();
 		String teacherId = gradeDTOBody.getStudentId();
 		String subjectId = gradeDTOBody.getStudentId();
+		GradingType gradingType = gradeDTOBody.getGradingType();
+
+		Integer grade = gradeDTOBody.getGrade();
+		if (grade < 1 || grade > 6)
+			throw new NotFoundException("Student", studentId);
 
 		StudentEntity student = studentRepository.findById(Integer.parseInt(studentId))
 				.orElseThrow(() -> new NotFoundException("Student", studentId));
@@ -44,15 +50,17 @@ public class GradeServiceImpl implements GradeService {
 		SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
 				.orElseThrow(() -> new NotFoundException("Subject", subjectId));
 
-		GradeEntity grade = new GradeEntity();
-		grade.setStudent(student);
-		grade.setTeacher(teacher);
-		grade.setSubject(subject);
-		grade.setGrade(gradeDTOBody.getGrade());
-		grade.setGradingType(gradeDTOBody.getGradingType());
-		gradeRepository.save(grade);
+		GradeEntity newGrade = new GradeEntity();
+		newGrade.setStudent(student);
+		newGrade.setTeacher(teacher);
+		newGrade.setSubject(subject);
+		newGrade.setGrade(gradeDTOBody.getGrade());
 
-		return grade;
+		newGrade.setGradingType(gradingType);
+		gradeRepository.save(newGrade);
+
+		return newGrade;
+
 	}
 
 	@Override
@@ -74,37 +82,37 @@ public class GradeServiceImpl implements GradeService {
 
 	@Override
 	public GradeEntity updateGrade(String id, GradeDTO gradeDTOBody) {
-	    int gradeId;
-	    try {
-	        gradeId = Integer.parseInt(id);
-	    } catch (NumberFormatException e) {
-	        throw new NumberFormatException("Invalid grade ID: " + id);
-	    }
+		int gradeId;
+		try {
+			gradeId = Integer.parseInt(id);
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException("Invalid grade ID: " + id);
+		}
 
-	    Optional<GradeEntity> optionalGrade = gradeRepository.findById(gradeId);
-	    if (optionalGrade.isPresent()) {
-	        GradeEntity grade = optionalGrade.get();
-	        String studentId = gradeDTOBody.getStudentId();
-	        String teacherId = gradeDTOBody.getTeacherId();
-	        String subjectId = gradeDTOBody.getSubjectId();
+		Optional<GradeEntity> optionalGrade = gradeRepository.findById(gradeId);
+		if (optionalGrade.isPresent()) {
+			GradeEntity grade = optionalGrade.get();
+			String studentId = gradeDTOBody.getStudentId();
+			String teacherId = gradeDTOBody.getTeacherId();
+			String subjectId = gradeDTOBody.getSubjectId();
 
-	        StudentEntity student = studentRepository.findById(Integer.parseInt(studentId))
-	                .orElseThrow(() -> new NotFoundException("Student", studentId));
-	        TeacherEntity teacher = teacherRepository.findById(Integer.parseInt(teacherId))
-	                .orElseThrow(() -> new NotFoundException("Teacher", teacherId));
-	        SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
-	                .orElseThrow(() -> new NotFoundException("Subject", subjectId));
+			StudentEntity student = studentRepository.findById(Integer.parseInt(studentId))
+					.orElseThrow(() -> new NotFoundException("Student", studentId));
+			TeacherEntity teacher = teacherRepository.findById(Integer.parseInt(teacherId))
+					.orElseThrow(() -> new NotFoundException("Teacher", teacherId));
+			SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
+					.orElseThrow(() -> new NotFoundException("Subject", subjectId));
 
-	        grade.setStudent(student);
-	        grade.setTeacher(teacher);
-	        grade.setSubject(subject);
-	        grade.setGrade(gradeDTOBody.getGrade());
-	        grade.setGradingType(gradeDTOBody.getGradingType());
-	        gradeRepository.save(grade);
+			grade.setStudent(student);
+			grade.setTeacher(teacher);
+			grade.setSubject(subject);
+			grade.setGrade(gradeDTOBody.getGrade());
+			grade.setGradingType(gradeDTOBody.getGradingType());
+			gradeRepository.save(grade);
 
-	        return grade;
-	    } else {
-	        throw new NotFoundException("Grade", id);
-	    }
+			return grade;
+		} else {
+			throw new NotFoundException("Grade", id);
+		}
 	}
 }
