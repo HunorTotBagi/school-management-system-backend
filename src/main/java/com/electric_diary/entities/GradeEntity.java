@@ -1,8 +1,11 @@
 package com.electric_diary.entities;
 
+import com.electric_diary.enums.GradingType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +28,8 @@ public class GradeEntity {
 	private Integer grade;
 
 	@NotNull
-	private String gradingType;
+    @Enumerated(EnumType.STRING)
+	private GradingType gradingType;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@NotNull
@@ -58,11 +62,11 @@ public class GradeEntity {
 		this.grade = grade;
 	}
 
-	public String getGradingType() {
+	public GradingType getGradingType() {
 		return gradingType;
 	}
 
-	public void setGradingType(String gradingType) {
+	public void setGradingType(GradingType gradingType) {
 		this.gradingType = gradingType;
 	}
 

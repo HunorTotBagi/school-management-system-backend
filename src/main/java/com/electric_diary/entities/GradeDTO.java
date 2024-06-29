@@ -1,11 +1,13 @@
 package com.electric_diary.entities;
 
+import com.electric_diary.enums.GradingType;
+
 public class GradeDTO {
 	private Integer grade;
 	private String studentId;
 	private String teacherId;
 	private String subjectId;
-	private String gradingType;
+	private GradingType gradingType;
 
 	public GradeDTO() {
 	}
@@ -42,11 +44,11 @@ public class GradeDTO {
 		this.subjectId = subjectId;
 	}
 
-	public String getGradingType() {
+	public GradingType getGradingType() {
 		return gradingType;
 	}
 
-	public void setGradingType(String gradingType) {
+	public void setGradingType(GradingType gradingType) {
 		this.gradingType = gradingType;
 	}
 }
