@@ -110,7 +110,7 @@ public class SubjectServiceImpl implements SubjectService {
 		StudentEntity student = studentRepository.findById(studentInt)
 				.orElseThrow(() -> new NotFoundException("Student", studentId));
 
-		subject.setEnrolledStudents(student);
+		subject.enrolStudents(student);
 		subjectRepository.save(subject);
 		return subject;
 	}

@@ -88,7 +88,7 @@ public class StudentEntity {
 	}
 
 	public Set<SubjectEntity> getSubjects() {
-		return subjects;
+		return this.subjects;
 	}
 
 	public void setSubjects(Set<SubjectEntity> subjects) {

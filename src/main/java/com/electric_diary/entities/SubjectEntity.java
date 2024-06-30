@@ -68,10 +68,14 @@ public class SubjectEntity {
 	}
 
 	public Set<StudentEntity> getEnrolledStudents() {
-		return enrolledStudents;
+		return this.enrolledStudents;
 	}
 
-	public void setEnrolledStudents(StudentEntity student) {
+	public void setEnrolledStudents(Set<StudentEntity> enrolledStudents) {
+		this.enrolledStudents = enrolledStudents;
+	}
+
+	public void enrolStudents(StudentEntity student) {
 		enrolledStudents.add(student);
 	}
 }
