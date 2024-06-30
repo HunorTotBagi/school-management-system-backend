@@ -13,6 +13,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
@@ -38,6 +39,10 @@ public class StudentEntity {
 	@JsonIgnore
 	@OneToMany(mappedBy = "student")
 	private Set<GradeEntity> grades = new HashSet<GradeEntity>();
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "enrolledStudents")
+	private Set<SubjectEntity> subjects = new HashSet<>();
 
 	public StudentEntity() {
 	}
@@ -80,5 +85,13 @@ public class StudentEntity {
 
 	public void setGrades(Set<GradeEntity> grades) {
 		this.grades = grades;
+	}
+
+	public Set<SubjectEntity> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(Set<SubjectEntity> subjects) {
+		this.subjects = subjects;
 	}
 }

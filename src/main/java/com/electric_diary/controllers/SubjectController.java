@@ -31,12 +31,19 @@ public class SubjectController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<SubjectEntity> updateSubject(@PathVariable String id, @RequestBody SubjectEntity subjectBody) {
+	public ResponseEntity<SubjectEntity> updateSubject(@PathVariable String id,
+			@RequestBody SubjectEntity subjectBody) {
 		return new ResponseEntity<>(subjectService.updateSubject(id, subjectBody), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<SubjectEntity> deleteSubject(@PathVariable String id) {
 		return new ResponseEntity<>(subjectService.deleteSubject(id), HttpStatus.OK);
+	}
+
+	@PutMapping("/{subjectId}/students/{studentId}")
+	public ResponseEntity<SubjectEntity> enrollStudentToSubject(@PathVariable String subjectId,
+			@PathVariable String studentId) {
+		return new ResponseEntity<>(subjectService.enrollStudentToSubject(subjectId, studentId), HttpStatus.OK);
 	}
 }
