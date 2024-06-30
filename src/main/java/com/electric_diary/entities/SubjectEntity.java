@@ -9,6 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
@@ -24,6 +27,10 @@ public class SubjectEntity {
 	@JsonIgnore
 	@OneToMany(mappedBy = "subject")
 	private Set<GradeEntity> grades = new HashSet<GradeEntity>();
+
+	@ManyToMany
+	@JoinTable(name = "student_enrolled", joinColumns = @JoinColumn(name = "subject_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
+	private Set<StudentEntity> enrolledStudents = new HashSet<>();
 
 	public SubjectEntity() {
 	}
@@ -58,5 +65,17 @@ public class SubjectEntity {
 
 	public void setGrades(Set<GradeEntity> grades) {
 		this.grades = grades;
+	}
+
+	public Set<StudentEntity> getEnrolledStudents() {
+		return this.enrolledStudents;
+	}
+
+	public void setEnrolledStudents(Set<StudentEntity> enrolledStudents) {
+		this.enrolledStudents = enrolledStudents;
+	}
+
+	public void enrolStudents(StudentEntity student) {
+		enrolledStudents.add(student);
 	}
 }

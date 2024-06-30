@@ -14,4 +14,6 @@ public interface SubjectService {
 	public SubjectEntity updateSubject(String id, SubjectEntity subjectBody);
 
 	public SubjectEntity deleteSubject(String id);
+	
+	public SubjectEntity enrollStudentToSubject(String subjectId, String studentId);
 }

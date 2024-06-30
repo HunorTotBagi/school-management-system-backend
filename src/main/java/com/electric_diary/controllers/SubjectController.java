@@ -39,4 +39,9 @@ public class SubjectController {
 	public ResponseEntity<SubjectEntity> deleteSubject(@PathVariable String id) {
 		return new ResponseEntity<>(subjectService.deleteSubject(id), HttpStatus.OK);
 	}
+
+	@PutMapping("/{subjectId}/students/{studentId}")
+	public ResponseEntity<SubjectEntity> enrollStudentToSubject(@PathVariable String subjectId, @PathVariable String studentId) {
+		return new ResponseEntity<>(subjectService.enrollStudentToSubject(subjectId, studentId), HttpStatus.OK);
+	}
 }

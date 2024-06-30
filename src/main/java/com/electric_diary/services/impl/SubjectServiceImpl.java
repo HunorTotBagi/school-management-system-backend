@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.entities.SubjectEntity;
 import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
+import com.electric_diary.repositories.StudentRepository;
 import com.electric_diary.repositories.SubjectRepository;
 import com.electric_diary.services.SubjectService;
 
@@ -23,6 +25,9 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Autowired
 	protected SubjectRepository subjectRepository;
+
+	@Autowired
+	protected StudentRepository studentRepository;
 
 	@Override
 	public SubjectEntity createSubject(SubjectEntity subjectBody, BindingResult result) {
@@ -93,5 +98,20 @@ public class SubjectServiceImpl implements SubjectService {
 		} else {
 			throw new NotFoundException("Subject", id);
 		}
+	}
+
+	@Override
+	public SubjectEntity enrollStudentToSubject(String subjectId, String studentId) {
+		int subjectInt = Integer.parseInt(subjectId);
+		SubjectEntity subject = subjectRepository.findById(subjectInt)
+				.orElseThrow(() -> new NotFoundException("Subject", subjectId));
+
+		int studentInt = Integer.parseInt(studentId);
+		StudentEntity student = studentRepository.findById(studentInt)
+				.orElseThrow(() -> new NotFoundException("Student", studentId));
+
+		subject.enrolStudents(student);
+		subjectRepository.save(subject);
+		return subject;
 	}
 }
