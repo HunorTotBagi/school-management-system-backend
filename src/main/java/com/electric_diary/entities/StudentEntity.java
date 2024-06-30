@@ -1,6 +1,10 @@
 package com.electric_diary.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.electric_diary.security.Views;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.CascadeType;
@@ -10,6 +14,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class StudentEntity {
@@ -27,6 +33,11 @@ public class StudentEntity {
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JsonView(Views.Parent.class)
 	private ClassEntity newClass;
+
+	@NotNull
+	@JsonIgnore
+	@OneToMany(mappedBy = "student")
+	private Set<GradeEntity> grades = new HashSet<GradeEntity>();
 
 	public StudentEntity() {
 	}
@@ -61,5 +72,13 @@ public class StudentEntity {
 
 	public void setNewClass(ClassEntity newClass) {
 		this.newClass = newClass;
+	}
+
+	public Set<GradeEntity> getGrades() {
+		return grades;
+	}
+
+	public void setGrades(Set<GradeEntity> grades) {
+		this.grades = grades;
 	}
 }
