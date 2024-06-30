@@ -2,7 +2,12 @@ package com.electric_diary.entities;
 
 import com.electric_diary.enums.GradingType;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+
 public class GradeDTO {
+	@Min(value = 1, message = "Grade must be between 1 and 5")
+	@Max(value = 5, message = "Grade must be between 1 and 5")
 	private Integer grade;
 	private String studentId;
 	private String teacherId;

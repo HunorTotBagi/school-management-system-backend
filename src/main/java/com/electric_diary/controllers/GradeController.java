@@ -16,6 +16,8 @@ import com.electric_diary.entities.GradeEntity;
 import com.electric_diary.services.GradeService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/api/v1/grades")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
@@ -24,7 +26,7 @@ public class GradeController {
 	private GradeService gradeService;
 
 	@PostMapping
-	public ResponseEntity<GradeEntity> assignGrade(@RequestBody GradeDTO gradeDTOBody) {
+	public ResponseEntity<GradeEntity> assignGrade(@RequestBody @Valid GradeDTO gradeDTOBody) {
 		return new ResponseEntity<>(gradeService.assignGrade(gradeDTOBody), HttpStatus.OK);
 	}
 	
