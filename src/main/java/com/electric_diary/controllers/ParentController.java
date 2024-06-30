@@ -50,4 +50,9 @@ public class ParentController {
 	public ResponseEntity<ParentEntity> deleteParent(@PathVariable String id) {
 		return new ResponseEntity<>(parentService.deleteParent(id), HttpStatus.OK);
 	}
+	
+	@PutMapping("/{parentId}/students/{studentId}")
+	public ResponseEntity<ParentEntity> assignStudentToParent(@PathVariable String parentId, @PathVariable String studentId) {
+		return new ResponseEntity<>(parentService.assignStudentToParent(parentId, studentId), HttpStatus.OK);
+	}
 }

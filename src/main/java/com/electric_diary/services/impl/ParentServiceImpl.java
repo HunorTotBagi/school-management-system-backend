@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.ParentEntity;
+import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.ParentRepository;
+import com.electric_diary.repositories.StudentRepository;
 import com.electric_diary.services.ParentService;
 
 import jakarta.persistence.EntityManager;
@@ -23,6 +25,9 @@ public class ParentServiceImpl implements ParentService {
 
 	@Autowired
 	protected ParentRepository parentRepository;
+
+	@Autowired
+	protected StudentRepository studentRepository;
 
 	@Override
 	public ParentEntity createParent(ParentEntity parentBody, BindingResult result) {
@@ -95,5 +100,20 @@ public class ParentServiceImpl implements ParentService {
 		} else {
 			throw new NotFoundException("Parent", id);
 		}
+	}
+
+	@Override
+	public ParentEntity assignStudentToParent(String parentId, String studentId) {
+		int parentInt = Integer.parseInt(parentId);
+		ParentEntity parent = parentRepository.findById(parentInt)
+				.orElseThrow(() -> new NotFoundException("Parent", parentId));
+
+		int studentInt = Integer.parseInt(studentId);
+		StudentEntity student = studentRepository.findById(studentInt)
+				.orElseThrow(() -> new NotFoundException("Student", studentId));
+
+		student.setParent(parent);
+		studentRepository.save(student);
+		return parent;
 	}
 }

@@ -14,4 +14,6 @@ public interface ParentService {
 	public ParentEntity updateParent(String id, ParentEntity parentBody);
 
 	public ParentEntity deleteParent(String id);
+
+	public ParentEntity assignStudentToParent(String parentId, String studentId);
 }
