@@ -1,9 +1,16 @@
 package com.electric_diary.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class SubjectEntity {
@@ -12,6 +19,11 @@ public class SubjectEntity {
 	private Integer id;
 	private String name;
 	private Integer weeklyFund;
+
+	@NotNull
+	@JsonIgnore
+	@OneToMany(mappedBy = "subject")
+	private Set<GradeEntity> grades = new HashSet<GradeEntity>();
 
 	public SubjectEntity() {
 	}
@@ -38,5 +50,13 @@ public class SubjectEntity {
 
 	public void setWeeklyFund(Integer weeklyFund) {
 		this.weeklyFund = weeklyFund;
+	}
+
+	public Set<GradeEntity> getGrades() {
+		return grades;
+	}
+
+	public void setGrades(Set<GradeEntity> grades) {
+		this.grades = grades;
 	}
 }

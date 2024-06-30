@@ -31,16 +31,16 @@ public class GradeEntity {
     @Enumerated(EnumType.STRING)
 	private GradingType gradingType;
 
-	@ManyToOne(fetch = FetchType.LAZY)
 	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
 	private StudentEntity student;
 
-	@ManyToOne(fetch = FetchType.LAZY)
 	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
 	private TeacherEntity teacher;
 
-	@ManyToOne(fetch = FetchType.LAZY)
 	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
 	private SubjectEntity subject;
 
 	public GradeEntity() {
