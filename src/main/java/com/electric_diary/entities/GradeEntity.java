@@ -1,6 +1,7 @@
 package com.electric_diary.entities;
 
 import com.electric_diary.enums.GradingType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -33,14 +34,17 @@ public class GradeEntity {
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private StudentEntity student;
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private TeacherEntity teacher;
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private SubjectEntity subject;
 
 	public GradeEntity() {
