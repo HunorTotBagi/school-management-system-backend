@@ -1,6 +1,5 @@
 package com.electric_diary.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -38,7 +37,6 @@ public class UserEntity {
 	@Column(name = "last_name")
 	protected String lastName;
 
-	@JsonIgnore
 	@NotBlank(message = "Password cannot be blank")
 	@NotNull(message = "Password must be provided.")
 	@Size(min = 2, max = 30, message = "Password must be between {min} and {max} characters long.")

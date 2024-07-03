@@ -17,13 +17,6 @@ import jakarta.persistence.PersistenceContext;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-	// FIX ALL SERVICES
-	
-	
-	// FIX ALL SERVICES
-	
-	
 	@PersistenceContext
 	protected EntityManager em;
 
@@ -37,7 +30,10 @@ public class UserServiceImpl implements UserService {
 
 		UserEntity user = new UserEntity();
 		user.setName(userBody.getName());
+		user.setLastName(userBody.getLastName());
 		user.setPassword(userBody.getPassword());
+		user.setEmail(userBody.getEmail());
+		user.setRole(userBody.getRole());
 		userRepository.save(user);
 
 		return user;
@@ -73,7 +69,10 @@ public class UserServiceImpl implements UserService {
 		if (optionalUser.isPresent()) {
 			UserEntity user = optionalUser.get();
 			user.setName(userBody.getName());
+			user.setLastName(userBody.getLastName());
 			user.setPassword(userBody.getPassword());
+			user.setEmail(userBody.getEmail());
+			user.setRole(userBody.getRole());
 			userRepository.save(user);
 			return user;
 		} else {
