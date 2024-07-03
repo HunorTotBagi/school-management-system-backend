@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.electric_diary.DTO.TeacherDTO;
 import com.electric_diary.entities.ClassEntity;
 import com.electric_diary.entities.SubjectEntity;
-import com.electric_diary.entities.TeacherDTO;
 import com.electric_diary.entities.TeacherEntity;
 import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;

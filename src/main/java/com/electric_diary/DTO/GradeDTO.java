@@ -1,4 +1,4 @@
-package com.electric_diary.entities;
+package com.electric_diary.DTO;
 
 import com.electric_diary.enums.GradingType;
 

@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.electric_diary.DTO.GradeDTO;
 import com.electric_diary.entities.EmailObject;
-import com.electric_diary.entities.GradeDTO;
 import com.electric_diary.entities.GradeEntity;
 import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.entities.StudentEntity;

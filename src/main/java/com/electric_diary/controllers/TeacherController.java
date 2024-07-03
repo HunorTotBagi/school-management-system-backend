@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.electric_diary.entities.TeacherDTO;
+import com.electric_diary.DTO.TeacherDTO;
 import com.electric_diary.entities.TeacherEntity;
 import com.electric_diary.services.TeacherService;
 

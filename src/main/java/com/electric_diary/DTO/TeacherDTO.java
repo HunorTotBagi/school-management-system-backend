@@ -1,4 +1,4 @@
-package com.electric_diary.entities;
+package com.electric_diary.DTO;
 
 public class TeacherDTO {
 	private String teacherId;
