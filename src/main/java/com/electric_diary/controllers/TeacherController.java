@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.electric_diary.entities.TeacherDTO;
 import com.electric_diary.entities.TeacherEntity;
 import com.electric_diary.services.TeacherService;
 
@@ -56,5 +57,10 @@ public class TeacherController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<TeacherEntity> deleteTeacher(@PathVariable String id) {
 		return new ResponseEntity<>(teacherService.deleteTeacher(id), HttpStatus.OK);
+	}
+	
+	@PutMapping("/teaches/Subject/Class")
+	public ResponseEntity<TeacherEntity> teacherTeachesSubjectToClass(@RequestBody TeacherDTO teacherDTOBody){
+		return new ResponseEntity<>(teacherService.teacherTeachesSubjectToClass(teacherDTOBody), HttpStatus.OK);
 	}
 }

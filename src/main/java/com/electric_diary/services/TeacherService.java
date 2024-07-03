@@ -2,6 +2,7 @@ package com.electric_diary.services;
 
 import org.springframework.validation.BindingResult;
 
+import com.electric_diary.entities.TeacherDTO;
 import com.electric_diary.entities.TeacherEntity;
 
 public interface TeacherService {
@@ -14,4 +15,6 @@ public interface TeacherService {
 	public TeacherEntity updateTeacher(String id, TeacherEntity teacherBody);
 
 	public TeacherEntity deleteTeacher(String id);
+	
+	public TeacherEntity teacherTeachesSubjectToClass(TeacherDTO TeacherDTOBody);
 }

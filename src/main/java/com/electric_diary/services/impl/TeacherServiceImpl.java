@@ -6,9 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.electric_diary.entities.ClassEntity;
+import com.electric_diary.entities.SubjectEntity;
+import com.electric_diary.entities.TeacherDTO;
 import com.electric_diary.entities.TeacherEntity;
 import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
+import com.electric_diary.repositories.ClassRepository;
+import com.electric_diary.repositories.SubjectRepository;
 import com.electric_diary.repositories.TeacherRepository;
 import com.electric_diary.services.TeacherService;
 
@@ -23,6 +28,12 @@ public class TeacherServiceImpl implements TeacherService {
 
 	@Autowired
 	protected TeacherRepository teacherRepository;
+	
+	@Autowired
+	protected SubjectRepository subjectRepository;
+	
+	@Autowired
+	protected ClassRepository classRepository;
 
 	@Override
 	public TeacherEntity createTeacher(TeacherEntity teacherBody, BindingResult result) {
@@ -92,6 +103,29 @@ public class TeacherServiceImpl implements TeacherService {
 			return teacher;
 		} else {
 			throw new NotFoundException("Teacher", id);
+		}
+	}
+
+	@Override
+	public TeacherEntity teacherTeachesSubjectToClass(TeacherDTO teacherDTOBody) {
+		String teacherId = teacherDTOBody.getTeacherId();
+		String subjectId = teacherDTOBody.getSubjectId();
+		String classId = teacherDTOBody.getClassId();
+		
+		SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
+				.orElseThrow(() -> new NotFoundException("Subject", subjectId));
+		ClassEntity newClass = classRepository.findById(Integer.parseInt(classId))
+				.orElseThrow(() -> new NotFoundException("Class", classId));
+		
+		Optional<TeacherEntity> optionalTeacher = teacherRepository.findById(Integer.parseInt(teacherId));
+		if (optionalTeacher.isPresent()) {
+			TeacherEntity teacher = optionalTeacher.get();
+			teacher.setSubject(subject);
+			teacher.setNewClass(newClass);
+			teacherRepository.save(teacher);
+			return teacher;
+		} else {
+			throw new NotFoundException("Teacher", teacherId);
 		}
 	}
 }

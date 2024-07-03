@@ -6,9 +6,11 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -31,6 +33,16 @@ public class TeacherEntity {
 	@JsonIgnore
 	@OneToMany(mappedBy = "teacher")
 	private Set<GradeEntity> grades = new HashSet<GradeEntity>();
+	
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private SubjectEntity subject;
+	
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private ClassEntity newClass;
 
 	public TeacherEntity() {
 	}
@@ -65,5 +77,21 @@ public class TeacherEntity {
 
 	public void setGrades(Set<GradeEntity> grades) {
 		this.grades = grades;
+	}
+
+	public SubjectEntity getSubject() {
+		return subject;
+	}
+
+	public void setSubject(SubjectEntity subject) {
+		this.subject = subject;
+	}
+
+	public ClassEntity getNewClass() {
+		return newClass;
+	}
+
+	public void setNewClass(ClassEntity newClass) {
+		this.newClass = newClass;
 	}
 }
