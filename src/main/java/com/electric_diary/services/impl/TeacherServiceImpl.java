@@ -50,8 +50,7 @@ public class TeacherServiceImpl implements TeacherService {
 
 	@Override
 	public Iterable<TeacherEntity> getAllTeachers() {
-		Iterable<TeacherEntity> teachers = teacherRepository.findAll();
-		return teachers;
+		return teacherRepository.findAll();
 	}
 
 	@Override

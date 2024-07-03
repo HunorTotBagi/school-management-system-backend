@@ -44,8 +44,7 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public Iterable<SubjectEntity> getAllSubjects() {
-		Iterable<SubjectEntity> subjects = subjectRepository.findAll();
-		return subjects;
+		return subjectRepository.findAll();
 	}
 
 	@Override

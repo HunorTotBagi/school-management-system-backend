@@ -40,8 +40,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Iterable<StudentEntity> getAllStudents() {
-		Iterable<StudentEntity> students = studentRepository.findAll();
-		return students;
+		return studentRepository.findAll();
 	}
 
 	@Override

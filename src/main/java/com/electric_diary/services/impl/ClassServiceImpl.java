@@ -38,8 +38,7 @@ public class ClassServiceImpl implements ClassService {
 
 	@Override
 	public Iterable<ClassEntity> getAllClasses() {
-		Iterable<ClassEntity> newClasses = classRepository.findAll();
-		return newClasses;
+		return classRepository.findAll();
 	}
 
 	@Override

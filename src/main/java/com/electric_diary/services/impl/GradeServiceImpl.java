@@ -84,8 +84,7 @@ public class GradeServiceImpl implements GradeService {
 
 	@Override
 	public Iterable<GradeEntity> getAllGrades() {
-		Iterable<GradeEntity> grades = gradeRepository.findAll();
-		return grades;
+		return gradeRepository.findAll();
 	}
 
 	@Override
