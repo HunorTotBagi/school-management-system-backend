@@ -2,7 +2,7 @@ package com.electric_diary.services;
 
 import org.springframework.validation.BindingResult;
 
-import com.electric_diary.entities.TeacherDTO;
+import com.electric_diary.DTO.TeacherDTO;
 import com.electric_diary.entities.TeacherEntity;
 
 public interface TeacherService {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.electric_diary.entities.GradeDTO;
+import com.electric_diary.DTO.GradeDTO;
 import com.electric_diary.entities.GradeEntity;
 import com.electric_diary.services.GradeService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
