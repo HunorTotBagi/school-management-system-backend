@@ -17,25 +17,22 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name ="role")
+@Table(name = "role")
 @JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
 public class RoleEntity {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="role_id")
+	@Column(name = "role_id")
 	protected Integer id;
-	
-	@Column(name="role_name")
+
+	@Column(name = "role_name")
 	protected String name;
-	
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = {
-			CascadeType.REFRESH })
+	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	protected List<UserEntity> users = new ArrayList<>();
 
 	public RoleEntity() {
-
 	}
 
 	public Integer getId() {

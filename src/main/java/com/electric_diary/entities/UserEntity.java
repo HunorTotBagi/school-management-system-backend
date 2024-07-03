@@ -24,13 +24,13 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
 	protected Integer id;
-	
-    @Column(unique = true, nullable = false, name = "name")
+
+	@Column(unique = true, nullable = false, name = "name")
 	@NotBlank(message = "Name cannot be blank")
 	@NotNull(message = "Name name must be provided.")
 	@Size(min = 2, max = 30, message = "Name must be between {min} and {max} characters long.")
 	protected String name;
-	
+
 	@NotBlank(message = "Last name cannot be blank")
 	@NotNull(message = "Last name must be provided.")
 	@Size(min = 2, max = 30, message = "Last name must be between {min} and {max} characters long.")
@@ -42,10 +42,10 @@ public class UserEntity {
 	@Size(min = 2, max = 30, message = "Password must be between {min} and {max} characters long.")
 	@Column(name = "password")
 	protected String password;
-	
+
 	@Column(name = "email")
 	protected String email;
-	
+
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "role")
 	protected RoleEntity role;
