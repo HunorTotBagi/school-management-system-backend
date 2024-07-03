@@ -48,6 +48,7 @@ public class StudentEntity {
 	private Set<SubjectEntity> subjects = new HashSet<>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@NotNull(message = "Parent name must be provided.")
 	@JoinColumn(name = "parent_id", referencedColumnName = "id")
 	private ParentEntity parent; 
 

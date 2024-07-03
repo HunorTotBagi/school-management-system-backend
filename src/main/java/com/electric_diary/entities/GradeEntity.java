@@ -17,34 +17,34 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class GradeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@NotNull(message = "Grade name must be provided.")
 	@Min(1)
 	@Max(5)
+	@NotNull(message = "Grade name must be provided.")
 	private Integer grade;
 
 	@NotNull
-    @Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private GradingType gradingType;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
 	private StudentEntity student;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
 	private TeacherEntity teacher;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
 	private SubjectEntity subject;
 
 	public GradeEntity() {

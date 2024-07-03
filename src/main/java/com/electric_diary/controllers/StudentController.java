@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.electric_diary.DTO.StudentDTO;
 import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.security.Views;
 import com.electric_diary.services.StudentService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/v1/students")
@@ -28,8 +31,8 @@ public class StudentController {
 	protected StudentService studentService;
 
 	@PostMapping
-	public ResponseEntity<StudentEntity> createStudent(@RequestBody StudentEntity studentBody, BindingResult result) {
-		return new ResponseEntity<>(studentService.createStudent(studentBody, result), HttpStatus.OK);
+	public ResponseEntity<StudentEntity> createStudent(@Valid @RequestBody StudentDTO studentDTOBody, BindingResult result) {
+		return new ResponseEntity<>(studentService.createStudent(studentDTOBody, result), HttpStatus.OK);
 	}
 
 	@GetMapping("/student")

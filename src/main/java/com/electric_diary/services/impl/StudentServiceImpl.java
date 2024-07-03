@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.electric_diary.DTO.StudentDTO;
+import com.electric_diary.entities.ClassEntity;
+import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.entities.StudentEntity;
-import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
+import com.electric_diary.repositories.ClassRepository;
+import com.electric_diary.repositories.ParentRepository;
 import com.electric_diary.repositories.StudentRepository;
 import com.electric_diary.services.StudentService;
 
@@ -24,15 +28,28 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	protected StudentRepository studentRepository;
 
+	@Autowired
+	protected ClassRepository classRepository;
+
+	@Autowired
+	protected ParentRepository parentRepository;
+
 	@Override
-	public StudentEntity createStudent(StudentEntity studentBody, BindingResult result) {
-		if (result.hasErrors())
-			throw new CustomBadRequestException(result);
+	public StudentEntity createStudent(StudentDTO studentDTOBody, BindingResult result) {
+		String classId = studentDTOBody.getClassId();
+		String parentId = studentDTOBody.getParentId();
+
+		ClassEntity newClass = classRepository.findById(Integer.parseInt(classId))
+				.orElseThrow(() -> new NotFoundException("Class", classId));
+		ParentEntity parent = parentRepository.findById(Integer.parseInt(parentId))
+				.orElseThrow(() -> new NotFoundException("Parent", parentId));
 
 		StudentEntity student = new StudentEntity();
-		student.setFirstName(studentBody.getFirstName());
-		student.setLastName(studentBody.getLastName());
-		student.setNewClass(studentBody.getNewClass());
+		student.setFirstName(studentDTOBody.getFirstName());
+		student.setLastName(studentDTOBody.getLastName());
+
+		student.setNewClass(newClass);
+		student.setParent(parent);
 		studentRepository.save(student);
 
 		return student;
@@ -70,6 +87,7 @@ public class StudentServiceImpl implements StudentService {
 			student.setFirstName(studentBody.getFirstName());
 			student.setLastName(studentBody.getLastName());
 			student.setNewClass(studentBody.getNewClass());
+			student.setParent(studentBody.getParent());
 			studentRepository.save(student);
 			return student;
 		} else {

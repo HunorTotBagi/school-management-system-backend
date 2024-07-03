@@ -18,16 +18,16 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class ClassEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JsonView(Views.Parent.class)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@JsonView(Views.Parent.class)
 	private String name;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "newClass", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JsonView(Views.Parent.class)
+	@OneToMany(mappedBy = "newClass", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	private List<StudentEntity> students = new ArrayList<>();
 
 	public ClassEntity() {
