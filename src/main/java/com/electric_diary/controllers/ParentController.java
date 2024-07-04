@@ -3,6 +3,7 @@ package com.electric_diary.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,11 +32,13 @@ public class ParentController {
 		return new ResponseEntity<ParentEntity>(parentService.createParent(parentBody, result), HttpStatus.OK);
 	}
 
+	@Secured("ROLE_ADMIN")
 	@GetMapping
 	public ResponseEntity<Iterable<ParentEntity>> getAllParents() {
 		return new ResponseEntity<>(parentService.getAllParents(), HttpStatus.OK);
 	}
 
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@GetMapping("/{id}")
 	public ResponseEntity<ParentEntity> getParentById(@PathVariable String id) {
 		return new ResponseEntity<>(parentService.getParentById(id), HttpStatus.OK);
