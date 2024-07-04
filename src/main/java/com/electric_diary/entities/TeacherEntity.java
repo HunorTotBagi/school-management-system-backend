@@ -34,14 +34,14 @@ public class TeacherEntity {
 	@OneToMany(mappedBy = "teacher")
 	private Set<GradeEntity> grades = new HashSet<GradeEntity>();
 	
-	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@NotNull(message = "Subject must be provided.")
 	private SubjectEntity subject;
 	
-	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@NotNull(message = "Class must be provided.")
 	private ClassEntity newClass;
 
 	public TeacherEntity() {

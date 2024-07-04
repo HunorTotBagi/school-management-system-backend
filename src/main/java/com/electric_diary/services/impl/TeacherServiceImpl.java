@@ -43,6 +43,8 @@ public class TeacherServiceImpl implements TeacherService {
 		TeacherEntity teacher = new TeacherEntity();
 		teacher.setFirstName(teacherBody.getFirstName());
 		teacher.setLastName(teacherBody.getLastName());
+		teacher.setSubject(teacherBody.getSubject());
+		teacher.setNewClass(teacherBody.getNewClass());
 		teacherRepository.save(teacher);
 
 		return teacher;
