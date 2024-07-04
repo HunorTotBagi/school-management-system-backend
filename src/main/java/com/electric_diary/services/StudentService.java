@@ -12,7 +12,7 @@ public interface StudentService {
 
 	public StudentEntity getStudentById(String id);
 
-	public StudentEntity updateStudent(String id, StudentEntity studentBody);
+	public StudentEntity updateStudent(String id, StudentDTO studentDTOBody);
 
 	public StudentEntity deleteStudent(String id);
 }

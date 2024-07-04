@@ -73,21 +73,22 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public StudentEntity updateStudent(String id, StudentEntity studentBody) {
-		int studentId;
-		try {
-			studentId = Integer.parseInt(id);
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
+	public StudentEntity updateStudent(String id, StudentDTO studentDTOBody) {
+		String classId = studentDTOBody.getClassId();
+		String parentId = studentDTOBody.getParentId();
 
-		Optional<StudentEntity> optionalStudent = studentRepository.findById(studentId);
+		ClassEntity newClass = classRepository.findById(Integer.parseInt(classId))
+				.orElseThrow(() -> new NotFoundException("Class", classId));
+		ParentEntity parent = parentRepository.findById(Integer.parseInt(parentId))
+				.orElseThrow(() -> new NotFoundException("Parent", parentId));
+
+		Optional<StudentEntity> optionalStudent = studentRepository.findById(Integer.parseInt(id));
 		if (optionalStudent.isPresent()) {
 			StudentEntity student = optionalStudent.get();
-			student.setFirstName(studentBody.getFirstName());
-			student.setLastName(studentBody.getLastName());
-			student.setNewClass(studentBody.getNewClass());
-			student.setParent(studentBody.getParent());
+			student.setFirstName(studentDTOBody.getFirstName());
+			student.setLastName(studentDTOBody.getLastName());
+			student.setNewClass(newClass);
+			student.setParent(parent);
 			studentRepository.save(student);
 			return student;
 		} else {

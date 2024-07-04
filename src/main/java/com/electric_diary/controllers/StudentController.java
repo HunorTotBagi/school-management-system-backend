@@ -53,8 +53,8 @@ public class StudentController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<StudentEntity> updateStudent(@PathVariable String id, @RequestBody StudentEntity studentBody) {
-		return new ResponseEntity<>(studentService.updateStudent(id, studentBody), HttpStatus.OK);
+	public ResponseEntity<StudentEntity> updateStudent(@PathVariable String id, @RequestBody StudentDTO studentDTOBody) {
+		return new ResponseEntity<>(studentService.updateStudent(id, studentDTOBody), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
