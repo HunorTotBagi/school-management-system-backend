@@ -44,9 +44,11 @@ public class StudentEntity {
 	private Set<GradeEntity> grades = new HashSet<GradeEntity>();
 
 	@JsonIgnore
+	@JsonView(Views.Parent.class)
 	@ManyToMany(mappedBy = "enrolledStudents")
 	private Set<SubjectEntity> subjects = new HashSet<>();
 	
+	@JsonView(Views.Parent.class)
 	@ManyToOne(cascade = CascadeType.ALL)
 	@NotNull(message = "Parent name must be provided.")
 	@JoinColumn(name = "parent_id", referencedColumnName = "id")

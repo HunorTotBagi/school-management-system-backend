@@ -3,8 +3,11 @@ package com.electric_diary.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.electric_diary.security.Views;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,8 +19,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@JsonView(Views.Parent.class)
 public class ParentEntity {
 	@Id
+
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
@@ -35,7 +40,7 @@ public class ParentEntity {
 	private String email;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "parent")
+	@OneToMany(mappedBy = "parent", orphanRemoval = true, cascade = CascadeType.ALL)
 	private Set<StudentEntity> students = new HashSet<>();
 
 	public ParentEntity() {
