@@ -43,7 +43,7 @@ public class UserEntity {
 	@Column(name = "password")
 	protected String password;
 
-	@Column(name = "email")
+	@Column(unique = true, name = "email")
 	protected String email;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
