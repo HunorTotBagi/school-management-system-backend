@@ -33,6 +33,7 @@ public class StudentEntity {
 	private String lastName;
 
 	@NotNull
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JsonView(Views.Parent.class)
 	private ClassEntity newClass;
