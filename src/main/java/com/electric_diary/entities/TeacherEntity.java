@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -16,6 +17,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TeacherEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,10 +35,12 @@ public class TeacherEntity {
 	@OneToMany(mappedBy = "teacher")
 	private Set<GradeEntity> grades = new HashSet<GradeEntity>();
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@NotNull(message = "Subject must be provided.")
 	private SubjectEntity subject;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@NotNull(message = "Class must be provided.")
 	private ClassEntity newClass;
