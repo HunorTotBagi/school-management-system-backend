@@ -33,7 +33,7 @@ public class SubjectEntity {
 	private Set<StudentEntity> enrolledStudents = new HashSet<>();
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "subject")
+	@OneToMany(mappedBy = "subject", orphanRemoval = true)
 	private Set<TeacherEntity> teachers = new HashSet<TeacherEntity>();
 
 	public SubjectEntity() {
