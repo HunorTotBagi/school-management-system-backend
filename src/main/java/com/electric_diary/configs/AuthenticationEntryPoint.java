@@ -1,4 +1,4 @@
-package com.electric_diary.config;
+package com.electric_diary.configs;
 
 import java.io.IOException;
 import java.io.PrintWriter;

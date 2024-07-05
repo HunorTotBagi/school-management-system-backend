@@ -31,9 +31,9 @@ public class TeacherController {
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
 	@PostMapping
-	public ResponseEntity<TeacherEntity> createTeacher(@Valid @RequestBody TeacherEntity teacherBody, BindingResult result) {
+	public ResponseEntity<TeacherEntity> createTeacher(@Valid @RequestBody TeacherDTO teacherDTOBody, BindingResult result) {
 		logger.debug("This is a debug message");
-		return new ResponseEntity<>(teacherService.createTeacher(teacherBody, result), HttpStatus.OK);
+		return new ResponseEntity<>(teacherService.createTeacher(teacherDTOBody, result), HttpStatus.OK);
 	}
 
 	@GetMapping

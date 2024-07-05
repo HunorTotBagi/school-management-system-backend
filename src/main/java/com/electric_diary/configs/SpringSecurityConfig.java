@@ -1,4 +1,4 @@
-package com.electric_diary.config;
+package com.electric_diary.configs;
 
 import javax.sql.DataSource;
 

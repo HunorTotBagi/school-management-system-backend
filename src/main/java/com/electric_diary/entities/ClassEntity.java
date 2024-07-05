@@ -29,6 +29,10 @@ public class ClassEntity {
 	@JsonView(Views.Parent.class)
 	@OneToMany(mappedBy = "newClass", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	private List<StudentEntity> students = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "newClass", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private List<TeacherEntity> teachers = new ArrayList<>();
 
 	public ClassEntity() {
 	}

@@ -29,17 +29,14 @@ public class TeacherEntity {
 	@Size(min = 2, max = 30, message = "Last name must be between {min} and {max} characters long.")
 	private String lastName;
 
-	@NotNull
 	@JsonIgnore
 	@OneToMany(mappedBy = "teacher")
 	private Set<GradeEntity> grades = new HashSet<GradeEntity>();
-	
-	@JsonIgnore
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@NotNull(message = "Subject must be provided.")
 	private SubjectEntity subject;
-	
-	@JsonIgnore
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@NotNull(message = "Class must be provided.")
 	private ClassEntity newClass;
@@ -56,7 +53,7 @@ public class TeacherEntity {
 	}
 
 	public String getFirstName() {
-		return this.firstName;
+		return firstName;
 	}
 
 	public void setFirstName(String firstName) {
@@ -64,7 +61,7 @@ public class TeacherEntity {
 	}
 
 	public String getLastName() {
-		return this.lastName;
+		return lastName;
 	}
 
 	public void setLastName(String lastName) {

@@ -6,7 +6,7 @@ import com.electric_diary.DTO.TeacherDTO;
 import com.electric_diary.entities.TeacherEntity;
 
 public interface TeacherService {
-	public TeacherEntity createTeacher(TeacherEntity teacherBody, BindingResult result);
+	public TeacherEntity createTeacher(TeacherDTO teacherDTOBody, BindingResult result);
 
 	public Iterable<TeacherEntity> getAllTeachers();
 

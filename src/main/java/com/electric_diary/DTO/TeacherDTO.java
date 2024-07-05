@@ -1,34 +1,52 @@
 package com.electric_diary.DTO;
 
 public class TeacherDTO {
-	private String teacherId;
-	private String subjectId;
-	private String classId;
-	
-	public TeacherDTO() {
-	}
+    private String firstName;
+    private String lastName;
+    private String teacherId;
+    private String subjectId;
+    private String classId;
 
-	public String getTeacherId() {
-		return teacherId;
-	}
+    public TeacherDTO() {
+    }
 
-	public void setTeacherId(String teacherId) {
-		this.teacherId = teacherId;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getSubjectId() {
-		return subjectId;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setSubjectId(String subjectId) {
-		this.subjectId = subjectId;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getClassId() {
-		return classId;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setClassId(String classId) {
-		this.classId = classId;
-	}
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public String getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(String subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public String getClassId() {
+        return classId;
+    }
+
+    public void setClassId(String classId) {
+        this.classId = classId;
+    }
 }

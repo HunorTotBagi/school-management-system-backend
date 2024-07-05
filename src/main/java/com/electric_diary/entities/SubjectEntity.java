@@ -32,6 +32,10 @@ public class SubjectEntity {
 	@JoinTable(name = "student_enrolled", joinColumns = @JoinColumn(name = "subject_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
 	private Set<StudentEntity> enrolledStudents = new HashSet<>();
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "subject")
+	private Set<TeacherEntity> teachers = new HashSet<TeacherEntity>();
+
 	public SubjectEntity() {
 	}
 
@@ -77,5 +81,13 @@ public class SubjectEntity {
 
 	public void enrolStudents(StudentEntity student) {
 		enrolledStudents.add(student);
+	}
+
+	public Set<TeacherEntity> getTeachers() {
+		return teachers;
+	}
+
+	public void setTeachers(Set<TeacherEntity> teachers) {
+		this.teachers = teachers;
 	}
 }
