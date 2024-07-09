@@ -1,27 +1,26 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
-
 import com.electric_diary.entities.UserEntity;
 import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.UserRepository;
 import com.electric_diary.services.UserService;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
 public class UserServiceImpl implements UserService {
 	@PersistenceContext
-	protected EntityManager em;
+	protected EntityManager entityManager;
 
-	@Autowired
-	protected UserRepository userRepository;
+	private final UserRepository userRepository;
+
+	public UserServiceImpl(final UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	@Override
 	public UserEntity createUser(UserEntity userBody, BindingResult result) {

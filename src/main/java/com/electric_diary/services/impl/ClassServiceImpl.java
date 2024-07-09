@@ -1,28 +1,26 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
-
 import com.electric_diary.entities.ClassEntity;
 import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.ClassRepository;
 import com.electric_diary.services.ClassService;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
 public class ClassServiceImpl implements ClassService {
-
 	@PersistenceContext
-	protected EntityManager em;
+	protected EntityManager entityManager;
 
-	@Autowired
-	protected ClassRepository classRepository;
+	private final ClassRepository classRepository;
+
+	public ClassServiceImpl(final ClassRepository classRepository) {
+		this.classRepository = classRepository;
+	}
 
 	@Override
 	public ClassEntity createClass(ClassEntity classBody, BindingResult result) {
