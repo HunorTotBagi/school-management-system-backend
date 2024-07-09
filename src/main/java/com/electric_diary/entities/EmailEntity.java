@@ -1,11 +1,11 @@
 package com.electric_diary.entities;
 
-public class EmailObject {
+public class EmailEntity {
 	private String to;
 	private String subject;
 	private String text;
 
-	public EmailObject() {
+	public EmailEntity() {
 	}
 
 	public String getTo() {
