@@ -31,7 +31,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"ICT Cluster\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"random\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -111,7 +111,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/classes/2",
+							"raw": "http://localhost:8080/api/v1/classes/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -121,7 +121,7 @@
 								"api",
 								"v1",
 								"classes",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -194,7 +194,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/classes/2",
+							"raw": "http://localhost:8080/api/v1/classes/52",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -204,7 +204,7 @@
 								"api",
 								"v1",
 								"classes",
-								"2"
+								"52"
 							]
 						}
 					},
@@ -335,7 +335,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"grade\" : 5,\r\n    \"studentId\" : \"3\",\r\n    \"teacherId\" : \"52\",\r\n    \"subjectId\" : \"3\",\r\n    \"gradingType\" : \"HOMEWORK\"\r\n}",
+							"raw": "{\r\n    \"grade\" : 4,\r\n    \"studentId\" : \"2\",\r\n    \"teacherId\" : \"1\",\r\n    \"subjectId\" : \"1\",\r\n    \"gradingType\" : \"HOMEWORK\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -489,7 +489,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Vojislav\",\r\n    \"lastName\" : \"Dmitrasinovic\",\r\n    \"email\" : \"vojo99@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Viktor\",\r\n    \"lastName\" : \"Orban\",\r\n    \"email\" : \"hun.gary.99@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -569,7 +569,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/parents/102",
+							"raw": "http://localhost:8080/api/v1/parents/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -579,7 +579,7 @@
 								"api",
 								"v1",
 								"parents",
-								"102"
+								"1"
 							]
 						}
 					},
@@ -607,7 +607,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Marica\",\r\n    \"lastName\" : \"Maric\",\r\n    \"email\" : \"huni92@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Hunor\",\r\n    \"lastName\" : \"Tot-Bagi\",\r\n    \"email\" : \"huni92@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -615,7 +615,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/parents/1",
+							"raw": "http://localhost:8080/api/v1/parents/52",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -625,7 +625,7 @@
 								"api",
 								"v1",
 								"parents",
-								"1"
+								"52"
 							]
 						}
 					},
@@ -700,7 +700,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/parents/102",
+							"raw": "http://localhost:8080/api/v1/parents/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -710,7 +710,213 @@
 								"api",
 								"v1",
 								"parents",
-								"102"
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "/api/v1/roles",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"TEACHER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/roles",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/roles/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/roles/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"ROLE_DOKTROL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/roles/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles",
+								"3"
 							]
 						}
 					},
@@ -743,7 +949,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Random\",\r\n    \"lastName\" : \"Randomovic\",\r\n    \"classId\" : \"53\",\r\n    \"parentId\" : \"202\",\r\n    \"userId\" : \"53\"\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Random\",\r\n    \"lastName\" : \"Randomovic\",\r\n    \"classId\" : \"53\",\r\n    \"parentId\" : \"202\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -944,7 +1150,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/students/252",
+							"raw": "http://localhost:8080/api/v1/students/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -954,7 +1160,7 @@
 								"api",
 								"v1",
 								"students",
-								"252"
+								"5"
 							]
 						}
 					},
