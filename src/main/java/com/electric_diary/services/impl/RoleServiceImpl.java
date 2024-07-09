@@ -36,8 +36,7 @@ public class RoleServiceImpl implements RoleService{
 
 	@Override
 	public Iterable<RoleEntity> getAllRoles() {
-		// TODO Auto-generated method stub
-		return null;
+		return roleRepository.findAll();
 	}
 
 	@Override
