@@ -15,7 +15,6 @@ public class EmailController {
 
 	@Autowired
 	private EmailService emailService;
-	private static String PATH_TO_ATTACHMENT = "C://Users//htotbagi//Downloads//estimation_points.png";
 
 	@PostMapping("/simpleEmail")
 	public String sendSimpleMessage(@RequestBody EmailEntity object) {
@@ -23,24 +22,6 @@ public class EmailController {
 			return null;
 		}
 		emailService.sendSimpleMessage(object);
-		return "Your mail has been sent!";
-	}
-
-	@PostMapping("/templateEmail")
-	public String sendTemplateMessage(@RequestBody EmailEntity object) throws Exception {
-		if (object == null || object.getTo() == null || object.getText() == null) {
-			return null;
-		}
-		emailService.sendTemplateMessage(object);
-		return "Your mail has been sent!";
-	}
-
-	@PostMapping("/emailWithAttachment")
-	public String sendMessageWithAttachment(@RequestBody EmailEntity object) throws Exception {
-		if (object == null || object.getTo() == null || object.getText() == null) {
-			return null;
-		}
-		emailService.sendMessageWithAttachment(object, PATH_TO_ATTACHMENT);
 		return "Your mail has been sent!";
 	}
 }

@@ -4,8 +4,4 @@ import com.electric_diary.entities.EmailEntity;
 
 public interface EmailService {
 	void sendSimpleMessage(EmailEntity object);
-
-	void sendTemplateMessage(EmailEntity object) throws Exception;
-
-	void sendMessageWithAttachment(EmailEntity object, String pathToAttachment) throws Exception;
 }
