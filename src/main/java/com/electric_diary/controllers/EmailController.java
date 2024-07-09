@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.electric_diary.entities.EmailObject;
+import com.electric_diary.entities.EmailEntity;
 import com.electric_diary.services.EmailService;
 
 @RestController
@@ -18,7 +18,7 @@ public class EmailController {
 	private static String PATH_TO_ATTACHMENT = "C://Users//htotbagi//Downloads//estimation_points.png";
 
 	@PostMapping("/simpleEmail")
-	public String sendSimpleMessage(@RequestBody EmailObject object) {
+	public String sendSimpleMessage(@RequestBody EmailEntity object) {
 		if (object == null || object.getTo() == null || object.getText() == null) {
 			return null;
 		}
@@ -27,7 +27,7 @@ public class EmailController {
 	}
 
 	@PostMapping("/templateEmail")
-	public String sendTemplateMessage(@RequestBody EmailObject object) throws Exception {
+	public String sendTemplateMessage(@RequestBody EmailEntity object) throws Exception {
 		if (object == null || object.getTo() == null || object.getText() == null) {
 			return null;
 		}
@@ -36,7 +36,7 @@ public class EmailController {
 	}
 
 	@PostMapping("/emailWithAttachment")
-	public String sendMessageWithAttachment(@RequestBody EmailObject object) throws Exception {
+	public String sendMessageWithAttachment(@RequestBody EmailEntity object) throws Exception {
 		if (object == null || object.getTo() == null || object.getText() == null) {
 			return null;
 		}

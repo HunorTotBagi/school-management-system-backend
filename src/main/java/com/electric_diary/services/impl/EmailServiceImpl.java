@@ -6,7 +6,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import com.electric_diary.entities.EmailObject;
+import com.electric_diary.entities.EmailEntity;
 import com.electric_diary.services.EmailService;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.persistence.EntityManager;
@@ -24,7 +24,7 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public void sendSimpleMessage(EmailObject object) {
+	public void sendSimpleMessage(EmailEntity object) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(object.getTo());
 		message.setSubject(object.getSubject());
@@ -33,7 +33,7 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public void sendTemplateMessage(EmailObject object) throws Exception {
+	public void sendTemplateMessage(EmailEntity object) throws Exception {
 		MimeMessage mail = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mail, true);
 		helper.setTo(object.getTo());
@@ -45,7 +45,7 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public void sendMessageWithAttachment(EmailObject object, String pathToAttachment) throws Exception {
+	public void sendMessageWithAttachment(EmailEntity object, String pathToAttachment) throws Exception {
 		MimeMessage mail = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mail, true);
 		helper.setTo(object.getTo());

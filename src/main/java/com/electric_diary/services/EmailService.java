@@ -1,11 +1,11 @@
 package com.electric_diary.services;
 
-import com.electric_diary.entities.EmailObject;
+import com.electric_diary.entities.EmailEntity;
 
 public interface EmailService {
-	void sendSimpleMessage(EmailObject object);
+	void sendSimpleMessage(EmailEntity object);
 
-	void sendTemplateMessage(EmailObject object) throws Exception;
+	void sendTemplateMessage(EmailEntity object) throws Exception;
 
-	void sendMessageWithAttachment(EmailObject object, String pathToAttachment) throws Exception;
+	void sendMessageWithAttachment(EmailEntity object, String pathToAttachment) throws Exception;
 }

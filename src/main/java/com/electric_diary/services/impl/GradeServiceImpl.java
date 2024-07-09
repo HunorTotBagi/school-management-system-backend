@@ -3,7 +3,7 @@ package com.electric_diary.services.impl;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.electric_diary.DTO.GradeDTO;
-import com.electric_diary.entities.EmailObject;
+import com.electric_diary.entities.EmailEntity;
 import com.electric_diary.entities.GradeEntity;
 import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.entities.StudentEntity;
@@ -73,7 +73,7 @@ public class GradeServiceImpl implements GradeService {
 
 		ParentEntity parent = parentRepositroy.findByStudentsId(Integer.parseInt(studentId));
 		if (parent != null && parent.getEmail() != null) {
-			EmailObject emailObject = new EmailObject();
+			EmailEntity emailObject = new EmailEntity();
 			emailObject.setTo(parent.getEmail());
 			emailObject.setSubject("Your child's grade has been updated");
 			emailObject.setText("Dear " + parent.getFirstName() + ",\n\n" + "Your child " + student.getFirstName()
