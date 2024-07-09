@@ -16,11 +16,11 @@ import jakarta.persistence.PersistenceContext;
 public class EmailServiceImpl implements EmailService {
 	@PersistenceContext
 	protected EntityManager entityManager;
-	
-	private final JavaMailSender emailSender;
 
-	public EmailServiceImpl(final JavaMailSender emailSender) {
-		this.emailSender = emailSender;
+	private final JavaMailSender javaMailSender;
+
+	public EmailServiceImpl(final JavaMailSender javaMailSender) {
+		this.javaMailSender = javaMailSender;
 	}
 
 	@Override
@@ -29,30 +29,30 @@ public class EmailServiceImpl implements EmailService {
 		message.setTo(object.getTo());
 		message.setSubject(object.getSubject());
 		message.setText(object.getText());
-		emailSender.send(message);
+		javaMailSender.send(message);
 	}
 
 	@Override
 	public void sendTemplateMessage(EmailObject object) throws Exception {
-		MimeMessage mail = emailSender.createMimeMessage();
+		MimeMessage mail = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mail, true);
 		helper.setTo(object.getTo());
 		helper.setSubject(object.getSubject());
 		String text = "<html><body><table " + "style='border:2px solid black'>" + "<tr><td>" + object.getText()
 				+ "</td></tr>" + "</table></body></html>";
 		helper.setText(text, true);
-		emailSender.send(mail);
+		javaMailSender.send(mail);
 	}
 
 	@Override
 	public void sendMessageWithAttachment(EmailObject object, String pathToAttachment) throws Exception {
-		MimeMessage mail = emailSender.createMimeMessage();
+		MimeMessage mail = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mail, true);
 		helper.setTo(object.getTo());
 		helper.setSubject(object.getSubject());
 		helper.setText(object.getText(), false);
 		FileSystemResource file = new FileSystemResource(new File(pathToAttachment));
 		helper.addAttachment(file.getFilename(), file);
-		emailSender.send(mail);
+		javaMailSender.send(mail);
 	}
 }

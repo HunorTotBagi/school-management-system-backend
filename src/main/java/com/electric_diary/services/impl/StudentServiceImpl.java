@@ -24,8 +24,9 @@ public class StudentServiceImpl implements StudentService {
 	private final ClassRepository classRepository;
 	private final ParentRepository parentRepository;
 
-	public StudentServiceImpl(final StudentRepository studentRepository, final ClassRepository classRepository,
-			final ParentRepository parentRepository) {
+	public StudentServiceImpl(final StudentRepository studentRepository, 
+							  final ClassRepository classRepository,
+							  final ParentRepository parentRepository) {
 		this.studentRepository = studentRepository;
 		this.classRepository = classRepository;
 		this.parentRepository = parentRepository;

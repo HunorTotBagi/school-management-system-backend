@@ -33,9 +33,12 @@ public class GradeServiceImpl implements GradeService {
 	private final ParentRepository parentRepositroy;
 	private final EmailService emailService;
 
-	public GradeServiceImpl(final GradeRepository gradeRepository, final StudentRepository studentRepository,
-			final TeacherRepository teacherRepository, final SubjectRepository subjectRepository,
-			final ParentRepository parentRepositroy, final EmailService emailService) {
+	public GradeServiceImpl(final GradeRepository gradeRepository, 
+							final StudentRepository studentRepository,
+							final TeacherRepository teacherRepository, 
+							final SubjectRepository subjectRepository,
+							final ParentRepository parentRepositroy, 
+							final EmailService emailService) {
 		this.gradeRepository = gradeRepository;
 		this.studentRepository = studentRepository;
 		this.teacherRepository = teacherRepository;
