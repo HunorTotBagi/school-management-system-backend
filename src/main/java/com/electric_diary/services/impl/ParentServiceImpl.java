@@ -21,8 +21,7 @@ public class ParentServiceImpl implements ParentService {
 	private final ParentRepository parentRepository;
 	private final StudentRepository studentRepository;
 
-	public ParentServiceImpl(final ParentRepository parentRepository, 
-							 final StudentRepository studentRepository) {
+	public ParentServiceImpl(final ParentRepository parentRepository, final StudentRepository studentRepository) {
 		this.parentRepository = parentRepository;
 		this.studentRepository = studentRepository;
 	}

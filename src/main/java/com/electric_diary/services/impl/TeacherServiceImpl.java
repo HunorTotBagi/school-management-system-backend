@@ -23,9 +23,8 @@ public class TeacherServiceImpl implements TeacherService {
 	private final SubjectRepository subjectRepository;
 	private final ClassRepository classRepository;
 
-	public TeacherServiceImpl(final TeacherRepository teacherRepository,
-						      final SubjectRepository subjectRepository,
-			                  final ClassRepository classRepository) {
+	public TeacherServiceImpl(final TeacherRepository teacherRepository, final SubjectRepository subjectRepository,
+			final ClassRepository classRepository) {
 		this.teacherRepository = teacherRepository;
 		this.subjectRepository = subjectRepository;
 		this.classRepository = classRepository;

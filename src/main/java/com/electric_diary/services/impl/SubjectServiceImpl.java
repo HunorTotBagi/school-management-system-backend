@@ -21,8 +21,7 @@ public class SubjectServiceImpl implements SubjectService {
 	private final SubjectRepository subjectRepository;
 	private final StudentRepository studentRepository;
 
-	public SubjectServiceImpl(final SubjectRepository subjectRepository, 
-							  final StudentRepository studentRepository) {
+	public SubjectServiceImpl(final SubjectRepository subjectRepository, final StudentRepository studentRepository) {
 		this.subjectRepository = subjectRepository;
 		this.studentRepository = studentRepository;
 	}
