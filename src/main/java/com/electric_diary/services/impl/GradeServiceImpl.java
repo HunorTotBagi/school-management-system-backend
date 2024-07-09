@@ -18,7 +18,6 @@ import com.electric_diary.repositories.SubjectRepository;
 import com.electric_diary.repositories.TeacherRepository;
 import com.electric_diary.services.EmailService;
 import com.electric_diary.services.GradeService;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
