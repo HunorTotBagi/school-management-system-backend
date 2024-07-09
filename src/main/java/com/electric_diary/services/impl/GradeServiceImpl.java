@@ -75,12 +75,13 @@ public class GradeServiceImpl implements GradeService {
 		if (parent != null && parent.getEmail() != null) {
 			EmailEntity emailObject = new EmailEntity();
 			emailObject.setTo(parent.getEmail());
-			emailObject.setSubject("Your child's grade has been updated");
+			emailObject.setSubject("Your child got a new grade");
 			emailObject.setText("Dear " + parent.getFirstName() + ",\n\n" + "Your child " + student.getFirstName()
 					+ " has received a grade of " + grade + " in " + subject.getName() + ".\n\n" + "Best regards,\n"
 					+ teacher.getFirstName() + " " + teacher.getLastName());
 			emailService.sendSimpleMessage(emailObject);
 		}
+		
 		return newGrade;
 	}
 
@@ -111,7 +112,7 @@ public class GradeServiceImpl implements GradeService {
 
 		Optional<GradeEntity> optionalGrade = gradeRepository.findById(gradeId);
 		if (optionalGrade.isPresent()) {
-			GradeEntity grade = optionalGrade.get();
+			GradeEntity newGrade = optionalGrade.get();
 			String studentId = gradeDTOBody.getStudentId();
 			String teacherId = gradeDTOBody.getTeacherId();
 			String subjectId = gradeDTOBody.getSubjectId();
@@ -123,14 +124,27 @@ public class GradeServiceImpl implements GradeService {
 			SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
 					.orElseThrow(() -> new NotFoundException("Subject", subjectId));
 
-			grade.setStudent(student);
-			grade.setTeacher(teacher);
-			grade.setSubject(subject);
-			grade.setGrade(gradeDTOBody.getGrade());
-			grade.setGradingType(gradeDTOBody.getGradingType());
-			gradeRepository.save(grade);
+			newGrade.setStudent(student);
+			newGrade.setTeacher(teacher);
+			newGrade.setSubject(subject);
+			newGrade.setGrade(gradeDTOBody.getGrade());
+			newGrade.setGradingType(gradeDTOBody.getGradingType());
+			gradeRepository.save(newGrade);
+			
+			Integer grade = gradeDTOBody.getGrade();
+			
+			ParentEntity parent = parentRepositroy.findByStudentsId(Integer.parseInt(studentId));
+			if (parent != null && parent.getEmail() != null) {
+				EmailEntity emailObject = new EmailEntity();
+				emailObject.setTo(parent.getEmail());
+				emailObject.setSubject("Your child's grade has been updated");
+				emailObject.setText("Dear " + parent.getFirstName() + ",\n\n" + "Your child " + student.getFirstName()
+						+ " has received a grade of " + grade + " in " + subject.getName() + ".\n\n" + "Best regards,\n"
+						+ teacher.getFirstName() + " " + teacher.getLastName());
+				emailService.sendSimpleMessage(emailObject);
+			}
 
-			return grade;
+			return newGrade;
 		} else {
 			throw new NotFoundException("Grade", id);
 		}
