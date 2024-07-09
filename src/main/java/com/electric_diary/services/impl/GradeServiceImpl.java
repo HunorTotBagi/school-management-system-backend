@@ -19,8 +19,14 @@ import com.electric_diary.repositories.TeacherRepository;
 import com.electric_diary.services.EmailService;
 import com.electric_diary.services.GradeService;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
 @Service
 public class GradeServiceImpl implements GradeService {
+	@PersistenceContext
+	protected EntityManager entityManager;
+	
 	private final GradeRepository gradeRepository;
 	private final StudentRepository studentRepository;
 	private final TeacherRepository teacherRepository;

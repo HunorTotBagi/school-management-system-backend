@@ -16,7 +16,7 @@ import jakarta.persistence.PersistenceContext;
 @Service
 public class SubjectServiceImpl implements SubjectService {
 	@PersistenceContext
-	protected EntityManager em;
+	protected EntityManager entityManager;
 
 	private final SubjectRepository subjectRepository;
 	private final StudentRepository studentRepository;

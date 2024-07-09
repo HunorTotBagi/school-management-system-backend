@@ -16,7 +16,7 @@ import jakarta.persistence.PersistenceContext;
 @Service
 public class ParentServiceImpl implements ParentService {
 	@PersistenceContext
-	protected EntityManager em;
+	protected EntityManager entityManager;
 
 	private final ParentRepository parentRepository;
 	private final StudentRepository studentRepository;

@@ -14,7 +14,7 @@ import jakarta.persistence.PersistenceContext;
 @Service
 public class UserServiceImpl implements UserService {
 	@PersistenceContext
-	protected EntityManager em;
+	protected EntityManager entityManager;
 
 	private final UserRepository userRepository;
 

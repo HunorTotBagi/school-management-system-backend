@@ -19,3 +19,62 @@
 2024-07-09T08:02:00.562+02:00  INFO 7276 --- [electric_diary] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-07-09T08:02:00.563+02:00  INFO 7276 --- [electric_diary] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-07-09T08:02:00.565+02:00  INFO 7276 --- [electric_diary] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-09T08:28:07.086+02:00  INFO 13392 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Starting ElectricDiaryApplication using Java 17.0.10 with PID 13392 (C:\Users\htotbagi\OneDrive - j&s-soft GmbH\Desktop\electric_diary\electric_diary\target\classes started by htotbagi in C:\Users\htotbagi\OneDrive - j&s-soft GmbH\Desktop\electric_diary\electric_diary)
+2024-07-09T08:28:07.088+02:00  INFO 13392 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-09T08:28:07.814+02:00  INFO 13392 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-09T08:28:07.930+02:00  INFO 13392 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 105 ms. Found 7 JPA repository interfaces.
+2024-07-09T08:28:08.452+02:00  INFO 13392 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-09T08:28:08.474+02:00  INFO 13392 --- [electric_diary] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-09T08:28:08.474+02:00  INFO 13392 --- [electric_diary] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-07-09T08:28:08.539+02:00  INFO 13392 --- [electric_diary] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-09T08:28:08.540+02:00  INFO 13392 --- [electric_diary] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1404 ms
+2024-07-09T08:28:09.007+02:00  INFO 13392 --- [electric_diary] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-09T08:28:09.030+02:00  INFO 13392 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-09T08:28:09.294+02:00  INFO 13392 --- [electric_diary] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7ecb9e17
+2024-07-09T08:28:09.296+02:00  INFO 13392 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-09T08:28:10.812+02:00  INFO 13392 --- [electric_diary] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-09T08:28:11.411+02:00  WARN 13392 --- [electric_diary] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-09T08:28:11.857+02:00  INFO 13392 --- [electric_diary] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3fb920d9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5d3a147f, org.springframework.security.web.context.SecurityContextHolderFilter@359f3401, org.springframework.security.web.header.HeaderWriterFilter@72dc7f0a, org.springframework.web.filter.CorsFilter@79bb14d8, org.springframework.security.web.authentication.logout.LogoutFilter@35920655, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6cb1da13, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@51d50b5f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@38816a6c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@72fc6b5e, org.springframework.security.web.access.ExceptionTranslationFilter@df0b348, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7c59f315]
+2024-07-09T08:28:12.119+02:00  WARN 13392 --- [electric_diary] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-07-09T08:28:12.121+02:00  INFO 13392 --- [electric_diary] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-09T08:28:12.122+02:00  INFO 13392 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-09T08:28:12.130+02:00  INFO 13392 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-09T08:28:12.143+02:00  INFO 13392 --- [electric_diary] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-07-09T08:28:12.156+02:00 ERROR 13392 --- [electric_diary] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2024-07-09T08:33:51.435+02:00  INFO 7276 --- [electric_diary] [RMI TCP Connection(36)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-07-09T08:33:51.458+02:00  INFO 7276 --- [electric_diary] [RMI TCP Connection(36)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-09T08:33:51.460+02:00  INFO 7276 --- [electric_diary] [RMI TCP Connection(36)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-09T08:33:51.467+02:00  INFO 7276 --- [electric_diary] [RMI TCP Connection(36)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-09T08:33:57.754+02:00  INFO 20288 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Starting ElectricDiaryApplication using Java 17.0.10 with PID 20288 (C:\Users\htotbagi\OneDrive - j&s-soft GmbH\Desktop\electric_diary\electric_diary\target\classes started by htotbagi in C:\Users\htotbagi\OneDrive - j&s-soft GmbH\Desktop\electric_diary\electric_diary)
+2024-07-09T08:33:57.757+02:00  INFO 20288 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-09T08:33:58.534+02:00  INFO 20288 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-09T08:33:58.662+02:00  INFO 20288 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 117 ms. Found 7 JPA repository interfaces.
+2024-07-09T08:33:59.124+02:00  INFO 20288 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-09T08:33:59.137+02:00  INFO 20288 --- [electric_diary] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-09T08:33:59.137+02:00  INFO 20288 --- [electric_diary] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-07-09T08:33:59.189+02:00  INFO 20288 --- [electric_diary] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-09T08:33:59.189+02:00  INFO 20288 --- [electric_diary] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1382 ms
+2024-07-09T08:33:59.620+02:00  INFO 20288 --- [electric_diary] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-09T08:33:59.646+02:00  INFO 20288 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-09T08:33:59.910+02:00  INFO 20288 --- [electric_diary] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@73dbe25
+2024-07-09T08:33:59.912+02:00  INFO 20288 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-09T08:34:01.125+02:00  INFO 20288 --- [electric_diary] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-09T08:34:01.564+02:00  WARN 20288 --- [electric_diary] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-09T08:34:01.859+02:00  INFO 20288 --- [electric_diary] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6c3830ed, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@32a541a8, org.springframework.security.web.context.SecurityContextHolderFilter@1c00a9f0, org.springframework.security.web.header.HeaderWriterFilter@c725dfa, org.springframework.web.filter.CorsFilter@63b85d97, org.springframework.security.web.authentication.logout.LogoutFilter@73418044, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@18f8c76d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5e572ad6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@709353b9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@50cadbae, org.springframework.security.web.access.ExceptionTranslationFilter@55d35f7a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@c7008b4]
+2024-07-09T08:34:02.112+02:00  INFO 20288 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-07-09T08:34:02.121+02:00  INFO 20288 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Started ElectricDiaryApplication in 4.77 seconds (process running for 5.561)

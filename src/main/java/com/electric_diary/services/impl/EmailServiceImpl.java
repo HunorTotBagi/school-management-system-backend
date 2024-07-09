@@ -9,9 +9,14 @@ import org.springframework.stereotype.Service;
 import com.electric_diary.entities.EmailObject;
 import com.electric_diary.services.EmailService;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 @Service
 public class EmailServiceImpl implements EmailService {
+	@PersistenceContext
+	protected EntityManager entityManager;
+	
 	private final JavaMailSender emailSender;
 
 	public EmailServiceImpl(final JavaMailSender emailSender) {
