@@ -1,10 +1,7 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.electric_diary.DTO.GradeDTO;
 import com.electric_diary.entities.EmailObject;
 import com.electric_diary.entities.GradeEntity;
@@ -24,23 +21,23 @@ import com.electric_diary.services.GradeService;
 
 @Service
 public class GradeServiceImpl implements GradeService {
-	@Autowired
-	private GradeRepository gradeRepository;
+	private final GradeRepository gradeRepository;
+	private final StudentRepository studentRepository;
+	private final TeacherRepository teacherRepository;
+	private final SubjectRepository subjectRepository;
+	private final ParentRepository parentRepositroy;
+	private final EmailService emailService;
 
-	@Autowired
-	private StudentRepository studentRepository;
-
-	@Autowired
-	private TeacherRepository teacherRepository;
-
-	@Autowired
-	private SubjectRepository subjectRepository;
-
-	@Autowired
-	private ParentRepository parentRepositroy;
-
-	@Autowired
-	private EmailService emailService;
+	public GradeServiceImpl(final GradeRepository gradeRepository, final StudentRepository studentRepository,
+			final TeacherRepository teacherRepository, final SubjectRepository subjectRepository,
+			final ParentRepository parentRepositroy, final EmailService emailService) {
+		this.gradeRepository = gradeRepository;
+		this.studentRepository = studentRepository;
+		this.teacherRepository = teacherRepository;
+		this.subjectRepository = subjectRepository;
+		this.parentRepositroy = parentRepositroy;
+		this.emailService = emailService;
+	}
 
 	@Override
 	public GradeEntity assignGrade(GradeDTO gradeDTOBody) {
@@ -76,7 +73,7 @@ public class GradeServiceImpl implements GradeService {
 			emailObject.setSubject("Your child's grade has been updated");
 			emailObject.setText("Dear " + parent.getFirstName() + ",\n\n" + "Your child " + student.getFirstName()
 					+ " has received a grade of " + grade + " in " + subject.getName() + ".\n\n" + "Best regards,\n"
-					+ teacher.getFirstName() + " " + teacher.getLastName()); 
+					+ teacher.getFirstName() + " " + teacher.getLastName());
 			emailService.sendSimpleMessage(emailObject);
 		}
 		return newGrade;

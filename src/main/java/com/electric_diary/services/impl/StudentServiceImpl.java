@@ -1,11 +1,8 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
-
 import com.electric_diary.DTO.StudentDTO;
 import com.electric_diary.entities.ClassEntity;
 import com.electric_diary.entities.ParentEntity;
@@ -15,24 +12,24 @@ import com.electric_diary.repositories.ClassRepository;
 import com.electric_diary.repositories.ParentRepository;
 import com.electric_diary.repositories.StudentRepository;
 import com.electric_diary.services.StudentService;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
 public class StudentServiceImpl implements StudentService {
-
 	@PersistenceContext
 	protected EntityManager em;
 
-	@Autowired
-	protected StudentRepository studentRepository;
+	private final StudentRepository studentRepository;
+	private final ClassRepository classRepository;
+	private final ParentRepository parentRepository;
 
-	@Autowired
-	protected ClassRepository classRepository;
-
-	@Autowired
-	protected ParentRepository parentRepository;
+	public StudentServiceImpl(final StudentRepository studentRepository, final ClassRepository classRepository,
+			final ParentRepository parentRepository) {
+		this.studentRepository = studentRepository;
+		this.classRepository = classRepository;
+		this.parentRepository = parentRepository;
+	}
 
 	@Override
 	public StudentEntity createStudent(StudentDTO studentDTOBody, BindingResult result) {

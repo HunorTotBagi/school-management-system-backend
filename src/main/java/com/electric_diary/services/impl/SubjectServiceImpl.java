@@ -1,11 +1,8 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
-
 import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.entities.SubjectEntity;
 import com.electric_diary.exception.CustomBadRequestException;
@@ -13,21 +10,21 @@ import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.StudentRepository;
 import com.electric_diary.repositories.SubjectRepository;
 import com.electric_diary.services.SubjectService;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
-
 	@PersistenceContext
 	protected EntityManager em;
 
-	@Autowired
-	protected SubjectRepository subjectRepository;
+	private final SubjectRepository subjectRepository;
+	private final StudentRepository studentRepository;
 
-	@Autowired
-	protected StudentRepository studentRepository;
+	public SubjectServiceImpl(final SubjectRepository subjectRepository, final StudentRepository studentRepository) {
+		this.subjectRepository = subjectRepository;
+		this.studentRepository = studentRepository;
+	}
 
 	@Override
 	public SubjectEntity createSubject(SubjectEntity subjectBody, BindingResult result) {

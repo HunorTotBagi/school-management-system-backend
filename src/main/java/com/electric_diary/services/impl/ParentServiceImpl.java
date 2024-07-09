@@ -1,11 +1,8 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
-
 import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.exception.CustomBadRequestException;
@@ -13,21 +10,21 @@ import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.ParentRepository;
 import com.electric_diary.repositories.StudentRepository;
 import com.electric_diary.services.ParentService;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
 public class ParentServiceImpl implements ParentService {
-
 	@PersistenceContext
 	protected EntityManager em;
 
-	@Autowired
-	protected ParentRepository parentRepository;
+	private final ParentRepository parentRepository;
+	private final StudentRepository studentRepository;
 
-	@Autowired
-	protected StudentRepository studentRepository;
+	public ParentServiceImpl(final ParentRepository parentRepository, final StudentRepository studentRepository) {
+		this.parentRepository = parentRepository;
+		this.studentRepository = studentRepository;
+	}
 
 	@Override
 	public ParentEntity createParent(ParentEntity parentBody, BindingResult result) {

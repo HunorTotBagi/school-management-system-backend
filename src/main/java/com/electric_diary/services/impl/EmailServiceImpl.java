@@ -1,24 +1,22 @@
 package com.electric_diary.services.impl;
 
 import java.io.File;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-
 import com.electric_diary.entities.EmailObject;
 import com.electric_diary.services.EmailService;
-
 import jakarta.mail.internet.MimeMessage;
 
 @Service
 public class EmailServiceImpl implements EmailService {
+	private final JavaMailSender emailSender;
 
-	@Autowired
-	public JavaMailSender emailSender;
+	public EmailServiceImpl(final JavaMailSender emailSender) {
+		this.emailSender = emailSender;
+	}
 
 	@Override
 	public void sendSimpleMessage(EmailObject object) {
