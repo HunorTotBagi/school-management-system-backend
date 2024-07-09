@@ -9,9 +9,9 @@ public interface RoleService {
 
 	public Iterable<RoleEntity> getAllRoles();
 
-	public RoleEntity getRoleEntityById(String id);
+	public RoleEntity getRoleById(String id);
 
-	public RoleEntity updateRoleEntity(String id, RoleEntity roleBody);
+	public RoleEntity updateRole(String id, RoleEntity roleBody);
 
 	public RoleEntity deleteRole(String id);
 }
