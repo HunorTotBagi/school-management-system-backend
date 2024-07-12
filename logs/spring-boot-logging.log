@@ -1395,3 +1395,192 @@ java.lang.NoSuchMethodError: 'void io.swagger.v3.oas.models.OpenAPI.<init>(io.sw
 2024-07-12T07:07:00.064+02:00  INFO 19936 --- [electric_diary] [RMI TCP Connection(10)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-07-12T07:07:00.066+02:00  INFO 19936 --- [electric_diary] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-07-12T07:07:00.077+02:00  INFO 19936 --- [electric_diary] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-12T07:07:08.864+02:00  INFO 25468 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Starting ElectricDiaryApplication using Java 17.0.10 with PID 25468 (C:\Users\htotbagi\git\school-management-system\target\classes started by htotbagi in C:\Users\htotbagi\git\school-management-system)
+2024-07-12T07:07:08.867+02:00  INFO 25468 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-12T07:07:09.758+02:00  INFO 25468 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-12T07:07:09.901+02:00  INFO 25468 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 134 ms. Found 8 JPA repository interfaces.
+2024-07-12T07:07:10.463+02:00  INFO 25468 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-12T07:07:10.472+02:00  INFO 25468 --- [electric_diary] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-12T07:07:10.472+02:00  INFO 25468 --- [electric_diary] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-07-12T07:07:10.537+02:00  INFO 25468 --- [electric_diary] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-12T07:07:10.538+02:00  INFO 25468 --- [electric_diary] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1620 ms
+2024-07-12T07:07:11.011+02:00  INFO 25468 --- [electric_diary] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-12T07:07:11.047+02:00  INFO 25468 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-12T07:07:11.318+02:00  INFO 25468 --- [electric_diary] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2f8f40cc
+2024-07-12T07:07:11.319+02:00  INFO 25468 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-12T07:07:12.478+02:00  INFO 25468 --- [electric_diary] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T07:07:12.993+02:00  WARN 25468 --- [electric_diary] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-12T07:07:13.237+02:00  INFO 25468 --- [electric_diary] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1676e501, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1ed763aa, org.springframework.security.web.context.SecurityContextHolderFilter@9d4d221, org.springframework.security.web.header.HeaderWriterFilter@238cac6, org.springframework.web.filter.CorsFilter@7f39bcb5, org.springframework.security.web.authentication.logout.LogoutFilter@1cb4cad0, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@13c36d48, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3129792a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13617139, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e6881e, org.springframework.security.web.access.ExceptionTranslationFilter@75c36570, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4a3e1b5d]
+2024-07-12T07:07:13.604+02:00  INFO 25468 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-07-12T07:07:13.615+02:00  INFO 25468 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Started ElectricDiaryApplication in 5.249 seconds (process running for 6.177)
+2024-07-12T07:07:18.933+02:00  INFO 25468 --- [electric_diary] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-12T07:07:18.933+02:00  INFO 25468 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-12T07:07:18.935+02:00  INFO 25468 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-07-12T07:07:20.014+02:00  INFO 25468 --- [electric_diary] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 575 ms
+2024-07-12T07:13:29.668+02:00  INFO 25468 --- [electric_diary] [RMI TCP Connection(17)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-07-12T07:13:29.694+02:00  INFO 25468 --- [electric_diary] [RMI TCP Connection(17)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T07:13:29.695+02:00  INFO 25468 --- [electric_diary] [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-12T07:13:29.702+02:00  INFO 25468 --- [electric_diary] [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-12T07:13:38.248+02:00  INFO 17444 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Starting ElectricDiaryApplication using Java 17.0.10 with PID 17444 (C:\Users\htotbagi\git\school-management-system\target\classes started by htotbagi in C:\Users\htotbagi\git\school-management-system)
+2024-07-12T07:13:38.250+02:00  INFO 17444 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-12T07:13:39.130+02:00  INFO 17444 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-12T07:13:39.245+02:00  INFO 17444 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 107 ms. Found 8 JPA repository interfaces.
+2024-07-12T07:13:39.752+02:00  INFO 17444 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-12T07:13:39.761+02:00  INFO 17444 --- [electric_diary] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-12T07:13:39.761+02:00  INFO 17444 --- [electric_diary] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-07-12T07:13:39.829+02:00  INFO 17444 --- [electric_diary] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-12T07:13:39.830+02:00  INFO 17444 --- [electric_diary] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1530 ms
+2024-07-12T07:13:40.237+02:00  INFO 17444 --- [electric_diary] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-12T07:13:40.259+02:00  INFO 17444 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-12T07:13:40.531+02:00  INFO 17444 --- [electric_diary] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5dd3727c
+2024-07-12T07:13:40.533+02:00  INFO 17444 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-12T07:13:41.775+02:00  INFO 17444 --- [electric_diary] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T07:13:42.321+02:00  WARN 17444 --- [electric_diary] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-12T07:13:42.592+02:00  INFO 17444 --- [electric_diary] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@25192b6e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@76d654, org.springframework.security.web.context.SecurityContextHolderFilter@3c0becae, org.springframework.security.web.header.HeaderWriterFilter@4dfe5727, org.springframework.web.filter.CorsFilter@32180efb, org.springframework.security.web.authentication.logout.LogoutFilter@15ec3c0c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1ed763aa, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@79690a0a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@619944a7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@20ed6de, org.springframework.security.web.access.ExceptionTranslationFilter@45cce4c2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@68596992]
+2024-07-12T07:13:43.168+02:00  INFO 17444 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-07-12T07:13:43.179+02:00  INFO 17444 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Started ElectricDiaryApplication in 5.385 seconds (process running for 6.296)
+2024-07-12T07:13:59.058+02:00  INFO 17444 --- [electric_diary] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-12T07:13:59.059+02:00  INFO 17444 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-12T07:13:59.062+02:00  INFO 17444 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-07-12T07:14:00.994+02:00  INFO 17444 --- [electric_diary] [http-nio-8080-exec-8] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1124 ms
+2024-07-12T07:14:14.931+02:00  INFO 17444 --- [electric_diary] [RMI TCP Connection(6)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-07-12T07:14:14.946+02:00  INFO 17444 --- [electric_diary] [RMI TCP Connection(6)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T07:14:14.948+02:00  INFO 17444 --- [electric_diary] [RMI TCP Connection(6)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-12T07:14:14.956+02:00  INFO 17444 --- [electric_diary] [RMI TCP Connection(6)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-12T07:14:26.474+02:00  INFO 29272 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Starting ElectricDiaryApplication using Java 17.0.10 with PID 29272 (C:\Users\htotbagi\git\school-management-system\target\classes started by htotbagi in C:\Users\htotbagi\git\school-management-system)
+2024-07-12T07:14:26.477+02:00  INFO 29272 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-12T07:14:27.351+02:00  INFO 29272 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-12T07:14:27.478+02:00  INFO 29272 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 117 ms. Found 8 JPA repository interfaces.
+2024-07-12T07:14:27.977+02:00  INFO 29272 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-12T07:14:27.987+02:00  INFO 29272 --- [electric_diary] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-12T07:14:27.987+02:00  INFO 29272 --- [electric_diary] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-07-12T07:14:28.073+02:00  INFO 29272 --- [electric_diary] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-12T07:14:28.074+02:00  INFO 29272 --- [electric_diary] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1547 ms
+2024-07-12T07:14:28.493+02:00  INFO 29272 --- [electric_diary] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-12T07:14:28.523+02:00  INFO 29272 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-12T07:14:28.799+02:00  INFO 29272 --- [electric_diary] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@229cb4d8
+2024-07-12T07:14:28.801+02:00  INFO 29272 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-12T07:14:30.044+02:00  INFO 29272 --- [electric_diary] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T07:14:30.589+02:00  WARN 29272 --- [electric_diary] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-12T07:14:30.827+02:00  INFO 29272 --- [electric_diary] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@76d654, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@32180efb, org.springframework.security.web.context.SecurityContextHolderFilter@373c367, org.springframework.security.web.header.HeaderWriterFilter@3129792a, org.springframework.web.filter.CorsFilter@20ed6de, org.springframework.security.web.authentication.logout.LogoutFilter@323b5264, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7f39bcb5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@619944a7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@294aaa6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ea0dfaa, org.springframework.security.web.access.ExceptionTranslationFilter@9d4d221, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5f0c45ae]
+2024-07-12T07:14:31.199+02:00  INFO 29272 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-07-12T07:14:31.209+02:00  INFO 29272 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Started ElectricDiaryApplication in 5.133 seconds (process running for 5.977)
+2024-07-12T07:14:37.073+02:00  INFO 29272 --- [electric_diary] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-12T07:14:37.073+02:00  INFO 29272 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-12T07:14:37.074+02:00  INFO 29272 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-12T07:14:38.222+02:00  INFO 29272 --- [electric_diary] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 614 ms
+2024-07-12T07:14:55.110+02:00  INFO 29272 --- [electric_diary] [RMI TCP Connection(7)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-07-12T07:14:55.158+02:00  INFO 29272 --- [electric_diary] [RMI TCP Connection(7)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T07:14:55.161+02:00  INFO 29272 --- [electric_diary] [RMI TCP Connection(7)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-12T07:14:55.174+02:00  INFO 29272 --- [electric_diary] [RMI TCP Connection(7)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-12T07:15:02.992+02:00  INFO 34244 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Starting ElectricDiaryApplication using Java 17.0.10 with PID 34244 (C:\Users\htotbagi\git\school-management-system\target\classes started by htotbagi in C:\Users\htotbagi\git\school-management-system)
+2024-07-12T07:15:02.994+02:00  INFO 34244 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-12T07:15:03.791+02:00  INFO 34244 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-12T07:15:03.919+02:00  INFO 34244 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 121 ms. Found 8 JPA repository interfaces.
+2024-07-12T07:15:04.386+02:00  INFO 34244 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-12T07:15:04.398+02:00  INFO 34244 --- [electric_diary] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-12T07:15:04.399+02:00  INFO 34244 --- [electric_diary] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-07-12T07:15:04.460+02:00  INFO 34244 --- [electric_diary] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-12T07:15:04.460+02:00  INFO 34244 --- [electric_diary] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1414 ms
+2024-07-12T07:15:04.856+02:00  INFO 34244 --- [electric_diary] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-12T07:15:04.877+02:00  INFO 34244 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-12T07:15:05.188+02:00  INFO 34244 --- [electric_diary] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@51cca357
+2024-07-12T07:15:05.190+02:00  INFO 34244 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-12T07:15:06.464+02:00  INFO 34244 --- [electric_diary] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T07:15:06.892+02:00  WARN 34244 --- [electric_diary] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-12T07:15:07.126+02:00  INFO 34244 --- [electric_diary] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@23c0fcf0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@60a4595e, org.springframework.security.web.context.SecurityContextHolderFilter@57f9f387, org.springframework.security.web.header.HeaderWriterFilter@6c4a1980, org.springframework.web.filter.CorsFilter@4a234e1f, org.springframework.security.web.authentication.logout.LogoutFilter@54626326, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6f959640, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@622c658d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3619bc9e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@406cc81b, org.springframework.security.web.access.ExceptionTranslationFilter@311eb725, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4be6531a]
+2024-07-12T07:15:07.455+02:00  INFO 34244 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-07-12T07:15:07.464+02:00  INFO 34244 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Started ElectricDiaryApplication in 4.889 seconds (process running for 5.904)
+2024-07-12T07:15:13.517+02:00  INFO 34244 --- [electric_diary] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-12T07:15:13.517+02:00  INFO 34244 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-12T07:15:13.518+02:00  INFO 34244 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-12T07:15:13.655+02:00  WARN 34244 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /swagger-ui/index.html
+2024-07-12T07:15:13.662+02:00  WARN 34244 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.PageNotFound             : No endpoint GET /swagger-ui/index.html.
+2024-07-12T07:15:24.565+02:00  INFO 34244 --- [electric_diary] [RMI TCP Connection(8)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-07-12T07:15:24.593+02:00  INFO 34244 --- [electric_diary] [RMI TCP Connection(8)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T07:15:24.595+02:00  INFO 34244 --- [electric_diary] [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-12T07:15:24.607+02:00  INFO 34244 --- [electric_diary] [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-12T07:15:32.649+02:00  INFO 31232 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Starting ElectricDiaryApplication using Java 17.0.10 with PID 31232 (C:\Users\htotbagi\git\school-management-system\target\classes started by htotbagi in C:\Users\htotbagi\git\school-management-system)
+2024-07-12T07:15:32.651+02:00  INFO 31232 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-12T07:15:33.574+02:00  INFO 31232 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-12T07:15:33.694+02:00  INFO 31232 --- [electric_diary] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 113 ms. Found 8 JPA repository interfaces.
+2024-07-12T07:15:34.175+02:00  INFO 31232 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-12T07:15:34.184+02:00  INFO 31232 --- [electric_diary] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-12T07:15:34.185+02:00  INFO 31232 --- [electric_diary] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-07-12T07:15:34.250+02:00  INFO 31232 --- [electric_diary] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-12T07:15:34.251+02:00  INFO 31232 --- [electric_diary] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1535 ms
+2024-07-12T07:15:34.688+02:00  INFO 31232 --- [electric_diary] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-12T07:15:34.714+02:00  INFO 31232 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-12T07:15:35.042+02:00  INFO 31232 --- [electric_diary] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5dd3727c
+2024-07-12T07:15:35.044+02:00  INFO 31232 --- [electric_diary] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-12T07:15:36.310+02:00  INFO 31232 --- [electric_diary] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T07:15:36.876+02:00  WARN 31232 --- [electric_diary] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-12T07:15:37.122+02:00  INFO 31232 --- [electric_diary] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7f39bcb5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4e6881e, org.springframework.security.web.context.SecurityContextHolderFilter@3129792a, org.springframework.security.web.header.HeaderWriterFilter@45cce4c2, org.springframework.web.filter.CorsFilter@25192b6e, org.springframework.security.web.authentication.logout.LogoutFilter@2f95ce11, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@f1e8753, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c0becae, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@373c367, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@76d654, org.springframework.security.web.access.ExceptionTranslationFilter@238cac6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@64abb917]
+2024-07-12T07:15:37.495+02:00  INFO 31232 --- [electric_diary] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-07-12T07:15:37.506+02:00  INFO 31232 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Started ElectricDiaryApplication in 5.246 seconds (process running for 6.184)
+2024-07-12T07:15:43.116+02:00  INFO 31232 --- [electric_diary] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-12T07:15:43.116+02:00  INFO 31232 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-12T07:15:43.118+02:00  INFO 31232 --- [electric_diary] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-07-12T07:15:44.187+02:00  INFO 31232 --- [electric_diary] [http-nio-8080-exec-8] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 480 ms
+2024-07-12T07:15:54.700+02:00  INFO 31232 --- [electric_diary] [RMI TCP Connection(6)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-07-12T07:15:54.733+02:00  INFO 31232 --- [electric_diary] [RMI TCP Connection(6)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T07:15:54.735+02:00  INFO 31232 --- [electric_diary] [RMI TCP Connection(6)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-12T07:15:54.744+02:00  INFO 31232 --- [electric_diary] [RMI TCP Connection(6)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-12T07:16:04.075+02:00  INFO 28048 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : Starting ElectricDiaryApplication using Java 17.0.10 with PID 28048 (C:\Users\htotbagi\git\school-management-system\target\classes started by htotbagi in C:\Users\htotbagi\git\school-management-system)
+2024-07-12T07:16:04.077+02:00  INFO 28048 --- [electric_diary] [main] c.e.ElectricDiaryApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-12T07:16:04.809+02:00  WARN 28048 --- [electric_diary] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalStateException: Error processing condition on org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration.propertySourcesPlaceholderConfigurer
+2024-07-12T07:16:04.815+02:00  INFO 28048 --- [electric_diary] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-07-12T07:16:04.829+02:00 ERROR 28048 --- [electric_diary] [main] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.IllegalStateException: Error processing condition on org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration.propertySourcesPlaceholderConfigurer
+	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:60) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:108) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForBeanMethod(ConfigurationClassBeanDefinitionReader.java:183) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:144) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:428) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:289) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:788) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:606) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.5.jar:3.2.5]
+	at com.electric_diary.ElectricDiaryApplication.main(ElectricDiaryApplication.java:12) ~[classes/:na]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.electric_diary.configs.SpringFoxConfig] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@21588809]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.1.6.jar:6.1.6]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:360) ~[spring-core-6.1.6.jar:6.1.6]
+	at org.springframework.util.ReflectionUtils.getUniqueDeclaredMethods(ReflectionUtils.java:417) ~[spring-core-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.lambda$getTypeForFactoryMethod$1(AbstractAutowireCapableBeanFactory.java:750) ~[spring-beans-6.1.6.jar:6.1.6]
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708) ~[na:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryMethod(AbstractAutowireCapableBeanFactory.java:749) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:682) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:653) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1676) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:534) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.collectBeanNamesForType(OnBeanCondition.java:247) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getBeanNamesForType(OnBeanCondition.java:240) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getBeanNamesForType(OnBeanCondition.java:230) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchingBeans(OnBeanCondition.java:183) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchOutcome(OnBeanCondition.java:158) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:47) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	... 17 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: Docket
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3402) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2504) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.1.6.jar:6.1.6]
+	... 33 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Docket
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[na:na]
+	... 37 common frames omitted
+
