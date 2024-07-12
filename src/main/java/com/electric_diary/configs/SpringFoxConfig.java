@@ -18,7 +18,7 @@ public class SpringFoxConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
             .select()
-            .apis(RequestHandlerSelectors.basePackage("com.electric_diary.controllers")) // Specify the package containing your controllers
+            .apis(RequestHandlerSelectors.basePackage("com.electric_diary.controllers"))
             .paths(PathSelectors.any())
             .build()
             .apiInfo(apiInfo());
