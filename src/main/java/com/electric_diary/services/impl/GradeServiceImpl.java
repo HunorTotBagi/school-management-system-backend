@@ -63,8 +63,7 @@ public class GradeServiceImpl implements GradeService {
 		newGrade.setStudent(student);
 		newGrade.setTeacher(teacher);
 		newGrade.setSubject(subject);
-		newGrade.setGrade(gradeDTOBody.getGrade());
-
+		newGrade.setGrade(grade);
 		newGrade.setGradingType(gradingType);
 		gradeRepository.save(newGrade);
 
