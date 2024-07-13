@@ -44,5 +44,4 @@ public class GlobalExceptionHandler {
 	            .collect(Collectors.toList());
 	    return ResponseEntity.badRequest().body(errors);
 	}
-
 }
