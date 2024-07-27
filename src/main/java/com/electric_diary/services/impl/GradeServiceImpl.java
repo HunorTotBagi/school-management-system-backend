@@ -50,10 +50,7 @@ public class GradeServiceImpl implements GradeService {
 		String teacherId = gradeDTOBody.getTeacherId();
 		String subjectId = gradeDTOBody.getSubjectId();
 		GradingType gradingType = gradeDTOBody.getGradingType();
-
 		Integer grade = gradeDTOBody.getGrade();
-		if (grade < 1 || grade > 6)
-			throw new NotFoundException("Student", studentId);
 
 		StudentEntity student = studentRepository.findById(Integer.parseInt(studentId))
 				.orElseThrow(() -> new NotFoundException("Student", studentId));
@@ -66,8 +63,7 @@ public class GradeServiceImpl implements GradeService {
 		newGrade.setStudent(student);
 		newGrade.setTeacher(teacher);
 		newGrade.setSubject(subject);
-		newGrade.setGrade(gradeDTOBody.getGrade());
-
+		newGrade.setGrade(grade);
 		newGrade.setGradingType(gradingType);
 		gradeRepository.save(newGrade);
 
