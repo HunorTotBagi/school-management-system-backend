@@ -14,8 +14,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter @Setter @NoArgsConstructor
 public class ClassEntity {
 	@Id
 	@JsonView(Views.Parent.class)
@@ -33,31 +37,4 @@ public class ClassEntity {
 	@JsonIgnore
 	@OneToMany(mappedBy = "newClass", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<TeacherEntity> teachers = new ArrayList<>();
-
-	public ClassEntity() {
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<StudentEntity> getStudents() {
-		return students;
-	}
-
-	public void setStudents(List<StudentEntity> students) {
-		this.students = students;
-	}
 }

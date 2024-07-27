@@ -15,8 +15,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter @Setter @NoArgsConstructor
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class GradeEntity {
 	@Id
@@ -46,55 +50,4 @@ public class GradeEntity {
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private SubjectEntity subject;
-
-	public GradeEntity() {
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getGrade() {
-		return grade;
-	}
-
-	public void setGrade(Integer grade) {
-		this.grade = grade;
-	}
-
-	public GradingType getGradingType() {
-		return gradingType;
-	}
-
-	public void setGradingType(GradingType gradingType) {
-		this.gradingType = gradingType;
-	}
-
-	public StudentEntity getStudent() {
-		return student;
-	}
-
-	public void setStudent(StudentEntity student) {
-		this.student = student;
-	}
-
-	public TeacherEntity getTeacher() {
-		return teacher;
-	}
-
-	public void setTeacher(TeacherEntity teacher) {
-		this.teacher = teacher;
-	}
-
-	public SubjectEntity getSubject() {
-		return subject;
-	}
-
-	public void setSubject(SubjectEntity subject) {
-		this.subject = subject;
-	}
 }

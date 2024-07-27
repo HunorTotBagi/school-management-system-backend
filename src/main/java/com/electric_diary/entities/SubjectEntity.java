@@ -14,8 +14,12 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter @Setter @NoArgsConstructor
 public class SubjectEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,59 +39,8 @@ public class SubjectEntity {
 	@JsonIgnore
 	@OneToMany(mappedBy = "subject", orphanRemoval = true)
 	private Set<TeacherEntity> teachers = new HashSet<TeacherEntity>();
-
-	public SubjectEntity() {
-	}
-
-	public Integer getId() {
-		return this.id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getWeeklyFund() {
-		return this.weeklyFund;
-	}
-
-	public void setWeeklyFund(Integer weeklyFund) {
-		this.weeklyFund = weeklyFund;
-	}
-
-	public Set<GradeEntity> getGrades() {
-		return grades;
-	}
-
-	public void setGrades(Set<GradeEntity> grades) {
-		this.grades = grades;
-	}
-
-	public Set<StudentEntity> getEnrolledStudents() {
-		return this.enrolledStudents;
-	}
-
-	public void setEnrolledStudents(Set<StudentEntity> enrolledStudents) {
-		this.enrolledStudents = enrolledStudents;
-	}
-
+	
 	public void enrolStudents(StudentEntity student) {
 		enrolledStudents.add(student);
-	}
-
-	public Set<TeacherEntity> getTeachers() {
-		return teachers;
-	}
-
-	public void setTeachers(Set<TeacherEntity> teachers) {
-		this.teachers = teachers;
 	}
 }

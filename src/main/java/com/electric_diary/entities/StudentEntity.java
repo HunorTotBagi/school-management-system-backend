@@ -18,8 +18,12 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter @Setter @NoArgsConstructor
 public class StudentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,64 +56,5 @@ public class StudentEntity {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@NotNull(message = "Parent name must be provided.")
 	@JoinColumn(name = "parent_id", referencedColumnName = "id")
-	private ParentEntity parent; 
-
-	public StudentEntity() {
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return this.firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return this.lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public ClassEntity getNewClass() {
-		return newClass;
-	}
-
-	public void setNewClass(ClassEntity newClass) {
-		this.newClass = newClass;
-	}
-
-	public Set<GradeEntity> getGrades() {
-		return grades;
-	}
-
-	public void setGrades(Set<GradeEntity> grades) {
-		this.grades = grades;
-	}
-
-	public Set<SubjectEntity> getSubjects() {
-		return this.subjects;
-	}
-
-	public void setSubjects(Set<SubjectEntity> subjects) {
-		this.subjects = subjects;
-	}
-
-	public ParentEntity getParent() {
-		return parent;
-	}
-
-	public void setParent(ParentEntity parent) {
-		this.parent = parent;
-	}
+	private ParentEntity parent;
 }
