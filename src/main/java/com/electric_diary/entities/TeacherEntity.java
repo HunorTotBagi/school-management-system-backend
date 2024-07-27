@@ -15,8 +15,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter @Setter @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TeacherEntity {
 	@Id
@@ -44,55 +48,4 @@ public class TeacherEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@NotNull(message = "Class must be provided.")
 	private ClassEntity newClass;
-
-	public TeacherEntity() {
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Set<GradeEntity> getGrades() {
-		return grades;
-	}
-
-	public void setGrades(Set<GradeEntity> grades) {
-		this.grades = grades;
-	}
-
-	public SubjectEntity getSubject() {
-		return subject;
-	}
-
-	public void setSubject(SubjectEntity subject) {
-		this.subject = subject;
-	}
-
-	public ClassEntity getNewClass() {
-		return newClass;
-	}
-
-	public void setNewClass(ClassEntity newClass) {
-		this.newClass = newClass;
-	}
 }
