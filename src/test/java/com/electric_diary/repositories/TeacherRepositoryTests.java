@@ -24,17 +24,12 @@ public class TeacherRepositoryTests {
 	public void TeacherRepository_SaveAll_ReturnSavedTeacher() {
 		// Arrange
 		TeacherEntity teacher = TeacherEntity.builder()
-				.firstName("Milan")
-				.lastName("Čeliković")
-				.build();
-
-		TeacherEntity savedTeacher = TeacherEntity.builder()
 				.id(1)
 				.firstName("Milan")
 				.lastName("Čeliković")
 				.build();
 		
-		Mockito.when(teacherRepository.save(teacher)).thenReturn(savedTeacher);
+		Mockito.when(teacherRepository.save(teacher)).thenReturn(teacher);
 
 		// Act
 		TeacherEntity result = teacherRepository.save(teacher);

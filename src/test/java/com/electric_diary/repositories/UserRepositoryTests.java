@@ -24,13 +24,6 @@ public class UserRepositoryTests {
 	public void UserRepository_SaveAll_ReturnSavedUser() {
 		// Arrange
 		UserEntity user = UserEntity.builder()
-				.name("Clark")
-				.lastName("Kent")
-				.password("ver7strong")
-				.email("clark.kent@gmail.com")
-				.build();
-
-		UserEntity savedUser = UserEntity.builder()
 				.id(1)
 				.name("Clark")
 				.lastName("Kent")
@@ -38,7 +31,7 @@ public class UserRepositoryTests {
 				.email("clark.kent@gmail.com")
 				.build();
 		
-		Mockito.when(userRepository.save(user)).thenReturn(savedUser);
+		Mockito.when(userRepository.save(user)).thenReturn(user);
 
 		// Act
 		UserEntity result = userRepository.save(user);
@@ -88,13 +81,13 @@ public class UserRepositoryTests {
 				.email("elon7.musk@tesla.com")
 				.build();
 	    
-	    Mockito.when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
-	    
-	    // Act
-	    Optional<UserEntity> result = userRepository.findById(user.getId());
-	    
-	    // Assert
-	    Assertions.assertThat(result).isPresent();
-	    Assertions.assertThat(result.get()).isEqualTo(user);
+		Mockito.when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
+
+		// Act
+		Optional<UserEntity> result = userRepository.findById(user.getId());
+
+		// Assert
+		Assertions.assertThat(result).isPresent();
+		Assertions.assertThat(result.get()).isEqualTo(user);
 	}
 }

@@ -24,17 +24,12 @@ public class SubjectRepositoryTests {
 	public void SubjectRepository_SaveAll_ReturnSavedSubject() {
 		// Arrange
 		SubjectEntity subject = SubjectEntity.builder()
-				.name("Mathetmatics")
-				.weeklyFund(50)
-				.build();
-
-		SubjectEntity savedSubject = SubjectEntity.builder()
 				.id(1)
 				.name("Mathetmatics")
 				.weeklyFund(50)
 				.build();
 		
-		Mockito.when(subjectRepository.save(subject)).thenReturn(savedSubject);
+		Mockito.when(subjectRepository.save(subject)).thenReturn(subject);
 
 		// Act
 		SubjectEntity result = subjectRepository.save(subject);

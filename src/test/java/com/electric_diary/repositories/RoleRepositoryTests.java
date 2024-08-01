@@ -24,15 +24,11 @@ public class RoleRepositoryTests {
 	public void RoleRepository_SaveAll_ReturnSavedRole() {
 		// Arrange
 		RoleEntity role = RoleEntity.builder()
-				.name("TEACHER")
-				.build();
-
-		RoleEntity savedRole = RoleEntity.builder()
 				.id(1)
 				.name("TEACHER")
 				.build();
 		
-		Mockito.when(roleRepository.save(role)).thenReturn(savedRole);
+		Mockito.when(roleRepository.save(role)).thenReturn(role);
 
 		// Act
 		RoleEntity result = roleRepository.save(role);

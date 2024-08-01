@@ -24,19 +24,13 @@ public class ParentRepositoryTests {
     public void ParentRepository_SaveAll_ReturnSavedParent() {
         // Arrange
     	ParentEntity parent = ParentEntity.builder()
-                .firstName("Ana")
-                .lastName("Nikolic")
-                .email("ana.nikolic@gmail.com")
-                .build();
-
-    	ParentEntity savedParent = ParentEntity.builder()
-                .id(1)
+    			.id(1)
                 .firstName("Ana")
                 .lastName("Nikolic")
                 .email("ana.nikolic@gmail.com")
                 .build();
         
-        Mockito.when(parentRepository.save(parent)).thenReturn(savedParent);
+        Mockito.when(parentRepository.save(parent)).thenReturn(parent);
 
         // Act
         ParentEntity result = parentRepository.save(parent);

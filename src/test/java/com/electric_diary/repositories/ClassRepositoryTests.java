@@ -24,15 +24,11 @@ public class ClassRepositoryTests {
 	public void ClassRepository_SaveAll_ReturnSavedClass() {
 		// Arrange
 		ClassEntity newClass = ClassEntity.builder()
-				.name("8.A")
-				.build();
-
-		ClassEntity savedClass = ClassEntity.builder()
 				.id(1)
 				.name("8.A")
 				.build();
 		
-		Mockito.when(classRepository.save(newClass)).thenReturn(savedClass);
+		Mockito.when(classRepository.save(newClass)).thenReturn(newClass);
 
 		// Act
 		ClassEntity result = classRepository.save(newClass);

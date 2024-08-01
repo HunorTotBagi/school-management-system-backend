@@ -25,17 +25,12 @@ public class GradeRepositoryTests {
 	public void GradeRepository_SaveAll_ReturnSavedGrade() {
 		// Arrange
 		GradeEntity grade = GradeEntity.builder()
-				.grade(5)
-				.gradingType(GradingType.HOMEWORK)
-				.build();
-
-		GradeEntity savedGrade = GradeEntity.builder()
 				.id(1)
 				.grade(5)
 				.gradingType(GradingType.HOMEWORK)
 				.build();
 		
-		Mockito.when(gradeRepository.save(grade)).thenReturn(savedGrade);
+		Mockito.when(gradeRepository.save(grade)).thenReturn(grade);
 
 		// Act
 		GradeEntity result = gradeRepository.save(grade);

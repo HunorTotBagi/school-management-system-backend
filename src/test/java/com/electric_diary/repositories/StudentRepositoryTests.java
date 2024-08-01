@@ -27,19 +27,13 @@ public class StudentRepositoryTests {
 		ClassEntity newClass = new ClassEntity();
 
 		StudentEntity student = StudentEntity.builder()
-				.firstName("Nikola")
-				.lastName("Vetnić")
-				.newClass(newClass)
-				.build();
-
-		StudentEntity savedStudent = StudentEntity.builder()
 				.id(1)
 				.firstName("Nikola")
 				.lastName("Vetnić")
 				.newClass(newClass)
 				.build();
 		
-		Mockito.when(studentRepository.save(student)).thenReturn(savedStudent);
+		Mockito.when(studentRepository.save(student)).thenReturn(student);
 
 		// Act
 		StudentEntity result = studentRepository.save(student);
