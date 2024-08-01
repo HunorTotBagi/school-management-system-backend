@@ -1,7 +1,6 @@
 package com.electric_diary.repositories;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -17,24 +16,18 @@ public class RoleRepositoryTests {
 	@Mock
 	private RoleRepository roleRepository;
 
-	private RoleEntity role;
-	private RoleEntity savedRole;
-
-	@BeforeEach
-	public void setUp() {
-		role = RoleEntity.builder()
-				.name("TEACHER")
-				.build();
-
-		savedRole = RoleEntity.builder()
-				.id(1)
-				.name("TEACHER")
-				.build();
-	}
-
 	@Test
 	public void RoleRepository_SaveAll_ReturnSavedRole() {
 		// Arrange
+		RoleEntity role = RoleEntity.builder()
+				.name("TEACHER")
+				.build();
+
+		RoleEntity savedRole = RoleEntity.builder()
+				.id(1)
+				.name("TEACHER")
+				.build();
+		
 		Mockito.when(roleRepository.save(role)).thenReturn(savedRole);
 
 		// Act

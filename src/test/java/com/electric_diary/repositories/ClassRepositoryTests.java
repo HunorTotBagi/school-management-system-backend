@@ -1,7 +1,6 @@
 package com.electric_diary.repositories;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -17,24 +16,18 @@ public class ClassRepositoryTests {
 	@Mock
 	private ClassRepository classRepository;
 
-	private ClassEntity newClass;
-	private ClassEntity savedClass;
-
-	@BeforeEach
-	public void setUp() {
-		newClass = ClassEntity.builder()
-				.name("8.A")
-				.build();
-
-		savedClass = ClassEntity.builder()
-				.id(1)
-				.name("8.A")
-				.build();
-	}
-
 	@Test
 	public void ClassRepository_SaveAll_ReturnSavedClass() {
 		// Arrange
+		ClassEntity newClass = ClassEntity.builder()
+				.name("8.A")
+				.build();
+
+		ClassEntity savedClass = ClassEntity.builder()
+				.id(1)
+				.name("8.A")
+				.build();
+		
 		Mockito.when(classRepository.save(newClass)).thenReturn(savedClass);
 
 		// Act

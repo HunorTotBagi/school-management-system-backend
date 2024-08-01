@@ -1,7 +1,6 @@
 package com.electric_diary.repositories;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -17,26 +16,20 @@ public class SubjectRepositoryTests {
 	@Mock
 	private SubjectRepository subjectRepository;
 
-	private SubjectEntity subject;
-	private SubjectEntity savedSubject;
-
-	@BeforeEach
-	public void setUp() {
-		subject = SubjectEntity.builder()
+	@Test
+	public void SubjectRepository_SaveAll_ReturnSavedSubject() {
+		// Arrange
+		SubjectEntity subject = SubjectEntity.builder()
 				.name("Mathetmatics")
 				.weeklyFund(50)
 				.build();
 
-		savedSubject = SubjectEntity.builder()
+		SubjectEntity savedSubject = SubjectEntity.builder()
 				.id(1)
 				.name("Mathetmatics")
 				.weeklyFund(50)
 				.build();
-	}
-
-	@Test
-	public void SubjectRepository_SaveAll_ReturnSavedSubject() {
-		// Arrange
+		
 		Mockito.when(subjectRepository.save(subject)).thenReturn(savedSubject);
 
 		// Act

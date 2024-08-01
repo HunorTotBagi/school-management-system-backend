@@ -1,7 +1,6 @@
 package com.electric_diary.repositories;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -18,27 +17,20 @@ public class GradeRepositoryTests {
 	@Mock
 	private GradeRepository gradeRepository;
 
-	private GradeEntity grade;
-	private GradeEntity savedGrade;
-
-	@BeforeEach
-	public void setUp() {
-		
-		grade = GradeEntity.builder()
+	@Test
+	public void GradeRepository_SaveAll_ReturnSavedGrade() {
+		// Arrange
+		GradeEntity grade = GradeEntity.builder()
 				.grade(5)
 				.gradingType(GradingType.HOMEWORK)
 				.build();
 
-		savedGrade = GradeEntity.builder()
+		GradeEntity savedGrade = GradeEntity.builder()
 				.id(1)
 				.grade(5)
 				.gradingType(GradingType.HOMEWORK)
 				.build();
-	}
-
-	@Test
-	public void GradeRepository_SaveAll_ReturnSavedGrade() {
-		// Arrange
+		
 		Mockito.when(gradeRepository.save(grade)).thenReturn(savedGrade);
 
 		// Act
