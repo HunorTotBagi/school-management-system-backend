@@ -32,18 +32,14 @@ public class TeacherServiceImpl implements TeacherService {
 
 	@Override
 	public TeacherEntity createTeacher(TeacherDTO teacherDTOBody, BindingResult result) {
-		String subjectId = teacherDTOBody.getSubjectId();
 		String classId = teacherDTOBody.getClassId();
 
-		SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
-				.orElseThrow(() -> new NotFoundException("Subject", subjectId));
 		ClassEntity newClass = classRepository.findById(Integer.parseInt(classId))
 				.orElseThrow(() -> new NotFoundException("Class", classId));
 
 		TeacherEntity teacher = new TeacherEntity();
 		teacher.setFirstName(teacherDTOBody.getFirstName());
 		teacher.setLastName(teacherDTOBody.getLastName());
-		teacher.setSubject(subject);
 		teacher.setNewClass(newClass);
 		teacherRepository.save(teacher);
 		return teacher;
@@ -97,21 +93,19 @@ public class TeacherServiceImpl implements TeacherService {
 	}
 
 	@Override
-	public TeacherEntity teacherTeachesSubjectToClass(TeacherDTO teacherDTOBody) {
-		String teacherId = teacherDTOBody.getTeacherId();
-		String subjectId = teacherDTOBody.getSubjectId();
-		String classId = teacherDTOBody.getClassId();
+	public TeacherEntity teacherTeachesSubject(TeacherDTO teacherDTOBody) {
+	    String teacherId = teacherDTOBody.getTeacherId();
+	    String subjectId = teacherDTOBody.getSubjectId();
 
-		SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
-				.orElseThrow(() -> new NotFoundException("Subject", subjectId));
-		ClassEntity newClass = classRepository.findById(Integer.parseInt(classId))
-				.orElseThrow(() -> new NotFoundException("Class", classId));
+	    SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
+	            .orElseThrow(() -> new NotFoundException("Subject", subjectId));
 
-		TeacherEntity teacher = teacherRepository.findById(Integer.parseInt(teacherId))
-				.orElseThrow(() -> new NotFoundException("Teacher", teacherId));
-		teacher.setSubject(subject);
-		teacher.setNewClass(newClass);
-		teacherRepository.save(teacher);
-		return teacher;
+	    TeacherEntity teacher = teacherRepository.findById(Integer.parseInt(teacherId))
+	            .orElseThrow(() -> new NotFoundException("Teacher", teacherId));
+
+	    teacher.addSubjects(subject);
+	    teacherRepository.save(teacher);
+	    return teacher;
 	}
+
 }

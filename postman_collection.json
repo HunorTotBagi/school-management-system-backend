@@ -31,7 +31,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"random\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"8.A\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -949,7 +949,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Random\",\r\n    \"lastName\" : \"Randomovic\",\r\n    \"classId\" : \"53\",\r\n    \"parentId\" : \"202\"\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Ivan\",\r\n    \"lastName\" : \"Tančik\",\r\n    \"classId\" : \"1\",\r\n    \"parentId\" : \"1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1365,7 +1365,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/subjects/152/students/102",
+							"raw": "http://localhost:8080/api/v1/subjects/1/students/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1375,9 +1375,9 @@
 								"api",
 								"v1",
 								"subjects",
-								"152",
+								"1",
 								"students",
-								"102"
+								"1"
 							]
 						}
 					},
@@ -1447,7 +1447,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Milan\",\r\n    \"lastName\" : \"Čeliković\",\r\n    \"classId\" : \"53\",\r\n    \"subjectId\" : \"102\"\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Slavica\",\r\n    \"lastName\" : \"Kordic\",\r\n    \"classId\" : \"1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1590,7 +1590,7 @@
 					"response": []
 				},
 				{
-					"name": "/api/v1/teachers/teachers/teaches/Subject/Class",
+					"name": "/api/v1/teachers/teachers/teaches/Subject",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -1611,7 +1611,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"teacherId\" : \"52\",\r\n    \"subjectId\" : \"52\",\r\n    \"classId\" : \"1\"\r\n}",
+							"raw": "{\r\n    \"teacherId\" : \"2\",\r\n    \"subjectId\" : \"2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1619,7 +1619,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/teachers/teaches/Subject/Class",
+							"raw": "http://localhost:8080/api/v1/teachers/teaches/Subject",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1630,8 +1630,7 @@
 								"v1",
 								"teachers",
 								"teaches",
-								"Subject",
-								"Class"
+								"Subject"
 							]
 						}
 					},

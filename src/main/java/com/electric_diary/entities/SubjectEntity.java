@@ -21,26 +21,30 @@ import lombok.Setter;
 @Entity
 @Getter @Setter @NoArgsConstructor
 public class SubjectEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	private String name;
-	private Integer weeklyFund;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    private String name;
+    private Integer weeklyFund;
 
-	@NotNull
-	@JsonIgnore
-	@OneToMany(mappedBy = "subject")
-	private Set<GradeEntity> grades = new HashSet<GradeEntity>();
+    @NotNull
+    @JsonIgnore
+    @OneToMany(mappedBy = "subject")
+    private Set<GradeEntity> grades = new HashSet<GradeEntity>();
 
-	@ManyToMany
-	@JoinTable(name = "student_enrolled", joinColumns = @JoinColumn(name = "subject_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
-	private Set<StudentEntity> enrolledStudents = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "student_enrolled", joinColumns = @JoinColumn(name = "subject_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
+    private Set<StudentEntity> enrolledStudents = new HashSet<>();
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "subject", orphanRemoval = true)
-	private Set<TeacherEntity> teachers = new HashSet<TeacherEntity>();
-	
-	public void enrolStudents(StudentEntity student) {
-		enrolledStudents.add(student);
-	}
+    @ManyToMany(mappedBy = "subjects")
+    private Set<TeacherEntity> teachers = new HashSet<>();
+
+    public void enrolStudents(StudentEntity student) {
+        enrolledStudents.add(student);
+    }
+
+    public void addTeacher(TeacherEntity teacher) {
+        teachers.add(teacher);
+        teacher.getSubjects().add(this);
+    }
 }
