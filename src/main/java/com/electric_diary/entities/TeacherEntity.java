@@ -23,36 +23,38 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Getter
+@Setter
+@NoArgsConstructor
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class TeacherEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
-    @NotNull(message = "First name must be provided.")
-    @Size(min = 2, max = 30, message = "First name must be between {min} and {max} characters long.")
-    private String firstName;
+	@NotNull(message = "First name must be provided.")
+	@Size(min = 2, max = 30, message = "First name must be between {min} and {max} characters long.")
+	private String firstName;
 
-    @NotNull(message = "Last name must be provided.")
-    @Size(min = 2, max = 30, message = "Last name must be between {min} and {max} characters long.")
-    private String lastName;
+	@NotNull(message = "Last name must be provided.")
+	@Size(min = 2, max = 30, message = "Last name must be between {min} and {max} characters long.")
+	private String lastName;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "teacher")
-    private Set<GradeEntity> grades = new HashSet<GradeEntity>();
+	@JsonIgnore
+	@OneToMany(mappedBy = "teacher")
+	private Set<GradeEntity> grades = new HashSet<GradeEntity>();
 
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "teacher_subject", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    private Set<SubjectEntity> subjects = new HashSet<>();
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "teacher_subject", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
+	private Set<SubjectEntity> subjects = new HashSet<>();
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    private ClassEntity newClass;
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	private ClassEntity newClass;
 
-    public void addSubjects(SubjectEntity subject) {
-        subjects.add(subject);
-        subject.getTeachers().add(this);
-    }
+	public void addSubjects(SubjectEntity subject) {
+		subjects.add(subject);
+		subject.getTeachers().add(this);
+	}
 }

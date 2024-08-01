@@ -19,7 +19,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class ClassEntity {
 	@Id
 	@JsonView(Views.Parent.class)
@@ -33,7 +35,7 @@ public class ClassEntity {
 	@JsonView(Views.Parent.class)
 	@OneToMany(mappedBy = "newClass", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	private List<StudentEntity> students = new ArrayList<>();
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "newClass", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<TeacherEntity> teachers = new ArrayList<>();

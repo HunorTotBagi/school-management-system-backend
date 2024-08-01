@@ -22,8 +22,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @JsonView(Views.Parent.class)
-@Getter @Setter @NoArgsConstructor
 public class ParentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
