@@ -1,5 +1,8 @@
 package com.electric_diary.repositories;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,5 +41,31 @@ public class SubjectRepositoryTests {
 		// Assert
 		Assertions.assertThat(result).isNotNull();
 		Assertions.assertThat(result.getId()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void SubjectRepository_FindAll_ReturnMoreThanOneSubject() {
+	    // Arrange
+		SubjectEntity firstSubject = SubjectEntity.builder()
+				.name("Mathetmatics")
+				.weeklyFund(50)
+				.build();
+		
+		SubjectEntity secondSubject = SubjectEntity.builder()
+				.name("Backend")
+				.weeklyFund(100)
+				.build();
+	    
+	    List<SubjectEntity> subjectList = Arrays.asList(firstSubject, secondSubject);
+
+	    Mockito.when(subjectRepository.findAll()).thenReturn(subjectList);
+	    
+	    // Act
+	    Iterable<SubjectEntity> result = subjectRepository.findAll();
+	    
+	    // Assert
+	    Assertions.assertThat(result).isNotNull();
+	    Assertions.assertThat(result).hasSize(2);
+	    Assertions.assertThat(result).containsExactlyInAnyOrder(firstSubject, secondSubject);
 	}
 }

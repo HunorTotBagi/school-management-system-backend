@@ -1,5 +1,8 @@
 package com.electric_diary.repositories;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,4 +44,32 @@ public class ParentRepositoryTests {
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result.getId()).isGreaterThan(0);
     }
+    
+	@Test
+	public void ParentRepository_FindAll_ReturnMoreThanOneParent() {
+	    // Arrange
+    	ParentEntity firstParent = ParentEntity.builder()
+                .firstName("Ana")
+                .lastName("Nikolic")
+                .email("ana.nikolic@gmail.com")
+                .build();
+	    
+    	ParentEntity secondParent = ParentEntity.builder()
+                .firstName("Bogdan")
+                .lastName("Ivanović")
+                .email("bogdan.ivanovic@gmail.com")
+                .build();
+	    
+	    List<ParentEntity> parentList = Arrays.asList(firstParent, secondParent);
+
+	    Mockito.when(parentRepository.findAll()).thenReturn(parentList);
+	    
+	    // Act
+	    Iterable<ParentEntity> result = parentRepository.findAll();
+	    
+	    // Assert
+	    Assertions.assertThat(result).isNotNull();
+	    Assertions.assertThat(result).hasSize(2);
+	    Assertions.assertThat(result).containsExactlyInAnyOrder(firstParent, secondParent);
+	}
 }

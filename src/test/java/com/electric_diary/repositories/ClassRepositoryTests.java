@@ -1,5 +1,8 @@
 package com.electric_diary.repositories;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,5 +39,29 @@ public class ClassRepositoryTests {
 		// Assert
 		Assertions.assertThat(result).isNotNull();
 		Assertions.assertThat(result.getId()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void ClassRepository_FindAll_ReturnMoreThanOneClass() {
+	    // Arrange
+	    ClassEntity firstClass = ClassEntity.builder()
+	            .name("2.C")
+	            .build();
+	    
+	    ClassEntity secondClass = ClassEntity.builder()
+	            .name("5.D")
+	            .build();
+	    
+	    List<ClassEntity> classList = Arrays.asList(firstClass, secondClass);
+
+	    Mockito.when(classRepository.findAll()).thenReturn(classList);
+	    
+	    // Act
+	    Iterable<ClassEntity> result = classRepository.findAll();
+	    
+	    // Assert
+	    Assertions.assertThat(result).isNotNull();
+	    Assertions.assertThat(result).hasSize(2);
+	    Assertions.assertThat(result).containsExactlyInAnyOrder(firstClass, secondClass);
 	}
 }

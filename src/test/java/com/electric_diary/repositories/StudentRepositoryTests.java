@@ -1,5 +1,8 @@
 package com.electric_diary.repositories;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,5 +46,36 @@ public class StudentRepositoryTests {
 		// Assert
 		Assertions.assertThat(result).isNotNull();
 		Assertions.assertThat(result.getId()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void StudentRepository_FindAll_ReturnMoreThanOneStudent() {
+	    // Arrange
+		ClassEntity firstNewClass = new ClassEntity();
+		ClassEntity secondNewClass = new ClassEntity();
+
+		StudentEntity firstStudent = StudentEntity.builder()
+				.firstName("Nikola")
+				.lastName("Vetnić")
+				.newClass(firstNewClass)
+				.build();
+		
+		StudentEntity secondStudent = StudentEntity.builder()
+				.firstName("Nikola")
+				.lastName("Dmitrašinović")
+				.newClass(secondNewClass)
+				.build();
+	    
+	    List<StudentEntity> studentList = Arrays.asList(firstStudent, secondStudent);
+
+	    Mockito.when(studentRepository.findAll()).thenReturn(studentList);
+	    
+	    // Act
+	    Iterable<StudentEntity> result = studentRepository.findAll();
+	    
+	    // Assert
+	    Assertions.assertThat(result).isNotNull();
+	    Assertions.assertThat(result).hasSize(2);
+	    Assertions.assertThat(result).containsExactlyInAnyOrder(firstStudent, secondStudent);
 	}
 }

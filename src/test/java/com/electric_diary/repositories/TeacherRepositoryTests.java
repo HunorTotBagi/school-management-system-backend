@@ -1,5 +1,8 @@
 package com.electric_diary.repositories;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,5 +41,31 @@ public class TeacherRepositoryTests {
 		// Assert
 		Assertions.assertThat(result).isNotNull();
 		Assertions.assertThat(result.getId()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void TeacherRepository_FindAll_ReturnMoreThanOneTeacher() {
+	    // Arrange
+		TeacherEntity firstTeacher = TeacherEntity.builder()
+				.firstName("Milan")
+				.lastName("Čeliković")
+				.build();
+		
+		TeacherEntity secondTeacher = TeacherEntity.builder()
+				.firstName("Slavica")
+				.lastName("Kordić")
+				.build();
+	    
+	    List<TeacherEntity> teacherList = Arrays.asList(firstTeacher, secondTeacher);
+
+	    Mockito.when(teacherRepository.findAll()).thenReturn(teacherList);
+	    
+	    // Act
+	    Iterable<TeacherEntity> result = teacherRepository.findAll();
+	    
+	    // Assert
+	    Assertions.assertThat(result).isNotNull();
+	    Assertions.assertThat(result).hasSize(2);
+	    Assertions.assertThat(result).containsExactlyInAnyOrder(firstTeacher, secondTeacher);
 	}
 }

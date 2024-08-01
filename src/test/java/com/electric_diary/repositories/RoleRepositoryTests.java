@@ -1,5 +1,8 @@
 package com.electric_diary.repositories;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,5 +39,29 @@ public class RoleRepositoryTests {
 		// Assert
 		Assertions.assertThat(result).isNotNull();
 		Assertions.assertThat(result.getId()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void RoleRepository_FindAll_ReturnMoreThanOneRole() {
+	    // Arrange
+		RoleEntity firstRole = RoleEntity.builder()
+				.name("TEACHER")
+				.build();
+	    
+		RoleEntity secondRole = RoleEntity.builder()
+				.name("ADMIN")
+				.build();
+	    
+	    List<RoleEntity> roleList = Arrays.asList(firstRole, secondRole);
+
+	    Mockito.when(roleRepository.findAll()).thenReturn(roleList);
+	    
+	    // Act
+	    Iterable<RoleEntity> result = roleRepository.findAll();
+	    
+	    // Assert
+	    Assertions.assertThat(result).isNotNull();
+	    Assertions.assertThat(result).hasSize(2);
+	    Assertions.assertThat(result).containsExactlyInAnyOrder(firstRole, secondRole);
 	}
 }
