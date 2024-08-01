@@ -33,7 +33,6 @@ public class RoleServiceImpl implements RoleService {
 		RoleEntity role = new RoleEntity();
 		role.setName(roleBody.getName());
 		roleRepository.save(role);
-
 		return role;
 	}
 
@@ -63,14 +62,13 @@ public class RoleServiceImpl implements RoleService {
 		}
 
 		Optional<RoleEntity> optionalRole = roleRepository.findById(roleId);
-		if (optionalRole.isPresent()) {
-			RoleEntity role = optionalRole.get();
-			role.setName(roleBody.getName());
-			roleRepository.save(role);
-			return role;
-		} else {
+		if (!optionalRole.isPresent())
 			throw new NotFoundException("Role", id);
-		}
+		
+		RoleEntity role = optionalRole.get();
+		role.setName(roleBody.getName());
+		roleRepository.save(role);
+		return role;
 	}
 
 	@Override
@@ -83,12 +81,12 @@ public class RoleServiceImpl implements RoleService {
 		}
 
 		Optional<RoleEntity> optionalRole = roleRepository.findById(roleId);
-		if (optionalRole.isPresent()) {
-			RoleEntity role = optionalRole.get();
-			roleRepository.delete(role);
-			return role;
-		} else {
+		
+		if (!optionalRole.isPresent())
 			throw new NotFoundException("Role", id);
-		}
+		
+		RoleEntity role = optionalRole.get();
+		roleRepository.delete(role);
+		return role;
 	}
 }

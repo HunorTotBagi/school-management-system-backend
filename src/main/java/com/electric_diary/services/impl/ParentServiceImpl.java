@@ -67,16 +67,16 @@ public class ParentServiceImpl implements ParentService {
 		}
 
 		Optional<ParentEntity> optionalParent = parentRepository.findById(parentId);
-		if (optionalParent.isPresent()) {
-			ParentEntity parent = optionalParent.get();
-			parent.setFirstName(parentBody.getFirstName());
-			parent.setLastName(parentBody.getLastName());
-			parent.setEmail(parentBody.getEmail());
-			parentRepository.save(parent);
-			return parent;
-		} else {
+		
+		if (!optionalParent.isPresent())
 			throw new NotFoundException("Parent", id);
-		}
+		
+		ParentEntity parent = optionalParent.get();
+		parent.setFirstName(parentBody.getFirstName());
+		parent.setLastName(parentBody.getLastName());
+		parent.setEmail(parentBody.getEmail());
+		parentRepository.save(parent);
+		return parent;
 	}
 
 	@Override
@@ -89,13 +89,13 @@ public class ParentServiceImpl implements ParentService {
 		}
 
 		Optional<ParentEntity> optionalParent = parentRepository.findById(parentId);
-		if (optionalParent.isPresent()) {
-			ParentEntity parent = optionalParent.get();
-			parentRepository.delete(parent);
-			return parent;
-		} else {
+		
+		if (!optionalParent.isPresent())
 			throw new NotFoundException("Parent", id);
-		}
+		
+		ParentEntity parent = optionalParent.get();
+		parentRepository.delete(parent);
+		return parent;
 	}
 
 	@Override

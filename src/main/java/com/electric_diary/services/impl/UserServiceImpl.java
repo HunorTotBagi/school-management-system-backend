@@ -64,18 +64,17 @@ public class UserServiceImpl implements UserService {
 		}
 
 		Optional<UserEntity> optionalUser = userRepository.findById(userId);
-		if (optionalUser.isPresent()) {
-			UserEntity user = optionalUser.get();
-			user.setName(userBody.getName());
-			user.setLastName(userBody.getLastName());
-			user.setPassword(userBody.getPassword());
-			user.setEmail(userBody.getEmail());
-			user.setRole(userBody.getRole());
-			userRepository.save(user);
-			return user;
-		} else {
+		if (!optionalUser.isPresent())
 			throw new NotFoundException("User", id);
-		}
+
+		UserEntity user = optionalUser.get();
+		user.setName(userBody.getName());
+		user.setLastName(userBody.getLastName());
+		user.setPassword(userBody.getPassword());
+		user.setEmail(userBody.getEmail());
+		user.setRole(userBody.getRole());
+		userRepository.save(user);
+		return user;
 	}
 
 	@Override
@@ -88,12 +87,11 @@ public class UserServiceImpl implements UserService {
 		}
 
 		Optional<UserEntity> optionalUser = userRepository.findById(userId);
-		if (optionalUser.isPresent()) {
-			UserEntity user = optionalUser.get();
-			userRepository.delete(user);
-			return user;
-		} else {
+		if (!optionalUser.isPresent())
 			throw new NotFoundException("User", id);
-		}
+		
+		UserEntity user = optionalUser.get();
+		userRepository.delete(user);
+		return user;
 	}
 }

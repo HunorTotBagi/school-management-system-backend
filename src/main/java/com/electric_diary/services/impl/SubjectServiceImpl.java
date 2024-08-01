@@ -66,15 +66,15 @@ public class SubjectServiceImpl implements SubjectService {
 		}
 
 		Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
-		if (optionalSubject.isPresent()) {
-			SubjectEntity subject = optionalSubject.get();
-			subject.setName(subjectBody.getName());
-			subject.setWeeklyFund(subjectBody.getWeeklyFund());
-			subjectRepository.save(subject);
-			return subject;
-		} else {
+		
+		if (!optionalSubject.isPresent())
 			throw new NotFoundException("Subject", id);
-		}
+			
+		SubjectEntity subject = optionalSubject.get();
+		subject.setName(subjectBody.getName());
+		subject.setWeeklyFund(subjectBody.getWeeklyFund());
+		subjectRepository.save(subject);
+		return subject;
 	}
 
 	@Override
@@ -87,13 +87,13 @@ public class SubjectServiceImpl implements SubjectService {
 		}
 
 		Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
-		if (optionalSubject.isPresent()) {
-			SubjectEntity subject = optionalSubject.get();
-			subjectRepository.delete(subject);
-			return subject;
-		} else {
+		
+		if (!optionalSubject.isPresent())
 			throw new NotFoundException("Subject", id);
-		}
+
+		SubjectEntity subject = optionalSubject.get();
+		subjectRepository.delete(subject);
+		return subject;
 	}
 
 	@Override
