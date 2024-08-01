@@ -80,17 +80,17 @@ public class StudentServiceImpl implements StudentService {
 				.orElseThrow(() -> new NotFoundException("Parent", parentId));
 
 		Optional<StudentEntity> optionalStudent = studentRepository.findById(Integer.parseInt(id));
-		if (optionalStudent.isPresent()) {
-			StudentEntity student = optionalStudent.get();
-			student.setFirstName(studentDTOBody.getFirstName());
-			student.setLastName(studentDTOBody.getLastName());
-			student.setNewClass(newClass);
-			student.setParent(parent);
-			studentRepository.save(student);
-			return student;
-		} else {
+		
+		if (!optionalStudent.isPresent())
 			throw new NotFoundException("Student", id);
-		}
+		
+		StudentEntity student = optionalStudent.get();
+		student.setFirstName(studentDTOBody.getFirstName());
+		student.setLastName(studentDTOBody.getLastName());
+		student.setNewClass(newClass);
+		student.setParent(parent);
+		studentRepository.save(student);
+		return student;
 	}
 
 	@Override
@@ -103,12 +103,12 @@ public class StudentServiceImpl implements StudentService {
 		}
 
 		Optional<StudentEntity> optionalStudent = studentRepository.findById(studentId);
-		if (optionalStudent.isPresent()) {
-			StudentEntity student = optionalStudent.get();
-			studentRepository.delete(student);
-			return student;
-		} else {
+		
+		if (!optionalStudent.isPresent())
 			throw new NotFoundException("Student", id);
-		}
+
+		StudentEntity student = optionalStudent.get();
+		studentRepository.delete(student);
+		return student;
 	}
 }

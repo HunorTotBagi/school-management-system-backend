@@ -71,6 +71,7 @@ public class TeacherServiceImpl implements TeacherService {
 
 		TeacherEntity teacher = teacherRepository.findById(teacherId)
 				.orElseThrow(() -> new NotFoundException("Teacher", id));
+		
 		teacher.setFirstName(teacherBody.getFirstName());
 		teacher.setLastName(teacherBody.getLastName());
 		teacherRepository.save(teacher);
@@ -88,6 +89,7 @@ public class TeacherServiceImpl implements TeacherService {
 
 		TeacherEntity teacher = teacherRepository.findById(teacherId)
 				.orElseThrow(() -> new NotFoundException("Teacher", id));
+		
 		teacherRepository.delete(teacher);
 		return teacher;
 	}

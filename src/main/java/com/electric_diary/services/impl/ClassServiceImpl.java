@@ -61,14 +61,14 @@ public class ClassServiceImpl implements ClassService {
 		}
 
 		Optional<ClassEntity> optionalClass = classRepository.findById(classId);
-		if (optionalClass.isPresent()) {
-			ClassEntity newClass = optionalClass.get();
-			newClass.setName(classBody.getName());
-			classRepository.save(newClass);
-			return newClass;
-		} else {
+
+		if (!optionalClass.isPresent())
 			throw new NotFoundException("Class", id);
-		}
+
+		ClassEntity newClass = optionalClass.get();
+		newClass.setName(classBody.getName());
+		classRepository.save(newClass);
+		return newClass;
 	}
 
 	@Override
@@ -81,12 +81,12 @@ public class ClassServiceImpl implements ClassService {
 		}
 
 		Optional<ClassEntity> optionalClass = classRepository.findById(classId);
-		if (optionalClass.isPresent()) {
-			ClassEntity newClass = optionalClass.get();
-			classRepository.delete(newClass);
-			return newClass;
-		} else {
+		
+		if (!optionalClass.isPresent())
 			throw new NotFoundException("Class", id);
-		}
+		
+		ClassEntity newClass = optionalClass.get();
+		classRepository.delete(newClass);
+		return newClass;
 	}
 }
