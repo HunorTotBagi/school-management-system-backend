@@ -40,7 +40,7 @@ public class StudentRepositoryTests {
 	}
 
 	@Test
-	public void RoleRepository_SaveAll_ReturnSavedRole() {
+	public void StudentRepository_SaveAll_ReturnSavedStudent() {
 		// Arrange
 		Mockito.when(studentRepository.save(student)).thenReturn(savedStudent);
 
