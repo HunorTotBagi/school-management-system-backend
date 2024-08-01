@@ -59,8 +59,8 @@ public class TeacherController {
 		return new ResponseEntity<>(teacherService.deleteTeacher(id), HttpStatus.OK);
 	}
 	
-	@PutMapping("/teaches/Subject/Class")
-	public ResponseEntity<TeacherEntity> teacherTeachesSubjectToClass(@RequestBody TeacherDTO teacherDTOBody){
-		return new ResponseEntity<>(teacherService.teacherTeachesSubjectToClass(teacherDTOBody), HttpStatus.OK);
+	@PutMapping("/teaches/Subject")
+	public ResponseEntity<TeacherEntity> teacherTeachesSubject(@RequestBody TeacherDTO teacherDTOBody){
+		return new ResponseEntity<>(teacherService.teacherTeachesSubject(teacherDTOBody), HttpStatus.OK);
 	}
 }

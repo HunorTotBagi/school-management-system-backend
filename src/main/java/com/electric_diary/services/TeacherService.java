@@ -16,5 +16,5 @@ public interface TeacherService {
 
 	public TeacherEntity deleteTeacher(String id);
 	
-	public TeacherEntity teacherTeachesSubjectToClass(TeacherDTO TeacherDTOBody);
+	public TeacherEntity teacherTeachesSubject(TeacherDTO TeacherDTOBody);
 }
