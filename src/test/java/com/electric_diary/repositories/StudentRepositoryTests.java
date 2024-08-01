@@ -10,35 +10,42 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.electric_diary.entities.ClassEntity;
+import com.electric_diary.entities.StudentEntity;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class ClassRepositoryTests {
+public class StudentRepositoryTests {
 	@Mock
-	private ClassRepository classRepository;
+	private StudentRepository studentRepository;
 
-	private ClassEntity newClass;
-	private ClassEntity savedClass;
+	private StudentEntity student;
+	private StudentEntity savedStudent;
 
 	@BeforeEach
 	public void setUp() {
-		newClass = ClassEntity.builder()
-				.name("8.A")
+		ClassEntity newClass = new ClassEntity();
+
+		student = StudentEntity.builder()
+				.firstName("Nikola")
+				.lastName("Vetnić")
+				.newClass(newClass)
 				.build();
 
-		savedClass = ClassEntity.builder()
+		savedStudent = StudentEntity.builder()
 				.id(1)
-				.name("8.A")
+				.firstName("Nikola")
+				.lastName("Vetnić")
+				.newClass(newClass)
 				.build();
 	}
 
 	@Test
-	public void ClassRepository_SaveAll_ReturnSavedClass() {
+	public void RoleRepository_SaveAll_ReturnSavedRole() {
 		// Arrange
-		Mockito.when(classRepository.save(newClass)).thenReturn(savedClass);
+		Mockito.when(studentRepository.save(student)).thenReturn(savedStudent);
 
 		// Act
-		ClassEntity result = classRepository.save(newClass);
+		StudentEntity result = studentRepository.save(student);
 
 		// Assert
 		Assertions.assertThat(result).isNotNull();

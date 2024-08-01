@@ -14,7 +14,6 @@ import com.electric_diary.entities.ParentEntity;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class ParentRepositoryTests {
-
     @Mock
     private ParentRepository parentRepository;
 
@@ -39,7 +38,6 @@ public class ParentRepositoryTests {
 
     @Test
     public void ParentRepository_SaveAll_ReturnSavedParent() {
-    	
         // Arrange
         Mockito.when(parentRepository.save(parent)).thenReturn(savedParent);
 

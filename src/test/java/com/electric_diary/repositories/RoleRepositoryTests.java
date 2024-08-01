@@ -14,7 +14,6 @@ import com.electric_diary.entities.RoleEntity;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class RoleRepositoryTests {
-
 	@Mock
 	private RoleRepository roleRepository;
 
@@ -23,14 +22,18 @@ public class RoleRepositoryTests {
 
 	@BeforeEach
 	public void setUp() {
-		role = RoleEntity.builder().name("TEACHER").build();
+		role = RoleEntity.builder()
+				.name("TEACHER")
+				.build();
 
-		savedRole = RoleEntity.builder().id(1).name("TEACHER").build();
+		savedRole = RoleEntity.builder()
+				.id(1)
+				.name("TEACHER")
+				.build();
 	}
 
 	@Test
 	public void RoleRepository_SaveAll_ReturnSavedRole() {
-
 		// Arrange
 		Mockito.when(roleRepository.save(role)).thenReturn(savedRole);
 
