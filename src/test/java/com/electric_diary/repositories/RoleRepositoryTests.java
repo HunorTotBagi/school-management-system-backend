@@ -2,6 +2,7 @@ package com.electric_diary.repositories;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -63,5 +64,22 @@ public class RoleRepositoryTests {
 	    Assertions.assertThat(result).isNotNull();
 	    Assertions.assertThat(result).hasSize(2);
 	    Assertions.assertThat(result).containsExactlyInAnyOrder(firstRole, secondRole);
+	}
+	
+	@Test
+	public void RoleRepository_FindById_ReturnRole() {
+	    // Arrange
+		RoleEntity role = RoleEntity.builder()
+				.name("TEACHER")
+				.build();
+	    
+	    Mockito.when(roleRepository.findById(role.getId())).thenReturn(Optional.of(role));
+	    
+	    // Act
+	    Optional<RoleEntity> result = roleRepository.findById(role.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(result).isPresent();
+	    Assertions.assertThat(result.get()).isEqualTo(role);
 	}
 }

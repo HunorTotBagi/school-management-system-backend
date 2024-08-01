@@ -2,6 +2,7 @@ package com.electric_diary.repositories;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -68,5 +69,23 @@ public class GradeRepositoryTests {
 	    Assertions.assertThat(result).isNotNull();
 	    Assertions.assertThat(result).hasSize(2);
 	    Assertions.assertThat(result).containsExactlyInAnyOrder(firstGrade, secondGrade);
+	}
+	
+	@Test
+	public void GradeRepository_FindById_ReturnGrade() {
+	    // Arrange
+		GradeEntity grade = GradeEntity.builder()
+				.grade(5)
+				.gradingType(GradingType.HOMEWORK)
+				.build();
+	    
+	    Mockito.when(gradeRepository.findById(grade.getId())).thenReturn(Optional.of(grade));
+	    
+	    // Act
+	    Optional<GradeEntity> result = gradeRepository.findById(grade.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(result).isPresent();
+	    Assertions.assertThat(result.get()).isEqualTo(grade);
 	}
 }

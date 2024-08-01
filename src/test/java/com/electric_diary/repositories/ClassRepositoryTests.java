@@ -2,6 +2,7 @@ package com.electric_diary.repositories;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -63,5 +64,23 @@ public class ClassRepositoryTests {
 	    Assertions.assertThat(result).isNotNull();
 	    Assertions.assertThat(result).hasSize(2);
 	    Assertions.assertThat(result).containsExactlyInAnyOrder(firstClass, secondClass);
+	}
+	
+	@Test
+	public void ClassRepository_FindById_ReturnClass() {
+	    // Arrange
+	    ClassEntity newClass = ClassEntity.builder()
+	            .id(1)
+	            .name("2.C")
+	            .build();
+	    
+	    Mockito.when(classRepository.findById(newClass.getId())).thenReturn(Optional.of(newClass));
+	    
+	    // Act
+	    Optional<ClassEntity> result = classRepository.findById(newClass.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(result).isPresent();
+	    Assertions.assertThat(result.get()).isEqualTo(newClass);
 	}
 }

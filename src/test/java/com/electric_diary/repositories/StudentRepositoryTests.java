@@ -2,6 +2,7 @@ package com.electric_diary.repositories;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -77,5 +78,26 @@ public class StudentRepositoryTests {
 	    Assertions.assertThat(result).isNotNull();
 	    Assertions.assertThat(result).hasSize(2);
 	    Assertions.assertThat(result).containsExactlyInAnyOrder(firstStudent, secondStudent);
+	}
+	
+	@Test
+	public void StudentRepository_FindById_ReturnStudent() {
+	    // Arrange
+		ClassEntity newClass = new ClassEntity();
+
+		StudentEntity student = StudentEntity.builder()
+				.firstName("Nikola")
+				.lastName("Vetnić")
+				.newClass(newClass)
+				.build();
+	    
+	    Mockito.when(studentRepository.findById(student.getId())).thenReturn(Optional.of(student));
+	    
+	    // Act
+	    Optional<StudentEntity> result = studentRepository.findById(student.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(result).isPresent();
+	    Assertions.assertThat(result.get()).isEqualTo(student);
 	}
 }
