@@ -20,8 +20,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "user")
-@Getter @Setter @NoArgsConstructor
 @JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
 public class UserEntity {
 	@Id

@@ -23,7 +23,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class StudentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -51,7 +53,7 @@ public class StudentEntity {
 	@JsonView(Views.Parent.class)
 	@ManyToMany(mappedBy = "enrolledStudents")
 	private Set<SubjectEntity> subjects = new HashSet<>();
-	
+
 	@JsonView(Views.Parent.class)
 	@ManyToOne(cascade = CascadeType.ALL)
 	@NotNull(message = "Parent name must be provided.")
