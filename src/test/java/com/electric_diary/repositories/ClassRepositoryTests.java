@@ -79,4 +79,26 @@ public class ClassRepositoryTests {
 	    Assertions.assertThat(result).isPresent();
 	    Assertions.assertThat(result.get()).isEqualTo(newClass);
 	}
+	
+	@Test
+	public void ClassRepository_UpdateClass_ReturnsUpdatedClass() {
+	    // Arrange
+	    ClassEntity newClass = ClassEntity.builder()
+	            .id(1)
+	            .name("2.C")
+	            .build();
+	    
+	    Mockito.when(classRepository.findById(newClass.getId())).thenReturn(Optional.of(newClass));
+	    ClassEntity resultSave = classRepository.findById(newClass.getId()).get();
+	    
+	    resultSave.setName("3.A");
+	    
+		Mockito.when(classRepository.save(resultSave)).thenReturn(resultSave);
+	    
+	    // Act
+		ClassEntity updatedClass = classRepository.save(resultSave);
+	    
+	    // Assert
+	    Assertions.assertThat(updatedClass.getName()).isEqualTo("3.A");
+	}
 }

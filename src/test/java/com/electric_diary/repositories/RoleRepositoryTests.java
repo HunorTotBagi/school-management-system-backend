@@ -78,4 +78,26 @@ public class RoleRepositoryTests {
 	    Assertions.assertThat(result).isPresent();
 	    Assertions.assertThat(result.get()).isEqualTo(role);
 	}
+	
+	@Test
+	public void RoleRepository_UpdateRole_ReturnsUpdatedRole() {
+	    // Arrange
+		RoleEntity role = RoleEntity.builder()
+				.id(1)
+				.name("TEACHER")
+				.build();
+	    
+	    Mockito.when(roleRepository.findById(role.getId())).thenReturn(Optional.of(role));
+	    RoleEntity resultSave = roleRepository.findById(role.getId()).get();
+	    
+	    resultSave.setName("ADMIN");
+	    
+		Mockito.when(roleRepository.save(resultSave)).thenReturn(resultSave);
+	    
+	    // Act
+		RoleEntity updatedRole = roleRepository.save(resultSave);
+	    
+	    // Assert
+	    Assertions.assertThat(updatedRole.getName()).isEqualTo("ADMIN");
+	}
 }

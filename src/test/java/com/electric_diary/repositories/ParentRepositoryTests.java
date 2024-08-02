@@ -86,4 +86,30 @@ public class ParentRepositoryTests {
 	    Assertions.assertThat(result).isPresent();
 	    Assertions.assertThat(result.get()).isEqualTo(parent);
 	}
+	
+	@Test
+	public void ParentRepository_UpdateParent_ReturnsUpdatedParent() {
+	    // Arrange
+    	ParentEntity parent = ParentEntity.builder()
+    			.id(1)	
+                .firstName("Ana")
+                .lastName("Nikolic")
+                .email("ana.nikolic@gmail.com")
+                .build();
+	    
+	    Mockito.when(parentRepository.findById(parent.getId())).thenReturn(Optional.of(parent));
+	    ParentEntity resultSave = parentRepository.findById(parent.getId()).get();
+	    
+	    resultSave.setFirstName("Nikolina");
+	    resultSave.setEmail("nikolina.nikolic@gmail.com");
+	    
+		Mockito.when(parentRepository.save(resultSave)).thenReturn(resultSave);
+	    
+	    // Act
+		ParentEntity updatedParent = parentRepository.save(resultSave);
+	    
+	    // Assert
+	    Assertions.assertThat(updatedParent.getFirstName()).isEqualTo("Nikolina");
+	    Assertions.assertThat(updatedParent.getEmail()).isEqualTo("nikolina.nikolic@gmail.com");
+	}
 }

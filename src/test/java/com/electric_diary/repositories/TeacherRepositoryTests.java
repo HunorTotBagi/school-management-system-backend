@@ -82,4 +82,29 @@ public class TeacherRepositoryTests {
 	    Assertions.assertThat(result).isPresent();
 	    Assertions.assertThat(result.get()).isEqualTo(teacher);
 	}
+	
+	@Test
+	public void TeacherRepository_UpdateTeacher_ReturnsUpdatedTeacher() {
+	    // Arrange
+		TeacherEntity teacher = TeacherEntity.builder()
+				.id(1)
+				.firstName("Milan")
+				.lastName("Čeliković")
+				.build();
+	    
+	    Mockito.when(teacherRepository.findById(teacher.getId())).thenReturn(Optional.of(teacher));
+	    TeacherEntity resultSave = teacherRepository.findById(teacher.getId()).get();
+	    
+	    resultSave.setFirstName("Dinu");
+	    resultSave.setLastName("Dragan");
+	    
+		Mockito.when(teacherRepository.save(resultSave)).thenReturn(resultSave);
+	    
+	    // Act
+		TeacherEntity updatedTeacher = teacherRepository.save(resultSave);
+	    
+	    // Assert
+	    Assertions.assertThat(updatedTeacher.getFirstName()).isEqualTo("Dinu");
+	    Assertions.assertThat(updatedTeacher.getLastName()).isEqualTo("Dragan");
+	}
 }

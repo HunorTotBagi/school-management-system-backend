@@ -82,4 +82,29 @@ public class SubjectRepositoryTests {
 	    Assertions.assertThat(result).isPresent();
 	    Assertions.assertThat(result.get()).isEqualTo(subject);
 	}
+	
+	@Test
+	public void SubjectRepository_UpdateSubject_ReturnsUpdatedSubject() {
+	    // Arrange
+		SubjectEntity subject = SubjectEntity.builder()
+				.id(1)
+				.name("Mathetmatics")
+				.weeklyFund(50)
+				.build();
+	    
+	    Mockito.when(subjectRepository.findById(subject.getId())).thenReturn(Optional.of(subject));
+	    SubjectEntity resultSave = subjectRepository.findById(subject.getId()).get();
+	    
+	    resultSave.setName("Programming");
+	    resultSave.setWeeklyFund(69);
+	    
+		Mockito.when(subjectRepository.save(resultSave)).thenReturn(resultSave);
+	    
+	    // Act
+		SubjectEntity updatedSubject = subjectRepository.save(resultSave);
+	    
+	    // Assert
+	    Assertions.assertThat(updatedSubject.getName()).isEqualTo("Programming");
+	    Assertions.assertThat(updatedSubject.getWeeklyFund()).isEqualTo(69);
+	}
 }

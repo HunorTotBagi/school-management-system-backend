@@ -20,17 +20,18 @@ import com.electric_diary.entities.StudentEntity;
 public class StudentRepositoryTests {
 	@Mock
 	private StudentRepository studentRepository;
+	
+	public ClassEntity firstClass = new ClassEntity();
+	public ClassEntity secondClass = new ClassEntity();
 
 	@Test
 	public void StudentRepository_SaveAll_ReturnSavedStudent() {
 		// Arrange
-		ClassEntity newClass = new ClassEntity();
-
 		StudentEntity student = StudentEntity.builder()
 				.id(1)
 				.firstName("Nikola")
 				.lastName("Vetnić")
-				.newClass(newClass)
+				.newClass(firstClass)
 				.build();
 		
 		Mockito.when(studentRepository.save(student)).thenReturn(student);
@@ -46,19 +47,16 @@ public class StudentRepositoryTests {
 	@Test
 	public void StudentRepository_FindAll_ReturnMoreThanOneStudent() {
 	    // Arrange
-		ClassEntity firstNewClass = new ClassEntity();
-		ClassEntity secondNewClass = new ClassEntity();
-
 		StudentEntity firstStudent = StudentEntity.builder()
 				.firstName("Nikola")
 				.lastName("Vetnić")
-				.newClass(firstNewClass)
+				.newClass(firstClass)
 				.build();
 		
 		StudentEntity secondStudent = StudentEntity.builder()
 				.firstName("Nikola")
 				.lastName("Dmitrašinović")
-				.newClass(secondNewClass)
+				.newClass(secondClass)
 				.build();
 	    
 	    List<StudentEntity> studentList = Arrays.asList(firstStudent, secondStudent);
@@ -77,12 +75,10 @@ public class StudentRepositoryTests {
 	@Test
 	public void StudentRepository_FindById_ReturnStudent() {
 	    // Arrange
-		ClassEntity newClass = new ClassEntity();
-
 		StudentEntity student = StudentEntity.builder()
 				.firstName("Nikola")
 				.lastName("Vetnić")
-				.newClass(newClass)
+				.newClass(firstClass)
 				.build();
 	    
 	    Mockito.when(studentRepository.findById(student.getId())).thenReturn(Optional.of(student));
@@ -93,5 +89,31 @@ public class StudentRepositoryTests {
 	    // Assert
 	    Assertions.assertThat(result).isPresent();
 	    Assertions.assertThat(result.get()).isEqualTo(student);
+	}
+	
+	@Test
+	public void StudentRepository_UpdateStudent_ReturnsUpdatedStudent() {
+	    // Arrange
+		StudentEntity student = StudentEntity.builder()
+				.id(1)
+				.firstName("Nikola")
+				.lastName("Vetnić")
+				.newClass(firstClass)
+				.build();
+	    
+	    Mockito.when(studentRepository.findById(student.getId())).thenReturn(Optional.of(student));
+	    StudentEntity resultSave = studentRepository.findById(student.getId()).get();
+	    
+	    resultSave.setFirstName("Daniel");
+	    resultSave.setLastName("Divjaković");
+	    
+		Mockito.when(studentRepository.save(resultSave)).thenReturn(resultSave);
+	    
+	    // Act
+		StudentEntity updatedStudent = studentRepository.save(resultSave);
+	    
+	    // Assert
+	    Assertions.assertThat(updatedStudent.getFirstName()).isEqualTo("Daniel");
+	    Assertions.assertThat(updatedStudent.getLastName()).isEqualTo("Divjaković");
 	}
 }

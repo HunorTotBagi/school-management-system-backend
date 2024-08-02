@@ -90,4 +90,35 @@ public class UserRepositoryTests {
 		Assertions.assertThat(result).isPresent();
 		Assertions.assertThat(result.get()).isEqualTo(user);
 	}
+	
+	@Test
+	public void UserRepository_UpdateUser_ReturnsUpdatedUser() {
+	    // Arrange
+		UserEntity user = UserEntity.builder()
+				.name("Elon")
+				.lastName("Musk")
+				.password("genious442a")
+				.email("elon7.musk@tesla.com")
+				.build();
+	    
+	    Mockito.when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
+	    UserEntity resultSave = userRepository.findById(user.getId()).get();
+	    
+	    resultSave.setName("Ivan");
+	    resultSave.setLastName("Tančik");
+	    resultSave.setPassword("abAP46God!");
+	    resultSave.setEmail("ivan.tancik@gmail.com");
+	    
+		Mockito.when(userRepository.save(resultSave)).thenReturn(resultSave);
+	    
+	    // Act
+		UserEntity updatedUser = userRepository.save(resultSave);
+	    
+	    // Assert
+	    Assertions.assertThat(updatedUser.getName()).isEqualTo("Ivan");
+	    Assertions.assertThat(updatedUser.getLastName()).isEqualTo("Tančik");
+	    Assertions.assertThat(updatedUser.getPassword()).isEqualTo("abAP46God!");
+	    Assertions.assertThat(updatedUser.getEmail()).isEqualTo("ivan.tancik@gmail.com");
+	    
+	}
 }

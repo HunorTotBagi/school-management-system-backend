@@ -83,4 +83,29 @@ public class GradeRepositoryTests {
 	    Assertions.assertThat(result).isPresent();
 	    Assertions.assertThat(result.get()).isEqualTo(grade);
 	}
+	
+	@Test
+	public void GradeRepository_UpdateGrade_ReturnsUpdatedGrade() {
+	    // Arrange
+		GradeEntity grade = GradeEntity.builder()
+				.id(1)
+				.grade(5)
+				.gradingType(GradingType.HOMEWORK)
+				.build();
+	    
+	    Mockito.when(gradeRepository.findById(grade.getId())).thenReturn(Optional.of(grade));
+	    GradeEntity resultSave = gradeRepository.findById(grade.getId()).get();
+	    
+	    resultSave.setGrade(4);
+	    resultSave.setGradingType(GradingType.WRITTEN_EXAMN);
+	    
+		Mockito.when(gradeRepository.save(resultSave)).thenReturn(resultSave);
+	    
+	    // Act
+		GradeEntity updatedGrade = gradeRepository.save(resultSave);
+	    
+	    // Assert
+	    Assertions.assertThat(updatedGrade.getGrade()).isEqualTo(4);
+	    Assertions.assertThat(updatedGrade.getGradingType()).isEqualTo(GradingType.WRITTEN_EXAMN);
+	}
 }
