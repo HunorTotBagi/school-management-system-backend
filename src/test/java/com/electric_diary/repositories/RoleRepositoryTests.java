@@ -100,4 +100,22 @@ public class RoleRepositoryTests {
 	    // Assert
 	    Assertions.assertThat(updatedRole.getName()).isEqualTo("ADMIN");
 	}
+	
+	@Test
+	public void RoleRepository_DeleteRole_ReturnRoleIsEmpty() {
+	    // Arrange
+		RoleEntity role = RoleEntity.builder()
+				.id(1)
+				.name("TEACHER")
+				.build();
+	    
+		roleRepository.save(role);
+	    
+	    // Act
+		roleRepository.delete(role);
+	    Optional<RoleEntity> roleReturn = roleRepository.findById(role.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(roleReturn).isEmpty();
+	}
 }

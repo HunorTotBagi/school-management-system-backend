@@ -107,4 +107,23 @@ public class TeacherRepositoryTests {
 	    Assertions.assertThat(updatedTeacher.getFirstName()).isEqualTo("Dinu");
 	    Assertions.assertThat(updatedTeacher.getLastName()).isEqualTo("Dragan");
 	}
+	
+	@Test
+	public void TeacherRepository_DeleteTeacher_ReturnTeacherIsEmpty() {
+	    // Arrange
+		TeacherEntity teacher = TeacherEntity.builder()
+				.id(1)
+				.firstName("Milan")
+				.lastName("Čeliković")
+				.build();
+	    
+		teacherRepository.save(teacher);
+	    
+	    // Act
+		teacherRepository.delete(teacher);
+	    Optional<TeacherEntity> teacherReturn = teacherRepository.findById(teacher.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(teacherReturn).isEmpty();
+	}
 }

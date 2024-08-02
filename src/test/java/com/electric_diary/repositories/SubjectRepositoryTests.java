@@ -107,4 +107,23 @@ public class SubjectRepositoryTests {
 	    Assertions.assertThat(updatedSubject.getName()).isEqualTo("Programming");
 	    Assertions.assertThat(updatedSubject.getWeeklyFund()).isEqualTo(69);
 	}
+	
+	@Test
+	public void SubjectRepository_DeleteSubject_ReturnSubjectIsEmpty() {
+	    // Arrange
+		SubjectEntity subject = SubjectEntity.builder()
+				.id(1)
+				.name("Mathetmatics")
+				.weeklyFund(50)
+				.build();
+	    
+		subjectRepository.save(subject);
+	    
+	    // Act
+		subjectRepository.delete(subject);
+	    Optional<SubjectEntity> subjectReturn = subjectRepository.findById(subject.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(subjectReturn).isEmpty();
+	}
 }

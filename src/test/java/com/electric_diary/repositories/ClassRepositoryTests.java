@@ -101,4 +101,22 @@ public class ClassRepositoryTests {
 	    // Assert
 	    Assertions.assertThat(updatedClass.getName()).isEqualTo("3.A");
 	}
+	
+	@Test
+	public void ClassRepository_DeleteClass_ReturnClassIsEmpty() {
+	    // Arrange
+	    ClassEntity newClass = ClassEntity.builder()
+	            .id(1)
+	            .name("2.C")
+	            .build();
+	    
+	    classRepository.save(newClass);
+	    
+	    // Act
+	    classRepository.delete(newClass);
+	    Optional<ClassEntity> classReturn = classRepository.findById(newClass.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(classReturn).isEmpty();
+	}
 }

@@ -119,6 +119,26 @@ public class UserRepositoryTests {
 	    Assertions.assertThat(updatedUser.getLastName()).isEqualTo("Tančik");
 	    Assertions.assertThat(updatedUser.getPassword()).isEqualTo("abAP46God!");
 	    Assertions.assertThat(updatedUser.getEmail()).isEqualTo("ivan.tancik@gmail.com");
+	}
+	
+	@Test
+	public void UserRepository_DeleteUser_ReturnUserIsEmpty() {
+	    // Arrange
+		UserEntity user = UserEntity.builder()
+				.id(1)
+				.name("Clark")
+				.lastName("Kent")
+				.password("ver7strong")
+				.email("clark.kent@gmail.com")
+				.build();
 	    
+		userRepository.save(user);
+	    
+	    // Act
+		userRepository.delete(user);
+	    Optional<UserEntity> userReturn = userRepository.findById(user.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(userReturn).isEmpty();
 	}
 }

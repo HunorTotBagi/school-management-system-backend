@@ -108,4 +108,23 @@ public class GradeRepositoryTests {
 	    Assertions.assertThat(updatedGrade.getGrade()).isEqualTo(4);
 	    Assertions.assertThat(updatedGrade.getGradingType()).isEqualTo(GradingType.WRITTEN_EXAMN);
 	}
+	
+	@Test
+	public void GradeRepository_DeleteGrade_ReturnGradeIsEmpty() {
+	    // Arrange
+		GradeEntity grade = GradeEntity.builder()
+				.id(1)
+				.grade(5)
+				.gradingType(GradingType.HOMEWORK)
+				.build();
+	    
+		gradeRepository.save(grade);
+	    
+	    // Act
+		gradeRepository.delete(grade);
+	    Optional<GradeEntity> gradeReturn = gradeRepository.findById(grade.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(gradeReturn).isEmpty();
+	}
 }

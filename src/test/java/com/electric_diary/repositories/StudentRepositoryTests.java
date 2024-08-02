@@ -116,4 +116,24 @@ public class StudentRepositoryTests {
 	    Assertions.assertThat(updatedStudent.getFirstName()).isEqualTo("Daniel");
 	    Assertions.assertThat(updatedStudent.getLastName()).isEqualTo("Divjaković");
 	}
+	
+	@Test
+	public void StudentRepository_DeleteStudent_ReturnStudentIsEmpty() {
+	    // Arrange
+		StudentEntity student = StudentEntity.builder()
+				.id(1)
+				.firstName("Nikola")
+				.lastName("Vetnić")
+				.newClass(firstClass)
+				.build();
+	    
+		studentRepository.save(student);
+	    
+	    // Act
+		studentRepository.delete(student);
+	    Optional<StudentEntity> studentReturn = studentRepository.findById(student.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(studentReturn).isEmpty();
+	}
 }

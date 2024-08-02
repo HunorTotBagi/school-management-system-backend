@@ -112,4 +112,24 @@ public class ParentRepositoryTests {
 	    Assertions.assertThat(updatedParent.getFirstName()).isEqualTo("Nikolina");
 	    Assertions.assertThat(updatedParent.getEmail()).isEqualTo("nikolina.nikolic@gmail.com");
 	}
+	
+	@Test
+	public void ParentRepository_DeleteParent_ReturnParentIsEmpty() {
+	    // Arrange
+    	ParentEntity parent = ParentEntity.builder()
+    			.id(1)
+                .firstName("Ana")
+                .lastName("Nikolic")
+                .email("ana.nikolic@gmail.com")
+                .build();
+	    
+    	parentRepository.save(parent);
+	    
+	    // Act
+    	parentRepository.delete(parent);
+	    Optional<ParentEntity> parentReturn = parentRepository.findById(parent.getId());
+	    
+	    // Assert
+	    Assertions.assertThat(parentReturn).isEmpty();
+	}
 }
