@@ -1,11 +1,9 @@
 package com.electric_diary.services;
 
-import org.springframework.validation.BindingResult;
-
 import com.electric_diary.entities.SubjectEntity;
 
 public interface SubjectService {
-	public SubjectEntity createSubject(SubjectEntity subjectBody, BindingResult result);
+	public SubjectEntity createSubject(SubjectEntity subjectBody);
 
 	public Iterable<SubjectEntity> getAllSubjects();
 
@@ -14,6 +12,6 @@ public interface SubjectService {
 	public SubjectEntity updateSubject(String id, SubjectEntity subjectBody);
 
 	public SubjectEntity deleteSubject(String id);
-	
+
 	public SubjectEntity enrollStudentToSubject(String subjectId, String studentId);
 }

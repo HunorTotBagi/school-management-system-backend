@@ -1,11 +1,9 @@
 package com.electric_diary.services;
 
-import org.springframework.validation.BindingResult;
-
 import com.electric_diary.entities.ParentEntity;
 
 public interface ParentService {
-	public ParentEntity createParent(ParentEntity parentBody, BindingResult result);
+	public ParentEntity createParent(ParentEntity parentBody);
 
 	public Iterable<ParentEntity> getAllParents();
 

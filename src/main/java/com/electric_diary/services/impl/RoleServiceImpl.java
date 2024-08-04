@@ -3,10 +3,8 @@ package com.electric_diary.services.impl;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
 
 import com.electric_diary.entities.RoleEntity;
-import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.RoleRepository;
 import com.electric_diary.services.RoleService;
@@ -26,10 +24,7 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public RoleEntity createRole(RoleEntity roleBody, BindingResult result) {
-		if (result.hasErrors())
-			throw new CustomBadRequestException(result);
-
+	public RoleEntity createRole(RoleEntity roleBody) {
 		RoleEntity role = new RoleEntity();
 		role.setName(roleBody.getName());
 		roleRepository.save(role);
@@ -64,7 +59,7 @@ public class RoleServiceImpl implements RoleService {
 		Optional<RoleEntity> optionalRole = roleRepository.findById(roleId);
 		if (!optionalRole.isPresent())
 			throw new NotFoundException("Role", id);
-		
+
 		RoleEntity role = optionalRole.get();
 		role.setName(roleBody.getName());
 		roleRepository.save(role);
@@ -81,10 +76,10 @@ public class RoleServiceImpl implements RoleService {
 		}
 
 		Optional<RoleEntity> optionalRole = roleRepository.findById(roleId);
-		
+
 		if (!optionalRole.isPresent())
 			throw new NotFoundException("Role", id);
-		
+
 		RoleEntity role = optionalRole.get();
 		roleRepository.delete(role);
 		return role;

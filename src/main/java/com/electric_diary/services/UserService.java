@@ -1,11 +1,9 @@
 package com.electric_diary.services;
 
-import org.springframework.validation.BindingResult;
-
 import com.electric_diary.entities.UserEntity;
 
 public interface UserService {
-	public UserEntity createUser(UserEntity userBody, BindingResult result);
+	public UserEntity createUser(UserEntity userBody);
 
 	public Iterable<UserEntity> getAllUsers();
 

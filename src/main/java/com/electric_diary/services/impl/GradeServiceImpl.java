@@ -77,7 +77,7 @@ public class GradeServiceImpl implements GradeService {
 					+ teacher.getFirstName() + " " + teacher.getLastName());
 			emailService.sendSimpleMessage(emailObject);
 		}
-		
+
 		return newGrade;
 	}
 
@@ -126,9 +126,9 @@ public class GradeServiceImpl implements GradeService {
 			newGrade.setGrade(gradeDTOBody.getGrade());
 			newGrade.setGradingType(gradeDTOBody.getGradingType());
 			gradeRepository.save(newGrade);
-			
+
 			Integer grade = gradeDTOBody.getGrade();
-			
+
 			ParentEntity parent = parentRepositroy.findByStudentsId(Integer.parseInt(studentId));
 			if (parent != null && parent.getEmail() != null) {
 				EmailEntity emailObject = new EmailEntity();

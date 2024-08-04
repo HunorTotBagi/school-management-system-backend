@@ -1,13 +1,14 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
+
 import com.electric_diary.entities.UserEntity;
-import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.UserRepository;
 import com.electric_diary.services.UserService;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
@@ -23,10 +24,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity createUser(UserEntity userBody, BindingResult result) {
-		if (result.hasErrors())
-			throw new CustomBadRequestException(result);
-
+	public UserEntity createUser(UserEntity userBody) {
 		UserEntity user = new UserEntity();
 		user.setName(userBody.getName());
 		user.setLastName(userBody.getLastName());
@@ -89,7 +87,7 @@ public class UserServiceImpl implements UserService {
 		Optional<UserEntity> optionalUser = userRepository.findById(userId);
 		if (!optionalUser.isPresent())
 			throw new NotFoundException("User", id);
-		
+
 		UserEntity user = optionalUser.get();
 		userRepository.delete(user);
 		return user;

@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/v1/grades")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class GradeController {
 	@Autowired
 	private GradeService gradeService;
@@ -29,17 +29,17 @@ public class GradeController {
 	public ResponseEntity<GradeEntity> assignGrade(@RequestBody @Valid GradeDTO gradeDTOBody) {
 		return new ResponseEntity<>(gradeService.assignGrade(gradeDTOBody), HttpStatus.OK);
 	}
-	
+
 	@GetMapping
 	public ResponseEntity<Iterable<GradeEntity>> getAllGrades() {
 		return new ResponseEntity<>(gradeService.getAllGrades(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<GradeEntity> getGradeById(@PathVariable String id) {
 		return new ResponseEntity<>(gradeService.getGradeById(id), HttpStatus.OK);
 	}
-	
+
 	@PutMapping("/{id}")
 	public ResponseEntity<GradeEntity> updateGrade(@PathVariable String id, @RequestBody GradeDTO gradeDTOBody) {
 		return new ResponseEntity<>(gradeService.updateGrade(id, gradeDTOBody), HttpStatus.OK);

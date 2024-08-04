@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,9 +26,8 @@ public class ParentController {
 	protected ParentService parentService;
 
 	@PostMapping
-	public ResponseEntity<ParentEntity> createParent(@Valid @RequestBody ParentEntity parentBody,
-			BindingResult result) {
-		return new ResponseEntity<ParentEntity>(parentService.createParent(parentBody, result), HttpStatus.OK);
+	public ResponseEntity<ParentEntity> createParent(@Valid @RequestBody ParentEntity parentBody) {
+		return new ResponseEntity<ParentEntity>(parentService.createParent(parentBody), HttpStatus.OK);
 	}
 
 	@Secured("ROLE_ADMIN")
@@ -38,7 +36,7 @@ public class ParentController {
 		return new ResponseEntity<>(parentService.getAllParents(), HttpStatus.OK);
 	}
 
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@GetMapping("/{id}")
 	public ResponseEntity<ParentEntity> getParentById(@PathVariable String id) {
 		return new ResponseEntity<>(parentService.getParentById(id), HttpStatus.OK);
@@ -53,9 +51,10 @@ public class ParentController {
 	public ResponseEntity<ParentEntity> deleteParent(@PathVariable String id) {
 		return new ResponseEntity<>(parentService.deleteParent(id), HttpStatus.OK);
 	}
-	
+
 	@PutMapping("/{parentId}/students/{studentId}")
-	public ResponseEntity<ParentEntity> assignStudentToParent(@PathVariable String parentId, @PathVariable String studentId) {
+	public ResponseEntity<ParentEntity> assignStudentToParent(@PathVariable String parentId,
+			@PathVariable String studentId) {
 		return new ResponseEntity<>(parentService.assignStudentToParent(parentId, studentId), HttpStatus.OK);
 	}
 }

@@ -1,12 +1,10 @@
 package com.electric_diary.services;
 
-import org.springframework.validation.BindingResult;
-
 import com.electric_diary.DTO.TeacherDTO;
 import com.electric_diary.entities.TeacherEntity;
 
 public interface TeacherService {
-	public TeacherEntity createTeacher(TeacherDTO teacherDTOBody, BindingResult result);
+	public TeacherEntity createTeacher(TeacherDTO teacherDTOBody);
 
 	public Iterable<TeacherEntity> getAllTeachers();
 
@@ -15,6 +13,6 @@ public interface TeacherService {
 	public TeacherEntity updateTeacher(String id, TeacherEntity teacherBody);
 
 	public TeacherEntity deleteTeacher(String id);
-	
+
 	public TeacherEntity teacherTeachesSubject(TeacherDTO TeacherDTOBody);
 }

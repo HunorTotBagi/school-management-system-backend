@@ -1,15 +1,16 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
+
 import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.entities.StudentEntity;
-import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.ParentRepository;
 import com.electric_diary.repositories.StudentRepository;
 import com.electric_diary.services.ParentService;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
@@ -27,10 +28,7 @@ public class ParentServiceImpl implements ParentService {
 	}
 
 	@Override
-	public ParentEntity createParent(ParentEntity parentBody, BindingResult result) {
-		if (result.hasErrors())
-			throw new CustomBadRequestException(result);
-
+	public ParentEntity createParent(ParentEntity parentBody) {
 		ParentEntity parent = new ParentEntity();
 		parent.setFirstName(parentBody.getFirstName());
 		parent.setLastName(parentBody.getLastName());
@@ -67,10 +65,10 @@ public class ParentServiceImpl implements ParentService {
 		}
 
 		Optional<ParentEntity> optionalParent = parentRepository.findById(parentId);
-		
+
 		if (!optionalParent.isPresent())
 			throw new NotFoundException("Parent", id);
-		
+
 		ParentEntity parent = optionalParent.get();
 		parent.setFirstName(parentBody.getFirstName());
 		parent.setLastName(parentBody.getLastName());
@@ -89,10 +87,10 @@ public class ParentServiceImpl implements ParentService {
 		}
 
 		Optional<ParentEntity> optionalParent = parentRepository.findById(parentId);
-		
+
 		if (!optionalParent.isPresent())
 			throw new NotFoundException("Parent", id);
-		
+
 		ParentEntity parent = optionalParent.get();
 		parentRepository.delete(parent);
 		return parent;
