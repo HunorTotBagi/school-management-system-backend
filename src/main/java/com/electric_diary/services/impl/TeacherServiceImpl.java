@@ -1,7 +1,7 @@
 package com.electric_diary.services.impl;
 
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
+
 import com.electric_diary.DTO.TeacherDTO;
 import com.electric_diary.entities.ClassEntity;
 import com.electric_diary.entities.SubjectEntity;
@@ -11,6 +11,7 @@ import com.electric_diary.repositories.ClassRepository;
 import com.electric_diary.repositories.SubjectRepository;
 import com.electric_diary.repositories.TeacherRepository;
 import com.electric_diary.services.TeacherService;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
@@ -31,7 +32,7 @@ public class TeacherServiceImpl implements TeacherService {
 	}
 
 	@Override
-	public TeacherEntity createTeacher(TeacherDTO teacherDTOBody, BindingResult result) {
+	public TeacherEntity createTeacher(TeacherDTO teacherDTOBody) {
 		String classId = teacherDTOBody.getClassId();
 
 		ClassEntity newClass = classRepository.findById(Integer.parseInt(classId))
@@ -71,7 +72,7 @@ public class TeacherServiceImpl implements TeacherService {
 
 		TeacherEntity teacher = teacherRepository.findById(teacherId)
 				.orElseThrow(() -> new NotFoundException("Teacher", id));
-		
+
 		teacher.setFirstName(teacherBody.getFirstName());
 		teacher.setLastName(teacherBody.getLastName());
 		teacherRepository.save(teacher);
@@ -89,25 +90,25 @@ public class TeacherServiceImpl implements TeacherService {
 
 		TeacherEntity teacher = teacherRepository.findById(teacherId)
 				.orElseThrow(() -> new NotFoundException("Teacher", id));
-		
+
 		teacherRepository.delete(teacher);
 		return teacher;
 	}
 
 	@Override
 	public TeacherEntity teacherTeachesSubject(TeacherDTO teacherDTOBody) {
-	    String teacherId = teacherDTOBody.getTeacherId();
-	    String subjectId = teacherDTOBody.getSubjectId();
+		String teacherId = teacherDTOBody.getTeacherId();
+		String subjectId = teacherDTOBody.getSubjectId();
 
-	    SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
-	            .orElseThrow(() -> new NotFoundException("Subject", subjectId));
+		SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
+				.orElseThrow(() -> new NotFoundException("Subject", subjectId));
 
-	    TeacherEntity teacher = teacherRepository.findById(Integer.parseInt(teacherId))
-	            .orElseThrow(() -> new NotFoundException("Teacher", teacherId));
+		TeacherEntity teacher = teacherRepository.findById(Integer.parseInt(teacherId))
+				.orElseThrow(() -> new NotFoundException("Teacher", teacherId));
 
-	    teacher.addSubjects(subject);
-	    teacherRepository.save(teacher);
-	    return teacher;
+		teacher.addSubjects(subject);
+		teacherRepository.save(teacher);
+		return teacher;
 	}
 
 }

@@ -1,11 +1,9 @@
 package com.electric_diary.services;
 
-import org.springframework.validation.BindingResult;
-
 import com.electric_diary.entities.RoleEntity;
 
 public interface RoleService {
-	public RoleEntity createRole(RoleEntity roleBody, BindingResult result);
+	public RoleEntity createRole(RoleEntity roleBody);
 
 	public Iterable<RoleEntity> getAllRoles();
 

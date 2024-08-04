@@ -1,13 +1,14 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
+
 import com.electric_diary.entities.ClassEntity;
-import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.ClassRepository;
 import com.electric_diary.services.ClassService;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
@@ -23,10 +24,7 @@ public class ClassServiceImpl implements ClassService {
 	}
 
 	@Override
-	public ClassEntity createClass(ClassEntity classBody, BindingResult result) {
-		if (result.hasErrors())
-			throw new CustomBadRequestException(result);
-
+	public ClassEntity createClass(ClassEntity classBody) {
 		ClassEntity newClass = new ClassEntity();
 		newClass.setName(classBody.getName());
 		classRepository.save(newClass);
@@ -81,10 +79,10 @@ public class ClassServiceImpl implements ClassService {
 		}
 
 		Optional<ClassEntity> optionalClass = classRepository.findById(classId);
-		
+
 		if (!optionalClass.isPresent())
 			throw new NotFoundException("Class", id);
-		
+
 		ClassEntity newClass = optionalClass.get();
 		classRepository.delete(newClass);
 		return newClass;

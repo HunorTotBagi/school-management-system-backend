@@ -3,7 +3,6 @@ package com.electric_diary.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,15 +23,15 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/v1/students")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class StudentController {
 
 	@Autowired
 	protected StudentService studentService;
 
 	@PostMapping
-	public ResponseEntity<StudentEntity> createStudent(@Valid @RequestBody StudentDTO studentDTOBody, BindingResult result) {
-		return new ResponseEntity<>(studentService.createStudent(studentDTOBody, result), HttpStatus.OK);
+	public ResponseEntity<StudentEntity> createStudent(@Valid @RequestBody StudentDTO studentDTOBody) {
+		return new ResponseEntity<>(studentService.createStudent(studentDTOBody), HttpStatus.OK);
 	}
 
 	@GetMapping("/student")
@@ -53,7 +52,8 @@ public class StudentController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<StudentEntity> updateStudent(@PathVariable String id, @RequestBody StudentDTO studentDTOBody) {
+	public ResponseEntity<StudentEntity> updateStudent(@PathVariable String id,
+			@RequestBody StudentDTO studentDTOBody) {
 		return new ResponseEntity<>(studentService.updateStudent(id, studentDTOBody), HttpStatus.OK);
 	}
 

@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,9 +30,9 @@ public class TeacherController {
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
 	@PostMapping
-	public ResponseEntity<TeacherEntity> createTeacher(@Valid @RequestBody TeacherDTO teacherDTOBody, BindingResult result) {
+	public ResponseEntity<TeacherEntity> createTeacher(@Valid @RequestBody TeacherDTO teacherDTOBody) {
 		logger.debug("This is a debug message");
-		return new ResponseEntity<>(teacherService.createTeacher(teacherDTOBody, result), HttpStatus.OK);
+		return new ResponseEntity<>(teacherService.createTeacher(teacherDTOBody), HttpStatus.OK);
 	}
 
 	@GetMapping
@@ -49,18 +48,19 @@ public class TeacherController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<TeacherEntity> updateTeacher(@PathVariable String id, @RequestBody TeacherEntity teacherBody) {
+	public ResponseEntity<TeacherEntity> updateTeacher(@PathVariable String id,
+			@RequestBody TeacherEntity teacherBody) {
 		logger.error("This is an error message");
-		return new ResponseEntity<>(teacherService.updateTeacher(id, teacherBody), HttpStatus.OK) ;
+		return new ResponseEntity<>(teacherService.updateTeacher(id, teacherBody), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<TeacherEntity> deleteTeacher(@PathVariable String id) {
 		return new ResponseEntity<>(teacherService.deleteTeacher(id), HttpStatus.OK);
 	}
-	
+
 	@PutMapping("/teaches/Subject")
-	public ResponseEntity<TeacherEntity> teacherTeachesSubject(@RequestBody TeacherDTO teacherDTOBody){
+	public ResponseEntity<TeacherEntity> teacherTeachesSubject(@RequestBody TeacherDTO teacherDTOBody) {
 		return new ResponseEntity<>(teacherService.teacherTeachesSubject(teacherDTOBody), HttpStatus.OK);
 	}
 }

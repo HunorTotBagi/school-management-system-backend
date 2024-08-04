@@ -1,12 +1,10 @@
 package com.electric_diary.services;
 
-import org.springframework.validation.BindingResult;
-
 import com.electric_diary.DTO.StudentDTO;
 import com.electric_diary.entities.StudentEntity;
 
 public interface StudentService {
-	public StudentEntity createStudent(StudentDTO studentDTOBody, BindingResult result);
+	public StudentEntity createStudent(StudentDTO studentDTOBody);
 
 	public Iterable<StudentEntity> getAllStudents();
 

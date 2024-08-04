@@ -3,7 +3,6 @@ package com.electric_diary.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +23,8 @@ public class RoleController {
 	protected RoleService roleService;
 
 	@PostMapping
-	public ResponseEntity<RoleEntity> createParent(@RequestBody RoleEntity roleBody, BindingResult result) {
-		return new ResponseEntity<RoleEntity>(roleService.createRole(roleBody, result), HttpStatus.OK);
+	public ResponseEntity<RoleEntity> createParent(@RequestBody RoleEntity roleBody) {
+		return new ResponseEntity<RoleEntity>(roleService.createRole(roleBody), HttpStatus.OK);
 	}
 
 	@GetMapping

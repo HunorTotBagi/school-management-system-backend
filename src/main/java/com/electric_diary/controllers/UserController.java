@@ -3,7 +3,6 @@ package com.electric_diary.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +25,8 @@ public class UserController {
 	protected UserService userService;
 
 	@PostMapping
-	public ResponseEntity<UserEntity> createUser(@Valid @RequestBody UserEntity userBody, BindingResult result) {
-		return new ResponseEntity<UserEntity>(userService.createUser(userBody, result), HttpStatus.OK);
+	public ResponseEntity<UserEntity> createUser(@Valid @RequestBody UserEntity userBody) {
+		return new ResponseEntity<UserEntity>(userService.createUser(userBody), HttpStatus.OK);
 	}
 
 	@GetMapping

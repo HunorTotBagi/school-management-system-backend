@@ -1,8 +1,9 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
+
 import com.electric_diary.DTO.StudentDTO;
 import com.electric_diary.entities.ClassEntity;
 import com.electric_diary.entities.ParentEntity;
@@ -12,6 +13,7 @@ import com.electric_diary.repositories.ClassRepository;
 import com.electric_diary.repositories.ParentRepository;
 import com.electric_diary.repositories.StudentRepository;
 import com.electric_diary.services.StudentService;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
@@ -32,7 +34,7 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public StudentEntity createStudent(StudentDTO studentDTOBody, BindingResult result) {
+	public StudentEntity createStudent(StudentDTO studentDTOBody) {
 		String classId = studentDTOBody.getClassId();
 		String parentId = studentDTOBody.getParentId();
 
@@ -80,10 +82,10 @@ public class StudentServiceImpl implements StudentService {
 				.orElseThrow(() -> new NotFoundException("Parent", parentId));
 
 		Optional<StudentEntity> optionalStudent = studentRepository.findById(Integer.parseInt(id));
-		
+
 		if (!optionalStudent.isPresent())
 			throw new NotFoundException("Student", id);
-		
+
 		StudentEntity student = optionalStudent.get();
 		student.setFirstName(studentDTOBody.getFirstName());
 		student.setLastName(studentDTOBody.getLastName());
@@ -103,7 +105,7 @@ public class StudentServiceImpl implements StudentService {
 		}
 
 		Optional<StudentEntity> optionalStudent = studentRepository.findById(studentId);
-		
+
 		if (!optionalStudent.isPresent())
 			throw new NotFoundException("Student", id);
 

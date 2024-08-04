@@ -3,8 +3,15 @@ package com.electric_diary.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.electric_diary.entities.SubjectEntity;
 import com.electric_diary.services.SubjectService;
 
@@ -16,8 +23,8 @@ public class SubjectController {
 	protected SubjectService subjectService;
 
 	@PostMapping
-	public ResponseEntity<SubjectEntity> createSubject(@RequestBody SubjectEntity subjectBody, BindingResult result) {
-		return new ResponseEntity<>(subjectService.createSubject(subjectBody, result), HttpStatus.OK);
+	public ResponseEntity<SubjectEntity> createSubject(@RequestBody SubjectEntity subjectBody) {
+		return new ResponseEntity<>(subjectService.createSubject(subjectBody), HttpStatus.OK);
 	}
 
 	@GetMapping
@@ -31,7 +38,8 @@ public class SubjectController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<SubjectEntity> updateSubject(@PathVariable String id, @RequestBody SubjectEntity subjectBody) {
+	public ResponseEntity<SubjectEntity> updateSubject(@PathVariable String id,
+			@RequestBody SubjectEntity subjectBody) {
 		return new ResponseEntity<>(subjectService.updateSubject(id, subjectBody), HttpStatus.OK);
 	}
 
@@ -41,7 +49,8 @@ public class SubjectController {
 	}
 
 	@PutMapping("/{subjectId}/students/{studentId}")
-	public ResponseEntity<SubjectEntity> enrollStudentToSubject(@PathVariable String subjectId, @PathVariable String studentId) {
+	public ResponseEntity<SubjectEntity> enrollStudentToSubject(@PathVariable String subjectId,
+			@PathVariable String studentId) {
 		return new ResponseEntity<>(subjectService.enrollStudentToSubject(subjectId, studentId), HttpStatus.OK);
 	}
 }

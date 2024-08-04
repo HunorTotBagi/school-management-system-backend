@@ -1,15 +1,16 @@
 package com.electric_diary.services.impl;
 
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
+
 import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.entities.SubjectEntity;
-import com.electric_diary.exception.CustomBadRequestException;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.StudentRepository;
 import com.electric_diary.repositories.SubjectRepository;
 import com.electric_diary.services.SubjectService;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
@@ -27,10 +28,7 @@ public class SubjectServiceImpl implements SubjectService {
 	}
 
 	@Override
-	public SubjectEntity createSubject(SubjectEntity subjectBody, BindingResult result) {
-		if (result.hasErrors())
-			throw new CustomBadRequestException(result);
-
+	public SubjectEntity createSubject(SubjectEntity subjectBody) {
 		SubjectEntity subject = new SubjectEntity();
 		subject.setName(subjectBody.getName());
 		subject.setWeeklyFund(subjectBody.getWeeklyFund());
@@ -66,10 +64,10 @@ public class SubjectServiceImpl implements SubjectService {
 		}
 
 		Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
-		
+
 		if (!optionalSubject.isPresent())
 			throw new NotFoundException("Subject", id);
-			
+
 		SubjectEntity subject = optionalSubject.get();
 		subject.setName(subjectBody.getName());
 		subject.setWeeklyFund(subjectBody.getWeeklyFund());
@@ -87,7 +85,7 @@ public class SubjectServiceImpl implements SubjectService {
 		}
 
 		Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
-		
+
 		if (!optionalSubject.isPresent())
 			throw new NotFoundException("Subject", id);
 
