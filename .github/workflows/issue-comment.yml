@@ -1,4 +1,4 @@
-name: Create a comment on a new issue
+name: Comment on New Issue
 
 on:
   issues:
