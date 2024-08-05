@@ -17,6 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -63,4 +64,8 @@ public class StudentEntity {
 	@NotNull(message = "Parent name must be provided.")
 	@JoinColumn(name = "parent_id", referencedColumnName = "id")
 	private ParentEntity parent;
+	
+    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user", nullable = false)
+    protected UserEntity user;
 }

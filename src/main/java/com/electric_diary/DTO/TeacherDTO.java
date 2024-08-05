@@ -13,4 +13,5 @@ public class TeacherDTO {
 	private String teacherId;
 	private String subjectId;
 	private String classId;
+	private String userId;
 }

@@ -6,10 +6,12 @@ import com.electric_diary.DTO.TeacherDTO;
 import com.electric_diary.entities.ClassEntity;
 import com.electric_diary.entities.SubjectEntity;
 import com.electric_diary.entities.TeacherEntity;
+import com.electric_diary.entities.UserEntity;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.ClassRepository;
 import com.electric_diary.repositories.SubjectRepository;
 import com.electric_diary.repositories.TeacherRepository;
+import com.electric_diary.repositories.UserRepository;
 import com.electric_diary.services.TeacherService;
 
 import jakarta.persistence.EntityManager;
@@ -23,25 +25,33 @@ public class TeacherServiceImpl implements TeacherService {
 	private final TeacherRepository teacherRepository;
 	private final SubjectRepository subjectRepository;
 	private final ClassRepository classRepository;
+	private final UserRepository userRepository;
 
 	public TeacherServiceImpl(final TeacherRepository teacherRepository, final SubjectRepository subjectRepository,
-			final ClassRepository classRepository) {
+			final ClassRepository classRepository, final UserRepository userRepository) {
 		this.teacherRepository = teacherRepository;
 		this.subjectRepository = subjectRepository;
 		this.classRepository = classRepository;
+		this.userRepository = userRepository;
 	}
 
 	@Override
 	public TeacherEntity createTeacher(TeacherDTO teacherDTOBody) {
 		String classId = teacherDTOBody.getClassId();
+		String userId = teacherDTOBody.getUserId();
 
 		ClassEntity newClass = classRepository.findById(Integer.parseInt(classId))
 				.orElseThrow(() -> new NotFoundException("Class", classId));
+
+		UserEntity user = userRepository.findById(Integer.parseInt(userId))
+				.orElseThrow(() -> new NotFoundException("User", userId));
 
 		TeacherEntity teacher = new TeacherEntity();
 		teacher.setFirstName(teacherDTOBody.getFirstName());
 		teacher.setLastName(teacherDTOBody.getLastName());
 		teacher.setNewClass(newClass);
+		teacher.setUser(user);
+
 		teacherRepository.save(teacher);
 		return teacher;
 	}
@@ -62,7 +72,7 @@ public class TeacherServiceImpl implements TeacherService {
 	}
 
 	@Override
-	public TeacherEntity updateTeacher(String id, TeacherEntity teacherBody) {
+	public TeacherEntity updateTeacher(String id, TeacherDTO teacherDTOBody) {
 		int teacherId;
 		try {
 			teacherId = Integer.parseInt(id);
@@ -73,8 +83,14 @@ public class TeacherServiceImpl implements TeacherService {
 		TeacherEntity teacher = teacherRepository.findById(teacherId)
 				.orElseThrow(() -> new NotFoundException("Teacher", id));
 
-		teacher.setFirstName(teacherBody.getFirstName());
-		teacher.setLastName(teacherBody.getLastName());
+		String userId = teacherDTOBody.getUserId();
+
+		UserEntity user = userRepository.findById(Integer.parseInt(userId))
+				.orElseThrow(() -> new NotFoundException("User", userId));
+
+		teacher.setFirstName(teacherDTOBody.getFirstName());
+		teacher.setLastName(teacherDTOBody.getLastName());
+		teacher.setUser(user);
 		teacherRepository.save(teacher);
 		return teacher;
 	}
