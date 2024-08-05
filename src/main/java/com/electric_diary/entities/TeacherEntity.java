@@ -59,6 +59,7 @@ public class TeacherEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private ClassEntity newClass;
 	
+	@JsonIgnore
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "user", nullable = false)
     protected UserEntity user;

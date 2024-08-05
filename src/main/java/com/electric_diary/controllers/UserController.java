@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.electric_diary.DTO.UserDTO;
 import com.electric_diary.entities.UserEntity;
 import com.electric_diary.services.UserService;
 
@@ -25,8 +26,8 @@ public class UserController {
 	protected UserService userService;
 
 	@PostMapping
-	public ResponseEntity<UserEntity> createUser(@Valid @RequestBody UserEntity userBody) {
-		return new ResponseEntity<UserEntity>(userService.createUser(userBody), HttpStatus.OK);
+	public ResponseEntity<UserEntity> createUser(@Valid @RequestBody UserDTO userDTOBody) {
+		return new ResponseEntity<UserEntity>(userService.createUser(userDTOBody), HttpStatus.OK);
 	}
 
 	@GetMapping
@@ -35,17 +36,17 @@ public class UserController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<UserEntity> getUserById(@PathVariable String id) {
-		return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
+	public ResponseEntity<UserEntity> getUserById(@PathVariable Integer userId) {
+		return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<UserEntity> updateUser(@PathVariable String id, @RequestBody UserEntity userBody) {
-		return new ResponseEntity<>(userService.updateUser(id, userBody), HttpStatus.OK);
+	public ResponseEntity<UserEntity> updateUser(@PathVariable Integer userId, @RequestBody UserDTO userDTOBody) {
+		return new ResponseEntity<>(userService.updateUser(userId, userDTOBody), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<UserEntity> deleteUser(@PathVariable String id) {
-		return new ResponseEntity<>(userService.deleteUser(id), HttpStatus.OK);
+	public ResponseEntity<UserEntity> deleteUser(@PathVariable Integer userId) {
+		return new ResponseEntity<>(userService.deleteUser(userId), HttpStatus.OK);
 	}
 }
