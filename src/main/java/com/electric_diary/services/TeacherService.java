@@ -10,7 +10,7 @@ public interface TeacherService {
 
 	public TeacherEntity getTeacherById(String id);
 
-	public TeacherEntity updateTeacher(String id, TeacherEntity teacherBody);
+	public TeacherEntity updateTeacher(String id, TeacherDTO teacherDTOBody);
 
 	public TeacherEntity deleteTeacher(String id);
 

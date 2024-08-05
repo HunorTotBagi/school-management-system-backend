@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.electric_diary.DTO.ParentDTO;
 import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.services.ParentService;
 
@@ -26,8 +27,8 @@ public class ParentController {
 	protected ParentService parentService;
 
 	@PostMapping
-	public ResponseEntity<ParentEntity> createParent(@Valid @RequestBody ParentEntity parentBody) {
-		return new ResponseEntity<ParentEntity>(parentService.createParent(parentBody), HttpStatus.OK);
+	public ResponseEntity<ParentEntity> createParent(@Valid @RequestBody ParentDTO parentDTOBody) {
+		return new ResponseEntity<ParentEntity>(parentService.createParent(parentDTOBody), HttpStatus.OK);
 	}
 
 	@Secured("ROLE_ADMIN")
@@ -43,8 +44,8 @@ public class ParentController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<ParentEntity> updateParent(@PathVariable String id, @RequestBody ParentEntity parentBody) {
-		return new ResponseEntity<>(parentService.updateParent(id, parentBody), HttpStatus.OK);
+	public ResponseEntity<ParentEntity> updateParent(@PathVariable String id, @RequestBody ParentDTO parentDTOBody) {
+		return new ResponseEntity<>(parentService.updateParent(id, parentDTOBody), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")

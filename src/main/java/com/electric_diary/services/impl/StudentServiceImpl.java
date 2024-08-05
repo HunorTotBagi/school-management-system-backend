@@ -8,10 +8,12 @@ import com.electric_diary.DTO.StudentDTO;
 import com.electric_diary.entities.ClassEntity;
 import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.entities.StudentEntity;
+import com.electric_diary.entities.UserEntity;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.ClassRepository;
 import com.electric_diary.repositories.ParentRepository;
 import com.electric_diary.repositories.StudentRepository;
+import com.electric_diary.repositories.UserRepository;
 import com.electric_diary.services.StudentService;
 
 import jakarta.persistence.EntityManager;
@@ -25,30 +27,35 @@ public class StudentServiceImpl implements StudentService {
 	private final StudentRepository studentRepository;
 	private final ClassRepository classRepository;
 	private final ParentRepository parentRepository;
+	private final UserRepository userRepository;
 
 	public StudentServiceImpl(final StudentRepository studentRepository, final ClassRepository classRepository,
-			final ParentRepository parentRepository) {
+			final ParentRepository parentRepository, final UserRepository userRepository) {
 		this.studentRepository = studentRepository;
 		this.classRepository = classRepository;
 		this.parentRepository = parentRepository;
+		this.userRepository = userRepository;
 	}
 
 	@Override
 	public StudentEntity createStudent(StudentDTO studentDTOBody) {
 		String classId = studentDTOBody.getClassId();
 		String parentId = studentDTOBody.getParentId();
+		String userId = studentDTOBody.getUserId();
 
 		ClassEntity newClass = classRepository.findById(Integer.parseInt(classId))
 				.orElseThrow(() -> new NotFoundException("Class", classId));
 		ParentEntity parent = parentRepository.findById(Integer.parseInt(parentId))
 				.orElseThrow(() -> new NotFoundException("Parent", parentId));
-
+		UserEntity user = userRepository.findById(Integer.parseInt(userId))
+				.orElseThrow(() -> new NotFoundException("User", userId));
+		
 		StudentEntity student = new StudentEntity();
 		student.setFirstName(studentDTOBody.getFirstName());
 		student.setLastName(studentDTOBody.getLastName());
-
 		student.setNewClass(newClass);
 		student.setParent(parent);
+		student.setUser(user);
 		studentRepository.save(student);
 
 		return student;
@@ -75,11 +82,14 @@ public class StudentServiceImpl implements StudentService {
 	public StudentEntity updateStudent(String id, StudentDTO studentDTOBody) {
 		String classId = studentDTOBody.getClassId();
 		String parentId = studentDTOBody.getParentId();
+		String userId = studentDTOBody.getUserId();
 
 		ClassEntity newClass = classRepository.findById(Integer.parseInt(classId))
 				.orElseThrow(() -> new NotFoundException("Class", classId));
 		ParentEntity parent = parentRepository.findById(Integer.parseInt(parentId))
 				.orElseThrow(() -> new NotFoundException("Parent", parentId));
+		UserEntity user = userRepository.findById(Integer.parseInt(userId))
+				.orElseThrow(() -> new NotFoundException("User", userId));
 
 		Optional<StudentEntity> optionalStudent = studentRepository.findById(Integer.parseInt(id));
 
@@ -91,6 +101,7 @@ public class StudentServiceImpl implements StudentService {
 		student.setLastName(studentDTOBody.getLastName());
 		student.setNewClass(newClass);
 		student.setParent(parent);
+		student.setUser(user);
 		studentRepository.save(student);
 		return student;
 	}

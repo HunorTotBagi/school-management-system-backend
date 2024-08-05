@@ -7,10 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class StudentDTO {
+public class ParentDTO {
 	private String firstName;
 	private String lastName;
-	private String classId;
-	private String parentId;
+	private String email;
 	private String userId;
 }

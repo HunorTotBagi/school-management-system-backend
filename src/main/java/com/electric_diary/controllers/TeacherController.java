@@ -49,9 +49,9 @@ public class TeacherController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<TeacherEntity> updateTeacher(@PathVariable String id,
-			@RequestBody TeacherEntity teacherBody) {
+			@RequestBody TeacherDTO teacherDTOBody) {
 		logger.error("This is an error message");
-		return new ResponseEntity<>(teacherService.updateTeacher(id, teacherBody), HttpStatus.OK);
+		return new ResponseEntity<>(teacherService.updateTeacher(id, teacherDTOBody), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
