@@ -1,4 +1,4 @@
-name: Create a comment on a new issues
+name: Create a comment on a new issue
 
 on:
   issues:
@@ -11,6 +11,6 @@ jobs:
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v4
         with:
-          issue-number: '${{ github.event.issue.number }}'
+          issue-number: ${{ github.event.issue.number }}
           body: |
             Thank you for opening this issue. We will ensure it is resolved in the shortest amount of time.
