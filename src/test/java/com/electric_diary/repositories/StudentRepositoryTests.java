@@ -10,12 +10,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import com.electric_diary.entities.ClassEntity;
 import com.electric_diary.entities.StudentEntity;
 
-@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class StudentRepositoryTests {
 	@Mock

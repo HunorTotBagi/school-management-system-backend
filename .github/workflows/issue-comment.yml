@@ -1,0 +1,16 @@
+name: Comment on New Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment-with-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Thank you for opening this issue. We will ensure it is resolved in the shortest amount of time.
