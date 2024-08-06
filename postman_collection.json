@@ -31,7 +31,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"class_for_deletion\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"4.A\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -111,7 +111,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/classes/1",
+							"raw": "http://localhost:8080/api/v1/classes/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -121,7 +121,7 @@
 								"api",
 								"v1",
 								"classes",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -149,7 +149,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"new_class\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"hunor\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -157,7 +157,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/classes/4",
+							"raw": "http://localhost:8080/api/v1/classes/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -167,7 +167,7 @@
 								"api",
 								"v1",
 								"classes",
-								"4"
+								"2"
 							]
 						}
 					},
@@ -194,7 +194,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/classes/52",
+							"raw": "http://localhost:8080/api/v1/classes/352",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -204,7 +204,7 @@
 								"api",
 								"v1",
 								"classes",
-								"52"
+								"352"
 							]
 						}
 					},
@@ -489,7 +489,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Josip\",\r\n    \"lastName\" : \"Obilic\",\r\n    \"email\" : \"milos.obilic2@gmail.com\",\r\n    \"userId\" : \"4\"\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Jozsef\",\r\n    \"lastName\" : \"Nikolic\",\r\n    \"email\" : \"jozsef.nikolic@gmail.com\",\r\n    \"userId\" : \"152\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -533,7 +533,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/1",
+							"raw": "http://localhost:8080/api/v1/parents",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -542,7 +542,7 @@
 							"path": [
 								"api",
 								"v1",
-								"1"
+								"parents"
 							]
 						}
 					},
@@ -569,7 +569,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/parents/654",
+							"raw": "http://localhost:8080/api/v1/parents/402",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -579,7 +579,7 @@
 								"api",
 								"v1",
 								"parents",
-								"654"
+								"402"
 							]
 						}
 					},
@@ -607,7 +607,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Hunor\",\r\n    \"lastName\" : \"Tot-Bagi\",\r\n    \"email\" : \"huni92@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Doktor\",\r\n    \"lastName\" : \"Nikolic\",\r\n    \"email\" : \"jozsef.nikolic@gmail.com\",\r\n    \"userId\" : \"152\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -615,7 +615,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/parents/52",
+							"raw": "http://localhost:8080/api/v1/parents/402",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -625,7 +625,7 @@
 								"api",
 								"v1",
 								"parents",
-								"52"
+								"402"
 							]
 						}
 					},
@@ -743,7 +743,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"TEACHER\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"WORKER\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -823,7 +823,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/roles/2",
+							"raw": "http://localhost:8080/api/v1/roles/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -833,7 +833,7 @@
 								"api",
 								"v1",
 								"roles",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -861,7 +861,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"ROLE_DOKTROL\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"COOK\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -869,7 +869,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/roles/3",
+							"raw": "http://localhost:8080/api/v1/roles/102",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -879,7 +879,7 @@
 								"api",
 								"v1",
 								"roles",
-								"3"
+								"102"
 							]
 						}
 					},
@@ -906,7 +906,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/roles/3",
+							"raw": "http://localhost:8080/api/v1/roles/102",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -916,7 +916,7 @@
 								"api",
 								"v1",
 								"roles",
-								"3"
+								"102"
 							]
 						}
 					},
@@ -949,7 +949,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Ivan\",\r\n    \"lastName\" : \"Tančik\",\r\n    \"classId\" : \"1\",\r\n    \"parentId\" : \"52\",\r\n    \"userId\": 3\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Nikla\",\r\n    \"lastName\" : \"Vetnić\",\r\n    \"classId\" : 1,\r\n    \"parentId\" : 402,\r\n    \"userId\": 153\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1700,7 +1700,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"hunor124123\",\r\n    \"lastName\" : \"tot-bagi\",\r\n    \"password\" : \"hello\",\r\n    \"email\" : \"doktor@gmail.com\",\r\n    \"role\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\" : \"Nikola\",\r\n    \"lastName\" : \"Vetnic\",\r\n    \"password\" : \"sodhara\",\r\n    \"email\" : \"nikola.vetnic@gmail.com\",\r\n    \"roleId\" : \"2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1762,10 +1762,25 @@
 				{
 					"name": "/api/v1/users/{id}",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/1",
+							"raw": "http://localhost:8080/api/v1/users/102",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1775,7 +1790,7 @@
 								"api",
 								"v1",
 								"users",
-								"1"
+								"102"
 							]
 						}
 					},
@@ -1803,7 +1818,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"hunor124123\",\r\n    \"lastName\" : \"tot-bagi\",\r\n    \"password\" : \"hello\",\r\n    \"email\" : \"zzzz@gmail.com\",\r\n    \"role\" : {\r\n        \"id\" : 2\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\" : \"Zoran\",\r\n    \"lastName\" : \"Cvijic\",\r\n    \"password\" : \"lord123King\",\r\n    \"email\" : \"zoran.nikolic@gmail.com\",\r\n    \"roleId\" : \"52\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1811,7 +1826,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/52",
+							"raw": "http://localhost:8080/api/v1/users/102",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1821,7 +1836,7 @@
 								"api",
 								"v1",
 								"users",
-								"52"
+								"102"
 							]
 						}
 					},
@@ -1848,7 +1863,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/52",
+							"raw": "http://localhost:8080/api/v1/users/102",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1858,7 +1873,7 @@
 								"api",
 								"v1",
 								"users",
-								"52"
+								"102"
 							]
 						}
 					},
