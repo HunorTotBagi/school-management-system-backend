@@ -1,15 +1,16 @@
 package com.electric_diary.services;
 
+import com.electric_diary.DTO.Request.ClassRequestDTO;
 import com.electric_diary.entities.ClassEntity;
 
 public interface ClassService {
-	public ClassEntity createClass(ClassEntity classBody);
+	public ClassEntity createClass(ClassRequestDTO classRequestDTO);
 
 	public Iterable<ClassEntity> getAllClasses();
 
-	public ClassEntity getClassById(String id);
+	public ClassEntity getClassById(Integer classId);
 
-	public ClassEntity updateClass(String id, ClassEntity classBody);
+	public ClassEntity updateClass(Integer classId, ClassRequestDTO classRequestDTO);
 
-	public ClassEntity deleteClass(String id);
+	public ClassEntity deleteClass(Integer classId);
 }
