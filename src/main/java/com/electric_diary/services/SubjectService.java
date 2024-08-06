@@ -1,17 +1,18 @@
 package com.electric_diary.services;
 
+import com.electric_diary.DTO.Request.SubjectRequestDTO;
 import com.electric_diary.entities.SubjectEntity;
 
 public interface SubjectService {
-	public SubjectEntity createSubject(SubjectEntity subjectBody);
+	public SubjectEntity createSubject(SubjectRequestDTO subjectRequestDTO);
 
 	public Iterable<SubjectEntity> getAllSubjects();
 
-	public SubjectEntity getSubjectById(String id);
+	public SubjectEntity getSubjectById(Integer subjectId);
 
-	public SubjectEntity updateSubject(String id, SubjectEntity subjectBody);
+	public SubjectEntity updateSubject(Integer subjectId, SubjectRequestDTO subjectRequestDTO);
 
-	public SubjectEntity deleteSubject(String id);
+	public SubjectEntity deleteSubject(Integer subjectId);
 
-	public SubjectEntity enrollStudentToSubject(String subjectId, String studentId);
+	public SubjectEntity enrollStudentToSubject(Integer subjectId, Integer studentId);
 }

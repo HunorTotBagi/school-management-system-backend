@@ -65,6 +65,7 @@ public class StudentEntity {
 	@JoinColumn(name = "parent_id", referencedColumnName = "id")
 	private ParentEntity parent;
 	
+	@JsonIgnore
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "user", nullable = false)
     protected UserEntity user;

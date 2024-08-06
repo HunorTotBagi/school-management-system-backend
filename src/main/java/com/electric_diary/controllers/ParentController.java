@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.electric_diary.DTO.ParentDTO;
+import com.electric_diary.DTO.Request.ParentRequestDTO;
 import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.services.ParentService;
 
@@ -27,8 +27,8 @@ public class ParentController {
 	protected ParentService parentService;
 
 	@PostMapping
-	public ResponseEntity<ParentEntity> createParent(@Valid @RequestBody ParentDTO parentDTOBody) {
-		return new ResponseEntity<ParentEntity>(parentService.createParent(parentDTOBody), HttpStatus.OK);
+	public ResponseEntity<ParentEntity> createParent(@Valid @RequestBody ParentRequestDTO parentRequestDTO) {
+		return new ResponseEntity<ParentEntity>(parentService.createParent(parentRequestDTO), HttpStatus.OK);
 	}
 
 	@Secured("ROLE_ADMIN")
@@ -38,24 +38,23 @@ public class ParentController {
 	}
 
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
-	@GetMapping("/{id}")
-	public ResponseEntity<ParentEntity> getParentById(@PathVariable String id) {
-		return new ResponseEntity<>(parentService.getParentById(id), HttpStatus.OK);
+	@GetMapping("/{parentId}")
+	public ResponseEntity<ParentEntity> getParentById(@PathVariable Integer parentId) {
+		return new ResponseEntity<>(parentService.getParentById(parentId), HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<ParentEntity> updateParent(@PathVariable String id, @RequestBody ParentDTO parentDTOBody) {
-		return new ResponseEntity<>(parentService.updateParent(id, parentDTOBody), HttpStatus.OK);
+	@PutMapping("/{parentId}")
+	public ResponseEntity<ParentEntity> updateParent(@PathVariable Integer parentId, @RequestBody ParentRequestDTO parentRequestDTO) {
+		return new ResponseEntity<>(parentService.updateParent(parentId, parentRequestDTO), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<ParentEntity> deleteParent(@PathVariable String id) {
-		return new ResponseEntity<>(parentService.deleteParent(id), HttpStatus.OK);
+	@DeleteMapping("/{parentId}")
+	public ResponseEntity<ParentEntity> deleteParent(@PathVariable Integer parentId) {
+		return new ResponseEntity<>(parentService.deleteParent(parentId), HttpStatus.OK);
 	}
 
 	@PutMapping("/{parentId}/students/{studentId}")
-	public ResponseEntity<ParentEntity> assignStudentToParent(@PathVariable String parentId,
-			@PathVariable String studentId) {
+	public ResponseEntity<ParentEntity> assignStudentToParent(@PathVariable Integer parentId, @PathVariable Integer studentId) {
 		return new ResponseEntity<>(parentService.assignStudentToParent(parentId, studentId), HttpStatus.OK);
 	}
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.electric_diary.DTO.StudentDTO;
+import com.electric_diary.DTO.Request.StudentRequestDTO;
 import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.security.Views;
 import com.electric_diary.services.StudentService;
@@ -30,8 +30,8 @@ public class StudentController {
 	protected StudentService studentService;
 
 	@PostMapping
-	public ResponseEntity<StudentEntity> createStudent(@Valid @RequestBody StudentDTO studentDTOBody) {
-		return new ResponseEntity<>(studentService.createStudent(studentDTOBody), HttpStatus.OK);
+	public ResponseEntity<StudentEntity> createStudent(@Valid @RequestBody StudentRequestDTO studentRequestDTO) {
+		return new ResponseEntity<>(studentService.createStudent(studentRequestDTO), HttpStatus.OK);
 	}
 
 	@GetMapping("/student")
@@ -46,19 +46,18 @@ public class StudentController {
 		return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<StudentEntity> getStudentById(@PathVariable String id) {
-		return new ResponseEntity<>(studentService.getStudentById(id), HttpStatus.OK);
+	@GetMapping("/{studentId}")
+	public ResponseEntity<StudentEntity> getStudentById(@PathVariable Integer studentId) {
+		return new ResponseEntity<>(studentService.getStudentById(studentId), HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<StudentEntity> updateStudent(@PathVariable String id,
-			@RequestBody StudentDTO studentDTOBody) {
-		return new ResponseEntity<>(studentService.updateStudent(id, studentDTOBody), HttpStatus.OK);
+	@PutMapping("/{studentId}")
+	public ResponseEntity<StudentEntity> updateStudent(@PathVariable Integer studentId, @RequestBody StudentRequestDTO studentRequestDTO) {
+		return new ResponseEntity<>(studentService.updateStudent(studentId, studentRequestDTO), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<StudentEntity> deleteStudent(@PathVariable String id) {
-		return new ResponseEntity<>(studentService.deleteStudent(id), HttpStatus.OK);
+	@DeleteMapping("/{studentId}")
+	public ResponseEntity<StudentEntity> deleteStudent(@PathVariable Integer studentId) {
+		return new ResponseEntity<>(studentService.deleteStudent(studentId), HttpStatus.OK);
 	}
 }

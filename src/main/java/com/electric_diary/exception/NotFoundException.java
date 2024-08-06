@@ -3,9 +3,9 @@ package com.electric_diary.exception;
 @SuppressWarnings("serial")
 public class NotFoundException extends RuntimeException {
 	private String entityType;
-	private String entityId;
+	private Integer entityId;
 
-	public NotFoundException(String entityType, String entityId) {
+	public NotFoundException(String entityType, Integer entityId) {
 		this.entityType = entityType;
 		this.entityId = entityId;
 	}
@@ -18,11 +18,11 @@ public class NotFoundException extends RuntimeException {
 		return entityType;
 	}
 
-	public String getEntityId() {
+	public Integer getEntityId() {
 		return entityId;
 	}
 
-	public void setEntityId(String entityId) {
+	public void setEntityId(Integer entityId) {
 		this.entityId = entityId;
 	}
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.electric_diary.DTO.TeacherDTO;
+import com.electric_diary.DTO.Request.TeacherRequestDTO;
 import com.electric_diary.entities.TeacherEntity;
 import com.electric_diary.services.TeacherService;
 
@@ -30,9 +30,9 @@ public class TeacherController {
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
 	@PostMapping
-	public ResponseEntity<TeacherEntity> createTeacher(@Valid @RequestBody TeacherDTO teacherDTOBody) {
+	public ResponseEntity<TeacherEntity> createTeacher(@Valid @RequestBody TeacherRequestDTO teacherRequestDTO) {
 		logger.debug("This is a debug message");
-		return new ResponseEntity<>(teacherService.createTeacher(teacherDTOBody), HttpStatus.OK);
+		return new ResponseEntity<>(teacherService.createTeacher(teacherRequestDTO), HttpStatus.OK);
 	}
 
 	@GetMapping
@@ -41,26 +41,25 @@ public class TeacherController {
 		return new ResponseEntity<>(teacherService.getAllTeachers(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<TeacherEntity> getTeacherById(@PathVariable String id) {
+	@GetMapping("/{teacherId}")
+	public ResponseEntity<TeacherEntity> getTeacherById(@PathVariable Integer teacherId) {
 		logger.warn("This is a warn message");
-		return new ResponseEntity<>(teacherService.getTeacherById(id), HttpStatus.OK);
+		return new ResponseEntity<>(teacherService.getTeacherById(teacherId), HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<TeacherEntity> updateTeacher(@PathVariable String id,
-			@RequestBody TeacherDTO teacherDTOBody) {
+	@PutMapping("/{teacherId}")
+	public ResponseEntity<TeacherEntity> updateTeacher(@PathVariable Integer teacherId, @RequestBody TeacherRequestDTO teacherRequestDTO) {
 		logger.error("This is an error message");
-		return new ResponseEntity<>(teacherService.updateTeacher(id, teacherDTOBody), HttpStatus.OK);
+		return new ResponseEntity<>(teacherService.updateTeacher(teacherId, teacherRequestDTO), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<TeacherEntity> deleteTeacher(@PathVariable String id) {
-		return new ResponseEntity<>(teacherService.deleteTeacher(id), HttpStatus.OK);
+	@DeleteMapping("/{teacherId}")
+	public ResponseEntity<TeacherEntity> deleteTeacher(@PathVariable Integer teacherId) {
+		return new ResponseEntity<>(teacherService.deleteTeacher(teacherId), HttpStatus.OK);
 	}
 
 	@PutMapping("/teaches/Subject")
-	public ResponseEntity<TeacherEntity> teacherTeachesSubject(@RequestBody TeacherDTO teacherDTOBody) {
-		return new ResponseEntity<>(teacherService.teacherTeachesSubject(teacherDTOBody), HttpStatus.OK);
+	public ResponseEntity<TeacherEntity> teacherTeachesSubject(@PathVariable Integer teacherId, @RequestBody TeacherRequestDTO teacherDTOBody) {
+		return new ResponseEntity<>(teacherService.teacherTeachesSubject(teacherId, teacherDTOBody), HttpStatus.OK);
 	}
 }

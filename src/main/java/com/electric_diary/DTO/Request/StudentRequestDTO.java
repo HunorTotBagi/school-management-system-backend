@@ -1,4 +1,4 @@
-package com.electric_diary.DTO;
+package com.electric_diary.DTO.Request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,10 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class StudentDTO {
+public class StudentRequestDTO {
 	private String firstName;
 	private String lastName;
-	private String classId;
-	private String parentId;
-	private String userId;
+	private Integer classId;
+	private Integer parentId;
+	private Integer userId;
 }

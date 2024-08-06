@@ -55,6 +55,7 @@ public class ParentEntity {
 	@OneToMany(mappedBy = "parent", orphanRemoval = true, cascade = CascadeType.ALL)
 	private Set<StudentEntity> students = new HashSet<>();
 	
+	@JsonIgnore
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "user", nullable = false)
     protected UserEntity user;

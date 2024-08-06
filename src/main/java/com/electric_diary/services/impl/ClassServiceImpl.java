@@ -1,9 +1,8 @@
 package com.electric_diary.services.impl;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
+import com.electric_diary.DTO.Request.ClassRequestDTO;
 import com.electric_diary.entities.ClassEntity;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.ClassRepository;
@@ -24,9 +23,9 @@ public class ClassServiceImpl implements ClassService {
 	}
 
 	@Override
-	public ClassEntity createClass(ClassEntity classBody) {
+	public ClassEntity createClass(ClassRequestDTO classRequestDTO) {
 		ClassEntity newClass = new ClassEntity();
-		newClass.setName(classBody.getName());
+		newClass.setName(classRequestDTO.getName());
 		classRepository.save(newClass);
 
 		return newClass;
@@ -38,52 +37,23 @@ public class ClassServiceImpl implements ClassService {
 	}
 
 	@Override
-	public ClassEntity getClassById(String id) {
-		try {
-			int classId = Integer.parseInt(id);
-			ClassEntity newClass = classRepository.findById(classId)
-					.orElseThrow(() -> new NotFoundException("Class", id));
-			return newClass;
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
+	public ClassEntity getClassById(Integer classId) {
+		return classRepository.findById(classId).orElseThrow(() -> new NotFoundException("Class", classId));
 	}
 
 	@Override
-	public ClassEntity updateClass(String id, ClassEntity classBody) {
-		int classId;
-		try {
-			classId = Integer.parseInt(id);
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
+	public ClassEntity updateClass(Integer classId, ClassRequestDTO classRequestDTO) {
+		ClassEntity newClass = getClassById(classId);
 
-		Optional<ClassEntity> optionalClass = classRepository.findById(classId);
-
-		if (!optionalClass.isPresent())
-			throw new NotFoundException("Class", id);
-
-		ClassEntity newClass = optionalClass.get();
-		newClass.setName(classBody.getName());
+		newClass.setName(classRequestDTO.getName());
 		classRepository.save(newClass);
+
 		return newClass;
 	}
 
 	@Override
-	public ClassEntity deleteClass(String id) {
-		int classId;
-		try {
-			classId = Integer.parseInt(id);
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
-
-		Optional<ClassEntity> optionalClass = classRepository.findById(classId);
-
-		if (!optionalClass.isPresent())
-			throw new NotFoundException("Class", id);
-
-		ClassEntity newClass = optionalClass.get();
+	public ClassEntity deleteClass(Integer classId) {
+		ClassEntity newClass = getClassById(classId);
 		classRepository.delete(newClass);
 		return newClass;
 	}

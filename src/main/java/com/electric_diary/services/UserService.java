@@ -1,15 +1,16 @@
 package com.electric_diary.services;
 
+import com.electric_diary.DTO.Request.UserRequestDTO;
 import com.electric_diary.entities.UserEntity;
 
 public interface UserService {
-	public UserEntity createUser(UserEntity userBody);
+	public UserEntity createUser(UserRequestDTO userDTOBody);
 
 	public Iterable<UserEntity> getAllUsers();
 
-	public UserEntity getUserById(String id);
+	public UserEntity getUserById(Integer userId);
 
-	public UserEntity updateUser(String id, UserEntity userBody);
+	public UserEntity updateUser(Integer userId, UserRequestDTO userDTOBody);
 
-	public UserEntity deleteUser(String id);
+	public UserEntity deleteUser(Integer userId);
 }

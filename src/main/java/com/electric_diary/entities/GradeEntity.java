@@ -33,8 +33,8 @@ public class GradeEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Min(1)
-	@Max(5)
+	@Min(value = 1, message = "Grade can't be less than {value}.")
+	@Max(value = 5, message = "Grade can't be greater than {value}.")
 	@NotNull(message = "Grade name must be provided.")
 	private Integer grade;
 

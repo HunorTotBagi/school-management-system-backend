@@ -1,11 +1,12 @@
 package com.electric_diary.services.impl;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
+import com.electric_diary.DTO.Request.UserRequestDTO;
+import com.electric_diary.entities.RoleEntity;
 import com.electric_diary.entities.UserEntity;
 import com.electric_diary.exception.NotFoundException;
+import com.electric_diary.repositories.RoleRepository;
 import com.electric_diary.repositories.UserRepository;
 import com.electric_diary.services.UserService;
 
@@ -18,19 +19,23 @@ public class UserServiceImpl implements UserService {
 	protected EntityManager entityManager;
 
 	private final UserRepository userRepository;
+	private final RoleRepository roleRepository;
 
-	public UserServiceImpl(final UserRepository userRepository) {
+	public UserServiceImpl(final UserRepository userRepository, final RoleRepository roleRepository) {
 		this.userRepository = userRepository;
+		this.roleRepository = roleRepository;
 	}
 
 	@Override
-	public UserEntity createUser(UserEntity userBody) {
+	public UserEntity createUser(UserRequestDTO userDTOBody) {
+		RoleEntity role = getRoleById(userDTOBody.getRoleId());
+
 		UserEntity user = new UserEntity();
-		user.setName(userBody.getName());
-		user.setLastName(userBody.getLastName());
-		user.setPassword("{noop}" + userBody.getPassword());
-		user.setEmail(userBody.getEmail());
-		user.setRole(userBody.getRole());
+		user.setName(userDTOBody.getName());
+		user.setLastName(userDTOBody.getLastName());
+		user.setPassword("{noop}" + userDTOBody.getPassword());
+		user.setEmail(userDTOBody.getEmail());
+		user.setRole(role);
 		userRepository.save(user);
 
 		return user;
@@ -42,54 +47,33 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity getUserById(String id) {
-		try {
-			int userId = Integer.parseInt(id);
-			UserEntity user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", id));
-			return user;
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
+	public UserEntity getUserById(Integer userId) {
+		return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
 	}
 
 	@Override
-	public UserEntity updateUser(String id, UserEntity userBody) {
-		int userId;
-		try {
-			userId = Integer.parseInt(id);
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
+	public UserEntity updateUser(Integer userId, UserRequestDTO userDTOBody) {
+		UserEntity user = getUserById(userId);
+		RoleEntity role = getRoleById(userDTOBody.getRoleId());
 
-		Optional<UserEntity> optionalUser = userRepository.findById(userId);
-		if (!optionalUser.isPresent())
-			throw new NotFoundException("User", id);
-
-		UserEntity user = optionalUser.get();
-		user.setName(userBody.getName());
-		user.setLastName(userBody.getLastName());
-		user.setPassword(userBody.getPassword());
-		user.setEmail(userBody.getEmail());
-		user.setRole(userBody.getRole());
+		user.setName(userDTOBody.getName());
+		user.setLastName(userDTOBody.getLastName());
+		user.setPassword(userDTOBody.getPassword());
+		user.setEmail(userDTOBody.getEmail());
+		user.setRole(role);
 		userRepository.save(user);
+
 		return user;
 	}
 
 	@Override
-	public UserEntity deleteUser(String id) {
-		int userId;
-		try {
-			userId = Integer.parseInt(id);
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
-
-		Optional<UserEntity> optionalUser = userRepository.findById(userId);
-		if (!optionalUser.isPresent())
-			throw new NotFoundException("User", id);
-
-		UserEntity user = optionalUser.get();
+	public UserEntity deleteUser(Integer userId) {
+		UserEntity user = getUserById(userId);
 		userRepository.delete(user);
 		return user;
+	}
+
+	private RoleEntity getRoleById(Integer roleId) {
+		return roleRepository.findById(roleId).orElseThrow(() -> new NotFoundException("Role", roleId));
 	}
 }

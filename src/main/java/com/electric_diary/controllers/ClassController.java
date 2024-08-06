@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.electric_diary.DTO.Request.ClassRequestDTO;
 import com.electric_diary.entities.ClassEntity;
 import com.electric_diary.services.ClassService;
 
@@ -23,8 +24,8 @@ public class ClassController {
 	protected ClassService classService;
 
 	@PostMapping
-	public ResponseEntity<ClassEntity> createClass(@RequestBody ClassEntity classBody) {
-		return new ResponseEntity<>(classService.createClass(classBody), HttpStatus.OK);
+	public ResponseEntity<ClassEntity> createClass(@RequestBody ClassRequestDTO classRequestDTO) {
+		return new ResponseEntity<>(classService.createClass(classRequestDTO), HttpStatus.OK);
 	}
 
 	@GetMapping
@@ -32,18 +33,18 @@ public class ClassController {
 		return new ResponseEntity<>(classService.getAllClasses(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<ClassEntity> getClassById(@PathVariable String id) {
-		return new ResponseEntity<>(classService.getClassById(id), HttpStatus.OK);
+	@GetMapping("/{classId}")
+	public ResponseEntity<ClassEntity> getClassById(@PathVariable Integer classId) {
+		return new ResponseEntity<>(classService.getClassById(classId), HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<ClassEntity> updateClass(@PathVariable String id, @RequestBody ClassEntity classBody) {
-		return new ResponseEntity<>(classService.updateClass(id, classBody), HttpStatus.OK);
+	@PutMapping("/{classId}")
+	public ResponseEntity<ClassEntity> updateClass(@PathVariable Integer classId, @RequestBody ClassRequestDTO classRequestDTO) {
+		return new ResponseEntity<>(classService.updateClass(classId, classRequestDTO), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<ClassEntity> deleteClass(@PathVariable String id) {
-		return new ResponseEntity<>(classService.deleteClass(id), HttpStatus.OK);
+	@DeleteMapping("/{classId}")
+	public ResponseEntity<ClassEntity> deleteClass(@PathVariable Integer classId) {
+		return new ResponseEntity<>(classService.deleteClass(classId), HttpStatus.OK);
 	}
 }
