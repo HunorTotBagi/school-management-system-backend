@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserEntity createUser(UserRequestDTO userDTOBody) {
-		RoleEntity role = fetchRoleById(userDTOBody.getRoleId());
+		RoleEntity role = getRoleById(userDTOBody.getRoleId());
 
 		UserEntity user = new UserEntity();
 		user.setName(userDTOBody.getName());
@@ -48,13 +48,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserEntity getUserById(Integer userId) {
-		return fetchUserById(userId);
+		return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
 	}
 
 	@Override
 	public UserEntity updateUser(Integer userId, UserRequestDTO userDTOBody) {
-		UserEntity user = fetchUserById(userId);
-		RoleEntity role = fetchRoleById(userDTOBody.getRoleId());
+		UserEntity user = getUserById(userId);
+		RoleEntity role = getRoleById(userDTOBody.getRoleId());
 
 		user.setName(userDTOBody.getName());
 		user.setLastName(userDTOBody.getLastName());
@@ -68,16 +68,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserEntity deleteUser(Integer userId) {
-		UserEntity user = fetchUserById(userId);
+		UserEntity user = getUserById(userId);
 		userRepository.delete(user);
 		return user;
 	}
 
-	private UserEntity fetchUserById(Integer userId) {
-		return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
-	}
-
-	private RoleEntity fetchRoleById(Integer roleId) {
+	private RoleEntity getRoleById(Integer roleId) {
 		return roleRepository.findById(roleId).orElseThrow(() -> new NotFoundException("Role", roleId));
 	}
 }

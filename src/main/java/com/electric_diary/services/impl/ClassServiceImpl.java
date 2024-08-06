@@ -38,12 +38,12 @@ public class ClassServiceImpl implements ClassService {
 
 	@Override
 	public ClassEntity getClassById(Integer classId) {
-		return fetchClassById(classId);
+		return classRepository.findById(classId).orElseThrow(() -> new NotFoundException("Class", classId));
 	}
 
 	@Override
 	public ClassEntity updateClass(Integer classId, ClassRequestDTO classRequestDTO) {
-		ClassEntity newClass = fetchClassById(classId);
+		ClassEntity newClass = getClassById(classId);
 
 		newClass.setName(classRequestDTO.getName());
 		classRepository.save(newClass);
@@ -53,14 +53,10 @@ public class ClassServiceImpl implements ClassService {
 
 	@Override
 	public ClassEntity deleteClass(Integer classId) {
-		ClassEntity newClass = fetchClassById(classId);
+		ClassEntity newClass = getClassById(classId);
 
 		classRepository.delete(newClass);
 
 		return newClass;
-	}
-
-	private ClassEntity fetchClassById(Integer classId) {
-		return classRepository.findById(classId).orElseThrow(() -> new NotFoundException("Class", classId));
 	}
 }
