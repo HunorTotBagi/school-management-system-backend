@@ -33,17 +33,17 @@ public class RoleController {
 		return new ResponseEntity<>(roleService.getAllRoles(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{roleId}")
 	public ResponseEntity<RoleEntity> getRoleById(@PathVariable Integer roleId) {
 		return new ResponseEntity<>(roleService.getRoleById(roleId), HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/{roleId}")
 	public ResponseEntity<RoleEntity> updateRole(@PathVariable Integer roleId, @RequestBody RoleRequestDTO roleRequestDTO) {
 		return new ResponseEntity<>(roleService.updateRole(roleId, roleRequestDTO), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{roleId}")
 	public ResponseEntity<RoleEntity> deleteRole(@PathVariable Integer roleId) {
 		return new ResponseEntity<>(roleService.deleteRole(roleId), HttpStatus.OK);
 	}

@@ -58,7 +58,6 @@ public class ParentServiceImpl implements ParentService {
 	@Override
 	public ParentEntity updateParent(Integer parentId, ParentRequestDTO parentRequestDTO) {
 		ParentEntity parent = getParentById(parentId);
-
 		UserEntity user = getUserById(parentRequestDTO.getUserId());
 
 		parent.setFirstName(parentRequestDTO.getFirstName());
@@ -66,6 +65,7 @@ public class ParentServiceImpl implements ParentService {
 		parent.setEmail(parentRequestDTO.getEmail());
 		parent.setUser(user);
 		parentRepository.save(parent);
+
 		return parent;
 	}
 
@@ -83,14 +83,14 @@ public class ParentServiceImpl implements ParentService {
 
 		student.setParent(parent);
 		studentRepository.save(student);
-		
+
 		return parent;
 	}
 
 	private UserEntity getUserById(Integer userId) {
 		return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
 	}
-	
+
 	private StudentEntity getStudentById(Integer studentId) {
 		return studentRepository.findById(studentId).orElseThrow(() -> new NotFoundException("Student", studentId));
 	}

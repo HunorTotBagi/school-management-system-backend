@@ -54,9 +54,7 @@ public class ClassServiceImpl implements ClassService {
 	@Override
 	public ClassEntity deleteClass(Integer classId) {
 		ClassEntity newClass = getClassById(classId);
-
 		classRepository.delete(newClass);
-
 		return newClass;
 	}
 }

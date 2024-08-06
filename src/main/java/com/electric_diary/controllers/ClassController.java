@@ -33,18 +33,17 @@ public class ClassController {
 		return new ResponseEntity<>(classService.getAllClasses(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{classId}")
 	public ResponseEntity<ClassEntity> getClassById(@PathVariable Integer classId) {
 		return new ResponseEntity<>(classService.getClassById(classId), HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<ClassEntity> updateClass(@PathVariable Integer classId,
-			@RequestBody ClassRequestDTO classRequestDTO) {
+	@PutMapping("/{classId}")
+	public ResponseEntity<ClassEntity> updateClass(@PathVariable Integer classId, @RequestBody ClassRequestDTO classRequestDTO) {
 		return new ResponseEntity<>(classService.updateClass(classId, classRequestDTO), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{classId}")
 	public ResponseEntity<ClassEntity> deleteClass(@PathVariable Integer classId) {
 		return new ResponseEntity<>(classService.deleteClass(classId), HttpStatus.OK);
 	}

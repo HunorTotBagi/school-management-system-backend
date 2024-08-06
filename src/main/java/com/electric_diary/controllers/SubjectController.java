@@ -33,17 +33,17 @@ public class SubjectController {
 		return new ResponseEntity<>(subjectService.getAllSubjects(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{subjectId}")
 	public ResponseEntity<SubjectEntity> getSubjectById(@PathVariable Integer subjectId) {
 		return new ResponseEntity<>(subjectService.getSubjectById(subjectId), HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/{subjectId}")
 	public ResponseEntity<SubjectEntity> updateSubject(@PathVariable Integer subjectId, @RequestBody SubjectRequestDTO subjectRequestDTO) {
 		return new ResponseEntity<>(subjectService.updateSubject(subjectId, subjectRequestDTO), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{subjectId}")
 	public ResponseEntity<SubjectEntity> deleteSubject(@PathVariable Integer subjectid) {
 		return new ResponseEntity<>(subjectService.deleteSubject(subjectid), HttpStatus.OK);
 	}

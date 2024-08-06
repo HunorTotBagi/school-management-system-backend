@@ -35,12 +35,12 @@ public class GradeController {
 		return new ResponseEntity<>(gradeService.getAllGrades(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{gradeId}")
 	public ResponseEntity<GradeEntity> getGradeById(@PathVariable Integer gradeId) {
 		return new ResponseEntity<>(gradeService.getGradeById(gradeId), HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/{gradeId}")
 	public ResponseEntity<GradeEntity> updateGrade(@PathVariable Integer gradeId, @RequestBody GradeRequestDTO gradeDTOBody) {
 		return new ResponseEntity<>(gradeService.updateGrade(gradeId, gradeDTOBody), HttpStatus.OK);
 	}

@@ -38,17 +38,17 @@ public class ParentController {
 	}
 
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
-	@GetMapping("/{id}")
+	@GetMapping("/{parentId}")
 	public ResponseEntity<ParentEntity> getParentById(@PathVariable Integer parentId) {
 		return new ResponseEntity<>(parentService.getParentById(parentId), HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/{parentId}")
 	public ResponseEntity<ParentEntity> updateParent(@PathVariable Integer parentId, @RequestBody ParentRequestDTO parentRequestDTO) {
 		return new ResponseEntity<>(parentService.updateParent(parentId, parentRequestDTO), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{parentId}")
 	public ResponseEntity<ParentEntity> deleteParent(@PathVariable Integer parentId) {
 		return new ResponseEntity<>(parentService.deleteParent(parentId), HttpStatus.OK);
 	}

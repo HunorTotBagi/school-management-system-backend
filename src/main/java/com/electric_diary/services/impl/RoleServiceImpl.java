@@ -43,8 +43,10 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public RoleEntity updateRole(Integer roleId, RoleRequestDTO roleRequestDTO) {
 		RoleEntity role = getRoleById(roleId);
+
 		role.setName(roleRequestDTO.getName());
 		roleRepository.save(role);
+
 		return role;
 	}
 

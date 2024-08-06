@@ -41,19 +41,19 @@ public class TeacherController {
 		return new ResponseEntity<>(teacherService.getAllTeachers(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{teacherId}")
 	public ResponseEntity<TeacherEntity> getTeacherById(@PathVariable Integer teacherId) {
 		logger.warn("This is a warn message");
 		return new ResponseEntity<>(teacherService.getTeacherById(teacherId), HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/{teacherId}")
 	public ResponseEntity<TeacherEntity> updateTeacher(@PathVariable Integer teacherId, @RequestBody TeacherRequestDTO teacherRequestDTO) {
 		logger.error("This is an error message");
 		return new ResponseEntity<>(teacherService.updateTeacher(teacherId, teacherRequestDTO), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{teacherId}")
 	public ResponseEntity<TeacherEntity> deleteTeacher(@PathVariable Integer teacherId) {
 		return new ResponseEntity<>(teacherService.deleteTeacher(teacherId), HttpStatus.OK);
 	}
