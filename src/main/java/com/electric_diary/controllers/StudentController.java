@@ -25,7 +25,6 @@ import jakarta.validation.Valid;
 @RequestMapping(path = "/api/v1/students")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class StudentController {
-
 	@Autowired
 	protected StudentService studentService;
 

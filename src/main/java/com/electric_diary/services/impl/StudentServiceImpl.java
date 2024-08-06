@@ -1,5 +1,7 @@
 package com.electric_diary.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.electric_diary.DTO.Request.StudentRequestDTO;
@@ -22,6 +24,7 @@ public class StudentServiceImpl implements StudentService {
 	@PersistenceContext
 	protected EntityManager entityManager;
 
+	public final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final StudentRepository studentRepository;
 	private final ClassRepository classRepository;
 	private final ParentRepository parentRepository;
@@ -48,17 +51,20 @@ public class StudentServiceImpl implements StudentService {
 		student.setParent(parent);
 		student.setUser(user);
 		studentRepository.save(student);
+		logger.info("Created student with ID {}.", student.getId());
 
 		return student;
 	}
 
 	@Override
 	public Iterable<StudentEntity> getAllStudents() {
+		logger.info("Fetched all students");
 		return studentRepository.findAll();
 	}
 
 	@Override
 	public StudentEntity getStudentById(Integer studentId) {
+		logger.info("Fetched student with ID {}.", studentId);
 		return studentRepository.findById(studentId).orElseThrow(() -> new NotFoundException("Student", studentId));
 	}
 
@@ -76,6 +82,7 @@ public class StudentServiceImpl implements StudentService {
 		student.setParent(parent);
 		student.setUser(user);
 		studentRepository.save(student);
+		logger.info("Updated student with ID {}.", studentId);
 
 		return student;
 	}
@@ -84,6 +91,7 @@ public class StudentServiceImpl implements StudentService {
 	public StudentEntity deleteStudent(Integer studentId) {
 		StudentEntity student = getStudentById(studentId);
 		studentRepository.delete(student);
+		logger.info("Deleted student with ID {}.", studentId);
 		return student;
 	}
 

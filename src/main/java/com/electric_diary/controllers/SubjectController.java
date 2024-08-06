@@ -19,7 +19,6 @@ import com.electric_diary.services.SubjectService;
 @RestController
 @RequestMapping(path = "/api/v1/subjects")
 public class SubjectController {
-
 	@Autowired
 	protected SubjectService subjectService;
 

@@ -21,7 +21,6 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping(path = "/api/v1/users")
 public class UserController {
-
 	@Autowired
 	protected UserService userService;
 

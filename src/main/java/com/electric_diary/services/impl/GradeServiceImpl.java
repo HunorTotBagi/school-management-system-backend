@@ -1,5 +1,7 @@
 package com.electric_diary.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.electric_diary.DTO.Request.GradeRequestDTO;
@@ -9,7 +11,6 @@ import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.entities.SubjectEntity;
 import com.electric_diary.entities.TeacherEntity;
-import com.electric_diary.enums.GradingType;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.GradeRepository;
 import com.electric_diary.repositories.ParentRepository;
@@ -27,6 +28,7 @@ public class GradeServiceImpl implements GradeService {
 	@PersistenceContext
 	protected EntityManager entityManager;
 
+	public final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final GradeRepository gradeRepository;
 	private final StudentRepository studentRepository;
 	private final TeacherRepository teacherRepository;
@@ -47,36 +49,35 @@ public class GradeServiceImpl implements GradeService {
 
 	@Override
 	public GradeEntity assignGrade(GradeRequestDTO gradeRequestDTO) {
-		Integer studentId = gradeRequestDTO.getStudentId();
-		Integer teacherId = gradeRequestDTO.getTeacherId();
-		Integer subjectId = gradeRequestDTO.getSubjectId();
-		GradingType gradingType = gradeRequestDTO.getGradingType();
+		StudentEntity student = getStudentById(gradeRequestDTO.getStudentId());
+		TeacherEntity teacher = getTeacherById(gradeRequestDTO.getTeacherId());
+		SubjectEntity subject = getSubjectById(gradeRequestDTO.getSubjectId());
 		Integer grade = gradeRequestDTO.getGrade();
-
-		StudentEntity student = getStudentById(studentId);
-		TeacherEntity teacher = getTeacherById(teacherId);
-		SubjectEntity subject = getSubjectById(subjectId);
 
 		GradeEntity newGrade = new GradeEntity();
 		newGrade.setStudent(student);
 		newGrade.setTeacher(teacher);
 		newGrade.setSubject(subject);
 		newGrade.setGrade(grade);
-		newGrade.setGradingType(gradingType);
+		newGrade.setGradingType(gradeRequestDTO.getGradingType());
 		gradeRepository.save(newGrade);
+		logger.info("Created teacher with ID {}.", teacher.getId());
 
-		sendNewGradeEmailToParent(studentId, grade, student, teacher, subject);
+		sendNewGradeEmailToParent(gradeRequestDTO.getStudentId(), grade, student, teacher, subject);
+		logger.info("Sent email to parent.");
 
 		return newGrade;
 	}
 
 	@Override
 	public Iterable<GradeEntity> getAllGrades() {
+		logger.info("Fetched all grades");
 		return gradeRepository.findAll();
 	}
 
 	@Override
 	public GradeEntity getGradeById(Integer gradeId) {
+		logger.info("Fetched grade with ID {}.", gradeId);
 		return gradeRepository.findById(gradeId).orElseThrow(() -> new NotFoundException("Grade", gradeId));
 	}
 
@@ -84,24 +85,21 @@ public class GradeServiceImpl implements GradeService {
 	public GradeEntity updateGrade(Integer gradeId, GradeRequestDTO gradeDTOBody) {
 		GradeEntity newGrade = getGradeById(gradeId);
 
-		Integer studentId = gradeDTOBody.getStudentId();
-		Integer teacherId = gradeDTOBody.getTeacherId();
-		Integer subjectId = gradeDTOBody.getSubjectId();
-
-		StudentEntity student = getStudentById(studentId);
-		TeacherEntity teacher = getTeacherById(teacherId);
-		SubjectEntity subject = getSubjectById(subjectId);
+		StudentEntity student = getStudentById(gradeDTOBody.getStudentId());
+		TeacherEntity teacher = getTeacherById(gradeDTOBody.getTeacherId());
+		SubjectEntity subject = getSubjectById(gradeDTOBody.getSubjectId());
+		Integer grade = gradeDTOBody.getGrade();
 
 		newGrade.setStudent(student);
 		newGrade.setTeacher(teacher);
 		newGrade.setSubject(subject);
-		newGrade.setGrade(gradeDTOBody.getGrade());
+		newGrade.setGrade(grade);
 		newGrade.setGradingType(gradeDTOBody.getGradingType());
 		gradeRepository.save(newGrade);
+		logger.info("Updated grade with ID {}.", gradeId);
 
-		Integer grade = gradeDTOBody.getGrade();
-
-		sendUpdatedGradeEmailToParent(studentId, grade, student, teacher, subject);
+		sendUpdatedGradeEmailToParent(gradeDTOBody.getStudentId(), grade, student, teacher, subject);
+		logger.info("Sent updated email to parent.");
 
 		return newGrade;
 	}

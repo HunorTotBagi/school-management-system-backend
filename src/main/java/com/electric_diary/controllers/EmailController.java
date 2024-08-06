@@ -12,7 +12,6 @@ import com.electric_diary.services.EmailService;
 @RestController
 @RequestMapping(path = "/api/v1/emails")
 public class EmailController {
-
 	@Autowired
 	private EmailService emailService;
 

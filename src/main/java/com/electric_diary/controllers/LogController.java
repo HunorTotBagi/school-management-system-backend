@@ -14,7 +14,6 @@ import java.io.File;
 @RestController
 @RequestMapping(path = "/api/v1/logs")
 public class LogController {
-
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/download")
 	public ResponseEntity<FileSystemResource> downloadLogs() {
