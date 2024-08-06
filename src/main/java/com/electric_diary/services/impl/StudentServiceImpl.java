@@ -1,10 +1,8 @@
 package com.electric_diary.services.impl;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
-import com.electric_diary.DTO.StudentDTO;
+import com.electric_diary.DTO.Request.StudentRequestDTO;
 import com.electric_diary.entities.ClassEntity;
 import com.electric_diary.entities.ParentEntity;
 import com.electric_diary.entities.StudentEntity;
@@ -38,21 +36,14 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public StudentEntity createStudent(StudentDTO studentDTOBody) {
-		String classId = studentDTOBody.getClassId();
-		String parentId = studentDTOBody.getParentId();
-		String userId = studentDTOBody.getUserId();
+	public StudentEntity createStudent(StudentRequestDTO studentRequestDTO) {
+		ClassEntity newClass = getClassById(studentRequestDTO.getClassId());
+		ParentEntity parent = getParentById(studentRequestDTO.getParentId());
+		UserEntity user = getUserById(studentRequestDTO.getUserId());
 
-		ClassEntity newClass = classRepository.findById(Integer.parseInt(classId))
-				.orElseThrow(() -> new NotFoundException("Class", classId));
-		ParentEntity parent = parentRepository.findById(Integer.parseInt(parentId))
-				.orElseThrow(() -> new NotFoundException("Parent", parentId));
-		UserEntity user = userRepository.findById(Integer.parseInt(userId))
-				.orElseThrow(() -> new NotFoundException("User", userId));
-		
 		StudentEntity student = new StudentEntity();
-		student.setFirstName(studentDTOBody.getFirstName());
-		student.setLastName(studentDTOBody.getLastName());
+		student.setFirstName(studentRequestDTO.getFirstName());
+		student.setLastName(studentRequestDTO.getLastName());
 		student.setNewClass(newClass);
 		student.setParent(parent);
 		student.setUser(user);
@@ -67,61 +58,44 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public StudentEntity getStudentById(String id) {
-		try {
-			int studentId = Integer.parseInt(id);
-			StudentEntity student = studentRepository.findById(studentId)
-					.orElseThrow(() -> new NotFoundException("Student", id));
-			return student;
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
+	public StudentEntity getStudentById(Integer studentId) {
+		return studentRepository.findById(studentId).orElseThrow(() -> new NotFoundException("Student", studentId));
 	}
 
 	@Override
-	public StudentEntity updateStudent(String id, StudentDTO studentDTOBody) {
-		String classId = studentDTOBody.getClassId();
-		String parentId = studentDTOBody.getParentId();
-		String userId = studentDTOBody.getUserId();
+	public StudentEntity updateStudent(Integer studentId, StudentRequestDTO studentRequestDTO) {
+		StudentEntity student = getStudentById(studentId);
 
-		ClassEntity newClass = classRepository.findById(Integer.parseInt(classId))
-				.orElseThrow(() -> new NotFoundException("Class", classId));
-		ParentEntity parent = parentRepository.findById(Integer.parseInt(parentId))
-				.orElseThrow(() -> new NotFoundException("Parent", parentId));
-		UserEntity user = userRepository.findById(Integer.parseInt(userId))
-				.orElseThrow(() -> new NotFoundException("User", userId));
+		ClassEntity newClass = getClassById(studentRequestDTO.getClassId());
+		ParentEntity parent = getParentById(studentRequestDTO.getParentId());
+		UserEntity user = getUserById(studentRequestDTO.getUserId());
 
-		Optional<StudentEntity> optionalStudent = studentRepository.findById(Integer.parseInt(id));
-
-		if (!optionalStudent.isPresent())
-			throw new NotFoundException("Student", id);
-
-		StudentEntity student = optionalStudent.get();
-		student.setFirstName(studentDTOBody.getFirstName());
-		student.setLastName(studentDTOBody.getLastName());
+		student.setFirstName(studentRequestDTO.getFirstName());
+		student.setLastName(studentRequestDTO.getLastName());
 		student.setNewClass(newClass);
 		student.setParent(parent);
 		student.setUser(user);
 		studentRepository.save(student);
+
 		return student;
 	}
 
 	@Override
-	public StudentEntity deleteStudent(String id) {
-		int studentId;
-		try {
-			studentId = Integer.parseInt(id);
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
-
-		Optional<StudentEntity> optionalStudent = studentRepository.findById(studentId);
-
-		if (!optionalStudent.isPresent())
-			throw new NotFoundException("Student", id);
-
-		StudentEntity student = optionalStudent.get();
+	public StudentEntity deleteStudent(Integer studentId) {
+		StudentEntity student = getStudentById(studentId);
 		studentRepository.delete(student);
 		return student;
+	}
+
+	private ClassEntity getClassById(Integer classId) {
+		return classRepository.findById(classId).orElseThrow(() -> new NotFoundException("User", classId));
+	}
+
+	public ParentEntity getParentById(Integer parentId) {
+		return parentRepository.findById(parentId).orElseThrow(() -> new NotFoundException("Parent", parentId));
+	}
+
+	private UserEntity getUserById(Integer userId) {
+		return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
 	}
 }
