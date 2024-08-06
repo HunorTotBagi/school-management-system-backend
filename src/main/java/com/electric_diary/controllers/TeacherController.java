@@ -5,14 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.electric_diary.DTO.Request.TeacherRequestDTO;
 import com.electric_diary.entities.TeacherEntity;
@@ -27,39 +20,47 @@ public class TeacherController {
 	@Autowired
 	protected TeacherService teacherService;
 
-	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@PostMapping
 	public ResponseEntity<TeacherEntity> createTeacher(@Valid @RequestBody TeacherRequestDTO teacherRequestDTO) {
-		logger.debug("This is a debug message");
-		return new ResponseEntity<>(teacherService.createTeacher(teacherRequestDTO), HttpStatus.OK);
+		TeacherEntity createdTeacher = teacherService.createTeacher(teacherRequestDTO);
+		logger.info("Teacher created successfully with ID: {}", createdTeacher.getId());
+		return new ResponseEntity<>(createdTeacher, HttpStatus.CREATED);
 	}
 
 	@GetMapping
 	public ResponseEntity<Iterable<TeacherEntity>> getAllTeachers() {
-		logger.info("This is an info message");
-		return new ResponseEntity<>(teacherService.getAllTeachers(), HttpStatus.OK);
+		Iterable<TeacherEntity> teachers = teacherService.getAllTeachers();
+		logger.info("Fetched all teachers");
+		return new ResponseEntity<>(teachers, HttpStatus.OK);
 	}
 
 	@GetMapping("/{teacherId}")
 	public ResponseEntity<TeacherEntity> getTeacherById(@PathVariable Integer teacherId) {
-		logger.warn("This is a warn message");
-		return new ResponseEntity<>(teacherService.getTeacherById(teacherId), HttpStatus.OK);
+		TeacherEntity teacher = teacherService.getTeacherById(teacherId);
+		logger.info("Teacher with ID {} found", teacherId);
+		return new ResponseEntity<>(teacher, HttpStatus.OK);
 	}
 
 	@PutMapping("/{teacherId}")
 	public ResponseEntity<TeacherEntity> updateTeacher(@PathVariable Integer teacherId, @RequestBody TeacherRequestDTO teacherRequestDTO) {
-		logger.error("This is an error message");
-		return new ResponseEntity<>(teacherService.updateTeacher(teacherId, teacherRequestDTO), HttpStatus.OK);
+		TeacherEntity updatedTeacher = teacherService.updateTeacher(teacherId, teacherRequestDTO);
+		logger.info("Teacher with ID {} updated successfully", updatedTeacher.getId());
+		return new ResponseEntity<>(updatedTeacher, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{teacherId}")
-	public ResponseEntity<TeacherEntity> deleteTeacher(@PathVariable Integer teacherId) {
-		return new ResponseEntity<>(teacherService.deleteTeacher(teacherId), HttpStatus.OK);
+	public ResponseEntity<Void> deleteTeacher(@PathVariable Integer teacherId) {
+		teacherService.deleteTeacher(teacherId);
+		logger.info("Teacher with ID {} deleted successfully", teacherId);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@PutMapping("/teaches/Subject")
 	public ResponseEntity<TeacherEntity> teacherTeachesSubject(@PathVariable Integer teacherId, @RequestBody TeacherRequestDTO teacherDTOBody) {
-		return new ResponseEntity<>(teacherService.teacherTeachesSubject(teacherId, teacherDTOBody), HttpStatus.OK);
+		TeacherEntity updatedTeacher = teacherService.teacherTeachesSubject(teacherId, teacherDTOBody);
+		logger.info("Teacher with ID {} assigned to subject successfully", updatedTeacher.getId());
+		return new ResponseEntity<>(updatedTeacher, HttpStatus.OK);
 	}
 }
