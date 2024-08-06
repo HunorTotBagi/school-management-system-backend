@@ -1,9 +1,8 @@
 package com.electric_diary.services.impl;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
+import com.electric_diary.DTO.Request.SubjectRequestDTO;
 import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.entities.SubjectEntity;
 import com.electric_diary.exception.NotFoundException;
@@ -28,10 +27,11 @@ public class SubjectServiceImpl implements SubjectService {
 	}
 
 	@Override
-	public SubjectEntity createSubject(SubjectEntity subjectBody) {
+	public SubjectEntity createSubject(SubjectRequestDTO subjectRequestDTO) {
 		SubjectEntity subject = new SubjectEntity();
-		subject.setName(subjectBody.getName());
-		subject.setWeeklyFund(subjectBody.getWeeklyFund());
+
+		subject.setName(subjectRequestDTO.getName());
+		subject.setWeeklyFund(subjectRequestDTO.getWeeklyFund());
 		subjectRepository.save(subject);
 
 		return subject;
@@ -43,69 +43,40 @@ public class SubjectServiceImpl implements SubjectService {
 	}
 
 	@Override
-	public SubjectEntity getSubjectById(String id) {
-		try {
-			int subjectId = Integer.parseInt(id);
-			SubjectEntity subject = subjectRepository.findById(subjectId)
-					.orElseThrow(() -> new NotFoundException("Subject", id));
-			return subject;
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
+	public SubjectEntity getSubjectById(Integer subjectId) {
+		return subjectRepository.findById(subjectId).orElseThrow(() -> new NotFoundException("Subject", subjectId));
 	}
 
 	@Override
-	public SubjectEntity updateSubject(String id, SubjectEntity subjectBody) {
-		int subjectId;
-		try {
-			subjectId = Integer.parseInt(id);
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
+	public SubjectEntity updateSubject(Integer subjectId, SubjectRequestDTO subjectRequestDTO) {
+		SubjectEntity subject = getSubjectById(subjectId);
 
-		Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
-
-		if (!optionalSubject.isPresent())
-			throw new NotFoundException("Subject", id);
-
-		SubjectEntity subject = optionalSubject.get();
-		subject.setName(subjectBody.getName());
-		subject.setWeeklyFund(subjectBody.getWeeklyFund());
+		subject.setName(subjectRequestDTO.getName());
+		subject.setWeeklyFund(subjectRequestDTO.getWeeklyFund());
 		subjectRepository.save(subject);
+
 		return subject;
 	}
 
 	@Override
-	public SubjectEntity deleteSubject(String id) {
-		int subjectId;
-		try {
-			subjectId = Integer.parseInt(id);
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
-
-		Optional<SubjectEntity> optionalSubject = subjectRepository.findById(subjectId);
-
-		if (!optionalSubject.isPresent())
-			throw new NotFoundException("Subject", id);
-
-		SubjectEntity subject = optionalSubject.get();
+	public SubjectEntity deleteSubject(Integer subjectId) {
+		SubjectEntity subject = getSubjectById(subjectId);
 		subjectRepository.delete(subject);
 		return subject;
 	}
 
 	@Override
-	public SubjectEntity enrollStudentToSubject(String subjectId, String studentId) {
-		int subjectInt = Integer.parseInt(subjectId);
-		SubjectEntity subject = subjectRepository.findById(subjectInt)
-				.orElseThrow(() -> new NotFoundException("Subject", subjectId));
-
-		int studentInt = Integer.parseInt(studentId);
-		StudentEntity student = studentRepository.findById(studentInt)
-				.orElseThrow(() -> new NotFoundException("Student", studentId));
+	public SubjectEntity enrollStudentToSubject(Integer subjectId, Integer studentId) {
+		SubjectEntity subject = getSubjectById(subjectId);
+		StudentEntity student = getStudentById(studentId);
 
 		subject.enrolStudents(student);
 		subjectRepository.save(subject);
+
 		return subject;
+	}
+
+	public StudentEntity getStudentById(Integer studentId) {
+		return studentRepository.findById(studentId).orElseThrow(() -> new NotFoundException("Student", studentId));
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.electric_diary.DTO.Request.SubjectRequestDTO;
 import com.electric_diary.entities.SubjectEntity;
 import com.electric_diary.services.SubjectService;
 
@@ -23,8 +24,8 @@ public class SubjectController {
 	protected SubjectService subjectService;
 
 	@PostMapping
-	public ResponseEntity<SubjectEntity> createSubject(@RequestBody SubjectEntity subjectBody) {
-		return new ResponseEntity<>(subjectService.createSubject(subjectBody), HttpStatus.OK);
+	public ResponseEntity<SubjectEntity> createSubject(@RequestBody SubjectRequestDTO subjectRequestDTO) {
+		return new ResponseEntity<>(subjectService.createSubject(subjectRequestDTO), HttpStatus.OK);
 	}
 
 	@GetMapping
@@ -33,24 +34,22 @@ public class SubjectController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<SubjectEntity> getSubjectById(@PathVariable String id) {
-		return new ResponseEntity<>(subjectService.getSubjectById(id), HttpStatus.OK);
+	public ResponseEntity<SubjectEntity> getSubjectById(@PathVariable Integer subjectId) {
+		return new ResponseEntity<>(subjectService.getSubjectById(subjectId), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<SubjectEntity> updateSubject(@PathVariable String id,
-			@RequestBody SubjectEntity subjectBody) {
-		return new ResponseEntity<>(subjectService.updateSubject(id, subjectBody), HttpStatus.OK);
+	public ResponseEntity<SubjectEntity> updateSubject(@PathVariable Integer subjectId, @RequestBody SubjectRequestDTO subjectRequestDTO) {
+		return new ResponseEntity<>(subjectService.updateSubject(subjectId, subjectRequestDTO), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<SubjectEntity> deleteSubject(@PathVariable String id) {
-		return new ResponseEntity<>(subjectService.deleteSubject(id), HttpStatus.OK);
+	public ResponseEntity<SubjectEntity> deleteSubject(@PathVariable Integer subjectid) {
+		return new ResponseEntity<>(subjectService.deleteSubject(subjectid), HttpStatus.OK);
 	}
 
 	@PutMapping("/{subjectId}/students/{studentId}")
-	public ResponseEntity<SubjectEntity> enrollStudentToSubject(@PathVariable String subjectId,
-			@PathVariable String studentId) {
+	public ResponseEntity<SubjectEntity> enrollStudentToSubject(@PathVariable Integer subjectId, @PathVariable Integer studentId) {
 		return new ResponseEntity<>(subjectService.enrollStudentToSubject(subjectId, studentId), HttpStatus.OK);
 	}
 }
