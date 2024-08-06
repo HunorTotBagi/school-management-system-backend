@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.electric_diary.DTO.GradeDTO;
+import com.electric_diary.DTO.Request.GradeRequestDTO;
 import com.electric_diary.entities.GradeEntity;
 import com.electric_diary.services.GradeService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,7 +26,7 @@ public class GradeController {
 	private GradeService gradeService;
 
 	@PostMapping
-	public ResponseEntity<GradeEntity> assignGrade(@RequestBody @Valid GradeDTO gradeDTOBody) {
+	public ResponseEntity<GradeEntity> assignGrade(@RequestBody @Valid GradeRequestDTO gradeDTOBody) {
 		return new ResponseEntity<>(gradeService.assignGrade(gradeDTOBody), HttpStatus.OK);
 	}
 
@@ -36,12 +36,12 @@ public class GradeController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<GradeEntity> getGradeById(@PathVariable String id) {
-		return new ResponseEntity<>(gradeService.getGradeById(id), HttpStatus.OK);
+	public ResponseEntity<GradeEntity> getGradeById(@PathVariable Integer gradeId) {
+		return new ResponseEntity<>(gradeService.getGradeById(gradeId), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<GradeEntity> updateGrade(@PathVariable String id, @RequestBody GradeDTO gradeDTOBody) {
-		return new ResponseEntity<>(gradeService.updateGrade(id, gradeDTOBody), HttpStatus.OK);
+	public ResponseEntity<GradeEntity> updateGrade(@PathVariable Integer gradeId, @RequestBody GradeRequestDTO gradeDTOBody) {
+		return new ResponseEntity<>(gradeService.updateGrade(gradeId, gradeDTOBody), HttpStatus.OK);
 	}
 }

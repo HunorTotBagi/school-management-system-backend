@@ -1,4 +1,4 @@
-package com.electric_diary.DTO;
+package com.electric_diary.DTO.Request;
 
 import com.electric_diary.enums.GradingType;
 
@@ -11,12 +11,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class GradeDTO {
+public class GradeRequestDTO {
 	@Min(value = 1, message = "Grade can't be less than {value}.")
 	@Max(value = 5, message = "Grade can't be greater than {value}.")
 	private Integer grade;
-	private String studentId;
-	private String teacherId;
-	private String subjectId;
+	private Integer studentId;
+	private Integer teacherId;
+	private Integer subjectId;
 	private GradingType gradingType;
 }

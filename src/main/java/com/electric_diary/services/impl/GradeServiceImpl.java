@@ -1,8 +1,8 @@
 package com.electric_diary.services.impl;
 
-import java.util.Optional;
 import org.springframework.stereotype.Service;
-import com.electric_diary.DTO.GradeDTO;
+
+import com.electric_diary.DTO.Request.GradeRequestDTO;
 import com.electric_diary.entities.EmailEntity;
 import com.electric_diary.entities.GradeEntity;
 import com.electric_diary.entities.ParentEntity;
@@ -18,6 +18,7 @@ import com.electric_diary.repositories.SubjectRepository;
 import com.electric_diary.repositories.TeacherRepository;
 import com.electric_diary.services.EmailService;
 import com.electric_diary.services.GradeService;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
@@ -45,19 +46,16 @@ public class GradeServiceImpl implements GradeService {
 	}
 
 	@Override
-	public GradeEntity assignGrade(GradeDTO gradeDTOBody) {
-		String studentId = gradeDTOBody.getStudentId();
-		String teacherId = gradeDTOBody.getTeacherId();
-		String subjectId = gradeDTOBody.getSubjectId();
-		GradingType gradingType = gradeDTOBody.getGradingType();
-		Integer grade = gradeDTOBody.getGrade();
+	public GradeEntity assignGrade(GradeRequestDTO gradeRequestDTO) {
+		Integer studentId = gradeRequestDTO.getStudentId();
+		Integer teacherId = gradeRequestDTO.getTeacherId();
+		Integer subjectId = gradeRequestDTO.getSubjectId();
+		GradingType gradingType = gradeRequestDTO.getGradingType();
+		Integer grade = gradeRequestDTO.getGrade();
 
-		StudentEntity student = studentRepository.findById(Integer.parseInt(studentId))
-				.orElseThrow(() -> new NotFoundException("Student", studentId));
-		TeacherEntity teacher = teacherRepository.findById(Integer.parseInt(teacherId))
-				.orElseThrow(() -> new NotFoundException("Teacher", teacherId));
-		SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
-				.orElseThrow(() -> new NotFoundException("Subject", subjectId));
+		StudentEntity student = getStudentById(studentId);
+		TeacherEntity teacher = getTeacherById(teacherId);
+		SubjectEntity subject = getSubjectById(subjectId);
 
 		GradeEntity newGrade = new GradeEntity();
 		newGrade.setStudent(student);
@@ -67,16 +65,7 @@ public class GradeServiceImpl implements GradeService {
 		newGrade.setGradingType(gradingType);
 		gradeRepository.save(newGrade);
 
-		ParentEntity parent = parentRepositroy.findByStudentsId(Integer.parseInt(studentId));
-		if (parent != null && parent.getEmail() != null) {
-			EmailEntity emailObject = new EmailEntity();
-			emailObject.setTo(parent.getEmail());
-			emailObject.setSubject("Your child got a new grade");
-			emailObject.setText("Dear " + parent.getFirstName() + ",\n\n" + "Your child " + student.getFirstName()
-					+ " has received a grade of " + grade + " in " + subject.getName() + ".\n\n" + "Best regards,\n"
-					+ teacher.getFirstName() + " " + teacher.getLastName());
-			emailService.sendSimpleMessage(emailObject);
-		}
+		sendNewGradeEmailToParent(studentId, grade, student, teacher, subject);
 
 		return newGrade;
 	}
@@ -87,62 +76,69 @@ public class GradeServiceImpl implements GradeService {
 	}
 
 	@Override
-	public GradeEntity getGradeById(String id) {
-		try {
-			int gradeId = Integer.parseInt(id);
-			GradeEntity grade = gradeRepository.findById(gradeId).orElseThrow(() -> new NotFoundException("Grade", id));
-			return grade;
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException();
-		}
+	public GradeEntity getGradeById(Integer gradeId) {
+		return gradeRepository.findById(gradeId).orElseThrow(() -> new NotFoundException("Grade", gradeId));
 	}
 
 	@Override
-	public GradeEntity updateGrade(String id, GradeDTO gradeDTOBody) {
-		int gradeId;
-		try {
-			gradeId = Integer.parseInt(id);
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException("Invalid grade ID: " + id);
-		}
+	public GradeEntity updateGrade(Integer gradeId, GradeRequestDTO gradeDTOBody) {
+		GradeEntity newGrade = getGradeById(gradeId);
 
-		Optional<GradeEntity> optionalGrade = gradeRepository.findById(gradeId);
-		if (optionalGrade.isPresent()) {
-			GradeEntity newGrade = optionalGrade.get();
-			String studentId = gradeDTOBody.getStudentId();
-			String teacherId = gradeDTOBody.getTeacherId();
-			String subjectId = gradeDTOBody.getSubjectId();
+		Integer studentId = gradeDTOBody.getStudentId();
+		Integer teacherId = gradeDTOBody.getTeacherId();
+		Integer subjectId = gradeDTOBody.getSubjectId();
 
-			StudentEntity student = studentRepository.findById(Integer.parseInt(studentId))
-					.orElseThrow(() -> new NotFoundException("Student", studentId));
-			TeacherEntity teacher = teacherRepository.findById(Integer.parseInt(teacherId))
-					.orElseThrow(() -> new NotFoundException("Teacher", teacherId));
-			SubjectEntity subject = subjectRepository.findById(Integer.parseInt(subjectId))
-					.orElseThrow(() -> new NotFoundException("Subject", subjectId));
+		StudentEntity student = getStudentById(studentId);
+		TeacherEntity teacher = getTeacherById(teacherId);
+		SubjectEntity subject = getSubjectById(subjectId);
 
-			newGrade.setStudent(student);
-			newGrade.setTeacher(teacher);
-			newGrade.setSubject(subject);
-			newGrade.setGrade(gradeDTOBody.getGrade());
-			newGrade.setGradingType(gradeDTOBody.getGradingType());
-			gradeRepository.save(newGrade);
+		newGrade.setStudent(student);
+		newGrade.setTeacher(teacher);
+		newGrade.setSubject(subject);
+		newGrade.setGrade(gradeDTOBody.getGrade());
+		newGrade.setGradingType(gradeDTOBody.getGradingType());
+		gradeRepository.save(newGrade);
 
-			Integer grade = gradeDTOBody.getGrade();
+		Integer grade = gradeDTOBody.getGrade();
 
-			ParentEntity parent = parentRepositroy.findByStudentsId(Integer.parseInt(studentId));
-			if (parent != null && parent.getEmail() != null) {
-				EmailEntity emailObject = new EmailEntity();
-				emailObject.setTo(parent.getEmail());
-				emailObject.setSubject("Your child's grade has been updated");
-				emailObject.setText("Dear " + parent.getFirstName() + ",\n\n" + "Your child " + student.getFirstName()
-						+ " has received a grade of " + grade + " in " + subject.getName() + ".\n\n" + "Best regards,\n"
-						+ teacher.getFirstName() + " " + teacher.getLastName());
-				emailService.sendSimpleMessage(emailObject);
-			}
+		sendUpdatedGradeEmailToParent(studentId, grade, student, teacher, subject);
 
-			return newGrade;
-		} else {
-			throw new NotFoundException("Grade", id);
+		return newGrade;
+	}
+
+	private StudentEntity getStudentById(Integer studentId) {
+		return studentRepository.findById(studentId).orElseThrow(() -> new NotFoundException("Student", studentId));
+	}
+
+	private SubjectEntity getSubjectById(Integer subjectId) {
+		return subjectRepository.findById(subjectId).orElseThrow(() -> new NotFoundException("Subject", subjectId));
+	}
+
+	private TeacherEntity getTeacherById(Integer teacherId) {
+		return teacherRepository.findById(teacherId).orElseThrow(() -> new NotFoundException("Teacher", teacherId));
+	}
+
+	private void sendNewGradeEmailToParent(Integer studentId, Integer grade, StudentEntity student,
+			TeacherEntity teacher, SubjectEntity subject) {
+		sendEmailToParent(studentId, grade, student, teacher, subject, "Your child got a new grade");
+	}
+
+	private void sendUpdatedGradeEmailToParent(Integer studentId, Integer grade, StudentEntity student,
+			TeacherEntity teacher, SubjectEntity subject) {
+		sendEmailToParent(studentId, grade, student, teacher, subject, "Your child's grade has been updated");
+	}
+
+	private void sendEmailToParent(Integer studentId, Integer grade, StudentEntity student, TeacherEntity teacher,
+			SubjectEntity subject, String emailSubject) {
+		ParentEntity parent = parentRepositroy.findByStudentsId(studentId);
+		if (parent != null && parent.getEmail() != null) {
+			EmailEntity emailObject = new EmailEntity();
+			emailObject.setTo(parent.getEmail());
+			emailObject.setSubject(emailSubject);
+			emailObject.setText("Dear " + parent.getFirstName() + ",\n\n" + "Your child " + student.getFirstName()
+					+ " has received a grade of " + grade + " in " + subject.getName() + ".\n\n" + "Best regards,\n"
+					+ teacher.getFirstName() + " " + teacher.getLastName());
+			emailService.sendSimpleMessage(emailObject);
 		}
 	}
 }
