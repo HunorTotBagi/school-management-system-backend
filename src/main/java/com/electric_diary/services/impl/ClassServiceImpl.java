@@ -38,7 +38,7 @@ public class ClassServiceImpl implements ClassService {
 
 	@Override
 	public Iterable<ClassEntity> getAllClasses() {
-		logger.info("Fetched all classes");
+		logger.info("Fetched all classes.");
 		return classRepository.findAll();
 	}
 
@@ -63,7 +63,7 @@ public class ClassServiceImpl implements ClassService {
 	public ClassEntity deleteClass(Integer classId) {
 		ClassEntity newClass = getClassById(classId);
 		classRepository.delete(newClass);
-		logger.info("Deleted teacher with ID {}.", classId);
+		logger.info("Deleted class with ID {}.", classId);
 		return newClass;
 	}
 }

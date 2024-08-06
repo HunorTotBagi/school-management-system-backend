@@ -58,7 +58,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Iterable<StudentEntity> getAllStudents() {
-		logger.info("Fetched all students");
+		logger.info("Fetched all students.");
 		return studentRepository.findAll();
 	}
 

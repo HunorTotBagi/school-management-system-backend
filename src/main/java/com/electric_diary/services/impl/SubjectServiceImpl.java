@@ -43,7 +43,7 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public Iterable<SubjectEntity> getAllSubjects() {
-		logger.info("Fetched all subjects");
+		logger.info("Fetched all subjects.");
 		return subjectRepository.findAll();
 	}
 
@@ -69,7 +69,7 @@ public class SubjectServiceImpl implements SubjectService {
 	public SubjectEntity deleteSubject(Integer subjectId) {
 		SubjectEntity subject = getSubjectById(subjectId);
 		subjectRepository.delete(subject);
-		logger.info("Deleted teacher with ID {}.", subjectId);
+		logger.info("Deleted subject with ID {}.", subjectId);
 		return subject;
 	}
 

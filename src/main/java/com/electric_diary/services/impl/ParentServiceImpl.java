@@ -51,7 +51,7 @@ public class ParentServiceImpl implements ParentService {
 
 	@Override
 	public Iterable<ParentEntity> getAllParents() {
-		logger.info("Fetched all parents");
+		logger.info("Fetched all parents.");
 		return parentRepository.findAll();
 	}
 

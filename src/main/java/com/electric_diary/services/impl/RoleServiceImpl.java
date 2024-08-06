@@ -38,7 +38,7 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public Iterable<RoleEntity> getAllRoles() {
-		logger.info("Fetched all roles");
+		logger.info("Fetched all roles.");
 		return roleRepository.findAll();
 	}
 

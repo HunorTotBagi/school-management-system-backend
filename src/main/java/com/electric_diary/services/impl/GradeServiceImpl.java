@@ -61,7 +61,7 @@ public class GradeServiceImpl implements GradeService {
 		newGrade.setGrade(grade);
 		newGrade.setGradingType(gradeRequestDTO.getGradingType());
 		gradeRepository.save(newGrade);
-		logger.info("Created teacher with ID {}.", teacher.getId());
+		logger.info("Created grade with ID {}.", teacher.getId());
 
 		sendNewGradeEmailToParent(gradeRequestDTO.getStudentId(), grade, student, teacher, subject);
 		logger.info("Sent email to parent.");
@@ -71,7 +71,7 @@ public class GradeServiceImpl implements GradeService {
 
 	@Override
 	public Iterable<GradeEntity> getAllGrades() {
-		logger.info("Fetched all grades");
+		logger.info("Fetched all grades.");
 		return gradeRepository.findAll();
 	}
 
