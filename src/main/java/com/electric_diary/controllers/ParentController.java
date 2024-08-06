@@ -22,7 +22,6 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping(path = "/api/v1/parents")
 public class ParentController {
-
 	@Autowired
 	protected ParentService parentService;
 

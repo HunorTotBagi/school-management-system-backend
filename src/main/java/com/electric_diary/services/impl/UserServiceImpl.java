@@ -1,5 +1,7 @@
 package com.electric_diary.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.electric_diary.DTO.Request.UserRequestDTO;
@@ -18,6 +20,7 @@ public class UserServiceImpl implements UserService {
 	@PersistenceContext
 	protected EntityManager entityManager;
 
+	public final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
 
@@ -37,17 +40,20 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(userDTOBody.getEmail());
 		user.setRole(role);
 		userRepository.save(user);
+		logger.info("Created user with ID {}.", user.getId());
 
 		return user;
 	}
 
 	@Override
 	public Iterable<UserEntity> getAllUsers() {
+		logger.info("Fetched all users.");
 		return userRepository.findAll();
 	}
 
 	@Override
 	public UserEntity getUserById(Integer userId) {
+		logger.info("Fetched user with ID {}.", userId);
 		return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
 	}
 
@@ -62,6 +68,7 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(userDTOBody.getEmail());
 		user.setRole(role);
 		userRepository.save(user);
+		logger.info("Updated user with ID {}.", userId);
 
 		return user;
 	}
@@ -70,6 +77,7 @@ public class UserServiceImpl implements UserService {
 	public UserEntity deleteUser(Integer userId) {
 		UserEntity user = getUserById(userId);
 		userRepository.delete(user);
+		logger.info("Deleted user with ID {}.", userId);
 		return user;
 	}
 

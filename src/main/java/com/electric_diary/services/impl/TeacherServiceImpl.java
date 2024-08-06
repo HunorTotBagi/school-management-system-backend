@@ -1,5 +1,7 @@
 package com.electric_diary.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.electric_diary.DTO.Request.TeacherRequestDTO;
@@ -22,6 +24,7 @@ public class TeacherServiceImpl implements TeacherService {
 	@PersistenceContext
 	protected EntityManager entityManager;
 
+	public final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final TeacherRepository teacherRepository;
 	private final SubjectRepository subjectRepository;
 	private final ClassRepository classRepository;
@@ -46,17 +49,20 @@ public class TeacherServiceImpl implements TeacherService {
 		teacher.setNewClass(newClass);
 		teacher.setUser(user);
 		teacherRepository.save(teacher);
+		logger.info("Created teacher with ID {}.", teacher.getId());
 
 		return teacher;
 	}
 
 	@Override
 	public Iterable<TeacherEntity> getAllTeachers() {
+		logger.info("Fetched all teachers");
 		return teacherRepository.findAll();
 	}
 
 	@Override
 	public TeacherEntity getTeacherById(Integer teacherId) {
+		logger.info("Fetched teacher with ID {}.", teacherId);
 		return teacherRepository.findById(teacherId).orElseThrow(() -> new NotFoundException("Teacher", teacherId));
 	}
 
@@ -72,6 +78,7 @@ public class TeacherServiceImpl implements TeacherService {
 		teacher.setNewClass(newClass);
 		teacher.setUser(user);
 		teacherRepository.save(teacher);
+		logger.info("Updated teacher with ID {}.", teacherId);
 
 		return teacher;
 	}
@@ -80,6 +87,7 @@ public class TeacherServiceImpl implements TeacherService {
 	public TeacherEntity deleteTeacher(Integer teacherId) {
 		TeacherEntity teacher = getTeacherById(teacherId);
 		teacherRepository.delete(teacher);
+		logger.info("Deleted teacher with ID {}.", teacherId);
 		return teacher;
 	}
 

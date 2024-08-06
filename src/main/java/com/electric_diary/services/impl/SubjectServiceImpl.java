@@ -1,5 +1,7 @@
 package com.electric_diary.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.electric_diary.DTO.Request.SubjectRequestDTO;
@@ -18,6 +20,7 @@ public class SubjectServiceImpl implements SubjectService {
 	@PersistenceContext
 	protected EntityManager entityManager;
 
+	public final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final SubjectRepository subjectRepository;
 	private final StudentRepository studentRepository;
 
@@ -33,17 +36,20 @@ public class SubjectServiceImpl implements SubjectService {
 		subject.setName(subjectRequestDTO.getName());
 		subject.setWeeklyFund(subjectRequestDTO.getWeeklyFund());
 		subjectRepository.save(subject);
+		logger.info("Created subject with ID {}.", subject.getId());
 
 		return subject;
 	}
 
 	@Override
 	public Iterable<SubjectEntity> getAllSubjects() {
+		logger.info("Fetched all subjects.");
 		return subjectRepository.findAll();
 	}
 
 	@Override
 	public SubjectEntity getSubjectById(Integer subjectId) {
+		logger.info("Fetched subject with ID {}.", subjectId);
 		return subjectRepository.findById(subjectId).orElseThrow(() -> new NotFoundException("Subject", subjectId));
 	}
 
@@ -54,6 +60,7 @@ public class SubjectServiceImpl implements SubjectService {
 		subject.setName(subjectRequestDTO.getName());
 		subject.setWeeklyFund(subjectRequestDTO.getWeeklyFund());
 		subjectRepository.save(subject);
+		logger.info("Updated subject with ID {}.", subjectId);
 
 		return subject;
 	}
@@ -62,6 +69,7 @@ public class SubjectServiceImpl implements SubjectService {
 	public SubjectEntity deleteSubject(Integer subjectId) {
 		SubjectEntity subject = getSubjectById(subjectId);
 		subjectRepository.delete(subject);
+		logger.info("Deleted subject with ID {}.", subjectId);
 		return subject;
 	}
 

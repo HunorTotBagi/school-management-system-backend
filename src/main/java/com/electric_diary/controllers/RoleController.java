@@ -19,7 +19,6 @@ import com.electric_diary.services.RoleService;
 @RestController
 @RequestMapping(path = "/api/v1/roles")
 public class RoleController {
-
 	@Autowired
 	protected RoleService roleService;
 
