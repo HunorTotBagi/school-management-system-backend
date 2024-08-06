@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.electric_diary.DTO.Request.RoleRequestDTO;
 import com.electric_diary.entities.RoleEntity;
 import com.electric_diary.services.RoleService;
 
@@ -23,8 +24,8 @@ public class RoleController {
 	protected RoleService roleService;
 
 	@PostMapping
-	public ResponseEntity<RoleEntity> createParent(@RequestBody RoleEntity roleBody) {
-		return new ResponseEntity<RoleEntity>(roleService.createRole(roleBody), HttpStatus.OK);
+	public ResponseEntity<RoleEntity> createParent(@RequestBody RoleRequestDTO roleRequestDTO) {
+		return new ResponseEntity<RoleEntity>(roleService.createRole(roleRequestDTO), HttpStatus.OK);
 	}
 
 	@GetMapping
@@ -33,17 +34,17 @@ public class RoleController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<RoleEntity> getRoleById(@PathVariable String id) {
-		return new ResponseEntity<>(roleService.getRoleById(id), HttpStatus.OK);
+	public ResponseEntity<RoleEntity> getRoleById(@PathVariable Integer roleId) {
+		return new ResponseEntity<>(roleService.getRoleById(roleId), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<RoleEntity> updateRole(@PathVariable String id, @RequestBody RoleEntity roleBody) {
-		return new ResponseEntity<>(roleService.updateRole(id, roleBody), HttpStatus.OK);
+	public ResponseEntity<RoleEntity> updateRole(@PathVariable Integer roleId, @RequestBody RoleRequestDTO roleRequestDTO) {
+		return new ResponseEntity<>(roleService.updateRole(roleId, roleRequestDTO), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<RoleEntity> deleteRole(@PathVariable String id) {
-		return new ResponseEntity<>(roleService.deleteRole(id), HttpStatus.OK);
+	public ResponseEntity<RoleEntity> deleteRole(@PathVariable Integer roleId) {
+		return new ResponseEntity<>(roleService.deleteRole(roleId), HttpStatus.OK);
 	}
 }
