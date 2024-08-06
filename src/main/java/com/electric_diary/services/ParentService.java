@@ -1,18 +1,18 @@
 package com.electric_diary.services;
 
-import com.electric_diary.DTO.ParentDTO;
+import com.electric_diary.DTO.Request.ParentRequestDTO;
 import com.electric_diary.entities.ParentEntity;
 
 public interface ParentService {
-	public ParentEntity createParent(ParentDTO parentDTOBody);
+	public ParentEntity createParent(ParentRequestDTO parentRequestDTO);
 
 	public Iterable<ParentEntity> getAllParents();
 
-	public ParentEntity getParentById(String id);
+	public ParentEntity getParentById(Integer parentId);
 
-	public ParentEntity updateParent(String id, ParentDTO parentDTOBody);
+	public ParentEntity updateParent(Integer parentId, ParentRequestDTO parentRequestDTO);
 
-	public ParentEntity deleteParent(String id);
+	public ParentEntity deleteParent(Integer parentId);
 
-	public ParentEntity assignStudentToParent(String parentId, String studentId);
+	public ParentEntity assignStudentToParent(Integer parentId, Integer studentId);
 }
