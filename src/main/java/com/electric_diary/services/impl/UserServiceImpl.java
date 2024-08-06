@@ -2,7 +2,7 @@ package com.electric_diary.services.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.electric_diary.DTO.UserDTO;
+import com.electric_diary.DTO.Request.UserRequestDTO;
 import com.electric_diary.entities.RoleEntity;
 import com.electric_diary.entities.UserEntity;
 import com.electric_diary.exception.NotFoundException;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity createUser(UserDTO userDTOBody) {
+	public UserEntity createUser(UserRequestDTO userDTOBody) {
 		RoleEntity role = fetchRoleById(userDTOBody.getRoleId());
 
 		UserEntity user = new UserEntity();
@@ -48,11 +48,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserEntity getUserById(Integer userId) {
-		return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
+		return fetchUserById(userId);
 	}
 
 	@Override
-	public UserEntity updateUser(Integer userId, UserDTO userDTOBody) {
+	public UserEntity updateUser(Integer userId, UserRequestDTO userDTOBody) {
 		UserEntity user = fetchUserById(userId);
 		RoleEntity role = fetchRoleById(userDTOBody.getRoleId());
 
@@ -74,8 +74,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private UserEntity fetchUserById(Integer userId) {
-		UserEntity user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
-		return user;
+		return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
 	}
 
 	private RoleEntity fetchRoleById(Integer roleId) {

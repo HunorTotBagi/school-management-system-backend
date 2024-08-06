@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.electric_diary.DTO.UserDTO;
+import com.electric_diary.DTO.Request.UserRequestDTO;
 import com.electric_diary.entities.UserEntity;
 import com.electric_diary.services.UserService;
 
@@ -26,7 +26,7 @@ public class UserController {
 	protected UserService userService;
 
 	@PostMapping
-	public ResponseEntity<UserEntity> createUser(@Valid @RequestBody UserDTO userDTOBody) {
+	public ResponseEntity<UserEntity> createUser(@Valid @RequestBody UserRequestDTO userDTOBody) {
 		return new ResponseEntity<UserEntity>(userService.createUser(userDTOBody), HttpStatus.OK);
 	}
 
@@ -41,7 +41,7 @@ public class UserController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<UserEntity> updateUser(@PathVariable Integer userId, @RequestBody UserDTO userDTOBody) {
+	public ResponseEntity<UserEntity> updateUser(@PathVariable Integer userId, @RequestBody UserRequestDTO userDTOBody) {
 		return new ResponseEntity<>(userService.updateUser(userId, userDTOBody), HttpStatus.OK);
 	}
 
