@@ -34,17 +34,17 @@ public class UserController {
 		return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{userId}")
 	public ResponseEntity<UserEntity> getUserById(@PathVariable Integer userId) {
 		return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/{userId}")
 	public ResponseEntity<UserEntity> updateUser(@PathVariable Integer userId, @RequestBody UserRequestDTO userDTOBody) {
 		return new ResponseEntity<>(userService.updateUser(userId, userDTOBody), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{userId}")
 	public ResponseEntity<UserEntity> deleteUser(@PathVariable Integer userId) {
 		return new ResponseEntity<>(userService.deleteUser(userId), HttpStatus.OK);
 	}
