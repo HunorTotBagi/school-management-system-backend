@@ -103,6 +103,14 @@ public class GradeServiceImpl implements GradeService {
 
 		return newGrade;
 	}
+	
+	@Override
+	public GradeEntity deleteGrade(Integer gradeId) {
+		GradeEntity grade = getGradeById(gradeId);
+		gradeRepository.delete(grade);
+		logger.info("Deleted grade with ID {}.", gradeId);
+		return grade;
+	}
 
 	private StudentEntity getStudentById(Integer studentId) {
 		return studentRepository.findById(studentId).orElseThrow(() -> new NotFoundException("Student", studentId));

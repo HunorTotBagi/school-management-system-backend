@@ -11,4 +11,6 @@ public interface GradeService {
 	public GradeEntity getGradeById(Integer gradeId);
 
 	public GradeEntity updateGrade(Integer gradeId, GradeRequestDTO gradeRequestDTO);
+
+	public GradeEntity deleteGrade(Integer gradeId);
 }
