@@ -2,6 +2,11 @@
 
 This is a backend system for an electronic diary. The system includes functionalities for managing teachers, subjects, students, parents, classes, and grading. It also includes features for authentication, sending emails, logging, and providing endpoints for downloading log files.
 
+## Runnig the project
+
+You need to instal Lombok in order to run the code. You can follow this easy tutorial for this purpose [How to Install Lombok in Eclipse STS (Spring Tool Suite) IDE
+](https://www.youtube.com/watch?v=VR7VaiXHJEY)
+
 ## Features
 
 ### CRUD Operations
