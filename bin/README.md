@@ -36,3 +36,7 @@ This is a backend system for an electronic diary. The system includes functional
 
 - Implement a logger to track system events and errors
 - Provide an endpoint to download the log file
+
+### Swagger 
+
+- Swagger for generating all endpoints implemented
