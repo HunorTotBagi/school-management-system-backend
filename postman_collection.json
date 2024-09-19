@@ -644,7 +644,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Doktor\",\r\n    \"lastName\" : \"Nikolic\",\r\n    \"email\" : \"jozsef.nikolic@gmail.com\",\r\n    \"userId\" : \"152\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Ana\",\r\n    \"lastName\": \"Tot-Bagi\",\r\n    \"email\": \"hunortotbagi@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -652,7 +652,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/parents/402",
+							"raw": "http://localhost:8080/api/v1/parents/352",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -662,7 +662,7 @@
 								"api",
 								"v1",
 								"parents",
-								"402"
+								"352"
 							]
 						}
 					},
@@ -1797,7 +1797,7 @@
 					"response": []
 				},
 				{
-					"name": "/api/v1/users/{id}",
+					"name": "/api/v1/users/{userId}",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -1828,6 +1828,44 @@
 								"v1",
 								"users",
 								"102"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/users/email/{userEmail}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/email/user3@example.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"email",
+								"user3@example.com"
 							]
 						}
 					},
