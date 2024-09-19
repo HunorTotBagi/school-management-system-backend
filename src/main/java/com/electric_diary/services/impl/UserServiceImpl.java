@@ -56,6 +56,11 @@ public class UserServiceImpl implements UserService {
 		logger.info("Fetched user with ID {}.", userId);
 		return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
 	}
+	
+	@Override
+	public UserEntity getUserByEmail(String userEmail) {
+		return userRepository.findByEmail(userEmail).orElseThrow(() -> new NotFoundException("User", 1));
+	}
 
 	@Override
 	public UserEntity updateUser(Integer userId, UserRequestDTO userDTOBody) {
