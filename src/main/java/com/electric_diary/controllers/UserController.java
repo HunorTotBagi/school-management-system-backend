@@ -40,6 +40,11 @@ public class UserController {
 	public ResponseEntity<UserEntity> getUserById(@PathVariable Integer userId) {
 		return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
 	}
+	
+	@GetMapping("/email/{userEmail}")
+	public ResponseEntity<UserEntity> getUserByEmail(@PathVariable String userEmail) {
+		return new ResponseEntity<>(userService.getUserByEmail(userEmail), HttpStatus.OK);
+	}
 
 	@PutMapping("/{userId}")
 	public ResponseEntity<UserEntity> updateUser(@PathVariable Integer userId, @RequestBody UserRequestDTO userDTOBody) {
