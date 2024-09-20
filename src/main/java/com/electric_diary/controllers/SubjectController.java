@@ -45,8 +45,8 @@ public class SubjectController {
 	}
 
 	@DeleteMapping("/{subjectId}")
-	public ResponseEntity<SubjectEntity> deleteSubject(@PathVariable Integer subjectid) {
-		return new ResponseEntity<>(subjectService.deleteSubject(subjectid), HttpStatus.OK);
+	public ResponseEntity<SubjectEntity> deleteSubject(@PathVariable Integer subjectId) {
+		return new ResponseEntity<>(subjectService.deleteSubject(subjectId), HttpStatus.OK);
 	}
 
 	@PutMapping("/{subjectId}/students/{studentId}")
