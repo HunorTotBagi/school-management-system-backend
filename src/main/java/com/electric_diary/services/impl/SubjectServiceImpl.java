@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.electric_diary.DTO.Request.SubjectRequestDTO;
 import com.electric_diary.entities.StudentEntity;
 import com.electric_diary.entities.SubjectEntity;
+import com.electric_diary.entities.TeacherEntity;
 import com.electric_diary.exception.NotFoundException;
 import com.electric_diary.repositories.StudentRepository;
 import com.electric_diary.repositories.SubjectRepository;
@@ -68,6 +69,12 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	public SubjectEntity deleteSubject(Integer subjectId) {
 		SubjectEntity subject = getSubjectById(subjectId);
+		for (StudentEntity student : subject.getEnrolledStudents())
+			student.getSubjects().remove(subject);
+
+		for (TeacherEntity teacher : subject.getTeachers())
+			teacher.getSubjects().remove(subject);
+
 		subjectRepository.delete(subject);
 		logger.info("Deleted subject with ID {}.", subjectId);
 		return subject;
