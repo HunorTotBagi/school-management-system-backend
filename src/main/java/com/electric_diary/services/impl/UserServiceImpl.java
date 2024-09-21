@@ -31,35 +31,27 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserEntity createUser(UserRequestDTO userDTOBody) {
-	    // Validate the input
 	    if (userDTOBody.getEmail() == null || userDTOBody.getPassword() == null || 
 	        userDTOBody.getName() == null || userDTOBody.getLastName() == null) {
 	        throw new IllegalArgumentException("All fields are required.");
 	    }
 
-	    // Validate email format (you can use more sophisticated validation)
 	    if (!userDTOBody.getEmail().contains("@")) {
 	        throw new IllegalArgumentException("Invalid email format.");
 	    }
 
-	    // Get the role by ID
 	    RoleEntity role = getRoleById(userDTOBody.getRole());
 	    if (role == null) {
 	        throw new IllegalArgumentException("Role not found.");
 	    }
 
-	    // Create the user entity and map fields from the DTO
 	    UserEntity user = new UserEntity();
 	    user.setName(userDTOBody.getName());
 	    user.setLastName(userDTOBody.getLastName());
-	    
-	    // Encode the password properly
 	    user.setPassword("{noop}" + userDTOBody.getPassword());
-	    
 	    user.setEmail(userDTOBody.getEmail());
 	    user.setRole(role);
 
-	    // Save the user entity
 	    try {
 	        userRepository.save(user);
 	        logger.info("Created user with ID {} and email {}", user.getId(), user.getEmail());
@@ -67,7 +59,6 @@ public class UserServiceImpl implements UserService {
 	        logger.error("Error while creating user: {}", e.getMessage());
 	        throw new RuntimeException("User creation failed.");
 	    }
-
 	    return user;
 	}
 
