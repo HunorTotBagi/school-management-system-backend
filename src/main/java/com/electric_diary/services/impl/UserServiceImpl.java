@@ -31,19 +31,46 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserEntity createUser(UserRequestDTO userDTOBody) {
-		RoleEntity role = getRoleById(userDTOBody.getRoleId());
+	    // Validate the input
+	    if (userDTOBody.getEmail() == null || userDTOBody.getPassword() == null || 
+	        userDTOBody.getName() == null || userDTOBody.getLastName() == null) {
+	        throw new IllegalArgumentException("All fields are required.");
+	    }
 
-		UserEntity user = new UserEntity();
-		user.setName(userDTOBody.getName());
-		user.setLastName(userDTOBody.getLastName());
-		user.setPassword("{noop}" + userDTOBody.getPassword());
-		user.setEmail(userDTOBody.getEmail());
-		user.setRole(role);
-		userRepository.save(user);
-		logger.info("Created user with ID {}.", user.getId());
+	    // Validate email format (you can use more sophisticated validation)
+	    if (!userDTOBody.getEmail().contains("@")) {
+	        throw new IllegalArgumentException("Invalid email format.");
+	    }
 
-		return user;
+	    // Get the role by ID
+	    RoleEntity role = getRoleById(userDTOBody.getRole());
+	    if (role == null) {
+	        throw new IllegalArgumentException("Role not found.");
+	    }
+
+	    // Create the user entity and map fields from the DTO
+	    UserEntity user = new UserEntity();
+	    user.setName(userDTOBody.getName());
+	    user.setLastName(userDTOBody.getLastName());
+	    
+	    // Encode the password properly
+	    user.setPassword("{noop}" + userDTOBody.getPassword());
+	    
+	    user.setEmail(userDTOBody.getEmail());
+	    user.setRole(role);
+
+	    // Save the user entity
+	    try {
+	        userRepository.save(user);
+	        logger.info("Created user with ID {} and email {}", user.getId(), user.getEmail());
+	    } catch (Exception e) {
+	        logger.error("Error while creating user: {}", e.getMessage());
+	        throw new RuntimeException("User creation failed.");
+	    }
+
+	    return user;
 	}
+
 
 	@Override
 	public Iterable<UserEntity> getAllUsers() {
@@ -65,7 +92,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserEntity updateUser(Integer userId, UserRequestDTO userDTOBody) {
 		UserEntity user = getUserById(userId);
-		RoleEntity role = getRoleById(userDTOBody.getRoleId());
+		RoleEntity role = getRoleById(userDTOBody.getRole());
 
 		user.setName(userDTOBody.getName());
 		user.setLastName(userDTOBody.getLastName());

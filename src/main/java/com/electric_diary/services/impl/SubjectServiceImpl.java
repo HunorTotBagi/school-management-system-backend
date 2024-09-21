@@ -2,7 +2,9 @@ package com.electric_diary.services.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.electric_diary.DTO.Request.SubjectRequestDTO;
 import com.electric_diary.entities.StudentEntity;
@@ -32,6 +34,10 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public SubjectEntity createSubject(SubjectRequestDTO subjectRequestDTO) {
+		if (subjectRequestDTO.getWeeklyFund() != null && subjectRequestDTO.getWeeklyFund() < 0) {
+			logger.error("Attempted to create subject with negative weeklyFund: {}", subjectRequestDTO.getWeeklyFund());
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Weekly Fund cannot be negative.");
+		}
 		SubjectEntity subject = new SubjectEntity();
 
 		subject.setName(subjectRequestDTO.getName());
