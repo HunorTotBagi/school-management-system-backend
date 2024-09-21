@@ -31,7 +31,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"4.A\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"4.1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -149,7 +149,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"hunor\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"111\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -194,7 +194,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/classes/352",
+							"raw": "http://localhost:8080/api/v1/classes/402",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -204,7 +204,7 @@
 								"api",
 								"v1",
 								"classes",
-								"352"
+								"402"
 							]
 						}
 					},
@@ -652,7 +652,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/parents/352",
+							"raw": "http://localhost:8080/api/v1/parents/306",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -662,7 +662,7 @@
 								"api",
 								"v1",
 								"parents",
-								"352"
+								"306"
 							]
 						}
 					},
@@ -737,7 +737,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/parents/4",
+							"raw": "http://localhost:8080/api/v1/parents/602",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -747,7 +747,7 @@
 								"api",
 								"v1",
 								"parents",
-								"4"
+								"602"
 							]
 						}
 					},
@@ -780,7 +780,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"WORKER\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"MASD\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1737,7 +1737,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"Nikola\",\r\n    \"lastName\" : \"Vetnic\",\r\n    \"password\" : \"sodhara\",\r\n    \"email\" : \"nikola.vetnic@gmail.com\",\r\n    \"roleId\" : \"2\"\r\n}",
+							"raw": "{\r\n  \"email\": \"alice.smith@example.com\",\r\n  \"lastName\": \"Smith\",\r\n  \"name\": \"Alice\",\r\n  \"password\": \"S3cur3P@ssw0rd\",\r\n  \"role\": 2\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
