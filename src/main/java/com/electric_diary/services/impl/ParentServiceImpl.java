@@ -117,7 +117,7 @@ public class ParentServiceImpl implements ParentService {
 			throw new IllegalArgumentException("Invalid email format.");
 		}
 
-		RoleEntity newRole = roleRepository.findById(202).orElseThrow(() -> new NotFoundException("Role", 202));
+		RoleEntity newRole = roleRepository.findById(3).orElseThrow(() -> new NotFoundException("Role", 3));
 
 		UserEntity user = new UserEntity();
 		user.setName(firstName);
