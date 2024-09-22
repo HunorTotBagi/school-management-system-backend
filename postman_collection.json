@@ -31,7 +31,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"4.1\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"6.C\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -526,7 +526,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Jozsef\",\r\n    \"lastName\" : \"Nikolic\",\r\n    \"email\" : \"jozsef.nikolic@gmail.com\",\r\n    \"userId\" : \"152\"\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Kuku\",\r\n    \"lastName\" : \"Riku\",\r\n    \"email\" : \"kuku.riku@gmail.com\",\r\n    \"password\" : \"kukuriku\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -644,7 +644,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Ana\",\r\n    \"lastName\": \"Tot-Bagi\",\r\n    \"email\": \"hunortotbagi@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Zoki\",\r\n    \"lastName\": \"Bozoki\",\r\n    \"email\": \"zoki.bozoki@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -652,7 +652,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/parents/306",
+							"raw": "http://localhost:8080/api/v1/parents/702",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -662,7 +662,7 @@
 								"api",
 								"v1",
 								"parents",
-								"306"
+								"702"
 							]
 						}
 					},
@@ -780,7 +780,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"MASD\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"ROLE_TEACHER\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -986,7 +986,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Nikla\",\r\n    \"lastName\" : \"Vetnić\",\r\n    \"classId\" : 1,\r\n    \"parentId\" : 402,\r\n    \"userId\": 153\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Miloš\",\r\n    \"lastName\" : \"Đurđević\",\r\n    \"classId\" : 2,\r\n    \"parentId\" : 6,\r\n    \"userId\": 12\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1187,7 +1187,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/students/2",
+							"raw": "http://localhost:8080/api/v1/students/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1197,7 +1197,7 @@
 								"api",
 								"v1",
 								"students",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -1310,7 +1310,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/subjects/102",
+							"raw": "http://localhost:8080/api/v1/subjects/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1320,7 +1320,7 @@
 								"api",
 								"v1",
 								"subjects",
-								"102"
+								"2"
 							]
 						}
 					},
@@ -1402,7 +1402,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/subjects/1/students/1",
+							"raw": "http://localhost:8080/api/v1/subjects/56/students/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1412,9 +1412,9 @@
 								"api",
 								"v1",
 								"subjects",
-								"1",
+								"56",
 								"students",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -1484,7 +1484,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Veljko\",\r\n    \"lastName\" : \"Petrovic\",\r\n    \"classId\" : \"1\",\r\n    \"userId\" : \"1\"\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Veljko\",\r\n    \"lastName\" : \"Petrović\",\r\n    \"classId\" : \"1\",\r\n    \"userId\" : \"11\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1646,17 +1646,8 @@
 						},
 						"method": "PUT",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"teacherId\" : \"2\",\r\n    \"subjectId\" : \"2\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/teachers/teaches/Subject",
+							"raw": "http://localhost:8080/api/v1/teachers/1/subject/56",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1666,8 +1657,9 @@
 								"api",
 								"v1",
 								"teachers",
-								"teaches",
-								"Subject"
+								"1",
+								"subject",
+								"56"
 							]
 						}
 					},
@@ -1737,7 +1729,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"alice.smith@example.com\",\r\n  \"lastName\": \"Smith\",\r\n  \"name\": \"Alice\",\r\n  \"password\": \"S3cur3P@ssw0rd\",\r\n  \"role\": 2\r\n}\r\n",
+							"raw": "{\r\n  \"email\": \"milos.djurdjevic@gmail.com\",\r\n  \"lastName\": \"Miloš\",\r\n  \"name\": \"Đurđević\",\r\n  \"password\": \"frontend\",\r\n  \"role\": 4\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
