@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { postParent } from "../../HelperFunctions/ParentEndpoints";
+import { useNavigate } from "react-router-dom";
 
 const NewParent = () => {
   const firstName = useRef();
@@ -22,6 +23,8 @@ const NewParent = () => {
   const [isEmptyLastName, setIsEmptyLastName] = useState(false);
   const [isEmptyEmail, setIsEmptyEmail] = useState(false);
   const [isEmptyPassword, setIsEmptyPassword] = useState(false);
+
+  const navigation = useNavigate();
 
   const validateInput = () => {
     let valid = true;
@@ -65,13 +68,16 @@ const NewParent = () => {
         setSuccessMessage(
           `✨🎉 Successfully added ${firstName.current.value} ${lastName.current.value} to the list of parents! 🎉✨`
         );
-        console.log(firstName);
+
         firstName.current.value = "";
         lastName.current.value = "";
         email.current.value = "";
         password.current.value = "";
-
         setErrorMessage("");
+
+        setTimeout(() => {
+          navigation(-1);
+        }, 2000);
       } catch (error) {
         console.log("Error:", error);
         setErrorMessage("Error adding the parent. Please try again.");

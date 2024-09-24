@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { postSubject } from "../../HelperFunctions/SubjectEndpoints";
+import { useNavigate } from "react-router-dom";
 
 const NewSubject = () => {
   const subjectName = useRef();
@@ -18,6 +19,8 @@ const NewSubject = () => {
 
   const [isEmptySubjectName, setIsEmptySubjectName] = useState(false);
   const [isEmptyWeeklyFund, setIsEmptyWeeklyFund] = useState(false);
+
+  const navigation = useNavigate();
 
   const validateInput = () => {
     let valid = true;
@@ -54,7 +57,13 @@ const NewSubject = () => {
         setSuccessMessage(
           `✨🎉Successfully added "${name}" to the list of subjects!🎉✨`
         );
+        subjectName.current.value = "";
+        weeklyFund.current.value = "";
         setErrorMessage("");
+
+        setTimeout(() => {
+          navigation(-1);
+        }, 2000);
       } catch (error) {
         console.log("Error:", error);
         setErrorMessage("Error adding the subject. Please try again.");
