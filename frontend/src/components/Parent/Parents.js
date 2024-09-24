@@ -63,13 +63,7 @@ const Parents = () => {
         />
       </Box>
 
-      <Box
-        className="parents-container"
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="center"
-        mt={2}
-      >
+      <Box display="flex" flexWrap="wrap" justifyContent="center" mt={2}>
         {parents.length > 0 ? (
           parents.map((p) => (
             <Box
