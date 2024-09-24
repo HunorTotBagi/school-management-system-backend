@@ -28,7 +28,7 @@ const Parents = () => {
   }
 
   return (
-    <Container className="parents-page" maxWidth="lg" sx={{ mt: 2, mb: 2 }}>
+    <Container maxWidth="lg" sx={{ mt: 2, mb: 2 }}>
       <Typography variant="h4" component="h1" gutterBottom>
         Parents
       </Typography>
