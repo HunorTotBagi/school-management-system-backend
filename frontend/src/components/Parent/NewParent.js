@@ -65,6 +65,12 @@ const NewParent = () => {
         setSuccessMessage(
           `✨🎉 Successfully added ${firstName.current.value} ${lastName.current.value} to the list of parents! 🎉✨`
         );
+        console.log(firstName);
+        firstName.current.value = "";
+        lastName.current.value = "";
+        email.current.value = "";
+        password.current.value = "";
+
         setErrorMessage("");
       } catch (error) {
         console.log("Error:", error);
