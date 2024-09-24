@@ -35,7 +35,7 @@ const Parent = (props) => {
         borderRadius: "8px",
       }}
     >
-      <Box className="parent-details" sx={{ marginBottom: 2 }}>
+      <Box sx={{ marginBottom: 2 }}>
         <Typography variant="h6" component="h3">
           <strong>
             {props.parent.firstName} {props.parent.lastName}
