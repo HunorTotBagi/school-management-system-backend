@@ -9,6 +9,7 @@ import {
 import React, { useRef, useState } from "react";
 import { putParent } from "../../HelperFunctions/ParentEndpoints";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const EditParent = () => {
   const firstName = useRef();
@@ -22,6 +23,8 @@ const EditParent = () => {
   const [isEmptyFirstName, setIsEmptyFirstName] = useState(false);
   const [isEmptyLastName, setIsEmptyLastName] = useState(false);
   const [isEmptyEmail, setIsEmptyEmail] = useState(false);
+
+  const navigation = useNavigate();
 
   const validateInput = () => {
     let valid = true;
@@ -59,6 +62,10 @@ const EditParent = () => {
         );
         setSuccess(true);
         setErrorMessage("");
+
+        setTimeout(() => {
+          navigation(-1);
+        }, 2000);
       } catch (error) {
         console.log("Error:", error);
         setErrorMessage("Error updating the parent. Please try again.");

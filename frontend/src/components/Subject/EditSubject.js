@@ -9,6 +9,7 @@ import {
 import React, { useRef, useState } from "react";
 import { putSubject } from "../../HelperFunctions/SubjectEndpoints";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const EditSubject = () => {
   const subjectName = useRef();
@@ -20,6 +21,8 @@ const EditSubject = () => {
 
   const [isEmptySubjectName, setIsEmptySubjectName] = useState(false);
   const [isEmptyWeeklyFund, setIsEmptyWeeklyFund] = useState(false);
+
+  const navigation = useNavigate();
 
   const validateInput = () => {
     let valid = true;
@@ -55,6 +58,9 @@ const EditSubject = () => {
         );
         setSuccess(true);
         setErrorMessage("");
+        setTimeout(() => {
+          navigation(-1);
+        }, 2000);
       } catch (error) {
         console.log("Error:", error);
         setErrorMessage("Error updating the subject. Please try again.");
