@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.electric_diary.entities.RoleEntity;
+import com.electric_diary.enums.RoleEnum;
 
 @ExtendWith(MockitoExtension.class)
 public class RoleRepositoryTests {
@@ -23,7 +24,7 @@ public class RoleRepositoryTests {
 		// Arrange
 		RoleEntity role = RoleEntity.builder()
 				.id(1)
-				.name("TEACHER")
+				.name(RoleEnum.ROLE_TEACHER.name())
 				.build();
 		
 		Mockito.when(roleRepository.save(role)).thenReturn(role);
@@ -40,11 +41,11 @@ public class RoleRepositoryTests {
 	public void RoleRepository_FindAll_ReturnMoreThanOneRole() {
 	    // Arrange
 		RoleEntity firstRole = RoleEntity.builder()
-				.name("TEACHER")
+				.name(RoleEnum.ROLE_TEACHER.name())
 				.build();
 	    
 		RoleEntity secondRole = RoleEntity.builder()
-				.name("ADMIN")
+				.name(RoleEnum.ROLE_ADMIN.name())
 				.build();
 	    
 	    List<RoleEntity> roleList = Arrays.asList(firstRole, secondRole);
@@ -64,7 +65,7 @@ public class RoleRepositoryTests {
 	public void RoleRepository_FindById_ReturnRole() {
 	    // Arrange
 		RoleEntity role = RoleEntity.builder()
-				.name("TEACHER")
+				.name(RoleEnum.ROLE_TEACHER.name())
 				.build();
 	    
 	    Mockito.when(roleRepository.findById(role.getId())).thenReturn(Optional.of(role));
@@ -82,13 +83,13 @@ public class RoleRepositoryTests {
 	    // Arrange
 		RoleEntity role = RoleEntity.builder()
 				.id(1)
-				.name("TEACHER")
+				.name(RoleEnum.ROLE_TEACHER.name())
 				.build();
 	    
 	    Mockito.when(roleRepository.findById(role.getId())).thenReturn(Optional.of(role));
 	    RoleEntity resultSave = roleRepository.findById(role.getId()).get();
 	    
-	    resultSave.setName("ADMIN");
+	    resultSave.setName(RoleEnum.ROLE_ADMIN.name());
 	    
 		Mockito.when(roleRepository.save(resultSave)).thenReturn(resultSave);
 	    
@@ -104,7 +105,7 @@ public class RoleRepositoryTests {
 	    // Arrange
 		RoleEntity role = RoleEntity.builder()
 				.id(1)
-				.name("TEACHER")
+				.name(RoleEnum.ROLE_TEACHER.name())
 				.build();
 	    
 		roleRepository.save(role);
