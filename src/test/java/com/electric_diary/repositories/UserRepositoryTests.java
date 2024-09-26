@@ -23,7 +23,7 @@ public class UserRepositoryTests {
 		// Arrange
 		UserEntity user = UserEntity.builder()
 				.id(1)
-				.name("Clark")
+				.firstName("Clark")
 				.lastName("Kent")
 				.password("ver7strong")
 				.email("clark.kent@gmail.com")
@@ -43,14 +43,14 @@ public class UserRepositoryTests {
 	public void UserRepository_FindAll_ReturnMoreThanOneUser() {
 	    // Arrange
 		UserEntity firstUser = UserEntity.builder()
-				.name("Clark")
+				.firstName("Clark")
 				.lastName("Kent")
 				.password("ver7strong")
 				.email("clark.kent@gmail.com")
 				.build();
 		
 		UserEntity secondUser = UserEntity.builder()
-				.name("Elon")
+				.firstName("Elon")
 				.lastName("Musk")
 				.password("genious442a")
 				.email("elon7.musk@tesla.com")
@@ -73,7 +73,7 @@ public class UserRepositoryTests {
 	public void UserRepository_FindById_ReturnUser() {
 	    // Arrange
 		UserEntity user = UserEntity.builder()
-				.name("Elon")
+				.firstName("Elon")
 				.lastName("Musk")
 				.password("genious442a")
 				.email("elon7.musk@tesla.com")
@@ -93,7 +93,7 @@ public class UserRepositoryTests {
 	public void UserRepository_UpdateUser_ReturnsUpdatedUser() {
 	    // Arrange
 		UserEntity user = UserEntity.builder()
-				.name("Elon")
+				.firstName("Elon")
 				.lastName("Musk")
 				.password("genious442a")
 				.email("elon7.musk@tesla.com")
@@ -102,7 +102,7 @@ public class UserRepositoryTests {
 	    Mockito.when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
 	    UserEntity resultSave = userRepository.findById(user.getId()).get();
 	    
-	    resultSave.setName("Ivan");
+	    resultSave.setFirstName("Ivan");
 	    resultSave.setLastName("Tančik");
 	    resultSave.setPassword("abAP46God!");
 	    resultSave.setEmail("ivan.tancik@gmail.com");
@@ -113,7 +113,7 @@ public class UserRepositoryTests {
 		UserEntity updatedUser = userRepository.save(resultSave);
 	    
 	    // Assert
-	    Assertions.assertThat(updatedUser.getName()).isEqualTo("Ivan");
+	    Assertions.assertThat(updatedUser.getFirstName()).isEqualTo("Ivan");
 	    Assertions.assertThat(updatedUser.getLastName()).isEqualTo("Tančik");
 	    Assertions.assertThat(updatedUser.getPassword()).isEqualTo("abAP46God!");
 	    Assertions.assertThat(updatedUser.getEmail()).isEqualTo("ivan.tancik@gmail.com");
@@ -124,7 +124,7 @@ public class UserRepositoryTests {
 	    // Arrange
 		UserEntity user = UserEntity.builder()
 				.id(1)
-				.name("Clark")
+				.firstName("Clark")
 				.lastName("Kent")
 				.password("ver7strong")
 				.email("clark.kent@gmail.com")
