@@ -95,11 +95,13 @@ public class ParentServiceImpl implements ParentService {
 		validateUserFields(parentRequestDTO);
 		RoleEntity newRole = getRoleById(3);
 		UserEntity user = new UserEntity();
+		
 		user.setName(parentRequestDTO.getFirstName());
 		user.setLastName(parentRequestDTO.getLastName());
 		user.setPassword("{noop}" + parentRequestDTO.getPassword());
 		user.setEmail(parentRequestDTO.getEmail());
 		user.setRole(newRole);
+		
 		logger.info("User with ID {} and email {} created.", user.getId(), user.getEmail());
 		userRepository.save(user);
 		return user;
@@ -137,8 +139,8 @@ public class ParentServiceImpl implements ParentService {
 		existingUser.setName(parentRequestDTO.getFirstName());
 		existingUser.setLastName(parentRequestDTO.getLastName());
 		existingUser.setEmail(parentRequestDTO.getEmail());
-		userRepository.save(existingUser);
 		logger.info("User with ID {} updated.", existingUser.getId());
+		userRepository.save(existingUser);
 	}
 
 	private UserEntity getUserById(Integer userId) {
