@@ -58,7 +58,7 @@ public class UserEntity {
 	protected String email;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JoinColumn(name = "role")
+	@JoinColumn(name = "role_id")
 	protected RoleEntity role;
 	
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
