@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 	    }
 
 	    UserEntity user = new UserEntity();
-	    user.setName(userDTOBody.getName());
+	    user.setFirstName(userDTOBody.getName());
 	    user.setLastName(userDTOBody.getLastName());
 	    user.setPassword("{noop}" + userDTOBody.getPassword());
 	    user.setEmail(userDTOBody.getEmail());
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
 		UserEntity user = getUserById(userId);
 		RoleEntity role = getRoleById(userDTOBody.getRole());
 
-		user.setName(userDTOBody.getName());
+		user.setFirstName(userDTOBody.getName());
 		user.setLastName(userDTOBody.getLastName());
 		user.setPassword(userDTOBody.getPassword());
 		user.setEmail(userDTOBody.getEmail());

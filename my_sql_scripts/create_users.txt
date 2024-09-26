@@ -1,8 +1,8 @@
-INSERT INTO `electronic_diary_db`.`user` (`user_id`, `email`, `last_name`, `name`, `password`, `role`)
-VALUES ('1', 'user@example.com', 'Dimitrieski', 'Vladimir', '{noop}pass', '1');
+INSERT INTO `electronic_diary_db`.`user` (`user_id`, `first_name`, `last_name`, `email`, `password`, `role_id`)
+VALUES ('1', 'Dimitrieski', 'Vladimir', 'user@example.com', '{noop}pass', '1');
 
-INSERT INTO `electronic_diary_db`.`user` (`user_id`, `email`, `last_name`, `name`, `password`, `role`)
-VALUES ('2', 'user2@example.com', 'Celikovic', 'Milan', '{noop}pass', '2');
+INSERT INTO `electronic_diary_db`.`user` (`user_id`, `first_name`, `last_name`, `email`, `password`, `role_id`)
+VALUES ('2', 'Celikovic', 'Milan', 'user2@example.com', '{noop}pass', '2');
 
-INSERT INTO `electronic_diary_db`.`user` (`user_id`, `email`, `last_name`, `name`, `password`, `role`)
-VALUES ('3', 'user3@example.com', 'Vujanovic', 'Angelina', '{noop}pass', '2');
+INSERT INTO `electronic_diary_db`.`user` (`user_id`, `email`, `last_name`, `first_name`, `password`, `role_id`)
+VALUES ('3', 'user3@example.com', 'Vujanovic', 'Angelina', '{noop}pass', '3');

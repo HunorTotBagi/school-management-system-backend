@@ -96,7 +96,7 @@ public class ParentServiceImpl implements ParentService {
 		RoleEntity newRole = getRoleById(3);
 		UserEntity user = new UserEntity();
 		
-		user.setName(parentRequestDTO.getFirstName());
+		user.setFirstName(parentRequestDTO.getFirstName());
 		user.setLastName(parentRequestDTO.getLastName());
 		user.setPassword("{noop}" + parentRequestDTO.getPassword());
 		user.setEmail(parentRequestDTO.getEmail());
@@ -136,7 +136,7 @@ public class ParentServiceImpl implements ParentService {
 	}
 
 	private void updateUser(ParentRequestDTO parentRequestDTO, UserEntity existingUser) {
-		existingUser.setName(parentRequestDTO.getFirstName());
+		existingUser.setFirstName(parentRequestDTO.getFirstName());
 		existingUser.setLastName(parentRequestDTO.getLastName());
 		existingUser.setEmail(parentRequestDTO.getEmail());
 		logger.info("User with ID {} updated.", existingUser.getId());

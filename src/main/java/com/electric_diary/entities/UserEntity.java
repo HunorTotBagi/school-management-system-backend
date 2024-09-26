@@ -36,11 +36,11 @@ public class UserEntity {
 	@Column(name = "user_id")
 	protected Integer id;
 
-	@Column(nullable = false, name = "name")
-	@NotBlank(message = "Name cannot be blank")
-	@NotNull(message = "Name name must be provided.")
-	@Size(min = 2, max = 30, message = "Name must be between {min} and {max} characters long.")
-	protected String name;
+	@Column(nullable = false, name = "first_name")
+	@NotBlank(message = "First name cannot be blank")
+	@NotNull(message = "First name must be provided.")
+	@Size(min = 2, max = 30, message = "First name must be between {min} and {max} characters long.")
+	protected String firstName;
 
 	@NotBlank(message = "Last name cannot be blank")
 	@NotNull(message = "Last name must be provided.")
@@ -58,7 +58,7 @@ public class UserEntity {
 	protected String email;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JoinColumn(name = "role")
+	@JoinColumn(name = "role_id")
 	protected RoleEntity role;
 	
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
