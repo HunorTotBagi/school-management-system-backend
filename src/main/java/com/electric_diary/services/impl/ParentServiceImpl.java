@@ -40,25 +40,13 @@ public class ParentServiceImpl implements ParentService {
 
 	@Override
 	public ParentEntity createParent(ParentRequestDTO parentRequestDTO) {
-		UserEntity newParent = createUser(parentRequestDTO.getFirstName(), parentRequestDTO.getLastName(),
-				parentRequestDTO.getEmail(), parentRequestDTO.getPassword());
-
-		ParentEntity parent = new ParentEntity();
-
-		parent.setFirstName(parentRequestDTO.getFirstName());
-		parent.setLastName(parentRequestDTO.getLastName());
-		parent.setEmail(parentRequestDTO.getEmail());
-		parent.setUser(newParent);
-
-		parentRepository.save(parent);
-		logger.info("Created parent with ID {}.", parent.getId());
-
-		return parent;
+		UserEntity newUser = createAndSaveUser(parentRequestDTO);
+		return createAndSaveParent(parentRequestDTO, newUser);
 	}
 
 	@Override
 	public Iterable<ParentEntity> getAllParents() {
-		logger.info("Fetched all parents.");
+		logger.info("Fetching all parents.");
 		return parentRepository.findAll();
 	}
 
@@ -70,22 +58,24 @@ public class ParentServiceImpl implements ParentService {
 
 	@Override
 	public ParentEntity updateParent(Integer parentId, ParentRequestDTO parentRequestDTO) {
-		ParentEntity parent = getParentById(parentId);
+		ParentEntity existingParent = getParentById(parentId);
+		UserEntity existingUser = getUserById(existingParent.getId());
 
-		parent.setFirstName(parentRequestDTO.getFirstName());
-		parent.setLastName(parentRequestDTO.getLastName());
-		parent.setEmail(parentRequestDTO.getEmail());
-		parentRepository.save(parent);
-		logger.info("Updated parent with ID {}.", parentId);
+		updateParent(parentRequestDTO, existingParent);
+		updateUser(parentRequestDTO, existingUser);
 
-		return parent;
+		return existingParent;
 	}
 
 	@Override
 	public ParentEntity deleteParent(Integer parentId) {
 		ParentEntity parent = getParentById(parentId);
+		UserEntity user = parent.getUser();
+
 		parentRepository.delete(parent);
-		logger.info("Deleted parent with ID {}.", parentId);
+		userRepository.delete(user);
+		logger.info("Deleted parent with ID {} and associated user with ID {}.", parentId, user.getId());
+
 		return parent;
 	}
 
@@ -96,8 +86,61 @@ public class ParentServiceImpl implements ParentService {
 
 		student.setParent(parent);
 		studentRepository.save(student);
+		logger.info("Assigned student with ID {} to parent with ID {}.", studentId, parentId);
 
 		return parent;
+	}
+
+	private UserEntity createAndSaveUser(ParentRequestDTO parentRequestDTO) {
+		validateUserFields(parentRequestDTO);
+		RoleEntity newRole = getRoleById(3);
+		UserEntity user = new UserEntity();
+		
+		user.setName(parentRequestDTO.getFirstName());
+		user.setLastName(parentRequestDTO.getLastName());
+		user.setPassword("{noop}" + parentRequestDTO.getPassword());
+		user.setEmail(parentRequestDTO.getEmail());
+		user.setRole(newRole);
+		
+		logger.info("User with ID {} and email {} created.", user.getId(), user.getEmail());
+		userRepository.save(user);
+		return user;
+	}
+
+	private void validateUserFields(ParentRequestDTO parentRequestDTO) {
+		if (parentRequestDTO.getEmail() == null || parentRequestDTO.getPassword() == null
+				|| parentRequestDTO.getFirstName() == null || parentRequestDTO.getLastName() == null) {
+			throw new IllegalArgumentException("All fields are required.");
+		}
+		if (!parentRequestDTO.getEmail().contains("@"))
+			throw new IllegalArgumentException("Invalid email format.");
+	}
+
+	private ParentEntity createAndSaveParent(ParentRequestDTO parentRequestDTO, UserEntity newUser) {
+		ParentEntity parent = new ParentEntity();
+		parent.setFirstName(parentRequestDTO.getFirstName());
+		parent.setLastName(parentRequestDTO.getLastName());
+		parent.setEmail(parentRequestDTO.getEmail());
+		parent.setUser(newUser);
+		logger.info("Parent with ID {} created.", parent.getId());
+		parentRepository.save(parent);
+		return parent;
+	}
+
+	private void updateParent(ParentRequestDTO parentRequestDTO, ParentEntity existingParent) {
+		existingParent.setFirstName(parentRequestDTO.getFirstName());
+		existingParent.setLastName(parentRequestDTO.getLastName());
+		existingParent.setEmail(parentRequestDTO.getEmail());
+		logger.info("Parent with ID {} updated.", existingParent.getId());
+		parentRepository.save(existingParent);
+	}
+
+	private void updateUser(ParentRequestDTO parentRequestDTO, UserEntity existingUser) {
+		existingUser.setName(parentRequestDTO.getFirstName());
+		existingUser.setLastName(parentRequestDTO.getLastName());
+		existingUser.setEmail(parentRequestDTO.getEmail());
+		logger.info("User with ID {} updated.", existingUser.getId());
+		userRepository.save(existingUser);
 	}
 
 	private UserEntity getUserById(Integer userId) {
@@ -108,27 +151,7 @@ public class ParentServiceImpl implements ParentService {
 		return studentRepository.findById(studentId).orElseThrow(() -> new NotFoundException("Student", studentId));
 	}
 
-	private UserEntity createUser(String firstName, String lastName, String email, String password) {
-		if (email == null || password == null || firstName == null || lastName == null) {
-			throw new IllegalArgumentException("All fields are required.");
-		}
-
-		if (!email.contains("@")) {
-			throw new IllegalArgumentException("Invalid email format.");
-		}
-
-		RoleEntity newRole = roleRepository.findById(3).orElseThrow(() -> new NotFoundException("Role", 3));
-
-		UserEntity user = new UserEntity();
-		user.setName(firstName);
-		user.setLastName(lastName);
-		user.setPassword("{noop}" + password);
-		user.setEmail(email);
-		user.setRole(newRole);
-		
-		userRepository.save(user);
-		logger.info("Created user with ID {} and email {}", user.getId(), user.getEmail());
-
-		return user;
+	private RoleEntity getRoleById(Integer roleId) {
+		return roleRepository.findById(roleId).orElseThrow(() -> new NotFoundException("Role", roleId));
 	}
 }
