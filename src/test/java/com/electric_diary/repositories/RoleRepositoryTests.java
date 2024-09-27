@@ -97,7 +97,7 @@ public class RoleRepositoryTests {
 		RoleEntity updatedRole = roleRepository.save(resultSave);
 	    
 	    // Assert
-	    Assertions.assertThat(updatedRole.getName()).isEqualTo("ADMIN");
+	    Assertions.assertThat(updatedRole.getName()).isEqualTo("ROLE_ADMIN");
 	}
 	
 	@Test
