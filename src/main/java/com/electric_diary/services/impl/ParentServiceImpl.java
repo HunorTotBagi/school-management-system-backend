@@ -93,7 +93,7 @@ public class ParentServiceImpl implements ParentService {
 
 	private UserEntity createAndSaveUser(ParentRequestDTO parentRequestDTO) {
 		validateUserFields(parentRequestDTO);
-		RoleEntity newRole = getRoleById(3);
+		RoleEntity newRole = getRoleById(4);
 		UserEntity user = new UserEntity();
 		
 		user.setFirstName(parentRequestDTO.getFirstName());
