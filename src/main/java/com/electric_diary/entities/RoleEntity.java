@@ -35,7 +35,7 @@ public class RoleEntity {
 	@Column(name = "role_id")
 	protected Integer id;
 
-	@Column(name = "role_name")
+	@Column(name = "role_name", unique = true)
 	protected String name;
 
 	@JsonIgnore
