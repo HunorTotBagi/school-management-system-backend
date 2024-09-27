@@ -1,668 +1,2002 @@
 {
 	"info": {
-		"_postman_id": "6ccae35d-defd-4878-aff9-85f6dde6039a",
-		"name": "ASP.NET Core 6 Web API Fundamentals",
+		"_postman_id": "115a39af-e901-4cf0-9d32-3dcb46457fce",
+		"name": "ICT Cluster - Electric Diary",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29345409"
 	},
 	"item": [
 		{
-			"name": "GET Cities",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET City",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET Points of Interest",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"1",
-						"pointsofinterest"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET Points of Interest (unexisting City)",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/4/pointsofinterest",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"4",
-						"pointsofinterest"
-					]
-				},
-				"description": "Should return 404 NotFound"
-			},
-			"response": []
-		},
-		{
-			"name": "GET Point of Interest",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"1",
-						"pointsofinterest",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET Point of Interest (unexisting City)",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/4/pointsofinterest/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"4",
-						"pointsofinterest",
-						"1"
-					]
-				},
-				"description": "Should return 404 NotFound"
-			},
-			"response": []
-		},
-		{
-			"name": "GET Point of Interest (unexisting Point of Interest)",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest/10",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"1",
-						"pointsofinterest",
-						"10"
-					]
-				},
-				"description": "Should return 404 NotFound"
-			},
-			"response": []
-		},
-		{
-			"name": "GET Cities (XML)",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/xml"
-					}
-				],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET File",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/xml"
-					}
-				],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/files/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"files",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST Point of Interest",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Père Lachaise\",\n    \"description\": \"Famous cemetery where Jim Morrison and Oscar Wilde are buried.\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/3/pointsofinterest",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"3",
-						"pointsofinterest"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST Point of Interest (can't deserialize)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/3/pointsofinterest",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"3",
-						"pointsofinterest"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST Point of Interest (missing name, long description)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"invalidProperty\": 1,\n    \"description\": \"Scallywag holystone landlubber or just lubber yardarm tackle Shiver me timbers cog heave down provost Admiral of the Black. Hornswaggle spanker man-of-war yo-ho-ho mutiny splice the main brace jack keelhaul fire ship Corsair. Bounty prow walk the plank lugsail port loot pirate bilge jib scuppers.  Sutler lee matey sloop plunder splice the main brace interloper Yellow Jack maroon quarter. Draft Privateer run a shot across the bow chandler gaff broadside Pirate Round jolly boat skysail bilge. Chandler mutiny careen execution dock splice the main brace bring a spring upon her cable lass run a rig grog blossom smartly.  Gangplank Davy Jones' Locker plunder overhaul draught pinnace blow the man down bring a spring upon her cable no prey, no pay keel. Gold Road gaff grapple sutler scurvy aft bilge come about coffer gunwalls. Scuttle list Davy Jones' Locker pinnace chase trysail draught Pirate Round Jolly Roger log.\"\n}\n"
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/3/pointsofinterest",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"3",
-						"pointsofinterest"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PUT Point of Interest",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Updated - Central Park\",\n    \"description\": \"Updated - The most visited urban park in the United States.\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"1",
-						"pointsofinterest",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PUT Point of Interest (no description)",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Updated again - Central Park\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"1",
-						"pointsofinterest",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PATCH Point of Interest",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "[\n    {\n      \"op\": \"replace\",\n      \"path\": \"/name\",\n      \"value\": \"Updated - Central Park\"\n    }\n]"
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"1",
-						"pointsofinterest",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PATCH Point of Interest (update multiple)",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "[\n    {\n      \"op\": \"replace\",\n      \"path\": \"/name\",\n      \"value\": \"Updated - Central Park\"\n    },\n    {\n      \"op\": \"replace\",\n      \"path\": \"/description\",\n      \"value\": \"Updated - Description\"\n    }\n]"
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"1",
-						"pointsofinterest",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PATCH Point of Interest (invalid property)",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "[\n    {\n      \"op\": \"replace\",\n      \"path\": \"/invalidproperty\",\n      \"value\": \"Updated - Central Park\"\n    }\n]"
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"1",
-						"pointsofinterest",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PATCH Point of Interest (remove name)",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "[\n    {\n      \"op\": \"remove\",\n      \"path\": \"/name\"\n    }\n]"
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"1",
-						"pointsofinterest",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DELETE Point of Interest",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"1",
-						"pointsofinterest",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET Cities, filtered",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities?name=Antwerp",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "Antwerp"
+			"name": "Class",
+			"item": [
+				{
+					"name": "/api/v1/classes",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"6.C\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/classes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"classes"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET Cities, searched",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities?searchQuery=the",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities"
-					],
-					"query": [
-						{
-							"key": "searchQuery",
-							"value": "the"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/classes",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/classes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"classes"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/classes/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/classes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"classes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/classes/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/classes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"classes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/classes/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/classes/402",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"classes",
+								"402"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "GET Cities, filtered, searched",
+			"name": "Email",
+			"item": [
+				{
+					"name": "/api/v1/emails/simpleEmail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"to\" : \"hunortotbagi@gmail.com\",\r\n    \"subject\" : \"Hunor's electornic diary\",\r\n    \"text\" : \"Hello from Spring app, soon you will get your grades\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/emails/simpleEmail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"emails",
+								"simpleEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/emails/templateEmail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"to\" : \"hunortotbagi@gmail.com\",\r\n    \"subject\" : \"Spring Template Mail\",\r\n    \"text\" : \"Hello from Spring app, color\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/emails/templateEmail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"emails",
+								"templateEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/emails/emailWithAttachment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"to\" : \"hunortotbagi@gmail.com\",\r\n    \"subject\" : \"Estimation points for Enmeshed\",\r\n    \"text\" : \"Here is the estimation points that we use for enmeshed. Cheers!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/emails/emailWithAttachment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"emails",
+								"emailWithAttachment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Grade",
+			"item": [
+				{
+					"name": "/api/v1/grades",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"grade\" : 9,\r\n    \"studentId\" : \"2\",\r\n    \"teacherId\" : \"1\",\r\n    \"subjectId\" : \"1\",\r\n    \"gradingType\" : \"HOMEWORK\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/grades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"grades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/grades",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/grades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"grades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/grades/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/grades/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"grades",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/grades/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"grade\" : 5,\r\n    \"studentId\" : \"1\",\r\n    \"teacherId\" : \"1\",\r\n    \"subjectId\" : \"1\",\r\n    \"gradingType\" : \"Usmeni\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/grades/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"grades",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/grade/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/grades/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"grades",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parent",
+			"item": [
+				{
+					"name": "/api/v1/parents",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"Ivan\",\r\n    \"lastName\" : \"Tančik\",\r\n    \"email\" : \"ivan.bog1@gmail.com\",\r\n    \"password\" : \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/parents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"parents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/parents",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/parents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"parents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/parents/{parentId}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/parents/352",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"parents",
+								"352"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/parents/{parentId}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/parents/352",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"parents",
+								"352"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/parents/{parentId}/students/{studentId}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"Nikola\",\r\n    \"lastName\" : \"Vetnic\",\r\n    \"email\" : \"nikola.vetnic@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/parents/1/students/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"parents",
+								"1",
+								"students",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/parents/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/parents/352",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"parents",
+								"352"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "/api/v1/roles",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"ROLE_WORKER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/roles",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/roles/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/roles/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"ROLE_CLEANER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/roles/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "/api/v1/students",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"Miloš\",\r\n    \"lastName\" : \"Đurđević\",\r\n    \"classId\" : 2,\r\n    \"parentId\" : 6,\r\n    \"userId\": 12\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/students/student",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/students/student",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"students",
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/students/parent",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/students/parent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"students",
+								"parent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/students/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/students/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"students",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/students/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"NikolaA\",\r\n    \"lastName\" : \"Dmitrasinovic\",\r\n    \"classId\" : \"1\",\r\n    \"parentId\" : \"52\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/students/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"students",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/students/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/students/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"students",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subject",
+			"item": [
+				{
+					"name": "/api/v1/subjects",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Backend\",\r\n    \"weeklyFund\" : 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/subjects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/subjects",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/subjects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/subjects/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/subjects/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"subjects",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/subjects/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Geografija\",\r\n    \"weeklyFund\" : 7\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/subjects/52",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"subjects",
+								"52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/subjects/{subjectId}/students/{studentId}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/subjects/153/students/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"subjects",
+								"153",
+								"students",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/subjects/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/subjects/52",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"subjects",
+								"52"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher",
+			"item": [
+				{
+					"name": "/api/v1/teachers",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"Veljko\",\r\n    \"lastName\" : \"Petrović\",\r\n    \"classId\" : \"1\",\r\n    \"userId\" : \"11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/teachers",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/teachers/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/teachers/52",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"teachers",
+								"52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/teachers/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"MILAN\",\r\n    \"lastName\" : \"Čeliković\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/teachers/502",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"teachers",
+								"502"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/teachers/teachers/teaches/Subject",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/teachers/1/subject/152",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"teachers",
+								"1",
+								"subject",
+								"152"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/teachers/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@school.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/teachers/252",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"teachers",
+								"252"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "/api/v1/users",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"petofi.sandor@gmail.com\",\r\n  \"lastName\": \"Sandor\",\r\n  \"name\": \"Petofi\",\r\n  \"password\": \"doktor\",\r\n  \"role\": 4\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/users",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/users/{userId}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/352",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"352"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/users/email/{userEmail}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/email/user3@example.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"email",
+								"user3@example.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/users/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Zoran\",\r\n    \"lastName\" : \"Cvijic\",\r\n    \"password\" : \"lord123King\",\r\n    \"email\" : \"zoran.nikolic@gmail.com\",\r\n    \"roleId\" : \"52\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/102",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"102"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/users/{id}",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/102",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"102"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/api/v1/logs/download",
 			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities?name=Antwerp&searchQuery=the",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities"
-					],
-					"query": [
+				"auth": {
+					"type": "basic",
+					"basic": [
 						{
-							"key": "name",
-							"value": "Antwerp"
+							"key": "password",
+							"value": "admin",
+							"type": "string"
 						},
 						{
-							"key": "searchQuery",
-							"value": "the"
+							"key": "username",
+							"value": "admin@school.com",
+							"type": "string"
 						}
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET Cities, paged",
-			"request": {
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities?pageSize=1&pageNumber=2",
-					"protocol": "https",
+					"raw": "http://localhost:8080/api/v1/logs/download",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "{{portNumber}}",
+					"port": "8080",
 					"path": [
 						"api",
-						"cities"
-					],
-					"query": [
-						{
-							"key": "pageSize",
-							"value": "1"
-						},
-						{
-							"key": "pageNumber",
-							"value": "2"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST Authentication info to get a token",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"KevinDockx\",\r\n    \"password\": \"This is a relatively long sentence that acts as my password\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/authentication/authenticate",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"authentication",
-						"authenticate"
+						"v1",
+						"logs",
+						"download"
 					]
 				}
 			},
