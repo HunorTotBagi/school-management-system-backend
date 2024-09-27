@@ -103,7 +103,7 @@ public class ParentServiceImpl implements ParentService {
 		user.setRole(newRole);
 		
 		userRepository.save(user);
-		logger.info("User with ID {} and email role {} {} created.", user.getId(), user.getRole() , user.getEmail());
+		logger.info("User with ID {} created.", user.getId());
 		return user;
 	}
 
@@ -122,8 +122,9 @@ public class ParentServiceImpl implements ParentService {
 		parent.setLastName(parentRequestDTO.getLastName());
 		parent.setEmail(parentRequestDTO.getEmail());
 		parent.setUser(newUser);
-		logger.info("Parent with ID {} created.", parent.getId());
+
 		parentRepository.save(parent);
+		logger.info("Parent with ID {} created.", parent.getId());
 		return parent;
 	}
 
@@ -131,16 +132,18 @@ public class ParentServiceImpl implements ParentService {
 		existingParent.setFirstName(parentRequestDTO.getFirstName());
 		existingParent.setLastName(parentRequestDTO.getLastName());
 		existingParent.setEmail(parentRequestDTO.getEmail());
-		logger.info("Parent with ID {} updated.", existingParent.getId());
+		
 		parentRepository.save(existingParent);
+		logger.info("Parent with ID {} updated.", existingParent.getId());
 	}
 
 	private void updateUser(ParentRequestDTO parentRequestDTO, UserEntity existingUser) {
 		existingUser.setFirstName(parentRequestDTO.getFirstName());
 		existingUser.setLastName(parentRequestDTO.getLastName());
 		existingUser.setEmail(parentRequestDTO.getEmail());
-		logger.info("User with ID {} updated.", existingUser.getId());
+		
 		userRepository.save(existingUser);
+		logger.info("User with ID {} updated.", existingUser.getId());
 	}
 
 	private UserEntity getUserById(Integer userId) {
