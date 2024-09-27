@@ -102,8 +102,8 @@ public class ParentServiceImpl implements ParentService {
 		user.setEmail(parentRequestDTO.getEmail());
 		user.setRole(newRole);
 		
-		logger.info("User with ID {} and email {} created.", user.getId(), user.getEmail());
 		userRepository.save(user);
+		logger.info("User with ID {} and email role {} {} created.", user.getId(), user.getRole() , user.getEmail());
 		return user;
 	}
 
