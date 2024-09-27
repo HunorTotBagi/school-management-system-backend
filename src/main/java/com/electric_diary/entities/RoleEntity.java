@@ -3,15 +3,12 @@ package com.electric_diary.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.electric_diary.enums.RoleEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,8 +35,8 @@ public class RoleEntity {
 	@Column(name = "role_id")
 	protected Integer id;
 
-    @Column(name = "role_name", unique = true)
-    protected String name;
+	@Column(name = "role_name", unique = true)
+	protected String name;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })

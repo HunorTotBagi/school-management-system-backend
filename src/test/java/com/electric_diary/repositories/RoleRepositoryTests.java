@@ -22,11 +22,8 @@ public class RoleRepositoryTests {
 	@Test
 	public void RoleRepository_SaveAll_ReturnSavedRole() {
 		// Arrange
-		RoleEntity role = RoleEntity.builder()
-				.id(1)
-				.name(RoleEnum.ROLE_TEACHER.name())
-				.build();
-		
+		RoleEntity role = RoleEntity.builder().id(1).name(RoleEnum.ROLE_TEACHER.name()).build();
+
 		Mockito.when(roleRepository.save(role)).thenReturn(role);
 
 		// Act
@@ -36,85 +33,73 @@ public class RoleRepositoryTests {
 		Assertions.assertThat(result).isNotNull();
 		Assertions.assertThat(result.getId()).isGreaterThan(0);
 	}
-	
+
 	@Test
 	public void RoleRepository_FindAll_ReturnMoreThanOneRole() {
-	    // Arrange
-		RoleEntity firstRole = RoleEntity.builder()
-				.name(RoleEnum.ROLE_TEACHER.name())
-				.build();
-	    
-		RoleEntity secondRole = RoleEntity.builder()
-				.name(RoleEnum.ROLE_ADMIN.name())
-				.build();
-	    
-	    List<RoleEntity> roleList = Arrays.asList(firstRole, secondRole);
+		// Arrange
+		RoleEntity firstRole = RoleEntity.builder().name(RoleEnum.ROLE_TEACHER.name()).build();
 
-	    Mockito.when(roleRepository.findAll()).thenReturn(roleList);
-	    
-	    // Act
-	    Iterable<RoleEntity> result = roleRepository.findAll();
-	    
-	    // Assert
-	    Assertions.assertThat(result).isNotNull();
-	    Assertions.assertThat(result).hasSize(2);
-	    Assertions.assertThat(result).containsExactlyInAnyOrder(firstRole, secondRole);
+		RoleEntity secondRole = RoleEntity.builder().name(RoleEnum.ROLE_ADMIN.name()).build();
+
+		List<RoleEntity> roleList = Arrays.asList(firstRole, secondRole);
+
+		Mockito.when(roleRepository.findAll()).thenReturn(roleList);
+
+		// Act
+		Iterable<RoleEntity> result = roleRepository.findAll();
+
+		// Assert
+		Assertions.assertThat(result).isNotNull();
+		Assertions.assertThat(result).hasSize(2);
+		Assertions.assertThat(result).containsExactlyInAnyOrder(firstRole, secondRole);
 	}
-	
+
 	@Test
 	public void RoleRepository_FindById_ReturnRole() {
-	    // Arrange
-		RoleEntity role = RoleEntity.builder()
-				.name(RoleEnum.ROLE_TEACHER.name())
-				.build();
-	    
-	    Mockito.when(roleRepository.findById(role.getId())).thenReturn(Optional.of(role));
-	    
-	    // Act
-	    Optional<RoleEntity> result = roleRepository.findById(role.getId());
-	    
-	    // Assert
-	    Assertions.assertThat(result).isPresent();
-	    Assertions.assertThat(result.get()).isEqualTo(role);
+		// Arrange
+		RoleEntity role = RoleEntity.builder().name(RoleEnum.ROLE_TEACHER.name()).build();
+
+		Mockito.when(roleRepository.findById(role.getId())).thenReturn(Optional.of(role));
+
+		// Act
+		Optional<RoleEntity> result = roleRepository.findById(role.getId());
+
+		// Assert
+		Assertions.assertThat(result).isPresent();
+		Assertions.assertThat(result.get()).isEqualTo(role);
 	}
-	
+
 	@Test
 	public void RoleRepository_UpdateRole_ReturnsUpdatedRole() {
-	    // Arrange
-		RoleEntity role = RoleEntity.builder()
-				.id(1)
-				.name(RoleEnum.ROLE_TEACHER.name())
-				.build();
-	    
-	    Mockito.when(roleRepository.findById(role.getId())).thenReturn(Optional.of(role));
-	    RoleEntity resultSave = roleRepository.findById(role.getId()).get();
-	    
-	    resultSave.setName(RoleEnum.ROLE_ADMIN.name());
-	    
+		// Arrange
+		RoleEntity role = RoleEntity.builder().id(1).name(RoleEnum.ROLE_TEACHER.name()).build();
+
+		Mockito.when(roleRepository.findById(role.getId())).thenReturn(Optional.of(role));
+		RoleEntity resultSave = roleRepository.findById(role.getId()).get();
+
+		resultSave.setName(RoleEnum.ROLE_ADMIN.name());
+
 		Mockito.when(roleRepository.save(resultSave)).thenReturn(resultSave);
-	    
-	    // Act
+
+		// Act
 		RoleEntity updatedRole = roleRepository.save(resultSave);
-	    
-	    // Assert
-	    Assertions.assertThat(updatedRole.getName()).isEqualTo("ROLE_ADMIN");
+
+		// Assert
+		Assertions.assertThat(updatedRole.getName()).isEqualTo("ROLE_ADMIN");
 	}
-	
+
 	@Test
 	public void RoleRepository_DeleteRole_ReturnRoleIsEmpty() {
-	    // Arrange
-		RoleEntity role = RoleEntity.builder()
-				.id(1)
-				.name(RoleEnum.ROLE_TEACHER.name())
-				.build();
-	    
+		// Arrange
+		RoleEntity role = RoleEntity.builder().id(1).name(RoleEnum.ROLE_TEACHER.name()).build();
+
 		roleRepository.save(role);
-	    
-	    // Act
+
+		// Act
 		roleRepository.delete(role);
-	    Optional<RoleEntity> roleReturn = roleRepository.findById(role.getId());
-	    
-	    // Assert
-	    Assertions.assertThat(roleReturn).isEmpty();
+		Optional<RoleEntity> roleReturn = roleRepository.findById(role.getId());
+
+		// Assert
+		Assertions.assertThat(roleReturn).isEmpty();
 	}
 }

@@ -37,8 +37,8 @@ public class DataInitializer {
 			RoleEntity userRole = roleRepository.findByName(RoleEnum.ROLE_ADMIN.name())
 					.orElseThrow(() -> new RuntimeException("Role not found"));
 
-			UserEntity user = UserEntity.builder().firstName("admin").lastName("admin")
-					.email("admin@school.com").password("{noop}admin").role(userRole).build();
+			UserEntity user = UserEntity.builder().firstName("admin").lastName("admin").email("admin@school.com")
+					.password("{noop}admin").role(userRole).build();
 
 			userRepository.save(user);
 		}
