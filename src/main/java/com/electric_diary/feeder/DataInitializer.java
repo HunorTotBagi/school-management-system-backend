@@ -33,14 +33,22 @@ public class DataInitializer {
 	}
 
 	private void initUsers(UserRepository userRepository, RoleRepository roleRepository) {
-		if (!userRepository.findByEmail("user@example.com").isPresent()) {
-			RoleEntity userRole = roleRepository.findByName(RoleEnum.ROLE_ADMIN.name())
-					.orElseThrow(() -> new RuntimeException("Role not found"));
+	    if (!userRepository.findByEmail("admin@school.com").isPresent()) {
+	        RoleEntity userRole = roleRepository.findByName(RoleEnum.ROLE_ADMIN.name())
+	                .orElseThrow(() -> new RuntimeException("Role not found"));
 
-			UserEntity user = UserEntity.builder().firstName("admin").lastName("admin").email("admin@school.com")
-					.password("{noop}admin").role(userRole).build();
+	        UserEntity user = UserEntity.builder()
+	                .firstName("admin")
+	                .lastName("admin")
+	                .email("admin@school.com")
+	                .password("{noop}admin")
+	                .role(userRole)
+	                .build();
 
-			userRepository.save(user);
-		}
+	        userRepository.save(user);
+	    } else {
+	        System.out.println("Admin user already exists, skipping user creation.");
+	    }
 	}
+
 }
