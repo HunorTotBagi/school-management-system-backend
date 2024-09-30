@@ -1732,12 +1732,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "pass",
+									"value": "admin",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "user@example.com",
+									"value": "admin@school.com",
 									"type": "string"
 								}
 							]
@@ -1777,12 +1777,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "pass",
+									"value": "admin",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "user@example.com",
+									"value": "admin@school.com",
 									"type": "string"
 								}
 							]
@@ -1813,12 +1813,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "pass",
+									"value": "admin",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "user@example.com",
+									"value": "admin@school.com",
 									"type": "string"
 								}
 							]
@@ -1850,12 +1850,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "pass",
+									"value": "admin",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "user@example.com",
+									"value": "admin@school.com",
 									"type": "string"
 								}
 							]
@@ -1888,12 +1888,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "pass",
+									"value": "admin",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "user@example.com",
+									"value": "admin@school.com",
 									"type": "string"
 								}
 							]
@@ -1934,12 +1934,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "pass",
+									"value": "admin",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "user@example.com",
+									"value": "admin@school.com",
 									"type": "string"
 								}
 							]
