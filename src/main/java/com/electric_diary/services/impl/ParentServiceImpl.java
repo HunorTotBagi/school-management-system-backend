@@ -59,8 +59,8 @@ public class ParentServiceImpl implements ParentService {
 	@Override
 	public ParentEntity updateParent(Integer parentId, ParentRequestDTO parentRequestDTO) {
 		ParentEntity existingParent = getParentById(parentId);
-		UserEntity existingUser = getUserById(existingParent.getId());
-
+		UserEntity existingUser = getUserById(existingParent.getUser().getId());
+		
 		updateParent(parentRequestDTO, existingParent);
 		updateUser(parentRequestDTO, existingUser);
 
