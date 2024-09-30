@@ -65,21 +65,22 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public StudentEntity updateStudent(Integer studentId, StudentRequestDTO studentRequestDTO) {
-		StudentEntity student = getStudentById(studentId);
+		StudentEntity existingStudent = getStudentById(studentId);
+		UserEntity existingUser = getUserById(existingStudent.getUser().getId());
+		
+		updateStudent(studentRequestDTO, existingStudent);
+		updateUser(studentRequestDTO, existingUser);
+		
+		return existingStudent;
+	}
 
-		ClassEntity newClass = getClassById(studentRequestDTO.getClassId());
-		ParentEntity parent = getParentById(studentRequestDTO.getParentId());
-		//UserEntity user = getUserById(studentRequestDTO.);
+	private void updateUser(StudentRequestDTO studentRequestDTO, UserEntity existingUser) {
+		existingUser.setFirstName(studentRequestDTO.getFirstName());
+		existingUser.setLastName(studentRequestDTO.getLastName());
+		existingUser.setEmail(studentRequestDTO.getEmail());
 
-		student.setFirstName(studentRequestDTO.getFirstName());
-		student.setLastName(studentRequestDTO.getLastName());
-		student.setNewClass(newClass);
-		student.setParent(parent);
-		//student.setUser(user);
-		studentRepository.save(student);
-		logger.info("Updated student with ID {}.", studentId);
-
-		return student;
+		userRepository.save(existingUser);
+		logger.info("User with ID {} updated.", existingUser.getId());		
 	}
 
 	@Override
@@ -135,13 +136,27 @@ public class StudentServiceImpl implements StudentService {
 		logger.info("Student with ID {} created.", student.getId());
 		return student;
 	}
+	
+	private void updateStudent(StudentRequestDTO studentRequestDTO, StudentEntity existingStudent) {
+		ClassEntity newClass = getClassById(studentRequestDTO.getClassId());
+		ParentEntity parent = getParentById(studentRequestDTO.getParentId());
+		
+		existingStudent.setFirstName(studentRequestDTO.getFirstName());
+		existingStudent.setLastName(studentRequestDTO.getLastName());
+		existingStudent.setEmail(studentRequestDTO.getEmail());
+		existingStudent.setNewClass(newClass);
+		existingStudent.setParent(parent);
+		
+		studentRepository.save(existingStudent);
+		logger.info("Student with ID {} updated.", existingStudent.getId());
+	}
 
 	private RoleEntity getRoleById(Integer roleId) {
 		return roleRepository.findById(roleId).orElseThrow(() -> new NotFoundException("Role", roleId));
 	}
 
 	private ClassEntity getClassById(Integer classId) {
-		return classRepository.findById(classId).orElseThrow(() -> new NotFoundException("User", classId));
+		return classRepository.findById(classId).orElseThrow(() -> new NotFoundException("Class", classId));
 	}
 
 	public ParentEntity getParentById(Integer parentId) {
