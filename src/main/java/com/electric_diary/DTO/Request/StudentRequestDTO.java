@@ -10,7 +10,8 @@ import lombok.Setter;
 public class StudentRequestDTO {
 	private String firstName;
 	private String lastName;
+	private String email;
+	private String password;
 	private Integer classId;
 	private Integer parentId;
-	private Integer userId;
 }
