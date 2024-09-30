@@ -42,6 +42,10 @@ public class StudentEntity {
 
 	@JsonView(Views.Parent.class)
 	private String lastName;
+	
+	private String email;
+	
+	private String password;
 
 	@NotNull
 	@JsonIgnore
